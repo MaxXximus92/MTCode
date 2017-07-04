@@ -1,0 +1,24 @@
+Sehr geehrter Herr Zell,
+im Moment arbeite ich an meiner Masterarbeit über die optimierung eines Models des Motorkortexes mit Hilfe von HyperNEAT.
+Betreut wird die Arbeit von Herrn Martin Spüler.
+Für Sie wäre die Arbeit interessant, da es sich bei HyperNEAT um einen relativ neuen (2009) Evolutionären Algorithmus handelt, 
+der darauf optimiert sowohl die Gewichte wie auch die Struktur großer künstliche Neuronale Netzwerke effizient zu optimieren.
+Mitlerweile wird dieser Ansatz auch vom Google Brain Lab in London im Bereich Deep Neural Networks verwendet. 
+HyperNEAT basiert auf dem NEAT-Algorithmus (NeuroEvolution of Augmented Topologies), mit welchem möglichst kompakte Netzwerke für ein Problem erstellt werden können.
+Allerdings scheitert NEAT teils bereits, wenn das gesuchte Netzwerk einige 100 Neurone groß ist. 
+HyperNEAT verwenden NEAT um Compositional Pattern Producing Networks (CPPNs) zu erstellen. 
+Die Eingabe eines CPPNs sind die Koordinaten zweier Neuronen im Netzwerk, 
+die Ausgabe eine d-dimensionale Funktion welche das Gewicht sowie weitere möglche Eigenschaften der Verbindung beschreibt.
+Neue Neurone des zu entwickelnden Netzwerkes werden an Koordinaten mit einer hohen Varianz (=Information) des CPPNs erstellt.
+
+Soweit eine grobe Zusammenfassung meines Themas.
+Es würde mich sehr freuen, wenn Sie den Zweitprüfer meiner Arbeit machen würden.
+Falls Sie weitere Fragen zum Thema haben, kann ich gerne bei Ihnen vorbeischauen.
+
+Sie haben bereits eine ähnliche Arbeit von Johannes Anufrienko begutachtet. Welcher mit NEAT ohne Erweiterung gearbeitet hat.
+Im gegensatz zu dieser Arbeit erscheint der neue Ansatz bisher erfoglesersprechend.
+
+
+
+Mit freundlichen Grüßen
+Maximus Mutschler

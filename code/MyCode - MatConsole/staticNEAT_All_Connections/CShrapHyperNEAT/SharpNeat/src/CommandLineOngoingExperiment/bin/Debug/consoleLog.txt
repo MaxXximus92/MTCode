@@ -1,0 +1,30 @@
+test encoding: threshold: -0.5
+Starting Experiment: StaticExperiment
+--------------------------------------------------------
+loading initial data
+Loaded Types length:304
+Creating Experiment
+Building Population
+Matlab instance Number 1 added
+Matlab instance Number 2 added
+Genome Number 1 fitness 0 dt 00:00:15.3265789 
+Genome Number 0 fitness 0 dt 00:00:15.8389402 
+Run Experiment
+------------------------------------
+ Generation: 0
+------------------------------------
+Genome Number 0 fitness 0 dt 00:00:15.3103851 
+Genome Number 1 fitness 0 dt 00:00:15.6776441 
+Best fitness of gernatation 0 : 0
+Save Best Genome
+-----------------------------
+Generation Number1, best fitness:0, time needed to evaluate: 00:00:15.7436910
+-----------------------------
+Evolution Done -> SavingResults
+Plotting matlab graphs
+Matlab Plots for Genome Name StaticExperiment_BG_Gen_0_Fitn_0 created 00:00:15.0683793
+Plotting genome graphs
+Close Training Models
+Simulate Model
+Simulation Matlab Plots for Genome Name sim_StaticExperiment_BG_Gen_0_Fitn_0 created 00:00:34.8291239
+Done!

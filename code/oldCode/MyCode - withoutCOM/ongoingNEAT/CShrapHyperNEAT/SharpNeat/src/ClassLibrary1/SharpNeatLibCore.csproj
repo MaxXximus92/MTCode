@@ -1,0 +1,167 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="LGPL.txt" />
+    <Content Include="LICENSE.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="NetworkVisualization\GridLayoutManager_backup.cs" />
+    <None Include="NetworkVisualization\NetworkModelPainter_backup.cs" />
+    <None Include="NetworkVisualization\NetworkModelPainter_eh.cs" />
+    <None Include="NeuralNetwork\FastConcurrentNetwork\FloatFastConnectionComparer.cs" />
+    <None Include="UtilityClasses\Coord.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="AppConfig\ExperimentConfigurationSectionHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Evolution\AbstractGenome.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Evolution\GenomeAgeComparer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Evolution\GenomeComparer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Evolution\GenomeList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Evolution\NeatParameters\ConnectionMutationParameterGroupList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Evolution\PruningModeGenomeComparer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Experiments\AbstractExperimentView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Experiments\SingleFilePopulationEvaluator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ExperimentUtils\Functions\LogisticMapFunction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ExperimentUtils\Functions\MackyGlassFunction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Maths\MathsException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeatGenome\ConnectionGeneComparer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeatGenome\ConnectionGeneList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeatGenome\IdGeneratorFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeatGenome\NeatGenome.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeatGenome\NeuronGeneComparer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeatGenome\NeuronGeneList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeatGenome\Xml\XmlNeatGenomeReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NetworkVisualization\GridLayoutManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NetworkVisualization\ModelConnectionList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NetworkVisualization\ModelNeuronList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NetworkVisualization\NetworkControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="NetworkVisualization\Viewport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="NeuralNetwork\AbstractNetwork.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeuralNetwork\ActivationFunctions\InverseAbsoluteSigmoid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeuralNetwork\ActivationFunctions\NullFn.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeuralNetwork\ActivationFunctions\PlainSigmoid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeuralNetwork\ActivationFunctions\ReducedSigmoid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeuralNetwork\ActivationFunctions\SigmoidApproximation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeuralNetwork\ActivationFunctions\SteepenedSigmoid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeuralNetwork\ActivationFunctions\SteepenedSigmoidApproximation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeuralNetwork\ActivationFunctions\StepFunction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeuralNetwork\ConcurrentNetwork\ConcurrentNetwork.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeuralNetwork\ConcurrentNetwork\ConnectionList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeuralNetwork\ConcurrentNetwork\NeuronList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeuralNetwork\FastConcurrentNetwork\FastConcurrentMultiplicativeNetwork.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeuralNetwork\FastConcurrentNetwork\FloatFastConcurrentNetwork.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeuralNetwork\IntegerFastConcurrentNetwork\IntegerFastConcurrentNetwork.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NeuralNetwork\NetworkList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UtilityClasses\ListItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Xml\XmlException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+ 
+
+
+  <ItemGroup>
+    <EmbeddedResource Update="Experiments\AbstractExperimentView.resx">
+      <DependentUpon>AbstractExperimentView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="NetworkVisualization\NetworkControl.resx">
+      <DependentUpon>NetworkControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="NetworkVisualization\Viewport.resx">
+      <DependentUpon>Viewport.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

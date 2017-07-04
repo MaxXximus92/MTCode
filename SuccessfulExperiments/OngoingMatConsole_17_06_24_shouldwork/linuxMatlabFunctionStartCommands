@@ -1,0 +1,13 @@
+/bin/bash  -c $'/storage/matlab-r2017a/bin/matlab  -nodesktop -nodisplay -nosplash -nojvm -singleCompThread  -r \"getModelParams(\'256\',\' /nfs/wsi/ti/messor/mutschler/Experiments/OngoingMatConsole_17_06_12/CommandLineOngoingExperiment/Debug/communication/ \') \" ' 
+
+/bin/bash  -c $'/storage/matlab-r2017a/bin/matlab  -nodesktop -nodisplay -nosplash -nojvm -singleCompThread  -r \"getModelParams(\'256\', \' test \' ) \" -logfile 'test2' '
+
+
+/bin/bash  -c "/storage/matlab-r2016b/bin/matlab  -nodesktop -nodisplay -nosplash -nojvm -singleCompThread  -r 'test22(' /' '5' /' ')'"
+
+/bin/bash  -c "/storage/matlab-r2016b/bin/matlab  -nodesktop -nodisplay -nosplash -nojvm -singleCompThread  -r 'test22( '5')' "
+
+/bin/bash  -c $'/storage/matlab-r2016b/bin/matlab  -nodesktop -nodisplay -nosplash -nojvm -singleCompThread  -r \'test22( \'5\')\' '
+
+
+/storage/matlab-r2016b/bin/matlab  -nodesktop -nodisplay -nosplash -nojvm -singleCompThread  -r  'test22(5)'"  

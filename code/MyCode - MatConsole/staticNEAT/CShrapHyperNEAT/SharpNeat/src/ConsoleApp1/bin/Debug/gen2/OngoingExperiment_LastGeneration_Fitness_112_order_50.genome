@@ -1,0 +1,31 @@
+<genome id="24115" species-id="58" age="1" fitness="112.34">
+  <neurons>
+    <neuron id="0" type="bias" activationFunction="NullFn" />
+    <neuron id="1" type="in" activationFunction="NullFn" />
+    <neuron id="2" type="in" activationFunction="NullFn" />
+    <neuron id="3" type="in" activationFunction="NullFn" />
+    <neuron id="4" type="in" activationFunction="NullFn" />
+    <neuron id="5" type="out" activationFunction="BipolarSigmoid" />
+    <neuron id="59" type="hid" activationFunction="Gaussian" />
+    <neuron id="502" type="hid" activationFunction="Gaussian" />
+    <neuron id="572" type="hid" activationFunction="BipolarSigmoid" />
+  </neurons>
+  <connections>
+    <connection innov-id="6" src-id="0" tgt-id="5" weight="-0.9163723890203983" />
+    <connection innov-id="8" src-id="2" tgt-id="5" weight="0.66435020277276635" />
+    <connection innov-id="9" src-id="3" tgt-id="5" weight="0.57425048998557027" />
+    <connection innov-id="10" src-id="4" tgt-id="5" weight="-0.81010544439777732" />
+    <connection innov-id="60" src-id="1" tgt-id="59" weight="-0.5447560382075608" />
+    <connection innov-id="61" src-id="59" tgt-id="5" weight="-0.52117848573252556" />
+    <connection innov-id="72" src-id="2" tgt-id="59" weight="0.28969676373526454" />
+    <connection innov-id="137" src-id="5" tgt-id="59" weight="0.38354130880907178" />
+    <connection innov-id="161" src-id="5" tgt-id="5" weight="-0.071699152467772365" />
+    <connection innov-id="286" src-id="0" tgt-id="59" weight="-0.29353302321396768" />
+    <connection innov-id="443" src-id="1" tgt-id="5" weight="-0.14810322942212226" />
+    <connection innov-id="503" src-id="5" tgt-id="502" weight="1.1975305289961398" />
+    <connection innov-id="504" src-id="502" tgt-id="59" weight="-0.67784028165042409" />
+    <connection innov-id="573" src-id="2" tgt-id="572" weight="0.90792159405536954" />
+    <connection innov-id="574" src-id="572" tgt-id="59" weight="-1.5" />
+    <connection innov-id="687" src-id="3" tgt-id="59" weight="0.10991356149315834" />
+  </connections>
+</genome>

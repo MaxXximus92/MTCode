@@ -1,0 +1,13 @@
+experimentName =StaticExperiment
+experimentDescription= Static Experiment with Hyperneat D_ES Connections
+maxRuntime = 1000
+initialNetEqParamsPath =matlabExecData\eqparams_static.mat
+maxGenerations = 1
+populationSize = 2
+numLastGenModelsToPlotAndSave = 1
+startAngle = 60
+anglesToSimulate =[60,30,0,80,135]
+timePerAngle = 3000
+modelLibPathTrain=C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode - MatConsole\staticNEAT_All_Connections\matlab\static-training
+modelLibPathSimulate=C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode - MatConsole\staticNEAT_All_Connections\matlab\static-simulation
+matlabExecPath =/storage/matlab-r2017a/bin/

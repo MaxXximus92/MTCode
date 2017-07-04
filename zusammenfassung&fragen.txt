@@ -1,0 +1,381 @@
+NEAT selbst implementiert?
+existiert eine Implementierung? ja matlab 
+
+
+NEAT lÃ¤sst netze nicht lernen. unser ansatz hat verknÃ¼pfungswahrscheinlichkeiten von denen er abhÃ¤ngt das heiÃŸt unsere netze mÃ¼ssten vor der evaluierung erst noch lernen.
+Man kÃ¶nnte auch das mittel aus bspw 100 zufÃ¤lligen inizialisierungen nehmen.
+
+Das Problem ist: Durch VerknÃ¼pfungswahrscheinlichkeiten muss ein mittel wert berechnet werden -> Jedes individuum  ca 100 mal lernen lassen. Lernen kostet auch wieder zeit ca 100x pro individuum  -> 10000 netzwerkevaluierungen pro individuum * Anzhal individuen ca 100 => 1000000 evaluierungen fÃ¼r eine generation -> vs 100 evaluierugen bei NEAT . D.h neat kann 10000 generationen durchlaufen wÃ¤hrend wir eine duchlaufen.
+-> Stimmt kann man aber wohl trozdem machen
+-> eher augenmerk auf sprache legen.
+
+
+21.03
+Was gibts neues: 
+NNML
+
+
+Fragen:
+Skriptsprache oder Framework oder API/Library?
+FÃ¼r mich klingt library mit mit erbbaren Neuronen mit aktivierungs und lernmethode?  am besten...
+--> Struktursprache xml  , library drum rum zum erstellen und lesen.
+
+
+Wie spiking umsetzen in model.. reicht array an output pro neuron? ne da zyklische abhÃ¤ngigkeit zwischen schichten,
+
+Unterschied zwischen fast spiking und low threshold spiking. ..> ilchewiz paper
+
+Initial gewicht in abhÃ¤ngigkeit vom Zelltyp wichtig? yep
+
+RÃ¤umliche verknÃ¼pfungswahrscheinlichkeit nach zelle oder schicht? --> nach schicht.
+
+Sebastians Motor controll task nachprogrammieren ... aufwendig !! --> theoretisch nur matrix ersetzen bei ihm in matlab dann gehts. ca 1 min pro netz lernzeit!! aber 64 kern server. -> 64 netze gleichzeitig.
+
+In wie weit soll Lernen in der Sprache beschreibbar sein. 
+
+Lernverfahren kann auch wichtige parameter haben.. lernbar? z.b. BerÃ¼cksichtigung der letzen x bestimmten winkel. spike winkel verhÃ¤ltnis... -> zumindest parameter des lernverfahrens in xml mit speicherbar -> mÃ¼ssen selsbt definierbat sein. MÃ¶glicherweise auch parameter der aktivierungsfunktion. 
+
+--> kann rein muss aber nicht unbedingt. Obwohl lernparameter schon entscheidend sein kÃ¶nnen.  
+
+
+Warum verknÃ¼pfungswahrscheinlichkeiten und nicht voll verknÃ¼pfte Netze wo man niedrige gewichte in frÃ¼hen lernphasen entfernt?
+--> guter ansatz ... braucht zu viel rechenkapazitÃ¤t
+
+
+22.03
+HyperNeat -> fÃ¼r groÃŸe Netze... jemals verwendet? -> ne
+Implementierungen fÃ¼r NEAT in Java, C++, Matlab , C#
+
+Im Grunde weiÃŸ man wie vile schichten man zum lernen braucht... wichtig ist die evolution der Parameter die die schichten und ihre abhÃ¤ngigkeiten beschreiben. NEAT vllt nicht die richtige wahl -> weil auch topologie berÃ¼cksichtigt wird.
+
+--> neat ist raus anderen evolutionÃ¤ren algorithmus verwenden. Der nicht auf struktur basiert. Sondern nur parameter optimiert. 
+Evolutionsstraegien ?	
+
+HyperNeat ansatz klingt vielversprechend-> zusammenfassung in mail an Sebastian
+
+
+23.03
+Hyperneatpackages: 
+C#, C++ with Python interface
+
+CPPN's of hyperneat auch verwendbar um verteilung von plastitziÃ¤tregeln  -> TODO noch lesen
+
+ES-Hyperneat (evolvable substrate)
+
+Mal angenommen der Hyperneat ansatz wÃ¼rde funktionieren... Dann aufbau: somatosensorische wahrnehmung + bewegungsziel fÃ¼r verschiedene gelenke . Wenn das geht dann Ansteuerungsbefehle auch lernen lassen -> zu ziel bewegen! --> dann mal schauen ob sich wellen bilden
+
+Muskelbewegungen eigentlich durch rate coding oder? also wÃ¤re eine effektor nervenzelle biologisch plausiber... als die schichtcodierung in sebastians paper . aber schichtcodierung kann direkt auf eine zelle Ã¼bersetzt werden. Mit oberehÃ¤lfte aktivierend untere hÃ¤lfte hemmend
+
+28.03.17
+Hyperneat -> function wird an struktur(substrat) angepasst
+Evolution Substrate Hyperneat -> function und substrat stehen im wechselspiel, da hidden nodes an stellen engefÃ¼gt werden, die hohe varianz haben. #
+ ->  CPPN  beschreibt lage der hidden nodes und verknÃ¼pfung . Higher evolveability, besser auf sublÃ¶sungen aufbauend da kleine verschiebungen in der funktion nicht zu ganz anderen ergebnissen fÃ¼hren,  sparse connections weden gebildet (Hyperneat mesitens voll verknÃ¼pft), Im gegensatz zu hyperneat kÃ¶nen fÃ¼r weiterfÃ¼hrende lÃ¶sungen weitere knoten mit neuen connections eingefÃ¼gt werden (hyperneat tendiert zum steckenbleiben in sublÃ¶sung)
+
+Hyper Neat Leo .. Link expression output -> zusÃ¤tzlicher output der sagt ob verbindung aktiv oder nicht
+Hyper Neat pattern = learning rule todo (44)
+
+
+
+29-03
+-> Eigene Idee: Hyperneat modularitÃ¤t kÃ¶nnte erreicht werden indem verknÃ¼pfungsfunktion auf teilen des inputs gebildet wird und dann gute teilergebnisse addiert und gemittelt werden. -> Modulare netze immer noch unabhÃ¤ngig kÃ¶nnen aber neurone teilen (Problem mit gewichten, einmal stark dann einmal schwach augeprÃ¤gt -> mittel groÃŸer unerschied)
+
+Hyperneat with multi spatial substrat, logical connected neurons are located in one layer. Geometric function has output for connections between layer and bias in layers. -> Good for modular input tasks.  less biological alternative to LEO , ignores Density appraoch.
+
+Adaptive Hyperneat, learningrules are determined by funciton of geometry
+
+30.03.
+
+
+->Todo masterarbeit:
+	auf beispiel sebastian (neuro modelling welt) und ein beispiel aus neuro evolution welt mit spiking neuorns:
+	-> hyperneat
+	-> es hyperneat (Varianz)
+	-> adaptive hyperneat (Lernregeln gelernt)
+	-> adaptive es  hyperneat
+	-> mss hyperneat
+	-> DPPN with Backprop
+ES Hyperneat page: http://eplex.cs.ucf.edu/ESHyperNEAT/
+
+
+Warum gibt sebastian den Fehler nicht als interneurone ein ? (also er machts nur indirekt)
+
+DPPN verwendbar fÃ¼r supervised learning. -> evolution step -> than supervised learning with backpropo on cppn (loss function from generated neuro network and it's error). -> wÃ¼rde schon gehen in dem man den durschnittlichen fehler des arms berechnet.
+- biologisch immeroch genauso plausibel da cppn ja nur die encodierung der dna darstellt (sehr unplausibel)
+
+Das mit dem Lernen kÃ¶nnte man aber auch ohne Backprop machen indem man allgemein mit einem error input neuron arbeitet.
+
+
+Hat Martin daten die bewegung und welle korrelieren ?
+Mit diesen versuchen ein NN mit Neuroevolution zu entwicklen, dass genau die gewÃ¼nschten wellen generiert. 
+System Visuell fÃ¼r EEG ->  Zuerst Netz wird gebildet das Buchstabe und Frequenzbild abbildet. 
+Dann: Buchstabe wird gewÃ¤hlt -> in Netz gegeben  -> EEG erkennt. If wrong, eeg learns and created Net learns -> plastizitÃ¤tsreaktio des Gehrings auf ein EEG ableitbar.
+
+18.04.2017
+
+Modelsebastian:
+->IS und IM layer -> Sinn? Arbeiten wie gedÃ¤chtnis, aber eigentlich kein wissen Ã¼ber letzten input benÃ¶tigt. Sinnvoll um Wellen zu erzeugen. Rezeptor input kommt nur alle 25 ms bei 1 ms schritten. 
+Braucht man die Inhibitory Layer wirklich?
+
+-> static learning approach:
+nur D -> ES zellen wird gelernt. Wie war die Standardt einstellung fÃ¼r ES-EM? einfach zufall?
+
+-> Warum trainierst du bei statischen approach nur auf maximale und minimale Tension, Flexion? und gehst danach davon aus dass jeder winkel erreichbar sein soll?
+
+-> alle 50ms wurde eingangssignal verÃ¤ndert.. wird es dauernd gesendet oder nur einmal alle 50 ms
+
+-> warum keine motorische endplatte fÃ¼r 2 muskel?
+
+-> codierung von D durch AKtueller Winkel und gewollter winkel ist gegeben... codierung auch durch evolution herausfinden ?
+
+21.04.17
+Model Sebastian code
+
+-> reward/punishment für armbewegung kommt sofort, wahrgenommen wird sie aber erst 25 ms später -> über P cells. Sinn?
+
+->l 173 spikenet warum wird potential von P in jedem zeitschritt zurückgesetzt. Darf das winkelsignal nur 1 ms anliegen?
+Es liegt nur 1 sekunde an. Gibt proprijezeptiv ja auch sinn. Aber Simulation layer muss die info für 50! timesteps speichern können.
+hat dazu nur gerninge möglichkeit da keine direkten querverbindungen sondern nur über inhibitorische neurone
+
+-> l 45 warum haben alle den gleichen spiking threshold?
+
+
+24.04.2017
+
+DOM Matlab C++ api https://de.mathworks.com/help/matlab/matlab_external/call-matlab-function-from-c-client.html
+https://de.mathworks.com/help/matlab/call-matlab-com-automation-server.html
+
+25,26.04.2017
+-> implementation
+27.04.2017
+todo: chagne matlab interface to get neuron counts  done!
+todo: hyperneat parameter fitting  done!
+todo: loading model parameter from properties file done!
+
+28.04.2017
+todo: show best solutions in the end -> matlab interface that simulates again and plots graphs done!
+
+todo: acitvate learning for ongoing approach again. (maybe shorter learning)
+
+29.04.2017
+
+-> Hyperneat impl uses Bias Neuron
+todo: lernzeit für ongoing rausfinden -> seb masterarbeit
+C# rechnet prallel matlab für verschiedene verbindungen aber nicht. 4 threads 2 sekunden zur berechnung von einem model 1 thread 0.5 sekunden zur berechnung
+-> com interface greift doch immer auf den gleichen workspace zurück... leider Problem!!.Am besten währe eine matlab instanz für jeden core
+-> testen ob man mit 2 getrennte c# instanzen 2 matlab instanzen starten kann mit COM
+
+03.05.2017
+-> Wie sieht mein server aus? 14.04 LTS linux 
+-> linux oder windows? linux
+-> kann linux com server? ne. -> Reimplementierung des Models in c#.
+
+04.05.2017
+-> Über matlab.application.single getrennte matlab instanzen startbar... hilft mir nicht
+->  Model braucht bei 12000 schritten 4 sekunden... zu viel !! insgesamt dann 4*100/64*1000/60/24 = 4.34 Tage pro experiment. 
+->  reimplementierung des models in c# lohnt sich. 
+
+-> idee statt cppn ein kernel producing network verwenden abstand im n dimensionalen raum beschreibt die ähnlichkeit und somit dass gewicht der neurone
+
+08.05.2017
+->Sebastian Fragen: 
+	->warum werden equation params jeden run neu initialisiert?  theoretisch sollte die funktionsweise eines neurons sich ja nicht für jeden neu zu lernenden Winkel ändern -> gibt mir recht
+	-> awrum *0.5 in  this.v = this.v+0.5*(0.04*this.v.^2+5*this.v+140-u+synapticInput+noise); Formel ohne 0.5 -> aber er macht 2 halb sekunden schritte
+	->             noise(idx) = noise(idx) ... //@M noise +  gives no sense 0 anyway  aber fomrel spricht von deltaNoise
+                + (this.noiseWeights(idx,1) .* (1 - voltage(idx) ./ this.noiseRevPotential(idx,1))); // in gleichverteilt gändert
+09.05.2017
+Csharp simulation ohne prosthesis und eligibility fertig programmiert -> ergenis: matlab 6s , c# ca 10s. bei 12000ms =12s
+-> bei Matlab version bleiben.
+
+TODO:  weight matrix und abd parameter von c# aus setzen.
+
+beim static approach -> learning könnten 60 sekunden simulation langen (statt 120) basiert auf graf 4.8 MT
+      static approach -> siumlation könnten 45 s langen -> für jede bewegung 1/4 der zeit
+	ongoing -> mean learning shows Figure 3.5 that 40000 ms shoud be enough
+
+10.05.2017
+Plan was genau will ich eigentlich tun will:
+Ongoing Model: schon existierenden ES-EM verbindungen werden kontinuierlich gelernt. -> Bewegung braucht Lernen
+1)-> Wichtig ist nur die Initiale ES-EM Verknüpfungsausprägung. Standard Gewichte werden übernommen !
+2)-> Gewichte werden zusätzlich bestimmt.
+-> Alle anderen Verknüpfungen werden einmal zufällig erstellt und dann wiederverwendet.
+3)-> VEquationparameters bestimmen für jede Zelle! im Netzwerk (außer P), (dann nicht mehr Es,EM,IM,IS sondern alle möglichen Zellarten)
+  -> Alle gleichen Gewichtswert
+  -> Gewichtswert auch bestimmen
+
+Static Training Model:   P-ES verbindungen werden gelernt. Gelernt wird die Bewegung einmal. Danach jede Bewegung ohne lernen erreichbar
+1)-> Initiale P-Es Verknüpfungsausprägung.  (hier um später mit Sebastian vergleilchen zu können auch die vwahrscheinlichkeit bestimmten)
+2)-> VEquationparameters bestimmen für jede Zelle! im Netzwerk,(außer P) (dann nicht mehr Es,EM,IM,IS sondern alle möglichen Zellarten)
+  -> Alle gleichen Gewichtswert
+  -> Gewichtswert auch bestimmen
+
+Static simulation:
+1)-> Lernen deaktiviert. Direkt Gewichte so finden dass Bewegung möglich ist.
+
+-> fortsetzung siehe Versuchsaufbau file
+
+TODO Write constructor accepting weight matrix and quation params. done
+11.05.2017
+TODD -> test setconnection, setweight, eligibility and reset done
+-> c# matlab interface um neue methoden erweitert
+
+TODO git einrichten !! done
+TODO simulation method streikt!! done
+
+15.05.2017
+-> TODO speichern von Bilern zeitaufwändig da so niht parallelisierbar -> erst neat laufen lassen, danach mit gespeicherten genomen plots erstellen !
+-> Parallelisierung ohne Threadpool!! Threads selbst verwalten! MultiThreadedPopulationEvaluator.cs done
+-> Weitere Params in experimentSettigns done
+-> bias neuron einfügen können -> cppn hat von grundauf schon eins
+
+16.05.17
+How to speed up model.
+40000 iteratons
+-> less than 256 neurons no real spead up. 1024=30s 512=20s 256=16s 128= 15s 2=14s
+-> Zeitrechnung 
+120000 iterationen
+60 sekunden berechnung je model
+120 Individuen
+1000 generationen
+60 kerne
+120/60*60*1000/60/60 = 33 studen 1.4 Tage
+TODo : bilder speichern auch synchronisieren. done
+TODO : text debug geht noch nicht done
+
+17.06.17
+-> start genome hat nur Nullfunctions für in und output warum?
+Nullfunction bedeutet hier, eingabewert wird übernommen.
+-> standardintislisierung liefet output 1.0 
+
+19.05.17
+-> 2simulationen des gleichen netzwerkes liefern nicht den gleichen output
+	-> zufall vorhanden:  random noise entfernt. Random population coding wird auf feuernde nachbarzellen beschränkt
+-> Die  Distance codierunt p58 ist nicht einduetig. Durch verschieben von Distand und Ziel können gleiche zellen aktiviert werden. Aber solang distance =0 ist werden immer die gleichen neurone getroffen. Könnte schon passen da wenn sich ziel verändert sich auch die distanz ändert. Allerdings wird nur die bewwgungsrichutng codiert da. Distance 0 grad ziel 30 grad, ca gleich codiert wie distance 20 ziel 10 grad aber feuern zu verschiedenen zeiten.
+
+TODO: train rückgabe = Zeit
+
+22.05.17
+-> windows server wirds doch nicht geben
+-> file communication
+-> Start matlab without gui: matlab -nodesktop -nodisplay -nosplash -nojvm -singleCompThread  -r "2+2"
+-> TODO tomorrow: check if neuronexperiment runable with mono
+-> TODO compile function that creates and simulates network
+	-> check for multithreading!!
+23.05.17
+-> mono is working
+-> tried to use matlab compiled .net function-> works well, but matlab does multi threading itself. Possible to make concrurrent? 
+
+24.05.17
+just reading
+
+26.05.17
+-> fixed error in population coding, forgett to add lowest index of P cells
+-> problems with learning the model without randomness and fully connected es em weights, P cells activate to less es cells -> are not able to get EM cells to fire
+, it's working with noice. Am not sure but choosing the right es em connections mshould work. The problem is when the network gets into a state where no movement occures, -> no learning stays at this position
+-> changed that no movenemt is always bad -> gets punished
+  %M cause of missing noice a non moving state of the
+                    %network can occur and this state is unleaveable.
+                    %->punish neurons when the network is not moving but
+                    %only if it is not the target angle
+
+-> unter windows weigert er sich die matlab compilierte datei single thread zu laufen unter linux maht ers
+
+-> 29.05.17
+-> population size kann leichte schwankungen haben. hat was mit elitism und species zu tun, warum weiß ich gerade nicht ganz. 
+   -> Population size muss leicht kleiner sein als anzahl kerne vll 50 bei 60 kernen
+
+-> 30.05.17
+-> Code läuft auf server !!!!
+-> test experiment mit 500 generationen und [65,35] started .. ca 17h
+-> muss über screen in putty gestartet werden damit prozesse nicht schließen nach ssh close. 
+Befehl: screen -d -m mono --server CommandLineOngoingExperiment.exe
+str+a +d  detach
+screen -r attach
+str+a -k kill
+-> Todo -> Save mean fitness in each generation, save amaount of species in each generation, done
+-> Todo -> make noise with static seed , done
+
+-> 01,02.06 -> 11.06 Pfingstferien 
+
+12.06.2017
+Contact mit Mathworks
+Mem stats: screen -d -m sh -c 'vmstat 10 7200 -a | ./timestamp.pl'
+screen -L -d -m vmstat 10 7200 -a 
+
+13.06.2017
+-> plotting that amount of genomeimages leads to crash 
+-> genome images not plotted
+
+s-> matlab instance approx 30% slower than standalone approach. -> no i changed the matlab code.. its allright
+
+-> Results are always fully connected Es-Em Matrixes ... could't be changed by learning
+ ToDo check if compile without error is possible
+ Todo increase threshold for establishing connection 
+	-> normalized substrate to 1
+	-> Cause of German system local c# was reading hnparameters wrong. Fixed by setting invariantCulture
+14.06.2017
+-fixed save order .. was reversed
+- starting 40 h experiment thrshold 0.8  settign 65,65;35;95
+
+16.06.1017
+-> running single process experiment only, to look if whe error comes from multiple instances
+ -> also with memory log vstat , wrote perk script for that
+->Single threaded the comp time is around 2 min , with 55 processes it was around 4 min ... 
+TODO try with about 40 cores. -> kein unterschied.
+Mit einer Instanz läuft der Algo für 45h ohne seg fault
+
+19.06.2017
+-> Wenn Matlab nach einer bestimmten Zeit nicht fertig mit der Berechnung ist, wird eine neue Matlabinstanz erstellt. Damit sollte der Segmentation Fault keine Rolle mehr spielen
+-> Static model soweit fertig angepasst. 
+TODO überprüfen ob Ergebnisse gleich bleiben bei 2 runns -> matlab langt
+-> besprechen mit MArtin und Sebastian auf was ich die schwerpunkte nun legen soll.
+
+20.06.2017
+-> Fixed timer bug for Matlab restart
+-> startet with experiment to learn all connctions
+	-> complex function is needed -> maybe 50 individuen auf 600 generationen
+-> Wie funktionier die Abbildung bzw erstellung von n-dimensionale funktionen in HN?
+->Gedanken zum Substrat für den static Versuch mit allen Gewichten
+ -> kleiner eingabe raum und großer suchraum (hier 2 zu 8)-> Verknüpfungen relativ unabhängig zueinander, da output unabhängig von benachbartem output. Dafür Outputs über die schichten abhängig x1y1 von schicht 1 ähnlich zu x1y1 von schicht 2 da wahrscheinlich ähnliche berechnungsfunktion
+ -> minimaler raum: 2 zu 1 -> Gewichte sind "abhängig" von den umgebenden Gewichten da keine Abgrenzung zwischen Schichten möglich. Nur mit sehr komplexer funktion-> hierfür keine zeit
+-> der mittelweg: 4 zu 1 -> durch größeren input space kann der output besser differenzieren. Aber Lage der Neurone sehr wichtig. 
+
+-> 2 approaches 1. 2 zu 8  mit der Begündung dass genaue lage zueinander unbekannt. Und dass unabhängigkeit bewahrt wird -> mehr getrennte funktionen notwendig um einfluss auf jede schicht zu haben -> funktions mutationsrate erhöhen? -> Multimodallity paper
+->              2. 2 zu 4 approach in 4 ecken es is nahe zusammen em im nahe zusammen d es em weiter entfernt. -> komplexere funktion notwendig um module voneinander zu trennen 
+
+-> TODO warum gibt es keine Heaviside funktion? Doch Step funktion impementiert aber nicht in params.txt. Mit bipolar sigmoid hab ich eine gute annäherung daran
+
+23.06.2017
+-> es Hyperneat. SharpNeatLin/CPPN/SubstrateDescription -> inetwork-> Evolvablesubstrate -> new cells -> to genome
+MultiAgentExperiment evaluateNetwork --> Hier werden Neue EsEm netze erstellt . Wird vom network evaluator aufgerufen
+AgentBrain.execute -> weights are scanned
+TODOirgendwie müssen die neuen genome wieder in der Population landen... aber keine ahunung wie.. Pop ist in Evolution Algorithm. Brains are in MultiAgentexperimetn
+TODO, was bedeuten homogene genome?
+TODO, ES_EM connection learning in static neat testen
+
+27.06.17
+es_em num for static model
+Implementation von ES Hyperneat entspricht nicht dem Paper!!
+-> bauen Netwrk iterativ 2d auf für jeden Input knoten wird quadtree erstellt und neue neurone gesucht, dann die neuen Neurone usw...
+->   Verbindungen zum Output werden nur gebildet, wenn zufällig an der stelle des Hidden neurons wichtige informationen für den output liegen. Ich finde, dass gibt keinen sinn, jedes hidden neuron soll auf verbindung zum output neuron gecanned werden. Das wäre auch der Appraoach mit einem normalen substrat
+-> würde man die verbindungen wie im paper aufbauen würde es viele neuronen paare geben welche nicht mit weiteren hidden nodes verknüpft sind... nicht sinnvoll dann iterativer ansatz doch besser
+TODO : wie werdn gewicht ausgelesen?
+
+03.07
+->todo static model speicherüberlauf -> fixed open figures not closed
+-> todo git
+
+04.07
+Static Fitness:
+            % calc fitness
+            % fitness_training -> normalized amount of steps in right
+            % direction
+            % fitness_angle -> reached angles
+            % fitness_time -> time needed for simulation and training
+            % fintess = (fitness_training+ fitness_angle+ fitness_time)/3
+fitness angle and fitness_training can lead to the same sumed value -> but both the ability to wlak into the right direction and to reach the angles in the end are same important
+-> static simulation -> it's hypothised that when the training works the simulation should work,too this might not be true. We will see in results. 
+			Best way would be to train and simulate in the same step -> not applicable due to time
+-> substrate of fitnessfunction changed to 2d
+--
+Fehler in ongoing model behoben y coordinaten wurden nie zurückgesetzt im loop. 
+--

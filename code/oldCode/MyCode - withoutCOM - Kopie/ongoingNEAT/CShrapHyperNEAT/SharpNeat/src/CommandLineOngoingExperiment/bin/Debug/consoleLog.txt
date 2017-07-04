@@ -1,0 +1,27 @@
+number of processors: 4
+Mono threads per cpu 201
+Start Experiment: OngoingExperiment
+loading initial data
+Creating Experiment
+Building Population
+Matlab instance Number 1 added
+Matlab instance Number 2 added
+Genome Number 1 fitness 112 dt 00:00:35.7816511 
+Genome Number 0 fitness 112 dt 00:00:35.9847778 
+Run Experiment
+------------------------------------
+ Generation: 0
+------------------------------------
+Genome Number 1 fitness 162 dt 00:00:31.0159731 
+Genome Number 0 fitness 162 dt 00:00:31.1253492 
+Best fitness of gernatation 0 : 162,411590335339
+Save Best Genome
+-----------------------------
+Generation Number1, best fitness:162,411590335339, time needed to evaluate: 00:00:31.1409742
+-----------------------------
+Evolution Done -> SavingResults
+Plotting matlab graphs
+Matlab Plots for Genome Name OngoingExperiment_BestGen_Generation_0_Fitness_162 created 00:00:37.5004199
+Matlab Plots for Genome Name OngoingExperiment_LastGeneration_Fitness_162_order_1 created 00:00:37.6254213
+Plotting genome graphs
+Done!

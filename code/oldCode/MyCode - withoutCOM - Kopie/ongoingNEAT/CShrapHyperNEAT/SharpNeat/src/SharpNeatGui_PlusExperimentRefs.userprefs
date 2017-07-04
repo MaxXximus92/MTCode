@@ -1,0 +1,20 @@
+﻿<UserCombinePreferences version="1.0" filename="/home/david/Copy (2) of Hyper SharpNEAT(2)/Hyper SharpNEAT/Hyper SharpNEAT/SharpNeat/src/SharpNeatGui_PlusExperimentRefs.sln">
+  <Files>
+    <File name="Welcome" />
+    <File name="ConsoleApplication2/Program.cs" line="27" column="42" />
+  </Files>
+  <Views>
+    <ViewMemento id="ProjectPad">
+      <Node expanded="True">
+        <Node name="ConsoleApplication2" expanded="True" selected="True" />
+      </Node>
+    </ViewMemento>
+    <ViewMemento id="ClassPad">
+      <Node expanded="True" />
+    </ViewMemento>
+  </Views>
+  <Properties>
+    <Property key="ActiveWindow" value="/home/david/Copy (2) of Hyper SharpNEAT(2)/Hyper SharpNEAT/Hyper SharpNEAT/SharpNeat/src/ConsoleApplication2/Program.cs" />
+    <Property key="ActiveConfiguration" value="Release|Any CPU" />
+  </Properties>
+</UserCombinePreferences>

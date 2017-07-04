@@ -1,0 +1,9 @@
+C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\ClassLibrary1\bin\Debug\netcoreapp1.1\SharpNeatLibCore.deps.json
+C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\ClassLibrary1\obj\Debug\netcoreapp1.1\SharpNeatLibCore.csprojResolveAssemblyReference.cache
+C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\ClassLibrary1\obj\Debug\netcoreapp1.1\SharpNeatLib.Experiments.AbstractExperimentView.resources
+C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\ClassLibrary1\obj\Debug\netcoreapp1.1\SharpNeatLib.NetworkVisualization.NetworkControl.resources
+C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\ClassLibrary1\obj\Debug\netcoreapp1.1\SharpNeatLib.NetworkVisualization.Viewport.resources
+C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\ClassLibrary1\obj\Debug\netcoreapp1.1\SharpNeatLibCore.csproj.GenerateResource.Cache
+C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\ClassLibrary1\obj\Debug\netcoreapp1.1\SharpNeatLibCore.AssemblyInfo.cs
+C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\ClassLibrary1\bin\Debug\netcoreapp1.1\SharpNeatLibCore.dll
+C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\ClassLibrary1\obj\Debug\netcoreapp1.1\SharpNeatLibCore.Properties.Resources.resources

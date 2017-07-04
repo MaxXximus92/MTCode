@@ -1,0 +1,13 @@
+experimentName =OngoingExperiment
+experimentDescription= Ongoing Experiment with Hyperneat ES-EM Connections
+numNeurons = 256
+spikingThreshold = 30
+runTime = 40000
+runSettings = [65;35]
+trailsPerSetting = 1
+initialNetWeightsPath =matlabExecData\weights.mat
+initialNetEqParamsPath =matlabExecData\eqparams.mat
+maxGenerations = 1
+populationSize = 2
+numLastGenModelsToPlotAndSave = 2
+matlabPath = C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode - withoutCOM - Direct Matlab Call\ongoingNEAT\matlab

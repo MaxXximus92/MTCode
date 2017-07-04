@@ -1,0 +1,11 @@
+ Name: OngoingExperiment_BestGen_Generation_266_Fitness_176 
+Fitness = 174.402385473283 
+  Name: OngoingExperiment_LastGeneration_Fitness_175_order_4 
+Fitness = 172.429380411118 
+  Name: OngoingExperiment_LastGeneration_Fitness_176_order_1 
+Fitness = 174.402385473283 
+  Name: OngoingExperiment_LastGeneration_Fitness_176_order_2 
+Fitness = 172.296360299888 
+  Name: OngoingExperiment_LastGeneration_Fitness_176_order_3 
+Fitness = 172.296360299888 
+ 

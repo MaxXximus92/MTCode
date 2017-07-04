@@ -1,0 +1,25 @@
+Start Experiment: OngoingExperiment
+loading initial data
+Creating Experiment
+Building Population
+Genome Number 0 00:01:32.5039358
+Genome Number 1 00:01:32.5039358
+Genome Number 2 00:01:32.5049360
+Genome Number 3 00:01:32.5049360
+Run Experiment
+------------------------------------
+ Generation: 0
+ ------------------------------------
+Genome Number 0 00:01:08.3175575
+Genome Number 1 00:01:08.3175575
+Genome Number 2 00:01:30.9546469
+Genome Number 3 00:01:30.9546469
+Genome Number 4 00:00:45.4643158
+Best fitness of gernatation 0 : 171,877882269144
+Save Best Genome
+Generation Number1, best fitness:171,877882269144, time needed to evaluate: 00:01:53.8519075
+Evolution Done -> SavingResults
+Plotting matlab graphs
+Matlab Plots for Genome Name OngoingExperiment_LastGeneration_Fitness_169_order_2 created 00:01:03.0013563
+Matlab Plots for Genome Name OngoingExperiment_LastGeneration_Fitness_166_order_1 created 00:01:52.9334352
+Matlab Plots for Genome Name OngoingExperiment_LastGeneration_Fitness_170_o

@@ -1,0 +1,52 @@
+Plan was genau will ich eigentlich tun will:
+--Ongoing Model: schon existierenden ES-EM verbindungen werden kontinuierlich gelernt. -> Bewegung braucht Lernen
+1)-> Wichtig ist nur die Initiale ES-EM Verknüpfungsausprägung. Standard Gewichte werden übernommen !
+2)-> Gewichte werden zusätzlich bestimmt.
+-> Alle anderen Verknüpfungen werden einmal zufällig erstellt und dann wiederverwendet.
+3)-> VEquationparameters bestimmen für jede Zelle! im Netzwerk (außer P), (dann nicht mehr Es,EM,IM,IS sondern alle möglichen Zellarten)
+  -> Alle gleichen Gewichtswert
+  -> Gewichtswert auch bestimmen
+
+--zufällige Vergleichs experimente
+Es fehlen allgmein vergleichswerte... Ist Hyperneat besser als zufällige suche? 
+erstelle 400*90 zufällige Matritzen ->  Vergleiche.. avg Fehler. beste fitness...
+
+--Static Training Model:   P-ES verbindungen werden gelernt. Gelernt wird die Bewegung einmal. Danach jede Bewegung ohne lernen erreichbar
+1)-> Initiale P-Es Verknüpfungsausprägung.  (hier um später mit Sebastian vergleilchen zu können auch die vwahrscheinlichkeit bestimmten)
+2)-> VEquationparameters bestimmen für jede Zelle! im Netzwerk,(außer P) (dann nicht mehr Es,EM,IM,IS sondern alle möglichen Zellarten)
+  -> Alle gleichen Gewichtswert
+  -> Gewichtswert auch bestimmen
+
+
+--Static simulation:
+1)-> Lernen deaktiviert. Direkt Gewichte so finden dass Bewegung möglich ist.
+
+--ES Hyperneat:
+-> alles zwischen P und EM zellen wird von Hyperneat erstellt -> 1) ohne lernen 2) mit lernen (schichten vorgegeben, neuron position frei bestimmbar ES hyberneat)
+
+-- Hyperneat verwenden um Frequenzen zu lernen -> Um eeg damit steuern zu können   -> Langziel gleiche frequenzen wie gehirn bei bestimmtem input 
+
+--  Trying to get approach 4.1.3.1 to work. Separate target and current angle coding connected to Distance cells. Hasn't worked in master thesisl7
+
+Anmerkungen:
+Ongoing Model 1) -> Wie oft war es bei Sebastian lernbar? -> immer mit verschieden hohen RMSD
+		 -> nach 40s (vllt langen 20s Figure 3.5) sicher gelernt (RMSD dann nicht mehr mit Sebastians vergleichbar, aber Plot vergleichbar (angle,time))
+		 -> connection Threshold von 0.2 vllt zu klein 0.5 wäre besser, bei gleichverteilung dann nur 1/4 der connections aktiviert
+		 -> Durch steepend sigmoid liegt der output des cppns immer zwischen -1 und 1 
+		 -> Substrat input line x=-0.25 y[-0.5,0.5]  output line: x=0.25 y[-0.5,0.5]
+		-> Damit anfangs nicht nur vollverknüpfte Netzwerke entstehen wurde der threshold auf 0.8 gesetzt
+
+StaticModel   2) -> Sebastian max Leartime 120000 -> We take 80000 to be in same time range than the Ongoing model
+		-> timerPerAngle: sebastian 30000 -> we take the same value, cause its only for a few models
+		-> connection thrshole 0.8 again.
+		-> fintess function = fraction of maximal time needed to reach max min angle twice.
+		-> fitness benefits fast learning. but there might be no correlation between fast learning and the ability of reaching different angles. 
+		 	 But there might be a correlation between fast learning and reaching different angles fast!
+			-> fintess of simulation should be messearued by how fast an angle is reached
+			-> best way to measure fitness but not applicable cause of calc time: First check if trainable in timewindow, than simulate with fintess from above)
+				-> applicable when pop only 50
+		-> Novelty search approach: searching for different weight matrices. FrobeniusNorm zum vergleich
+		
+
+
+

@@ -1,0 +1,7 @@
+unknown Parameter " 30" in experiment settings
+unknown Parameter " 1" in experiment settings
+number of processors: 4
+Test for correct number reading: HN Threshold=0.2
+Mono threads per cpu 201
+Start Experiment: OngoingExperiment
+loading initial data
