@@ -1,0 +1,31 @@
+<genome id="34602" species-id="147" age="1" fitness="0.59">
+  <neurons>
+    <neuron id="0" type="bias" activationFunction="NullFn" />
+    <neuron id="1" type="in" activationFunction="NullFn" />
+    <neuron id="2" type="in" activationFunction="NullFn" />
+    <neuron id="3" type="out" activationFunction="BipolarSigmoid" />
+    <neuron id="50" type="hid" activationFunction="Linear" />
+    <neuron id="53" type="hid" activationFunction="Linear" />
+    <neuron id="57" type="hid" activationFunction="Linear" />
+    <neuron id="76" type="hid" activationFunction="Sine" />
+    <neuron id="448" type="hid" activationFunction="Linear" />
+    <neuron id="1015" type="hid" activationFunction="Linear" />
+  </neurons>
+  <connections>
+    <connection innov-id="4" src-id="0" tgt-id="3" weight="1.3514218630734831" />
+    <connection innov-id="5" src-id="1" tgt-id="3" weight="-0.21767815472558139" />
+    <connection innov-id="6" src-id="2" tgt-id="3" weight="-1.3470153552014381" />
+    <connection innov-id="51" src-id="1" tgt-id="50" weight="-0.32308918875642118" />
+    <connection innov-id="54" src-id="50" tgt-id="53" weight="-0.78675143793225288" />
+    <connection innov-id="56" src-id="50" tgt-id="50" weight="1.3087571281939745" />
+    <connection innov-id="58" src-id="50" tgt-id="57" weight="0.99995449748821552" />
+    <connection innov-id="59" src-id="57" tgt-id="3" weight="-0.30362996445037421" />
+    <connection innov-id="62" src-id="3" tgt-id="3" weight="0.11304738968610764" />
+    <connection innov-id="67" src-id="1" tgt-id="57" weight="-1.4107311988715083" />
+    <connection innov-id="77" src-id="53" tgt-id="76" weight="0.95869581163860862" />
+    <connection innov-id="78" src-id="76" tgt-id="3" weight="-0.94227915024384856" />
+    <connection innov-id="450" src-id="448" tgt-id="53" weight="0.90912505891174078" />
+    <connection innov-id="1016" src-id="53" tgt-id="1015" weight="1" />
+    <connection innov-id="1017" src-id="1015" tgt-id="448" weight="1.0115557598881424" />
+  </connections>
+</genome>

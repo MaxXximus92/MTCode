@@ -20,7 +20,7 @@ namespace SharpNeatLib.CPPNs
         public float maxDepth;
         public float divisionThreshold;
         public float varianceThreshold;
-        public float bandThrehold;
+        public float bandThreshold;
 
         public float[] coordinates = new float[4];
 
@@ -64,7 +64,7 @@ namespace SharpNeatLib.CPPNs
          *         position. The initialized quadtree is used in the PruningAndExtraction phase to
          *         generate the actual ANN connections.
          */
-        public QuadPoint QuadTreeInitialisation(float a, float b, bool outgoing, int initialDepth, int maxDepth)
+        public QuadPoint QuadTreeInitialisation(float a, float b, bool outgoing)
         {
             QuadPoint root = new QuadPoint(0.0f, 0.0f, 1.0f, 1); //x, y, width, level
             List<QuadPoint> queue = new List<QuadPoint>();
@@ -145,7 +145,7 @@ namespace SharpNeatLib.CPPNs
                         bottom = Math.Abs(c.w - queryCPPN(c.x, c.y + node.width, a, b));
                     }
 
-                    if (Math.Max(Math.Min(top, bottom), Math.Min(left, right)) > bandThrehold)
+                    if (Math.Max(Math.Min(top, bottom), Math.Min(left, right)) > bandThreshold)
                     {
                         TempConnection tc;
                         if (outgoing)
@@ -221,6 +221,129 @@ namespace SharpNeatLib.CPPNs
         }
 
 
+        //     se.generateSubstrate(inputNeuronPositions, outputNeuronPositions, network,
+        //  HyperNEATParameters.initialDepth,
+        // (float) HyperNEATParameters.varianceThreshold,
+        //             (float) HyperNEATParameters.bandingThreshold,
+        //           (int) HyperNEATParameters.ESIterations,
+        //         (float) HyperNEATParameters.divisionThreshold,
+        //       HyperNEATParameters.maximumDepth,
+        //     InputCount, OutputCount, ref connections, ref hiddenNeuronPositions);
+
+        public enum NType {D,ES,IS,EM,IM};
+
+        private class Neuron
+        {
+           public NType? type;
+           public PointF point;
+
+            public Neuron( NType? type, PointF point)
+            {
+                this.type = type;
+                this.point = point;
+            }
+            public override bool Equals(object obj)
+            {
+                if (obj == null) return false;
+                Neuron n2 = obj as Neuron;
+
+                return this.point.Equals(n2.point);
+            }
+
+        }
+
+        public double[][] getConnections(INetwork genome, out List<NType> types)
+        {
+
+            int numInputNeurons = 50;//todo HyperNeatParameter
+
+            this.varianceThreshold = (float)HyperNEATParameters.varianceThreshold;
+            this.bandThreshold = (float)HyperNEATParameters.bandingThreshold;
+            this.divisionThreshold = (float)HyperNEATParameters.divisionThreshold;
+            this.maxDepth = HyperNEATParameters.maximumDepth;
+
+            int genomeIterations = HyperNEATParameters.ESIterations;
+
+            this.genome = (ModularNetwork)genome;
+            this.initialDepth = 5; // to HyperNeatParameter
+
+            types = new List<NType>();
+            List<Neuron> allNeurons = new List< Neuron>();
+
+
+            List<Neuron[]> connections = new List<Neuron[]>(); //int 2 input output
+
+            //Place Input Neurons y=0 x in area between 0 and 1
+            List<Neuron> inputNeurons = new List<Neuron>();
+            float inputDelta = 1f / (numInputNeurons - 1);
+            float xPos = 0;
+            for (int i = 0; i < numInputNeurons; i++)
+            {
+                Neuron n = new Neuron( NType.D, new PointF(xPos, 0));
+                inputNeurons.Add(n);
+                allNeurons.Add( n);
+                xPos += inputDelta;
+            }
+
+            List<TempConnection> tempConnections = new List<TempConnection>();
+            List<Neuron> esNeurons = scanForNewConnections(inputNeurons,NType.ES,false ,allNeurons, connections);
+            List<Neuron> isNeurons = scanForNewConnections(esNeurons, NType.IS, false, allNeurons, connections);
+            scanForNewConnections(isNeurons, NType.IS, true, allNeurons, connections);
+            scanForNewConnections(isNeurons, NType.ES, true, allNeurons, connections);
+            List<Neuron> emNeurons = scanForNewConnections(esNeurons, NType.EM, false, allNeurons, connections);
+            List<Neuron> imNeurons = scanForNewConnections(emNeurons, NType.IM, false, allNeurons, connections);
+            scanForNewConnections(isNeurons, NType.IM, true, allNeurons, connections);
+            scanForNewConnections(isNeurons, NType.EM, true, allNeurons, connections);
+            // TODO 2 getrennte Methoden implementieren
+            // TODO Neurone Ohne ausgehende verbindung löschen, Zykel löschen-> schwierig
+            // TODO connections eines neurons im neuron speichern -> macht matrix erstellung und suche nach neurone ohne output einfacher-> beim löschen müssen alle nachfolgenden indices verschoben werden
+            // TODO be careful to have the sam insatances of each connection -> TODO dictionary doch besser, auch wird dann kein index benötigt. Hashtable beim erstellen teurer da geschaut werden muss ob schlüssel existeirt, aber dass passiert bei der liste in diesem fall auch , da geschaut werden muss ob bereits vorhanden. Hashtable better!
+
+            // Connections form Input nodes to ES nodes
+
+
+
+            return new double[0][];
+        }
+        private List<Neuron> scanForNewConnections(List<Neuron> sourceNeurons, NType targetType, bool targetHasToExist, List<Neuron> allNeurons,  List<Neuron[]> connections) // ? make ntype Nullable
+        {
+            List<TempConnection> tempConnections = new List<TempConnection>();
+            List<Neuron> destNeurons = new List<Neuron>();
+            // Connections form Input nodes to ES nodes
+            foreach (Neuron neuron in sourceNeurons)
+            {
+                // Analyze outgoing connectivity pattern from this input
+                QuadPoint root = QuadTreeInitialisation(neuron.point.X, neuron.point.Y, true);
+                tempConnections.Clear();
+                // Traverse quadtree and add connections to list
+                PruneAndExpress(neuron.point.X, neuron.point.Y, ref tempConnections, root, true, maxDepth);
+                foreach (TempConnection p in tempConnections)
+                {
+                    Neuron targetNeuron = new Neuron(null, new PointF(p.x2, p.y2));
+                    int index =allNeurons.IndexOf(targetNeuron);// neurons on same position are equal not depending of type
+                    if (index == -1 && targetHasToExist == false)
+                    {
+                        targetNeuron.type = targetType;
+                        destNeurons.Add(targetNeuron);
+                        allNeurons.Add(targetNeuron);
+                        connections.Add(new Neuron[] {neuron, targetNeuron});
+                    }
+                    else if(index != -1 && targetHasToExist == true)
+                    {
+                        targetNeuron = allNeurons[index];
+                        if ( targetNeuron.type == targetType)
+                        {
+                            connections.Add(new Neuron[] { neuron, targetNeuron });
+                        }
+                    }
+
+                }
+
+            }
+            return destNeurons;
+        }
+
+
         /*
          * The main method that generations a list of ANN connections based on the information in the 
          * underlying hypercube. 
@@ -242,7 +365,7 @@ namespace SharpNeatLib.CPPNs
             this.initialDepth = initialDepth;
             this.maxDepth = maxDepth;
             this.varianceThreshold = varianceThreshold;
-            this.bandThrehold = bandThreshold;
+            this.bandThreshold = bandThreshold;
             this.divisionThreshold = divsionThreshold;
 
             //CONNECTIONS DIRECTLY FROM INPUT NODES
@@ -336,6 +459,42 @@ namespace SharpNeatLib.CPPNs
                         connections.Add(new ConnectionGene(counter++, (uint)(sourceIndex + inputCount + outputCount), (uint)(targetIndex + inputCount), t.weight * HyperNEATParameters.weightRange, new float[] { t.x1, t.y1, t.x2, t.y2 }));
                 }
                 targetIndex++;
+            }
+        }
+
+        public class TupleEqualityComparer : IEqualityComparer<float[]>
+        {
+            public bool Equals(float[] x, float[] y)
+            {
+                if(x.Length != 2)
+                {
+                    throw new Exception();
+                }
+                if (x.Length != y.Length)
+                {
+                    return false;
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    if (x[i] != y[i])
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            public int GetHashCode(float[] obj)
+            {
+                int result = 17;
+                for (int i = 0; i < obj.Length; i++)
+                {
+                    unchecked
+                    {
+                        result = result * 23 + (int)obj[i];
+                    }
+                }
+                return result;
             }
         }
     }

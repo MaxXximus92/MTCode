@@ -1,0 +1,10 @@
+C:\Users\David\Documents\Copy (2) of Hyper SharpNEAT(2)\Hyper SharpNEAT\Hyper SharpNEAT\SharpNeat\src\SkrimishVisualization\obj\Release\ResolveAssemblyReference.cache
+C:\Users\David\Documents\Copy (2) of Hyper SharpNEAT(2)\Hyper SharpNEAT\Hyper SharpNEAT\SharpNeat\src\SkrimishVisualization\obj\Release\SkirmishVisualization.Form1.resources
+C:\Users\David\Documents\Copy (2) of Hyper SharpNEAT(2)\Hyper SharpNEAT\Hyper SharpNEAT\SharpNeat\src\SkrimishVisualization\obj\Release\SkrimishVisualization.Properties.Resources.resources
+C:\Users\David\Documents\Copy (2) of Hyper SharpNEAT(2)\Hyper SharpNEAT\Hyper SharpNEAT\SharpNeat\src\SkrimishVisualization\obj\Release\SkirmishVisualization.csproj.GenerateResource.Cache
+C:\Users\David\Documents\Copy (2) of Hyper SharpNEAT(2)\Hyper SharpNEAT\Hyper SharpNEAT\SharpNeat\src\SkrimishVisualization\bin\Release\SkrimishVisualization.exe
+C:\Users\David\Documents\Copy (2) of Hyper SharpNEAT(2)\Hyper SharpNEAT\Hyper SharpNEAT\SharpNeat\src\SkrimishVisualization\bin\Release\SkrimishVisualization.pdb
+C:\Users\David\Documents\Copy (2) of Hyper SharpNEAT(2)\Hyper SharpNEAT\Hyper SharpNEAT\SharpNeat\src\SkrimishVisualization\bin\Release\SharpNeatExperiments.dll
+C:\Users\David\Documents\Copy (2) of Hyper SharpNEAT(2)\Hyper SharpNEAT\Hyper SharpNEAT\SharpNeat\src\SkrimishVisualization\bin\Release\SharpNeatLib.dll
+C:\Users\David\Documents\Copy (2) of Hyper SharpNEAT(2)\Hyper SharpNEAT\Hyper SharpNEAT\SharpNeat\src\SkrimishVisualization\obj\Release\SkrimishVisualization.exe
+C:\Users\David\Documents\Copy (2) of Hyper SharpNEAT(2)\Hyper SharpNEAT\Hyper SharpNEAT\SharpNeat\src\SkrimishVisualization\obj\Release\SkrimishVisualization.pdb

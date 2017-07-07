@@ -1,0 +1,4 @@
+04 13:00:04 test encoding: threshold: -0.5
+04 13:00:04 Starting Experiment: StaticExperiment
+04 13:00:04 --------------------------------------------------------
+04 13:00:04 loading initial data

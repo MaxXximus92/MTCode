@@ -373,6 +373,7 @@ Static Fitness:
             % fitness_time -> time needed for simulation and training
             % fintess = (fitness_training+ fitness_angle+ fitness_time)/3
 fitness angle and fitness_training can lead to the same sumed value -> but both the ability to wlak into the right direction and to reach the angles in the end are same important
+-> milstone fitness might be a good idea, if milestone is reached doesn't matter on how, full fitness for this part is given
 -> static simulation -> it's hypothised that when the training works the simulation should work,too this might not be true. We will see in results. 
 			Best way would be to train and simulate in the same step -> not applicable due to time
 -> substrate of fitnessfunction changed to 2d

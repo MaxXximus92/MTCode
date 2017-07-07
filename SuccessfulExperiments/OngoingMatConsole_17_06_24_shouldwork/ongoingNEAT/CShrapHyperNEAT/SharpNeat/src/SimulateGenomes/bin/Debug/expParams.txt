@@ -1,0 +1,12 @@
+experimentName OngLongExp
+experimentDescription= Ongoing Experiment with a long simulation time Hyperneat ES-EM Connections
+numNeurons = 256
+runTime = 2000
+runSettings = [65,65;35,95]
+initialNetWeightsPath =matlabExecData\weights.mat
+initialNetEqParamsPath =matlabExecData\eqparams.mat
+maxGenerations = 1
+populationSize = 2
+numLastGenModelsToPlotAndSave = 2
+matlabPath =C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode - MatConsole\ongoingNEAT\matlab
+maxModelCompTime = 600000

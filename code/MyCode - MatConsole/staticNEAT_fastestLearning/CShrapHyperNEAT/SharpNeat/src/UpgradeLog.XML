@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="SharpNeatGui_PlusExperimentRefs">
+</Property><Property Name="Solution File" Value="C:\Copy (2) of Hyper SharpNEAT(2)\Hyper SharpNEAT\Hyper SharpNEAT\SharpNeat\src\SharpNeatGui_PlusExperimentRefs.sln">
+</Property><Property Name="Date" Value="Saturday, May 24, 2008">
+</Property><Property Name="Time" Value="9:07 AM">
+</Property></Properties><Event ErrorLevel="0" Project="SharpNeatLib" Source="SharpNeatLib\SharpNeatLib.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="SharpNeatLib" Source="SharpNeatLib\SharpNeatLib.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="ConsoleApplication2" Source="ConsoleApplication2\ConsoleApplication2.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="ConsoleApplication2" Source="ConsoleApplication2\ConsoleApplication2.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="SkrimishVisualization" Source="SkrimishVisualization\SkrimishVisualization.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="SkrimishVisualization" Source="SkrimishVisualization\SkrimishVisualization.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="SharpNeatExperiments" Source="Experiments\SharpNeatExperiments\SharpNeatExperiments.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="SharpNeatExperiments" Source="Experiments\SharpNeatExperiments\SharpNeatExperiments.csproj" Description="Converted">
+</Event><Event ErrorLevel="2" Project="ConsoleApplication1" Source="ConsoleApplication1\ConsoleApplication1.csproj" Description="Unable to open project file to perform upgrade.  ">
+</Event><Event ErrorLevel="0" Project="" Source="SharpNeatGui_PlusExperimentRefs.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="SharpNeatGui_PlusExperimentRefs.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="SharpNeatLib" Source="SharpNeatLib\SharpNeatLib.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="ConsoleApplication2" Source="ConsoleApplication2\ConsoleApplication2.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="SkrimishVisualization" Source="SkrimishVisualization\SkrimishVisualization.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="SharpNeatExperiments" Source="Experiments\SharpNeatExperiments\SharpNeatExperiments.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

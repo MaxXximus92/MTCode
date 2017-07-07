@@ -1,0 +1,14 @@
+experimentName =StaticExperiment
+experimentDescription= Static Experiment with Hyperneat D_ES Connections
+maxRuntime = 80000
+initialNetWeightsPath =matlabExecData/weights_static.mat
+initialNetEqParamsPath =matlabExecData/eqparams_static.mat
+maxGenerations = 450
+populationSize = 90
+numLastGenModelsToPlotAndSave = 90
+startAngle = 135
+anglesToSimulate =[60,30,0,80,135]
+timePerAngle = 30000
+modelLibPathTrain=/home/mutschler/Experiments/Static_17_07_02/matlab/static-training
+modelLibPathSimulate=/home/mutschler/Experiments/Static_17_07_02/matlab/static-simulation
+matlabExecPath =/storage/matlab-r2017a/bin/

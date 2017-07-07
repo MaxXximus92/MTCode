@@ -1,0 +1,9 @@
+04 12:59:07 test encoding: threshold: -0.5
+04 12:59:07 Starting Experiment: StaticExperiment
+04 12:59:07 --------------------------------------------------------
+04 12:59:07 loading initial data
+04 12:59:15 Loaded EsEmNum: 96 96
+04 12:59:15 Creating Experiment
+04 12:59:15 Building Population
+04 12:59:15 Matlab instance Number 1 added
+04 12:59:15 Matlab instance Number 2 added

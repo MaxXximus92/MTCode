@@ -1,0 +1,8 @@
+experimentName = Ongoing Experiment with Hyperneat
+experimentDescription= some example description
+numNeurons = 256
+spikingThreshold = 30
+runTime = 1200
+runSettings = [1;35]
+trailsPerSetting = 1
+matlabPath = C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode\ongoingNEAT\matlab

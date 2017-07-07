@@ -22,7 +22,7 @@ simcount=0;
 net = spikenet(numNeurons,spikingThreshold,settings,savePath,equationParams,weightsMatrix);
 
 while (true)
-
+    
     sync = readSync(syncPath); %% matlab ready -> finished  matlab-> working%% c# -> simulate  %% c# close close
     sync = strtrim(strread(sync, '%s', 'delimiter', sprintf('\n')));
     if(~isempty(sync))
@@ -39,23 +39,26 @@ while (true)
             esEmConnections=esEmConnectionsStruct.esemConnections;
             
             net.setEsEmConnections(esEmConnections);
-           % tic
-            rmsd = net.simulate(saveName, runTime, runSettings,isSave);
-           % toc 16.2445, 16.2445
-            %a=memory; %1670
-           % a.MemUsedMATLAB
+            
             if isSave
                 net.save(saveName);
             end
+            
+            % tic
+            rmsd = net.simulate(saveName, runTime, runSettings,isSave);
+            % toc 16.2445, 16.2445
+            %a=memory; %1670
+            % a.MemUsedMATLAB
+            
             saveRmsdSync(resultPath,rmsd)
             isSave= false;
-          %  writeSync(syncPath,'finished','w');
+            %  writeSync(syncPath,'finished','w');
             
             % mems = memory;
             % mem_used = mems.MemUsedMATLAB;
             % mem_available = mems.MemAvailableAllArrays;
-             %message = sprintf(' iteration: %d \n used: %d \n available %d \n',(simcount),(mem_used),(mem_available))
-             %writeSync(logfile,message,'a');
+            %message = sprintf(' iteration: %d \n used: %d \n available %d \n',(simcount),(mem_used),(mem_available))
+            %writeSync(logfile,message,'a');
             
         elseif(strcmp(sync,'close'))
             delete(syncPath)
