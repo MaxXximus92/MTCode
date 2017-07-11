@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using  static StaticExperimentNS.Helper;
+using static StaticExperimentNS.Helper;
 
 namespace StaticExperimentNS
 {
@@ -14,9 +14,9 @@ namespace StaticExperimentNS
     {
         public static String experimentName = "no name assigned";
         public static String experimentDescription = "not available";
-        public static uint maxRuntime = 0;
-        public static String modelSavePath = ""; // gets set during runtime
-        public static String communicationPath = "";// gets set during runtime
+        public static uint training_maxTrainTime = 0;
+        public static String modelSavePath = ""; // is set during runtime
+        public static String communicationPath = "";// is set during runtime
         public static String initialNetEqParamsPath = "not given";
         public static String modelLibPathSimulate = "not given";
         public static String modelLibPathTrain = "not given";
@@ -24,13 +24,15 @@ namespace StaticExperimentNS
         public static uint numLastGenModelsToPlotAndSave = 0;
         public static uint maxGenerations = 0;
         public static uint populationSize = 0;
-        public static uint cPPNInputs = 4; // for Modul approach = 2
-        public static uint cPPNOutputs = 1;// for Modul approach = 8
+        public static uint cPPNInputs = 4;  // 1d model 2
+        public static uint cPPNOutputs = 1; // 1d model 8
         public static int startAngle = 0;
-        public static string anglesToSimulate = "not given";
-        public static int timePerAngle =0;
-
-
+        public static string simulation_anglesToSimulate = "not given";
+        public static int simulation_timePerAngle = 0;
+        public static String training_anglesToLearn = "not given";
+        public static String training_anglesToSimulate = "not given";
+        public static int training_timePerAngle = 0;
+        //angles_to_learn,angles_to_simulate,angle_simulation_time
         static ExperimentParameters()
         {
             loadParameterFile();
@@ -53,10 +55,10 @@ namespace StaticExperimentNS
                             experimentName = line[1];
                             break;
                         case "experimentDescription":
-                            experimentDescription =  line[1];
+                            experimentDescription = line[1];
                             break;
-                        case "maxRuntime":
-                            maxRuntime = Convert.ToUInt32(line[1]);
+                        case "training_maxTrainTime":
+                            training_maxTrainTime = Convert.ToUInt32(line[1]);
                             break;
                         case "initialNetEqParamsPath":
                             initialNetEqParamsPath = toFullPath(line[1]);
@@ -79,21 +81,31 @@ namespace StaticExperimentNS
                         case "numLastGenModelsToPlotAndSave":
                             numLastGenModelsToPlotAndSave = Convert.ToUInt32(line[1]);
                             break;
-                        case "anglesToSimulate":
-                            anglesToSimulate = line[1];
+                        case "simulation_anglesToSimulate":
+                            simulation_anglesToSimulate = line[1];
                             break;
-                        case "timePerAngle":
-                            timePerAngle = Convert.ToInt32(line[1]);
+                        case "simulation_timePerAngle":
+                            simulation_timePerAngle = Convert.ToInt32(line[1]);
+                            break;
+                        case "training_anglesToLearn":
+                            training_anglesToLearn = line[1];
+                            break;
+                        case "training_anglesToSimulate":
+                            training_anglesToSimulate = line[1];
                             break;
                         case "startAngle":
                             startAngle = Convert.ToInt32(line[1]);
                             break;
+                        case "training_timePerAngle":
+                            training_timePerAngle = Convert.ToInt32(line[1]);
+                            break;
                         default:
-                            Console.WriteLine(String.Format("unknown Parameter \"{0}\" in experiment settings", line[0]));
+                            if (!line[0].StartsWith("//"))
+                                Console.WriteLine(String.Format("unknown Parameter \"{0}\" in experiment settings", line[0]));
                             break;
                     }
                 }
-                    
+
             }
             catch (Exception e)
             {

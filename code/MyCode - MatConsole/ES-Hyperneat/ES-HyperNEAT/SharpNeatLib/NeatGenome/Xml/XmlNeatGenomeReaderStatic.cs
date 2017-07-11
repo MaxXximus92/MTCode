@@ -1,13 +1,21 @@
 using System;
-using System.Collections.Generic;
 using System.Xml;
+
+using SharpNeatLib.Evolution;
+using SharpNeatLib.Evolution.Xml;
+using SharpNeatLib.NeatGenome;
 using SharpNeatLib.NeuralNetwork;
 using SharpNeatLib.Xml;
+using System.Threading;
+using System.Globalization;
 
 namespace SharpNeatLib.NeatGenome.Xml
 {
-	public class XmlNeatGenomeReaderStatic
-	{
+    public class XmlNeatGenomeReaderStatic
+    {
+        static XmlNeatGenomeReaderStatic(){
+        Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            }
 		public static NeatGenome Read(XmlDocument doc)
 		{
 			XmlElement xmlGenome = (XmlElement)doc.SelectSingleNode("genome");
@@ -45,21 +53,13 @@ namespace SharpNeatLib.NeatGenome.Xml
 				neuronGeneList.Add(neuronGene);
 			}
 
-            //--- Read module genes into a list.
-            List<ModuleGene> moduleGeneList = new List<ModuleGene>();
-            XmlNodeList listModuleGenes = xmlGenome.SelectNodes("modules/module");
-            foreach (XmlElement xmlModuleGene in listModuleGenes) {
-                moduleGeneList.Add(ReadModuleGene(xmlModuleGene));
-            }
-
 			//--- Read connection genes into a list.
 			ConnectionGeneList connectionGeneList = new ConnectionGeneList();
 			XmlNodeList listConnectionGenes = xmlGenome.SelectNodes("connections/connection");
 			foreach(XmlElement xmlConnectionGene in listConnectionGenes)
 				connectionGeneList.Add(ReadConnectionGene(xmlConnectionGene));
 			
-			//return new NeatGenome(id, neuronGeneList, connectionGeneList, inputNeuronCount, outputNeuronCount);
-            return new NeatGenome(id, neuronGeneList, moduleGeneList, connectionGeneList, inputNeuronCount, outputNeuronCount);
+			return new NeatGenome(id, neuronGeneList, connectionGeneList, inputNeuronCount, outputNeuronCount);
 		}
 
 		private static NeuronGene ReadNeuronGene(XmlElement xmlNeuronGene)
@@ -67,32 +67,10 @@ namespace SharpNeatLib.NeatGenome.Xml
 			uint id = uint.Parse(XmlUtilities.GetAttributeValue(xmlNeuronGene, "id"));
 			NeuronType neuronType = XmlUtilities.GetNeuronType(XmlUtilities.GetAttributeValue(xmlNeuronGene, "type"));
             string activationFn = XmlUtilities.GetAttributeValue(xmlNeuronGene, "activationFunction");
-            double layer = double.Parse(XmlUtilities.GetAttributeValue(xmlNeuronGene, "layer"));
-
-			return new NeuronGene(null, id, layer, neuronType, ActivationFunctionFactory.GetActivationFunction(activationFn));	
+			return new NeuronGene(id, neuronType, ActivationFunctionFactory.GetActivationFunction(activationFn));	
 		}
 
-        private static ModuleGene ReadModuleGene(XmlElement xmlModuleGene)
-        {
-            uint id = uint.Parse(XmlUtilities.GetAttributeValue(xmlModuleGene, "id"));
-            string function = XmlUtilities.GetAttributeValue(xmlModuleGene, "function");
-
-            XmlNodeList inputNodes = xmlModuleGene.GetElementsByTagName("input");
-            uint[] inputs = new uint[inputNodes.Count];
-            foreach (XmlNode inp in inputNodes) {
-                inputs[int.Parse(XmlUtilities.GetAttributeValue(inp, "order"))] = uint.Parse(XmlUtilities.GetAttributeValue(inp, "id"));
-            }
-
-            XmlNodeList outputNodes = xmlModuleGene.GetElementsByTagName("output");
-            uint[] outputs = new uint[outputNodes.Count];
-            foreach (XmlNode outp in outputNodes) {
-                outputs[int.Parse(XmlUtilities.GetAttributeValue(outp, "order"))] = uint.Parse(XmlUtilities.GetAttributeValue(outp, "id"));
-            }
-
-            return new ModuleGene(id, ModuleFactory.GetByName(function), new List<uint>(inputs), new List<uint>(outputs));
-        }
-
-        private static ConnectionGene ReadConnectionGene(XmlElement xmlConnectionGene)
+		private static ConnectionGene ReadConnectionGene(XmlElement xmlConnectionGene)
 		{
 			uint innovationId = uint.Parse(XmlUtilities.GetAttributeValue(xmlConnectionGene, "innov-id"));
 			uint sourceNeuronId = uint.Parse(XmlUtilities.GetAttributeValue(xmlConnectionGene, "src-id"));

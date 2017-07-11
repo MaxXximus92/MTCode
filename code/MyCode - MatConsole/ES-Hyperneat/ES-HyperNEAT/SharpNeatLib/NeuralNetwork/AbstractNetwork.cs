@@ -67,7 +67,7 @@ namespace SharpNeatLib.NeuralNetwork
 
 		#region INetwork [Implemented]
 
-		public void SetInputSignal(int index, float signalValue)
+		public void SetInputSignal(int index, double signalValue)
 		{
 			inputNeuronList[index].OutputValue = signalValue;
 		}

@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 using SharpNeatLib.NeuralNetwork;
-using System.Collections.Generic;
 
 namespace SharpNeatLib.Experiments
 {
@@ -18,7 +17,7 @@ namespace SharpNeatLib.Experiments
 		/// </summary>
 		/// <param name="network"></param>
 		/// <returns>Fitness of the network.</returns>
-		double EvaluateNetwork(INetwork network, out BehaviorType behavior);
+		double EvaluateNetwork(INetwork network);
 
         /// <summary>
         /// Evaluates the argument INetwork which is a CPPN, and decodes the CPPN in a thread safe manner.
@@ -26,7 +25,7 @@ namespace SharpNeatLib.Experiments
         /// <param name="network"></param>
         /// <param name="sem"></param>
         /// <returns>Fitness of the network.</returns>
-        double threadSafeEvaluateNetwork(INetwork network, Semaphore sem,out BehaviorType behavior,int thread);
+        double threadSafeEvaluateNetwork(INetwork network, Semaphore sem);
 
 		/// <summary>
 		/// A human readable message that describes the state of the evaluator. This is useful if the

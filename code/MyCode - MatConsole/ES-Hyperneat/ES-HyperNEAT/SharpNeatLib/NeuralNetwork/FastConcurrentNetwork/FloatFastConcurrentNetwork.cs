@@ -14,9 +14,6 @@ namespace SharpNeatLib.NeuralNetwork
 	/// </summary>
 	public class FloatFastConcurrentNetwork : INetwork
 	{
-        public delegate void UpdateNetworkDelegate(FloatFastConcurrentNetwork network);
-        public event UpdateNetworkDelegate UpdateNetworkEvent;
-
 		#region Class Variables
 
 		IActivationFunction[] activationFnArray;
@@ -96,9 +93,6 @@ namespace SharpNeatLib.NeuralNetwork
 				// Take the opportunity to reset the pre-activation signal array.
 				_neuronSignalArray[i]=0.0F;
 			}
-
-            if (UpdateNetworkEvent!=null)
-            UpdateNetworkEvent(this);
 		}
 
 		public void MultipleSteps(int numberOfSteps)
@@ -271,4 +265,3 @@ namespace SharpNeatLib.NeuralNetwork
 		#endregion
 	}
 }
-   

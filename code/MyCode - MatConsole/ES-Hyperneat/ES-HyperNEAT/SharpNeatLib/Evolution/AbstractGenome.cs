@@ -1,7 +1,6 @@
 using System;
 using System.Xml;
 using System.Diagnostics;
-using System.Collections.Generic;
 
 using SharpNeatLib.NeuralNetwork;
 
@@ -13,11 +12,6 @@ namespace SharpNeatLib.Evolution
 		protected uint genomeId;
 		long genomeAge=0;
 		double fitness = 0;
-		double realfitness =0;
-		double _competition=0;
-		double _locality=0;
-		double[] _objectives;
-	    BehaviorType behavior;
 		long evaluationCount = 0;
 		double totalFitness = 0;
 		int speciesId = -1;
@@ -31,7 +25,7 @@ namespace SharpNeatLib.Evolution
 		// function that is changing as the search progresses.
 		// If it can be cast to AbstractNetwork then this can also form the basis of constructing a
 		// NetworkModel for network visualization.
-		public INetwork network=null;
+		protected INetwork network=null;
 
 		/// <summary>
 		/// A tag object that can be used by evaluators to store evaluation state information. This isn't
@@ -159,72 +153,6 @@ namespace SharpNeatLib.Evolution
 			}
 		}
 
-        /// <summary>
-        /// This genome's behavior as calculated by the evaluation environment.
-        ///</summary>
-        public BehaviorType Behavior
-        {
-            get
-            {
-                return behavior;
-		    }
-		    set
-		    {
-		        behavior = value;
-		    }
-		}
-		
-		public double[] objectives
-		{
-			get
-			{
-				return _objectives;
-			}
-			set
-			{
-				_objectives= value;
-			}
-		}
-		
-		public double locality
-		{
-			get
-			{
-				return _locality;
-			}
-			set
-			{
-				_locality=value;
-			}
-		}
-		
-		public double competition
-		{
-			get
-			{
-				return _competition;
-			}
-			set
-			{
-				_competition=value;
-			}
-		}
-		
-		/// <summary>
-		/// This genome's real fitness (i.e. not novelty score)
-		///</summary>
-		public double RealFitness
-		{
-		  get
-		  {
-		     return realfitness;
-		  }
-		  set
-		  {
-		     realfitness = value;
-          }
-		}
-		
 		/// <summary>
 		/// This genome's fitness as calculated by the evaluation environment.
 		/// </summary>

@@ -14,11 +14,11 @@ namespace SharpNeatLib.NetworkVisualization
 
 		NetworkModel networkModel;
 		NetworkModelPainter modelPainter = new NetworkModelPainter();
-		Image image;
+		public Image image;
 		const PixelFormat pixelFormat = PixelFormat.Format16bppRgb565;   //.Format24bppRgb;
 		Point viewportOrigin;
 		Size viewportSize;
-		float zoomFactor=1.0F;
+		float zoomFactor=1F;
 
 		#region Component designer variables
 
@@ -40,8 +40,10 @@ namespace SharpNeatLib.NetworkVisualization
 			viewportOrigin = new Point(0,0);
 
 			// Create a bitmap for the picturebox.
-			image = new Bitmap(Width, Height, pixelFormat);			
-			pictureBox1.Image = image;
+			image = new Bitmap(Width, Height, pixelFormat);
+            
+            //image = new Bitmap(1000, 1000, pixelFormat);
+            pictureBox1.Image = image;
 		}
 
 		/// <summary> 
@@ -87,7 +89,7 @@ namespace SharpNeatLib.NetworkVisualization
 			this.Controls.Add(this.pictureBox1);
 			this.Name = "Viewport";
 			this.Size = new System.Drawing.Size(216, 232);
-			this.ResumeLayout(false);
+            this.ResumeLayout(false);
 
 		}
 		#endregion

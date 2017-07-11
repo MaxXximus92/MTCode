@@ -51,11 +51,8 @@ namespace SharpNeatLib.Experiments
 				}
 				else
 				{
-				    BehaviorType behavior;
-					g.Fitness = Math.Max(networkEvaluator.EvaluateNetwork(network,out behavior), EvolutionAlgorithm.MIN_GENOME_FITNESS);                    
-                    g.RealFitness = g.Fitness;
-		            g.Behavior = behavior;
-		        }
+					g.Fitness = Math.Max(networkEvaluator.EvaluateNetwork(network), EvolutionAlgorithm.MIN_GENOME_FITNESS);
+				}
 
 				// Reset these genome level statistics.
 				g.TotalFitness = g.Fitness;
@@ -64,14 +61,6 @@ namespace SharpNeatLib.Experiments
 				// Update master evaluation counter.
 				evaluationCount++;
 			}
-			
-			if(ea.NeatParameters.noveltySearch)
-            {
-                if(ea.NeatParameters.noveltySearch && ea.noveltyInitialized)
-                {
-                    ea.CalculateNovelty();
-                }
-            }
 		}
 
 		public ulong EvaluationCount

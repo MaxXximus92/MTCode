@@ -272,7 +272,7 @@ classdef spikenet < handle
         
         % refresh indizes of synapses
         function refreshConnections(this)
-            this.connections     = find(this.weightsMatrix > 0);
+            this.connections     = find(this.weightsMatrix ~= 0);
             this.es_em           = this.getConnections('ES','EM');
             this.d_es            = this.getConnections('D','ES');
         end

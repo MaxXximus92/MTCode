@@ -19,7 +19,7 @@ namespace StaticExperimentNS
     {
 
 
-        public readonly string name;// name has to be unique  oder counter...
+        public readonly string name;// name has to be unique  
         readonly string syncPath;
         readonly string weightPath;
         readonly string logPath;
@@ -211,8 +211,6 @@ namespace StaticExperimentNS
             string arg0_matcommand = "matlab -nodesktop -nodisplay -nosplash -nojvm -singleCompThread  -r ";
             string arg3_matlabPath = ExperimentParameters.matlabExecPath;
 
-            //string arguments = String.Format(@" -c $'{3}{0} \""getModelParams(\'{1}\',\'{2}\')\""  -logfile 'log_getParams' ' ", arg0_matcommand,arg1_numNeurons, arg2_resultPath, arg3_matlabPath);
-            //   string arguments = String.Format(@" -c '{3}{0} \""getModelParams(\'{1}\')\""  -logfile '{2}' > /dev/null 2>&1 ' ", arg0_matcommand, arg1_resultPath,arg2_logPath, arg3_matlabPath);
             string arguments = String.Format(@" -c '{3}{0} \""getModelParams(\'{1}\')\""  -logfile '{2}' > /dev/null 2>&1' ", arg0_matcommand, arg1_resultPath, arg2_logPath, arg3_matlabPath);
             startInfo.FileName = "/bin/bash";
 #endif

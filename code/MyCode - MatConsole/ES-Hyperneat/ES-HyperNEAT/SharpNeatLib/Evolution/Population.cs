@@ -393,26 +393,6 @@ namespace SharpNeatLib.Evolution
 			return bSpeciesRemoved;
 		}
 
-
-		public void ResetPopulation(GenomeList l, EvolutionAlgorithm ea)
-        {
-			speciesToRemove.Clear();
-
-            foreach(Species species in speciesTable.Values)
-            {
-            	speciesToRemove.Add(species.SpeciesId);		
-            }
-
-			int speciesBound=speciesToRemove.Count;
-			for(int speciesIdx=0; speciesIdx<speciesBound; speciesIdx++)
-				speciesTable.Remove(speciesToRemove[speciesIdx]);
-            
-            for(int i=0;i<l.Count;i++)
-                this.AddGenomeToPopulation(ea,l[i]);
-                
-            this.RebuildGenomeList();
-        }
-        
 		public void TrimAllSpeciesBackToElite()
 		{
 			speciesToRemove.Clear();
@@ -425,7 +405,7 @@ namespace SharpNeatLib.Evolution
 				else
 				{	// Remove genomes from the species.
 					int delta = species.Members.Count - species.ElitistSize;
-					species.Members.RemoveRange(species.ElitistSize, delta);
+				    species.Members.RemoveRange(species.ElitistSize, delta);
 				}
 			}
 			//foreach(int speciesId in speciesToRemove)

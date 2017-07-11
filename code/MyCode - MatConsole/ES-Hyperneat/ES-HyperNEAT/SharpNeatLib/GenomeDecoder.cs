@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Collections.Specialized;
+
 using SharpNeatLib.NeatGenome;
-using SharpNeatLib.NetworkVisualization;
 using SharpNeatLib.NeuralNetwork;
+using SharpNeatLib.NetworkVisualization;
 
 namespace SharpNeatLib
 {
@@ -59,7 +60,7 @@ namespace SharpNeatLib
 		static FloatFastConnection[] fastConnectionArray;
         static IActivationFunction[] activationFunctionArray;
 
-		static public FloatFastConcurrentNetwork DecodeToFloatFastConcurrentNetwork(NeatGenome.NeatGenome g, IActivationFunction activationFn)
+		static public FloatFastConcurrentNetwork DecodeToFloatFastConcurrentNetwork(NeatGenome.NeatGenome g)
 		{			
 			int outputNeuronCount = g.OutputNeuronCount;
 			int neuronGeneCount = g.NeuronGeneList.Count;
@@ -105,11 +106,6 @@ namespace SharpNeatLib
 					System.Diagnostics.Debug.Assert(fastConnectionArray[connectionIdx].sourceNeuronIdx>=0 && fastConnectionArray[connectionIdx].targetNeuronIdx>=0, "invalid idx");
 
 					fastConnectionArray[connectionIdx].weight = (float)connectionGene.Weight;
-                    fastConnectionArray[connectionIdx].learningRate = connectionGene.learningRate;
-                    fastConnectionArray[connectionIdx].A = connectionGene.A;
-                    fastConnectionArray[connectionIdx].B = connectionGene.B;
-                    fastConnectionArray[connectionIdx].C = connectionGene.C;
-
 					connectionIdx++;
 				}
 			}
@@ -132,10 +128,6 @@ namespace SharpNeatLib
 					fastConnectionArray[connectionIdx].sourceNeuronIdx = (int)neuronIndexTable[connectionGene.SourceNeuronId];
 					fastConnectionArray[connectionIdx].targetNeuronIdx = (int)neuronIndexTable[connectionGene.TargetNeuronId];
 					fastConnectionArray[connectionIdx].weight = (float)connectionGene.Weight;
-                    fastConnectionArray[connectionIdx].learningRate = connectionGene.learningRate;
-                    fastConnectionArray[connectionIdx].A = connectionGene.A;
-                    fastConnectionArray[connectionIdx].B = connectionGene.B;
-                    fastConnectionArray[connectionIdx].C = connectionGene.C;
 					connectionIdx++;
 				}
 			}
@@ -217,81 +209,9 @@ namespace SharpNeatLib
 
 		#endregion
 
-        #region Decode To ModularNetwork
+		#region Decode To IntegerFastConcurrentNetwork
 
-        static public ModularNetwork DecodeToModularNetwork(NeatGenome.NeatGenome g)
-        {
-            int inputCount = g.InputNeuronCount;
-            int outputCount = g.OutputNeuronCount;
-            int neuronCount = g.NeuronGeneList.Count;
-
-            IActivationFunction[] activationFunctions = new IActivationFunction[neuronCount];
-            float[] biasList = new float[neuronCount];
-
-            Dictionary<uint, int> neuronLookup = new Dictionary<uint, int>(neuronCount);
-
-            // Create an array of the activation functions for each non-module node node in the genome.
-            // Start with a bias node if there is one in the genome.
-            // The genome's neuron list is assumed to be ordered by type, with the bias node appearing first.
-            int neuronGeneIndex = 0;
-            for (; neuronGeneIndex < neuronCount; neuronGeneIndex++) {
-                if (g.NeuronGeneList[neuronGeneIndex].NeuronType != NeuronType.Bias)
-                    break;
-                activationFunctions[neuronGeneIndex] = g.NeuronGeneList[neuronGeneIndex].ActivationFunction;
-                neuronLookup.Add(g.NeuronGeneList[neuronGeneIndex].InnovationId, neuronGeneIndex);
-            }
-            int biasCount = neuronGeneIndex;
-            for (; neuronGeneIndex < neuronCount; neuronGeneIndex++) {
-                activationFunctions[neuronGeneIndex] = g.NeuronGeneList[neuronGeneIndex].ActivationFunction;
-                neuronLookup.Add(g.NeuronGeneList[neuronGeneIndex].InnovationId, neuronGeneIndex);
-                biasList[neuronGeneIndex] = g.NeuronGeneList[neuronGeneIndex].Bias;
-            }
-
-            // Create an array of the activation functions, inputs, and outputs for each module in the genome.
-            ModulePacket[] modules = new ModulePacket[g.ModuleGeneList.Count];
-            for (int i = g.ModuleGeneList.Count - 1; i >= 0; i--) {
-                modules[i].function = g.ModuleGeneList[i].Function;
-                // Must translate input and output IDs to array locations.
-                modules[i].inputLocations = new int[g.ModuleGeneList[i].InputIds.Count];
-                for (int j = g.ModuleGeneList[i].InputIds.Count - 1; j >= 0; j--) {
-                    modules[i].inputLocations[j] = neuronLookup[g.ModuleGeneList[i].InputIds[j]];
-                }
-                modules[i].outputLocations = new int[g.ModuleGeneList[i].OutputIds.Count];
-                for (int j = g.ModuleGeneList[i].OutputIds.Count - 1; j >= 0; j--) {
-                    modules[i].outputLocations[j] = neuronLookup[g.ModuleGeneList[i].OutputIds[j]];
-                }
-            }
-
-            // ConnectionGenes point to a neuron's innovation ID. Translate this ID to the neuron's index in the neuron array. 
-            FloatFastConnection[] connections = new FloatFastConnection[g.ConnectionGeneList.Count];
-            for (int connectionGeneIndex = g.ConnectionGeneList.Count - 1; connectionGeneIndex >= 0; connectionGeneIndex--) {
-                ConnectionGene connectionGene = g.ConnectionGeneList[connectionGeneIndex];
-                connections[connectionGeneIndex].sourceNeuronIdx = neuronLookup[connectionGene.SourceNeuronId];
-                connections[connectionGeneIndex].targetNeuronIdx = neuronLookup[connectionGene.TargetNeuronId];
-                connections[connectionGeneIndex].weight = (float)connectionGene.Weight;
-
-                connections[connectionGeneIndex].learningRate = connectionGene.learningRate;
-                connections[connectionGeneIndex].A = connectionGene.A;
-                connections[connectionGeneIndex].B = connectionGene.B;
-                connections[connectionGeneIndex].C = connectionGene.C;
-                connections[connectionGeneIndex].D = connectionGene.D;
-                connections[connectionGeneIndex].modConnection = connectionGene.modConnection;
-
-            }
-
-            ModularNetwork mn = new ModularNetwork(biasCount, inputCount, outputCount, neuronCount, connections, biasList, activationFunctions, modules);
-            if (g.networkAdaptable) mn.adaptable = true;
-            if (g.networkModulatory) mn.modulatory = true;
-
-            mn.genome = g;
-            return mn;
-        }
-
-        #endregion
-
-        #region Decode To IntegerFastConcurrentNetwork
-
-        /// <summary>
+		/// <summary>
 		/// Create a single comparer to limit the need to reconstruct for each network. 
 		/// Not multithread safe!
 		/// </summary>
@@ -443,24 +363,6 @@ namespace SharpNeatLib
 				modelConnection.SourceNeuron.OutConnectionList.Add(modelConnection);
 				modelConnection.TargetNeuron.InConnectionList.Add(modelConnection);
 			}
-
-            //Sebastian. Build Model connections
-            foreach (ModuleGene mg in g.ModuleGeneList)
-            {
-                foreach (uint sourceID in mg.InputIds)
-                {
-                    foreach (uint targetID in mg.OutputIds)
-                    {
-                        ModelConnection modelConnection = new ModelConnection();
-                        modelConnection.Weight = 1.0; //TODO  connectionGene.Weight;
-                        modelConnection.SourceNeuron = (ModelNeuron)neuronTable[sourceID];
-                        modelConnection.TargetNeuron = (ModelNeuron)neuronTable[targetID];
-
-                        modelConnection.SourceNeuron.OutConnectionList.Add(modelConnection);
-                        modelConnection.TargetNeuron.InConnectionList.Add(modelConnection);
-                    }
-                }
-            }
 
 			return new NetworkModel(masterNeuronList);
 		}

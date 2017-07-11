@@ -20,32 +20,13 @@ namespace SharpNeatLib.NeuralNetwork.Xml
             foreach (FloatFastConnection connectionGene in network.connectionArray)
                 WriteConnection(xmlConnections, connectionGene);
         }
-        //public static void Write(XmlNode parentNode, ModularNetwork network, IActivationFunction activationFn)
-        //{
-        //    //----- Start writing. Create document root node.
-        //    XmlElement xmlNetwork = XmlUtilities.AddElement(parentNode, "network");
-        //    if (activationFn != null)
-        //    {
-        //        XmlUtilities.AddAttribute(xmlNetwork, "activation-fn-id", activationFn.FunctionId);
-        //    }
-        //    //----- Write neurons.
-        //    XmlElement xmlNeurons = XmlUtilities.AddElement(xmlNetwork, "neurons");
-        //    foreach (NeuronGene neuronGene in genome.NeuronGeneList)
-        //        WriteNeuron(xmlNeurons, neuronGene);
-        //    //----- Write Connections.
-        //    XmlElement xmlConnections = XmlUtilities.AddElement(xmlNetwork, "connections");
-        //    foreach (FloatFastConnection connectionGene in network.connections)
-        //        WriteConnection(xmlConnections, connectionGene);
-        //}
+
 		public static void Write(XmlNode parentNode, NeatGenome.NeatGenome genome, IActivationFunction activationFn)
 		{
 		//----- Start writing. Create document root node.
 			XmlElement xmlNetwork = XmlUtilities.AddElement(parentNode, "network");
-            if (activationFn != null)
-            {
-                XmlUtilities.AddAttribute(xmlNetwork, "activation-fn-id", activationFn.FunctionId);
-                XmlUtilities.AddAttribute(xmlNetwork, "adaptable", "false");
-            }
+			XmlUtilities.AddAttribute(xmlNetwork, "activation-fn-id", activationFn.FunctionId);
+
 		//----- Write neurons.
 			XmlElement xmlNeurons = XmlUtilities.AddElement(xmlNetwork, "neurons");
 			foreach(NeuronGene neuronGene in genome.NeuronGeneList)
@@ -66,7 +47,6 @@ namespace SharpNeatLib.NeuralNetwork.Xml
 			XmlUtilities.AddAttribute(xmlNeuron, "id", neuronGene.InnovationId.ToString());
 			XmlUtilities.AddAttribute(xmlNeuron, "type", XmlUtilities.GetNeuronTypeString(neuronGene.NeuronType));
             XmlUtilities.AddAttribute(xmlNeuron, "activationFunction", neuronGene.ActivationFunction.FunctionId);
-            XmlUtilities.AddAttribute(xmlNeuron, "bias", neuronGene.Bias.ToString());
 		}
 
 		private static void WriteConnection(XmlElement xmlConnections, ConnectionGene connectionGene)
@@ -75,7 +55,7 @@ namespace SharpNeatLib.NeuralNetwork.Xml
 
 			XmlUtilities.AddAttribute(xmlConnection, "src-id", connectionGene.SourceNeuronId.ToString() );
 			XmlUtilities.AddAttribute(xmlConnection, "tgt-id", connectionGene.TargetNeuronId.ToString());
-			XmlUtilities.AddAttribute(xmlConnection, "weight", connectionGene.Weight.ToString("R"));
+			XmlUtilities.AddAttribute(xmlConnection, "weight", connectionGene.Weight.ToString());
 		}
 
         private static void WriteConnection(XmlElement xmlConnections, FloatFastConnection connectionGene)
@@ -84,7 +64,7 @@ namespace SharpNeatLib.NeuralNetwork.Xml
 
             XmlUtilities.AddAttribute(xmlConnection, "src-id", connectionGene.sourceNeuronIdx.ToString());
             XmlUtilities.AddAttribute(xmlConnection, "tgt-id", connectionGene.targetNeuronIdx.ToString());
-            XmlUtilities.AddAttribute(xmlConnection, "weight", connectionGene.weight.ToString("R"));
+            XmlUtilities.AddAttribute(xmlConnection, "weight", connectionGene.weight.ToString());
         }
 
 		#endregion

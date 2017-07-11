@@ -45,10 +45,10 @@ namespace StaticExperimentNS
 
             MatlabCommunicator matlab = getMatlab();
             double fitness = 0;
-            double[][] esEmweights = StaticSubstrate.getConnectionsSquareModel(network, neuronTypes);
+            double[][] connections = StaticSubstrate.getConnectionsSquareModel(network, neuronTypes);
             try
             {
-                fitness = matlab.simulate(esEmweights);
+                fitness = matlab.simulate(connections);
             }
             catch (MatlabCrashedException e)
             {
@@ -67,10 +67,10 @@ namespace StaticExperimentNS
         {
 
             MatlabCommunicator matlab = getMatlab();
-            double[][] esEmweights = StaticSubstrate.getConnectionsSquareModel(network,neuronTypes);
+            double[][] connections = StaticSubstrate.getConnectionsSquareModel(network,neuronTypes);
             try
             {
-                double fitness = matlab.simulateWithPlot(esEmweights, saveName);
+                double fitness = matlab.simulateWithPlot(connections, saveName);
             }
             catch (MatlabCrashedException e)
             {
@@ -80,19 +80,17 @@ namespace StaticExperimentNS
             }
         }
 
-        public void simulateModel(INetwork network, string saveName)
+        public void simulateModel( string saveName)
         {
-
-            double[][] connections = StaticSubstrate.getConnectionsSquareModel(network, neuronTypes);
             try
             {
-                double fitness = MatlabCommunicator.startRunModelSimulate(connections, saveName);
+                double fitness = MatlabCommunicator.startRunModelSimulate( saveName);
             }
             catch (MatlabCrashedException e)
             {
                 Console.WriteLine(e.Message);
                 Console.WriteLine("simulating model again");
-                plotMatlabGraphsAndSafeNetwork(network, saveName);
+                simulateModel( saveName);
             }
         }
 

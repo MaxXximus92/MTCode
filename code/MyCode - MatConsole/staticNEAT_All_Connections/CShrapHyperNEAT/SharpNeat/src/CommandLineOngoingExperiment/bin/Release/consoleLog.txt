@@ -1,4 +1,11 @@
-number of processors: 4
-Mono threads per cpu 201
-Start Experiment: OngoingExperiment
-loading initial data
+10 13:40:40 unknown Parameter "numNeurons " in experiment settings
+10 13:40:40 unknown Parameter "spikingThreshold " in experiment settings
+10 13:40:40 unknown Parameter "runTime " in experiment settings
+10 13:40:40 unknown Parameter "runSettings " in experiment settings
+10 13:40:40 unknown Parameter "trailsPerSetting " in experiment settings
+10 13:40:40 unknown Parameter "initialNetWeightsPath " in experiment settings
+10 13:40:40 unknown Parameter "matlabPath " in experiment settings
+10 13:40:40 test encoding: threshold: 0.2
+10 13:40:40 Starting Experiment: OngoingExperiment
+10 13:40:40 --------------------------------------------------------
+10 13:40:40 loading initial data

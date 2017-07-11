@@ -79,7 +79,7 @@ classdef spikenet < handle
                 this.weightsScale    = ones(this.numNeurons,this.numNeurons); %ones
                 this.weightsScale(this.weightsMatrix > 0) = 1.0; %@M setze alle sca les zu denen es ein Gewicht gibt auf 1
                 
-                this.connections     = find(this.weightsMatrix > 0);%@M find returns all indices fullfilling the condition 
+                this.connections     = find(this.weightsMatrix ~= 0);%@M find returns all indices fullfilling the condition 
                 %connections = single indices 1-... first column than second
                 this.emCells = find(this.getCellsOfType('EM'));
                 this.esCells = find(this.getCellsOfType('ES'));
@@ -297,8 +297,8 @@ classdef spikenet < handle
                 % neuronen oder? ne quatsch ist ja alles oder nichts
                 % hier... keine aktivierung wie in herkömmlichen ANN
                 synapticInput = sum((this.weightsMatrix(fired,:).*this.weightsScale(fired,:)),1)';
-                noise = this.getRandomNoise(this.v); %noise removed to
-                %ensure dame values for each run
+                noise = this.getRandomNoise(this.v); 
+                %ensure same values for each run
                 this.v = this.v+0.5*(0.04*this.v.^2+5*this.v+140-u+synapticInput+noise); % 2* halbsekunden schritt
                 this.v = this.v+0.5*(0.04*this.v.^2+5*this.v+140-u+synapticInput+noise);
                 u=u+a.*(b.*this.v-u);

@@ -97,7 +97,7 @@ namespace SharpNeatLib.Experiments
             }
 
             ActivationFunctionFactory.setProbabilities(activationFunctions);
-            ModuleFactory.setProbabilities(modules);
+
 
             setParameterDouble("threshold", ref threshold);
             setParameterDouble("weightrange", ref weightRange);

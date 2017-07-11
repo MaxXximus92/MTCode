@@ -208,7 +208,7 @@ namespace SharpNeatLib.NeuralNetwork
 			return isRelaxed;
 		}
 
-		public void SetInputSignal(int index, float signalValue)
+		public void SetInputSignal(int index, double signalValue)
 		{
 			// Scale the signal into our expected range for the integer network.
 			// +-5 -> +-2^31

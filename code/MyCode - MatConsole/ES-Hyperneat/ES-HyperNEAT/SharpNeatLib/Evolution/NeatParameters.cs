@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+
 namespace SharpNeatLib.Evolution
 {
 	public class NeatParameters
@@ -8,7 +8,7 @@ namespace SharpNeatLib.Evolution
 		#region Constants
 
 		public const int	DEFAULT_POPULATION_SIZE = 150;
-        public const float  DEFAULT_P_INITIAL_POPULATION_INTERCONNECTIONS = 1.00F;//DAVID 0.05F;
+        public const float DEFAULT_P_INITIAL_POPULATION_INTERCONNECTIONS = 1.00F;//DAVID 0.05F;
 
 		public const double DEFAULT_P_OFFSPRING_ASEXUAL = 0.5;
 		public const double DEFAULT_P_OFFSPRING_SEXUAL = 0.5;
@@ -18,9 +18,8 @@ namespace SharpNeatLib.Evolution
 
 	//----- High level mutation proportions
 		public const double DEFAULT_P_MUTATE_CONNECTION_WEIGHTS = 0.988;
-        public const double DEFAULT_P_MUTATE_ADD_NODE = 0.002;
-        public const double DEFAULT_P_MUTATE_ADD_MODULE = 0.0;
-        public const double DEFAULT_P_MUTATE_ADD_CONNECTION = 0.02;
+		public const double DEFAULT_P_MUTATE_ADD_NODE = 0.001;
+		public const double DEFAULT_P_MUTATE_ADD_CONNECTION = 0.01;
 		public const double DEFAULT_P_MUTATE_DELETE_CONNECTION = 0.001;
 		public const double DEFAULT_P_MUTATE_DELETE_SIMPLENEURON = 0.00;
 
@@ -40,12 +39,12 @@ namespace SharpNeatLib.Evolution
 		public const double DEFAULT_COMPATIBILITY_THRESHOLD = 8 ;
 		public const double DEFAULT_COMPATIBILITY_DISJOINT_COEFF = 1.0; 
 		public const double DEFAULT_COMPATIBILITY_EXCESS_COEFF = 1.0; 
-		public const double DEFAULT_COMPATIBILITY_WEIGHTDELTA_COEFF = 0.05; 
+		public const double DEFAULT_COMPATIBILITY_WEIGHTDELTA_COEFF = 0.1; 
 
 		public const double DEFAULT_ELITISM_PROPORTION = 0.2;
 		public const double DEFAULT_SELECTION_PROPORTION = 0.2;
-
-        public const int DEFAULT_TARGET_SPECIES_COUNT_MIN = 6;
+	
+		public const int DEFAULT_TARGET_SPECIES_COUNT_MIN = 6;
 		public const int DEFAULT_TARGET_SPECIES_COUNT_MAX = 10;
 
 		public const int DEFAULT_SPECIES_DROPOFF_AGE = 200;
@@ -62,16 +61,7 @@ namespace SharpNeatLib.Evolution
 		#endregion
 
 		#region Fields
-		public double archiveThreshold=3.00;
-        public int tournamentSize=4;
-		public bool noveltySearch=false;
-        public bool noveltyHistogram=false;
-        public bool noveltyFixed=false;
-        public bool noveltyFloat=false;
-        public bool multiobjective=false;
-	
-        public List<int> histogramBins;
-        
+
 		public int populationSize;
 		public float pInitialPopulationInterconnections;
 
@@ -86,9 +76,8 @@ namespace SharpNeatLib.Evolution
 
 	//----- High level mutation proportions
 		public double pMutateConnectionWeights;
-        public double pMutateAddNode;
-        public double pMutateAddModule;
-        public double pMutateAddConnection;
+		public double pMutateAddNode;
+		public double pMutateAddConnection;
 		public double pMutateDeleteConnection;
 		public double pMutateDeleteSimpleNeuron;
 
@@ -154,14 +143,6 @@ namespace SharpNeatLib.Evolution
 		/// </summary>
 		public NeatParameters()
 		{
-		    
-		    histogramBins = new List<int>();
-		    
-		    noveltySearch = false;
-		    noveltyHistogram = false;
-		    noveltyFixed = false;
-		    noveltyFloat = false;
-		    
 			populationSize = DEFAULT_POPULATION_SIZE;
 			pInitialPopulationInterconnections = DEFAULT_P_INITIAL_POPULATION_INTERCONNECTIONS;
 
@@ -179,9 +160,8 @@ namespace SharpNeatLib.Evolution
 
 		//----- High level mutation proportions
 			pMutateConnectionWeights	= DEFAULT_P_MUTATE_CONNECTION_WEIGHTS;
-            pMutateAddNode = DEFAULT_P_MUTATE_ADD_NODE;
-            pMutateAddModule = DEFAULT_P_MUTATE_ADD_MODULE;
-            pMutateAddConnection = DEFAULT_P_MUTATE_ADD_CONNECTION;
+			pMutateAddNode				= DEFAULT_P_MUTATE_ADD_NODE;
+			pMutateAddConnection		= DEFAULT_P_MUTATE_ADD_CONNECTION;
 			pMutateDeleteConnection		= DEFAULT_P_MUTATE_DELETE_CONNECTION;
 			pMutateDeleteSimpleNeuron	= DEFAULT_P_MUTATE_DELETE_SIMPLENEURON;
 
@@ -219,6 +199,7 @@ namespace SharpNeatLib.Evolution
             activationProbabilities[1] = 0;
             activationProbabilities[2] = 0;
             activationProbabilities[3] = 0;
+
 		}
 
 		/// <summary>
@@ -227,13 +208,6 @@ namespace SharpNeatLib.Evolution
 		/// <param name="copyFrom"></param>
 		public NeatParameters(NeatParameters copyFrom)
 		{
-		    //joel
-		    noveltySearch = copyFrom.noveltySearch;
-		    noveltyHistogram = copyFrom.noveltyHistogram;
-		    noveltyFixed = copyFrom.noveltyFixed;
-		    noveltyFloat = copyFrom.noveltyFloat;
-		    histogramBins = copyFrom.histogramBins;
-		    
 			populationSize = copyFrom.populationSize;
 
 			pOffspringAsexual = copyFrom.pOffspringAsexual;
@@ -243,9 +217,8 @@ namespace SharpNeatLib.Evolution
 			pDisjointExcessGenesRecombined = copyFrom.pDisjointExcessGenesRecombined;
 
 			pMutateConnectionWeights = copyFrom.pMutateConnectionWeights;
-            pMutateAddNode = copyFrom.pMutateAddNode;
-            pMutateAddModule = copyFrom.pMutateAddModule;
-            pMutateAddConnection = copyFrom.pMutateAddConnection;
+			pMutateAddNode = copyFrom.pMutateAddNode;
+			pMutateAddConnection = copyFrom.pMutateAddConnection;
 			pMutateDeleteConnection = copyFrom.pMutateDeleteConnection;
 			pMutateDeleteSimpleNeuron = copyFrom.pMutateDeleteSimpleNeuron;
 

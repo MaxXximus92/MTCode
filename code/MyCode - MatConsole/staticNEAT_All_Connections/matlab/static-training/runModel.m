@@ -1,6 +1,6 @@
-function [ ] = runModel(name, max_runTime, savePath, equationParamsPath,connectionsPath,resultPath, syncPath )
+function [ ] = runModel(name, max_trainTime, savePath, equationParamsPath,connectionsPath,resultPath, syncPath,angles_to_learn,angles_to_simulate,angle_simulation_time )
 %todo numNeurons vllt drin lassen und nicht verwenden um C# code nicht zu
-%ändern, aber eigentlich egal 2 min aufwand
+%aendern, aber eigentlich egal 2 min aufwand
 
 % maxNumCompThreads(1)
 % fprintf('set num Threads to 1')
@@ -9,18 +9,20 @@ function [ ] = runModel(name, max_runTime, savePath, equationParamsPath,connecti
 
 
 equationParams = loadEquationParams(equationParamsPath);
-eql= size(equationParams);
-weightsMatrix = zeros(eql(1),eql(1));
+
 
 settings='settings.xls';
 spikingThreshold = 30;
 
-max_runTime =str2double(max_runTime);
-% todo read from file
-%isSave =str2num(isSave);
+max_trainTime =str2double(max_trainTime);
+angles_to_learn = str2num(angles_to_learn);
+angles_to_simulate = str2num(angles_to_simulate);
+angle_simulation_time =str2double(angle_simulation_time);
 isSave = false;
 
-net = spikenet(spikingThreshold,settings,savePath,equationParams,weightsMatrix);
+initial_weights= zeros(size(equationParams,1),size(equationParams,1));
+net = spikenet(spikingThreshold,settings,savePath,equationParams,initial_weights);
+
 
 while (true)
     sync = readSync(syncPath); %% matlab ready -> finished  matlab-> working%% c# -> simulate  %% c# close close
@@ -39,9 +41,14 @@ while (true)
             
             net.setConnections(connections);
             
-            fitness = net.train(saveName, max_runTime,isSave);
             if isSave
                 net.save(saveName);
+            end
+            
+            fitness = net.train(saveName, max_trainTime,angles_to_learn,angles_to_simulate,angle_simulation_time,isSave);
+
+            if isSave
+                net.save([saveName '_aftsim']);
             end
             saveFitnessSync(resultPath,fitness)
             isSave= false;

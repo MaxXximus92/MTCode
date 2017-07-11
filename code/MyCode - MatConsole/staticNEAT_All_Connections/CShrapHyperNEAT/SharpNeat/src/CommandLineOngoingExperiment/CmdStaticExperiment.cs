@@ -156,7 +156,7 @@ namespace StaticExperimentNS
                 {
                     Console.WriteLine("Save Best Genome");
                     initialMaxFitness = ea.BestGenome.Fitness;
-                    saveGenome(ea.BestGenome, genomeSavePath, String.Format("{0}_BG_Gen_{1}_Fitn_{2:0.#####}", ExperimentParameters.experimentName,j,ea.BestGenome.Fitness));
+                    saveGenome(ea.BestGenome, genomeSavePath, String.Format("{0}_BGen_Gen_{1}_Fit_{2:0.#####}", ExperimentParameters.experimentName,j,ea.BestGenome.Fitness));
                     // This will output the substrate, uncomment if you want that
                     // gibt resultierendes Netzwerk zur Robotersteuerung zurück -> nicht benötigt
                     // doc = new XmlDocument();
@@ -172,7 +172,7 @@ namespace StaticExperimentNS
                 //Do any post-hoc stuff here
             }
 
-            Console.WriteLine("Evolution Done -> SavingResults");
+            Console.WriteLine("Evolution Done -> Saving Results");
             //get Matlab Plots for best genome
 
            // save n best models of last population
@@ -182,24 +182,23 @@ namespace StaticExperimentNS
            // genList.Reverse();
             IGenome[] genArray =genList.ToArray();
 
-            // for(int i =1; i < ExperimentParameters.numLastGenModelsToPlotAndSave; i++)
+            Console.WriteLine("Saving genomes");
             for (int i = 1; i < Math.Min(ExperimentParameters.numLastGenModelsToPlotAndSave,genArray.Length); i++)
             {
-                saveGenome( genArray[i], genomeSavePath, String.Format("{0}_LG_Fitn_{1:0.#####}_ord_{2}", ExperimentParameters.experimentName,genArray[i].Fitness,i));
+                saveGenome( genArray[i], genomeSavePath, String.Format("{0}_LGen_Fit_{1:0.#####}_ord_{2}", ExperimentParameters.experimentName,genArray[i].Fitness,i));
             }
             Console.WriteLine("Plotting matlab graphs");
             plotMatlabGraphs(genomeSavePath, (StaticPopulationEvaluator)exp.PopulationEvaluator);
+            Console.WriteLine("Close training models");
+            ((StaticNetworkEvaluator)((MultiThreadedPopulationEvaluator)exp.PopulationEvaluator).networkEvaluator).closeMatlabInstances();
+            Console.WriteLine("Simulate model");
+            simulateModelAndPlotGraphs(ExperimentParameters.modelSavePath, (StaticPopulationEvaluator)exp.PopulationEvaluator);
             Console.WriteLine("Plotting genome graphs");
             try
             {
                 PlotGenomeGraphs(genomeSavePath, getGenomeImageSavePath());
             }
-            catch (Exception e){ Console.WriteLine(e.Message); };
-            Console.WriteLine("Close Training Models");
-            ((StaticNetworkEvaluator)((MultiThreadedPopulationEvaluator)exp.PopulationEvaluator).networkEvaluator).closeMatlabInstances();
-            Console.WriteLine("Simulate Model");
-            simulateModelAndPlotGraphs(genomeSavePath, (StaticPopulationEvaluator)exp.PopulationEvaluator);
-
+            catch (Exception e) { Console.WriteLine(e.Message); };
 
             Console.WriteLine("Done!");
             doubleWriter.Flush();
@@ -268,19 +267,15 @@ namespace StaticExperimentNS
 
         }
 
-        private static void simulateModelAndPlotGraphs(string genomeSavePath, StaticPopulationEvaluator eva)
+        private static void simulateModelAndPlotGraphs(string modelSavePath, StaticPopulationEvaluator eva)
         {
-            string[] files = Directory.GetFiles(genomeSavePath).Where(s => s.EndsWith(".genome")).ToArray();
-            IGenome[] genomes = new IGenome[files.Length];
+            string[] files = Directory.GetFiles(modelSavePath).Where(s => s.EndsWith("aftsim.mat")).ToArray();
             string[] names = new string[files.LongLength];
             for (int i = 0; i < files.Length; i++)
             {
-                XmlDocument document = new XmlDocument();
-                document.Load(files[i]);
-                genomes[i] = XmlNeatGenomeReaderStatic.Read(document);
                 names[i] = Path.GetFileNameWithoutExtension(files[i]);
             }
-            eva.simulateAndPlot(genomes, names);
+            eva.simulateAndPlot(names);
 
         }
 
@@ -388,7 +383,7 @@ namespace StaticExperimentNS
 
             TextWriter one;
             TextWriter two;
-
+            Semaphore sem = new Semaphore(1, 1);
             public DoubleWriter(TextWriter one, TextWriter two)
             {
                 this.one = one;
@@ -402,14 +397,25 @@ namespace StaticExperimentNS
 
             public override void Flush()
             {
+                sem.WaitOne();
                 one.Flush();
                 two.Flush();
+                sem.Release();
+            }
+
+
+            public override void WriteLine(string value)
+            {
+                string print = DateTime.Now.ToString("dd HH:mm:ss ") + value;
+                base.WriteLine(print);
             }
 
             public override void Write(char value)
             {
+                sem.WaitOne();
                 one.Write(value);
                 two.Write(value);
+                sem.Release();
             }
 
             public override void Close()
@@ -419,6 +425,7 @@ namespace StaticExperimentNS
             }
 
         }
+
 
     }
 }

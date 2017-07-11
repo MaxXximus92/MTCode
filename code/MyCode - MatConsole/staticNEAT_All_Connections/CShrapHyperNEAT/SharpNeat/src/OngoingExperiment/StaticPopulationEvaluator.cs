@@ -19,14 +19,14 @@ namespace StaticExperimentNS
 
         }
 
-        public void simulateAndPlot(IGenome[] g, string[] names)
+        public void simulateAndPlot(string[] names)
         {
-            for (int i = 0; i < g.Length; i++)
+            for (int i = 0; i < names.Length; i++)
             {
 
 
                 sem.WaitOne();
-                evalPack2 e = new evalPack2(networkEvaluator, activationFn, g[i], i, "sim_"+names[i]);
+                evalPack2 e = new evalPack2(networkEvaluator, activationFn, null, i, names[i]);
 
                 ThreadPool.QueueUserWorkItem(new WaitCallback(simulateNet), e);
 
@@ -77,16 +77,8 @@ namespace StaticExperimentNS
         {
             evalPack2 e = (evalPack2)input;
 
-            if (e.g == null)//|| e.g.EvaluationCount != 0)
-            {
-                sem.Release();
-                return;
-            }
-            sem2.WaitOne();
-            INetwork network = e.g.Decode(e.Activation);
-            sem2.Release();
             DateTime dt = DateTime.Now;
-            ((StaticNetworkEvaluator)(e.NetworkEvaluator)).simulateModel(network, e.Name);
+            ((StaticNetworkEvaluator)(e.NetworkEvaluator)).simulateModel(e.Name);
             Console.WriteLine("Simulation Matlab Plots for Genome Name " + e.Name + " created " + (DateTime.Now.Subtract(dt)));
 
             sem.Release();

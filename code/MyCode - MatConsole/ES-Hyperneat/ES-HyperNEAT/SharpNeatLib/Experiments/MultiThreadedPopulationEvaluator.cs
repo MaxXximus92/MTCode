@@ -1,9 +1,9 @@
 using System;
 using System.Threading;
-using System.Collections.Generic;
 using SharpNeatLib.Evolution;
 using SharpNeatLib.NeuralNetwork;
 using SharpNeatLib.Experiments;
+
 
 namespace SharpNeatLib.Experiments
 {
@@ -18,13 +18,14 @@ namespace SharpNeatLib.Experiments
     /// </summary>
     public class MultiThreadedPopulationEvaluator : IPopulationEvaluator
     {
-        INetworkEvaluator networkEvaluator;
-        IActivationFunction activationFn;
-        //private static Semaphore sem = new Semaphore(2, 2);
-        private static Semaphore sem = new Semaphore(HyperNEATParameters.numThreads, HyperNEATParameters.numThreads);
-        private static Semaphore sem2 = new Semaphore(1, 1);
+        public INetworkEvaluator networkEvaluator;
+        protected IActivationFunction activationFn;
 
-        ulong evaluationCount = 0;
+    
+        protected static Semaphore sem = new Semaphore(HyperNEATParameters.numThreads, HyperNEATParameters.numThreads);
+        protected static Semaphore sem2 = new Semaphore(1, 1);
+        
+       protected ulong evaluationCount = 0;
 
         #region Constructor
 
@@ -32,52 +33,56 @@ namespace SharpNeatLib.Experiments
         {
             this.networkEvaluator = networkEvaluator;
             this.activationFn = activationFn;
-
+            ////@Max:  Minimize max threads nums to Cores
+            //int o;
+            //int w;
+            //ThreadPool.GetMaxThreads(out w, out o);
+            //ThreadPool.SetMaxThreads(3000, o);
+            //int o2;
+            //int w2;
+            //     ThreadPool.GetMinThreads( out w2 , out o2);
+            //ThreadPool.SetMinThreads(HyperNEATParameters.numThreads,o);
         }
 
         #endregion
 
         #region IPopulationEvaluator Members
 
+
         public void EvaluatePopulation(Population pop, EvolutionAlgorithm ea)
         {
+   
+
             int count = pop.GenomeList.Count;
+       
             evalPack e;
             IGenome g;
             int i;
 
             for (i = 0; i < count; i++)
             {
-                //Console.WriteLine(i);
+
+
                 sem.WaitOne();
                 g = pop.GenomeList[i];
-                e = new evalPack(networkEvaluator, activationFn, g, i % HyperNEATParameters.numThreads,(int)ea.Generation);
+                e = new evalPack(networkEvaluator, activationFn, g,i);
+
                 ThreadPool.QueueUserWorkItem(new WaitCallback(evalNet), e);
+
                 // Update master evaluation counter.
                 evaluationCount++;
+
             }
-            //Console.WriteLine("waiting for last threads..");
-           for (int j = 0; j < HyperNEATParameters.numThreads; j++)
-            {
-           		sem.WaitOne();
-              //  Console.WriteLine("waiting");
-			}
+            
+            //Erst aus methode raus wenn alle threads fertig sind
             for (int j = 0; j < HyperNEATParameters.numThreads; j++)
             {
-				//Console.WriteLine("releasing");
-       
+                sem.WaitOne();
+            }
+            for (int j = 0; j < HyperNEATParameters.numThreads; j++)
+            {
                 sem.Release();
             }
-            //Console.WriteLine("generation done...");
-            //calulate novelty scores...
-            if(ea.NeatParameters.noveltySearch)
-            {
-                if(ea.NeatParameters.noveltySearch)
-                {
-                    ea.CalculateNovelty();
-                }
-            }
-
         }
 
 
@@ -114,12 +119,14 @@ namespace SharpNeatLib.Experiments
             }
         }
 
+
+
         public static void evalNet(Object input)
         {
 
             evalPack e = (evalPack)input;
 
-            if (e.g == null || (!HyperNEATParameters.reevaluateEveryGeneration && e.g.EvaluationCount != 0))
+            if (e.g == null )//|| e.g.EvaluationCount != 0)
             {
                 sem.Release();
                 return;
@@ -130,20 +137,24 @@ namespace SharpNeatLib.Experiments
             if (network == null)
             {	// Future genomes may not decode - handle the possibility.
                 e.g.Fitness = EvolutionAlgorithm.MIN_GENOME_FITNESS;
-                e.g.RealFitness = e.g.Fitness;
             }
             else
             {
-                BehaviorType behavior;
-                e.g.Fitness = Math.Max(e.NetworkEvaluator.threadSafeEvaluateNetwork(network,sem2,out behavior,e.ThreadNumber), EvolutionAlgorithm.MIN_GENOME_FITNESS);
-                e.g.Behavior = behavior;
-                e.g.RealFitness = e.g.Fitness;
+                DateTime dt = DateTime.Now;
+                //sem2.WaitOne();
+                //Console.WriteLine("starting withGenome Number {0}", e.nu);
+                //sem2.Release();
+                e.g.Fitness = Math.Max(e.NetworkEvaluator.threadSafeEvaluateNetwork(network,sem2), EvolutionAlgorithm.MIN_GENOME_FITNESS);
+                sem2.WaitOne();
+                Console.WriteLine("Genome Number {0} fitness {1:0.#####} dt {2} ", e.nu,e.g.Fitness ,(DateTime.Now.Subtract(dt)));
+                sem2.Release();
             }
 
             // Reset these genome level statistics.
             e.g.TotalFitness += e.g.Fitness;
             e.g.EvaluationCount += 1;
             sem.Release();
+
         }
 
         #endregion
@@ -151,34 +162,21 @@ namespace SharpNeatLib.Experiments
 
     class evalPack
     {
+
         INetworkEvaluator networkEvaluator;
         IActivationFunction activationFn;
         IGenome genome;
-        int threadnumber;
-		int generation;
-        public evalPack(INetworkEvaluator n, IActivationFunction a, IGenome g,int t,int gen)
+        int number;
+
+        public evalPack(INetworkEvaluator n, IActivationFunction a, IGenome g, int nu)// number only for debug.. removeable!!
         {
 
             networkEvaluator = n;
             activationFn = a;
             genome = g;
-            threadnumber = t;
-			generation=gen;
+            number = nu;
         }
-		public int Generation
-		{
-			get
-			{
-				return generation;
-			}
-		}
-        public int ThreadNumber
-        {
-            get
-            {
-                return threadnumber;
-            }
-        }
+
         public INetworkEvaluator NetworkEvaluator
         {
             get
@@ -200,6 +198,14 @@ namespace SharpNeatLib.Experiments
             get
             {
                 return genome;
+            }
+        }
+
+        public int nu
+        {
+            get
+            {
+                return number;
             }
         }
 

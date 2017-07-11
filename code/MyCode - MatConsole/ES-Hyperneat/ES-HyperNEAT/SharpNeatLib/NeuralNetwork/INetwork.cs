@@ -23,7 +23,7 @@ namespace SharpNeatLib.NeuralNetwork
 		/// </summary>
 		/// <param name="index"></param>
 		/// <param name="signalValue"></param>
-		void SetInputSignal(int index, float signalValue);
+		void SetInputSignal(int index, double signalValue);
 
 		/// <summary>
 		/// Assigns an array of input signals. IF the array is too long then excess signals are ignored.

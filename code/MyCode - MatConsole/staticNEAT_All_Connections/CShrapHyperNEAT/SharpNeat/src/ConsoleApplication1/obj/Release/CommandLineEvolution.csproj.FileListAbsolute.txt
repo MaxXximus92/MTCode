@@ -5,3 +5,10 @@ C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode\on
 C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\ConsoleApplication1\obj\Release\CommandLineEvolution.csprojResolveAssemblyReference.cache
 C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\ConsoleApplication1\obj\Release\ConsoleApplication1.exe
 C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\ConsoleApplication1\obj\Release\ConsoleApplication1.pdb
+C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode - MatConsole\staticNEAT_All_Connections\CShrapHyperNEAT\SharpNeat\src\ConsoleApplication1\bin\Release\ConsoleApplication1.exe
+C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode - MatConsole\staticNEAT_All_Connections\CShrapHyperNEAT\SharpNeat\src\ConsoleApplication1\bin\Release\ConsoleApplication1.pdb
+C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode - MatConsole\staticNEAT_All_Connections\CShrapHyperNEAT\SharpNeat\src\ConsoleApplication1\bin\Release\SharpNeatExperiments.dll
+C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode - MatConsole\staticNEAT_All_Connections\CShrapHyperNEAT\SharpNeat\src\ConsoleApplication1\bin\Release\SharpNeatLib.dll
+C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode - MatConsole\staticNEAT_All_Connections\CShrapHyperNEAT\SharpNeat\src\ConsoleApplication1\obj\Release\CommandLineEvolution.csprojResolveAssemblyReference.cache
+C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode - MatConsole\staticNEAT_All_Connections\CShrapHyperNEAT\SharpNeat\src\ConsoleApplication1\obj\Release\ConsoleApplication1.exe
+C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode - MatConsole\staticNEAT_All_Connections\CShrapHyperNEAT\SharpNeat\src\ConsoleApplication1\obj\Release\ConsoleApplication1.pdb

@@ -28,8 +28,7 @@ namespace SharpNeatLib.NeatGenome
 			// Create a single bias neuron.
             //TODO: DAVID proper activation function change to NULL?
             actFunct = ActivationFunctionFactory.GetActivationFunction("NullFn");
-            //neuronGene = new NeuronGene(idGenerator.NextInnovationId, NeuronType.Bias, actFunct);
-            neuronGene = new NeuronGene(null, idGenerator.NextInnovationId, NeuronGene.INPUT_LAYER, NeuronType.Bias, actFunct);
+            neuronGene = new NeuronGene(idGenerator.NextInnovationId, NeuronType.Bias, actFunct);
 			inputNeuronGeneList.Add(neuronGene);
 			neuronGeneList.Add(neuronGene);
 
@@ -38,8 +37,7 @@ namespace SharpNeatLib.NeatGenome
 			for(int i=0; i<inputNeuronCount; i++)
 			{
                 //TODO: DAVID proper activation function change to NULL?
-                //neuronGene = new NeuronGene(idGenerator.NextInnovationId, NeuronType.Input, actFunct);
-                neuronGene = new NeuronGene(null, idGenerator.NextInnovationId, NeuronGene.INPUT_LAYER, NeuronType.Input, actFunct);
+                neuronGene = new NeuronGene(idGenerator.NextInnovationId, NeuronType.Input, actFunct);
 				inputNeuronGeneList.Add(neuronGene);
 				neuronGeneList.Add(neuronGene);
 			}
@@ -51,8 +49,7 @@ namespace SharpNeatLib.NeatGenome
                 actFunct = ActivationFunctionFactory.GetActivationFunction("BipolarSigmoid");
                 //actFunct = ActivationFunctionFactory.GetRandomActivationFunction(neatParameters);
                 //TODO: DAVID proper activation function
-                //neuronGene = new NeuronGene(idGenerator.NextInnovationId, NeuronType.Output, actFunct);
-                neuronGene = new NeuronGene(null, idGenerator.NextInnovationId, NeuronGene.OUTPUT_LAYER, NeuronType.Output, actFunct);
+                neuronGene = new NeuronGene(idGenerator.NextInnovationId, NeuronType.Output, actFunct);
 				outputNeuronGeneList.Add(neuronGene);
 				neuronGeneList.Add(neuronGene);
 			}
@@ -118,9 +115,7 @@ namespace SharpNeatLib.NeatGenome
 				
 				// Reset the connection weights
 				foreach(ConnectionGene connectionGene in newGenome.ConnectionGeneList)
-                    connectionGene.Weight += (0.1 - Utilities.NextDouble() * 0.2);
-                    //!connectionGene.Weight = (Utilities.NextDouble() * neatParameters.connectionWeightRange) - neatParameters.connectionWeightRange/2.0;
-                //Console.WriteLine((0.1 - Utilities.NextDouble() * 0.2));
+					connectionGene.Weight = (Utilities.NextDouble() * neatParameters.connectionWeightRange) - neatParameters.connectionWeightRange/2.0;
                 //newGenome.ConnectionGeneList.Add(new ConnectionGene(idGenerator.NextInnovationId,5,newGenome.NeuronGeneList[Utilities.Next(newGenome.NeuronGeneList.Count-7)+7].InnovationId ,(Utilities.NextDouble() * neatParameters.connectionWeightRange) - neatParameters.connectionWeightRange/2.0));
                 //newGenome.ConnectionGeneList.Add(new ConnectionGene(idGenerator.NextInnovationId, 6, newGenome.NeuronGeneList[Utilities.Next(newGenome.NeuronGeneList.Count - 7) + 7].InnovationId, (Utilities.NextDouble() * neatParameters.connectionWeightRange) - neatParameters.connectionWeightRange / 2.0));
 				genomeList.Add(newGenome);

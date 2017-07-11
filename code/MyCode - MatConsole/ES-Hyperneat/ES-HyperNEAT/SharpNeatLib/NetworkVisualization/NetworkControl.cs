@@ -7,13 +7,15 @@ using System.Windows.Forms;
 
 namespace SharpNeatLib.NetworkVisualization
 {
-	public class NetworkControl : System.Windows.Forms.UserControl
-	{
-		const int VIEWPORT_MARGIN_WIDTH = 40;
+    public class NetworkControl : System.Windows.Forms.UserControl
+    {
+        const int VIEWPORT_MARGIN_WIDTH = 40;
 
-		Viewport viewport;
-		NetworkModel networkModel;
-		float zoomFactor=1.0F;
+        Viewport viewport;
+        NetworkModel networkModel;
+        float zoomFactor = 1.0F;
+
+
 
 		#region Component Designer variables
 
@@ -71,7 +73,8 @@ namespace SharpNeatLib.NetworkVisualization
 			this.AutoScrollMargin = new System.Drawing.Size(1, 1);
 			this.Name = "NetworkControl";
 			this.Size = new System.Drawing.Size(352, 336);
-			this.Resize += new System.EventHandler(this.NetworkControl_Resize);
+            this.Size = new System.Drawing.Size(1000, 1000); // Change Size here!
+            this.Resize += new System.EventHandler(this.NetworkControl_Resize);
 		}
 		#endregion
 
@@ -91,7 +94,16 @@ namespace SharpNeatLib.NetworkVisualization
 			}
 		}
 
-		public Size ViewportSize
+        public Viewport Viewport
+        {
+            get
+            {
+                return viewport;
+            }
+
+        }
+
+        public Size ViewportSize
 		{
 			get
 			{

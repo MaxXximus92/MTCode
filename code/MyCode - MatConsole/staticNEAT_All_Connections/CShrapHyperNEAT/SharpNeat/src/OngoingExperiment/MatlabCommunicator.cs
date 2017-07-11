@@ -19,7 +19,7 @@ namespace StaticExperimentNS
     {
 
 
-        public readonly string name;// name has to be unique  oder counter...
+        public readonly string name;// name has to be 
         readonly string syncPath;
         readonly string weightPath;
         readonly string logPath;
@@ -57,37 +57,41 @@ namespace StaticExperimentNS
         {
             this.name = name;
             logPath = ExperimentParameters.communicationPath + pathSep + @"log_" + name + ".txt";
-            syncPath =  ExperimentParameters.communicationPath + pathSep + @"sync_" + name + ".txt";
-            resultPath =  ExperimentParameters.communicationPath + pathSep + @"rmsd_" + name + ".mat";
-            weightPath =  ExperimentParameters.communicationPath + pathSep + @"dEsWeights_" + name + ".mat";
+            syncPath = ExperimentParameters.communicationPath + pathSep + @"sync_" + name + ".txt";
+            resultPath = ExperimentParameters.communicationPath + pathSep + @"rmsd_" + name + ".mat";
+            weightPath = ExperimentParameters.communicationPath + pathSep + @"connections_" + name + ".mat";
 
             string arg0_matCommand = "matlab  -nodesktop -nodisplay -nosplash -singleCompThread -r ";
             string arg1_name = name;
-            string arg2_maxRunTime = ExperimentParameters.maxRuntime.ToString();
+            string arg2_maxTrainTime = ExperimentParameters.training_maxTrainTime.ToString();
             string arg3_savePath = ExperimentParameters.modelSavePath;
-            string arg4_equParamPath =  ExperimentParameters.initialNetEqParamsPath;
-            string arg5_esemConPath =  weightPath;
-            string arg6_resultPath =  resultPath;
-            string arg7_syncPath =  syncPath;
-            string arg8_logPath = logPath;
+            string arg4_equParamPath = ExperimentParameters.initialNetEqParamsPath;
+            string arg5_esemConPath = weightPath;
+            string arg6_resultPath = resultPath;
+            string arg7_syncPath = syncPath;
+            string arg8_anglesToLearn = ExperimentParameters.training_anglesToLearn;
+            string arg9_anglesToSimulate = ExperimentParameters.training_anglesToSimulate;
+            string arg10_anglesSimulationTime = ExperimentParameters.training_timePerAngle.ToString();
+            string arg11_logPath = logPath;
+
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.CreateNoWindow = true;
             startInfo.UseShellExecute = false;
-           // startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            // startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
             startInfo.WorkingDirectory = ExperimentParameters.modelLibPathTrain;
             // todo in Experiment parameters
 
             // win
 #if Windows
             // string arguments = String.Format(@" ""{0}"" ""{1}"" ""{2}"" ""{3}"" ""{4}"" ""{5}"" ""{6}"" ""{7}"" ""{8}""  ""{9}"" ", arg1_name, arg2_numNeurons, arg3_runTime, arg4_runSettings, arg5_savePath, arg6_equParamPath, arg7_weightsMPath, arg8_esemConPath, arg9_resultPath, arg10_syncPath);
-            string arguments = String.Format(@" /C {0} ""runModel('{1}','{2}','{3}','{4}','{5}','{6}','{7}')"" -logfile ""{8}"" ", arg0_matCommand, arg1_name, arg2_maxRunTime, arg3_savePath, arg4_equParamPath, arg5_esemConPath, arg6_resultPath, arg7_syncPath, arg8_logPath);
+            string arguments = String.Format(@" /C {0} ""runModel('{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}')"" -logfile ""{11}"" ", arg0_matCommand, arg1_name, arg2_maxTrainTime, arg3_savePath, arg4_equParamPath, arg5_esemConPath, arg6_resultPath, arg7_syncPath, arg8_anglesToLearn, arg9_anglesToSimulate, arg10_anglesSimulationTime, arg11_logPath);
             startInfo.FileName = "cmd.exe";
 #endif
             //Lin
 #if Linux
-            string arg9_matlabPath = ExperimentParameters.matlabExecPath;//"/storage/matlab-r2017a/bin/";
-            string arguments = String.Format(@" -c '{9}{0} \""runModel(\'{1}\',\'{2}\',\'{3}\',\'{4}\',\'{5}\',\'{6}\',\'{7}\')\"" -logfile '{8}' > /dev/null 2>&1 ' ", arg0_matCommand, arg1_name, arg2_maxRunTime, arg3_savePath, arg4_equParamPath, arg5_esemConPath, arg6_resultPath, arg7_syncPath, arg8_logPath, arg9_matlabPath);
+            string arg12_matlabPath = ExperimentParameters.matlabExecPath;//"/storage/matlab-r2017a/bin/";
+            string arguments = String.Format(@" -c '{12}{0} \""runModel(\'{1}\',\'{2}\',\'{3}\',\'{4}\',\'{5}\',\'{6}\',\'{7}\',\'{8}\',\'{9}\',\'{10}\')\"" -logfile '{11}' > /dev/null 2>&1' ", arg0_matCommand, arg1_name, arg2_maxTrainTime, arg3_savePath, arg4_equParamPath, arg5_esemConPath, arg6_resultPath, arg7_syncPath, arg8_anglesToLearn, arg9_anglesToSimulate, arg10_anglesSimulationTime, arg11_logPath, arg12_matlabPath);
             startInfo.FileName = "/bin/bash";
 #endif
 
@@ -101,7 +105,7 @@ namespace StaticExperimentNS
             Process exeProcess = Process.Start(startInfo);
             matlab = exeProcess;
 
-             Thread.EndThreadAffinity(); // TODO test if better without
+            Thread.EndThreadAffinity(); // TODO test if better without
 
 
         }
@@ -123,23 +127,20 @@ namespace StaticExperimentNS
         }
 
 
-        public static double startRunModelSimulate(double[][] DEsWeights,string communicationName)
+        public static double startRunModelSimulate(string netName)
         {
-            string name = communicationName;
+            string name = "sim_" + netName;
             string logPath = ExperimentParameters.communicationPath + pathSep + @"log_" + name + ".txt";
             string resultPath = ExperimentParameters.communicationPath + pathSep + @"rmsd_" + name + ".mat";
-            string weightPath = ExperimentParameters.communicationPath + pathSep + @"dEsWeights_" + name + ".mat";
 
             string arg0_matCommand = "matlab  -nodesktop -nodisplay -nosplash -singleCompThread -r ";
             string arg1_name = name;
-            string arg2_savePath = ExperimentParameters.modelSavePath;
-            string arg3_equParamPath = ExperimentParameters.initialNetEqParamsPath;
-            string arg4_conPath = weightPath;
-            string arg5_resultPath = resultPath;
-            string arg6_startAngle = ExperimentParameters.startAngle.ToString();
-            string arg7_anglesToSimulate = ExperimentParameters.anglesToSimulate;
-            string arg8_timePerAngle = ExperimentParameters.timePerAngle.ToString();
-            string arg9_logPath = logPath;
+            string arg2_resultPath = resultPath;
+            string arg3_netPath = ExperimentParameters.modelSavePath + pathSep + netName + ".mat";
+            string arg4_startAngle = ExperimentParameters.startAngle.ToString();
+            string arg5_anglesToSimulate = ExperimentParameters.simulation_anglesToSimulate;
+            string arg6_timePerAngle = ExperimentParameters.simulation_timePerAngle.ToString();
+            string arg7_logPath = logPath;
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.CreateNoWindow = true;
@@ -149,32 +150,31 @@ namespace StaticExperimentNS
 
             // win
 #if Windows
-            // string arguments = String.Format(@" ""{0}"" ""{1}"" ""{2}"" ""{3}"" ""{4}"" ""{5}"" ""{6}"" ""{7}"" ""{8}""  ""{9}"" ", arg1_name, arg2_numNeurons, arg3_runTime, arg4_runSettings, arg5_savePath, arg6_equParamPath, arg7_weightsMPath, arg8_esemConPath, arg9_resultPath, arg10_syncPath);
-            string arguments = String.Format(@" /C {0} ""runModel('{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')"" -logfile ""{9}"" ", arg0_matCommand, arg1_name, arg2_savePath, arg3_equParamPath, arg4_conPath, arg5_resultPath,arg6_startAngle,arg7_anglesToSimulate,arg8_timePerAngle ,arg9_logPath);
+
+            string arguments = String.Format(@" /C {0} ""runModel('{1}','{2}','{3}','{4}','{5}','{6}')"" -logfile ""{7}"" ", arg0_matCommand, arg1_name, arg2_resultPath, arg3_netPath, arg4_startAngle, arg5_anglesToSimulate, arg6_timePerAngle, arg7_logPath);
             startInfo.FileName = "cmd.exe";
 #endif
 
 #if Linux
-            string arg10_matlabPath = ExperimentParameters.matlabExecPath;//"/storage/matlab-r2017a/bin/";
-            string arguments = String.Format(@" -c '{10}{0} \""runModel(\'{1}\',\'{2}\',\'{3}\',\'{4}\',\'{5}\',\'{6}\',\'{7}\',\'{8}\')\"" -logfile '{9}' > /dev/null 2>&1 ' ", arg0_matCommand, arg1_name, arg2_savePath, arg3_equParamPath, arg4_weightsMPath, arg4_conPath, arg5_resultPath, arg6_startAngle, arg7_anglesToSimulate, arg8_timePerAngle, arg9_logPath, arg10_matlabPath);
+            string arg8_matlabPath = ExperimentParameters.matlabExecPath;//"/storage/matlab-r2017a/bin/";
+            string arguments = String.Format(@" -c '{8}{0} \""runModel(\'{1}\',\'{2}\',\'{3}\',\'{4}\',\'{5}\',\'{6}\')\"" -logfile '{7}' > /dev/null 2>&1 ' ", arg0_matCommand, arg1_name, arg2_resultPath,arg3_netPath,arg4_startAngle,arg5_anglesToSimulate,arg6_timePerAngle,arg7_logPath,arg8_matlabPath);
             startInfo.FileName = "/bin/bash";
 #endif
 
             // startInfo.FileName = ExperimentParameters.matlabExecPathRunModel;
             startInfo.Arguments = arguments;
 
-            writeSyncMatrix(DEsWeights, weightPath);
             Thread.BeginThreadAffinity();
             using (Process exeProcess = Process.Start(startInfo))
             {
                 exeProcess.WaitForExit();
             }
             Thread.EndThreadAffinity();
-
-            double fitness = getSyncFitness(resultPath, null, communicationName);
+            //Console.WriteLine("Simulation process exited");
+            double fitness = getSyncFitness(resultPath, null, netName);
 
             deleteSync(resultPath);
-            deleteSync(weightPath);
+
 
             return fitness;
 
@@ -188,30 +188,29 @@ namespace StaticExperimentNS
         public static ModelNeuronType[] getNeuronTypes(string communicationName)
         {
             string logPath = ExperimentParameters.communicationPath + pathSep + @"log_" + communicationName + ".txt";
-            string resultPath =  ExperimentParameters.communicationPath + pathSep + @"neuronTypes_" + communicationName + ".mat";
+            string resultPath = ExperimentParameters.communicationPath + pathSep + @"dEsNum_" + communicationName + ".mat";
 
 
             string arg1_resultPath = resultPath;
-            string arg2_logPath = resultPath;
+            string arg2_logPath = ExperimentParameters.communicationPath + pathSep + @"log_" + "getParams" + ".txt";
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.CreateNoWindow = true;
             startInfo.UseShellExecute = false;
-           // startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            // startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
             startInfo.WorkingDirectory = ExperimentParameters.modelLibPathTrain;
 
             // win
 #if Windows
-             string arg0_matcommand = "matlab -wait -nodesktop -nodisplay -nosplash -nojvm -singleCompThread  -r ";
+            string arg0_matcommand = "matlab -wait -nodesktop -nodisplay -nosplash -nojvm -singleCompThread  -r ";
             string arguments = String.Format(@" /C {0} ""getModelParams('{1}')""  -logfile {2} ", arg0_matcommand, arg1_resultPath, arg2_logPath);
             startInfo.FileName = "cmd.exe";
 #endif
 #if Linux
             string arg0_matcommand = "matlab -nodesktop -nodisplay -nosplash -nojvm -singleCompThread  -r ";
             string arg3_matlabPath = ExperimentParameters.matlabExecPath;
-            arg2_logPath = ExperimentParameters.communicationPath + pathSep + @"log_" + "getParams" + ".txt";  
-            //string arguments = String.Format(@" -c $'{3}{0} \""getModelParams(\'{1}\',\'{2}\')\""  -logfile 'log_getParams' ' ", arg0_matcommand,arg1_numNeurons, arg2_resultPath, arg3_matlabPath);
-            string arguments = String.Format(@" -c '{3}{0} \""getModelParams(\'{1}\')\""  -logfile '{2}' > /dev/null 2>&1 ' ", arg0_matcommand, arg1_resultPath,arg2_logPath, arg3_matlabPath);
+
+            string arguments = String.Format(@" -c '{3}{0} \""getModelParams(\'{1}\')\""  -logfile '{2}' > /dev/null 2>&1' ", arg0_matcommand, arg1_resultPath, arg2_logPath, arg3_matlabPath);
             startInfo.FileName = "/bin/bash";
 #endif
 
@@ -241,7 +240,7 @@ namespace StaticExperimentNS
             {
                 enumTypes[i] = (ModelNeuronType)Convert.ToInt32(types[i]);
             }
-            Console.WriteLine("Loaded Types length:"+ types.Length);
+            Console.WriteLine("loaded types' length:"+ types.Length);
             deleteSync(resultPath);
             return enumTypes;
         }

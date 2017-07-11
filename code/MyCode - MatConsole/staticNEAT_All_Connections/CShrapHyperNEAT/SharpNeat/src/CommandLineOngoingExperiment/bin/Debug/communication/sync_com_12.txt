@@ -1,2 +1,0 @@
-simulate_plot 
-sim_StaticExperiment_BG_Gen_0_Fitn_0

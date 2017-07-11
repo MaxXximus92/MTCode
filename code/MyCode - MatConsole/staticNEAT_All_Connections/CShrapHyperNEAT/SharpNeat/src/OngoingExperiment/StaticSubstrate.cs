@@ -81,8 +81,8 @@ namespace StaticExperimentNS
             // norm length between 0 and 1
             int iterations = 2 * (network.TotalNeuronCount - (network.InputNeuronCount + network.OutputNeuronCount)) + 1;
 
-            float distModul1 = 1.0f/(modul1.Count -1); // -1 to get a neuron at 1 and 0
-            float distModul2 = 1.0f /( modul2.Count-1);  // -1 to get a neuron at 1 and 0
+            float distModul1 = 1.0f/(modul1.Count -1); // -1 to get a neuron at 1 and at 0
+            float distModul2 = 1.0f /( modul2.Count-1);  // -1 to get a neuron at 1 and at 0
 
             float[] coordinates = new float[2];
             float mod1coord = 0;

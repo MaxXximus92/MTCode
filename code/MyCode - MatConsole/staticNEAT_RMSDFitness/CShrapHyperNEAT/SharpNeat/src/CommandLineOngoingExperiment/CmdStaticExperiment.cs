@@ -171,7 +171,7 @@ namespace StaticExperimentNS
                 //Do any post-hoc stuff here
             }
 
-            Console.WriteLine("Evolution Done -> SavingResults");
+            Console.WriteLine("Evolution Done -> Saving Results");
             //get Matlab Plots for best genome
 
            // save n best models of last population
@@ -188,9 +188,9 @@ namespace StaticExperimentNS
             }
             Console.WriteLine("Plotting matlab graphs");
             plotMatlabGraphs(genomeSavePath, (StaticPopulationEvaluator)exp.PopulationEvaluator);
-            Console.WriteLine("Close Training Models");
+            Console.WriteLine("Close training models");
             ((StaticNetworkEvaluator)((MultiThreadedPopulationEvaluator)exp.PopulationEvaluator).networkEvaluator).closeMatlabInstances();
-            Console.WriteLine("Simulate Model");
+            Console.WriteLine("Simulate model");
             simulateModelAndPlotGraphs(ExperimentParameters.modelSavePath, (StaticPopulationEvaluator)exp.PopulationEvaluator);
             Console.WriteLine("Plotting genome graphs");
             try

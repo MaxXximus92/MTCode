@@ -8,10 +8,8 @@ namespace SharpNeatLib
 	/// </summary>
 	public class Utilities
 	{
-        public const float twoPi = (float)(2 * Math.PI);
-
 		//private static Random random = new Random();
-		public static FastRandom random = new FastRandom();
+		private static FastRandom random = new FastRandom();
 
 		// Static/global method for generating random numbers.
 		public static double NextDouble()

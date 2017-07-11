@@ -20,7 +20,7 @@ classdef spikenet < handle
         noiseWeights;       %noise weights (one row for each noise type)
         noiseWeightsScale;  %noise weights scale (one row for each noise type)
         noiseRevPotential;  %noise reversal potential (one row for each noise type)
-        connections;        %list of all neuron-to-neuron connections
+        %connections;        %list of all neuron-to-neuron connections
         exMotoric;          %indizes of exciatory motor cells (extensor)
         flMotoric;          %indizes of exciatory motor cells (flexor)
         v;                  %membrane potential
@@ -83,8 +83,8 @@ classdef spikenet < handle
         %% c# Communication
         function save(this,name)
             net= this;
-            save([this.savePath name],'net');
-        end        
+            save([this.savePath name '.mat'],'net');
+        end          
         
         
 %         function numNeurons = getNumNeurons(this)
@@ -142,18 +142,19 @@ classdef spikenet < handle
           end
         
         %% train model
-      function fitness = train(this, model_name, max_run_time,save_figures)
+       function fitness = train(this, model_name, max_train_time,angles_to_learn,angles_to_simulate,angle_simulation_time,save_figures)
             if nargin < 3
                 save_figures = false;
             end
             
             this.correctMoves = 0;
             %% construct prosthesis
-            prost = prosthesis(0,135,save_figures); %@ m ok wichtig!!!! nicht 180°
+            prost = prosthesis(0,135,max_train_time,angles_to_learn,angles_to_simulate,angle_simulation_time,save_figures); %@ m ok wichtig!!!! nicht 180°
             lh1 = addlistener(this,'learn',@prost.learn);
             
             %% run trial
-            if(this.DEBUG), fprintf(strcat('#########\nModel %s \n#########\n'),model_name);end;
+            if(this.DEBUG), fprintf(strcat('#########\nModel %s \n#########\n'),model_name);end
+            max_run_time = max_train_time+length(prost.angles_to_simulate)*prost.angle_simulation_time;
             [output, time] = this.run(max_run_time); this.break_run=0;
             delete(lh1);
            
@@ -165,30 +166,46 @@ classdef spikenet < handle
                 this.plotAllFirings(output);
                 xlim([0,time]);
                 box on;
-                saveas(gcf,[this.savePath sprintf('Model %s (firings).pdf',model_name)], 'pdf');
+                saveas(gcf,[this.savePath sprintf('%s (firings).pdf',model_name)], 'pdf');
                 set(0,'CurrentFigure',prost.fig);
                 xlim([0,time]);
                 box on;
-                saveas(gcf,[this.savePath sprintf('Model %s (movement).pdf',model_name)], 'pdf');
+                saveas(gcf,[this.savePath sprintf('%s (movement).pdf',model_name)], 'pdf');
                 close all hidden
             end
             % calc fitness
             % fitness_training -> normalized amount of steps in right
             % direction
             % fitness_angle -> reached angles
-            % fitness_time -> time needed for simulation and training
+            % fitness_variance -> varaince to simulation target
             % fintess = (fitness_training+ fitness_angle+ fitness_time)/3
 
             trainingTime =prost.mode_start_time;
-            if (trainingTime == 1), trainingTime = max_run_time; end
+            if (trainingTime == 1), trainingTime = max_train_time; end
             fitness_training = this.correctMoves/(trainingTime/50); %/50 since reward is send only every 50 steps
-            fitness_angle = (prost.reached_angles(1) + prost.reached_angles(2))/2;
-            successfully = prost.reached_angles(1) && prost.reached_angles(2); % reached angles during simulation
-            fitness_time=0; % = not successful
+            fitness_angle = sum(prost.reached_angles)/length(prost.reached_angles);
+            successfully = sum(prost.reached_angles)==length(prost.reached_angles); % reached angles during simulation
+            fitness_rmsd=0; % = not successful
+
             if(successfully)
-                fitness_time = 1-(time/max_run_time); % wert zwischen 0 und 1. 0 schlecht 1 gut
+                angle_start_time=prost.mode_start_time;
+                squared_sum=0;
+                num_angles=0;
+                ahistory= prost.angle_history();
+                for angle_target= prost.angles_to_simulate
+                   maxt=angle_start_time+prost.angle_simulation_time;
+                   angles=ahistory(ahistory(:,1)>=angle_start_time & ahistory(:,1)<maxt,2);
+                   angle_start_time =maxt;
+                   squared_sum= squared_sum+(sum((angles-angle_target).^2));
+                   num_angles = num_angles + length(angles);
+                end  
+                %num_angles2 = length(prost.angles_to_simulate)*prost.angle_simulation_time/50;
+                rmsd= sqrt(squared_sum/num_angles);
+                norm_rmsd = rmsd/(prost.angle_max-prost.angle_min);
+                %calc variance
+                fitness_rmsd = 1-norm_rmsd; % wert zwischen 0 und 1. 0 schlecht 1 gut
             end
-            fitness = (fitness_time+fitness_training+fitness_angle)/3;
+            fitness = (fitness_rmsd+fitness_training+fitness_angle)/3;
             this.reset();
         end
         
@@ -294,7 +311,7 @@ classdef spikenet < handle
         
         % refresh indizes of synapses
         function refreshConnections(this)
-            this.connections     = find(this.weightsMatrix > 0);
+           % this.connections     = find(this.weightsMatrix ~= 0);
             this.es_em           = this.getConnections('ES','EM');
             this.d_es            = this.getConnections('D','ES');
         end
@@ -329,6 +346,7 @@ classdef spikenet < handle
                 linearIdx = sub2ind(size(this.weightsScale), this.eligibility(this.eligibility(:,3) > 0, 1),this.eligibility(this.eligibility(:,3) > 0, 2));
                 eligWeights = this.eligibility(this.eligibility(:,3) > 0,3)./20; %dynamic eligibility weight
                 if reward
+                    this.correctMoves = this.correctMoves+1;
                     this.weightsScale(linearIdx) = ...
                         min(this.MAX_WEIGHTS_SCALE, this.weightsScale(linearIdx) ...
                         + (1-this.weightsScale(linearIdx) ./ this.MAX_WEIGHTS_SCALE) .* eligWeights);

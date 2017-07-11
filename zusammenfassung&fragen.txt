@@ -380,3 +380,14 @@ fitness angle and fitness_training can lead to the same sumed value -> but both 
 --
 Fehler in ongoing model behoben y coordinaten wurden nie zurückgesetzt im loop. 
 --
+10.07.17
+-> Hyperneat macht evolution, nach ergebnissen ist individuelles lernen nicht mehr notwendig. -> indeviduelles lernen = model
+-> TODO später, Fitness function scalieren, so das rmsd mehr gewichtet. Gute skalierung 0.1,0.2,0.7
+
+11.07.17
+-> read about modular networks .. must be in some papers. -> not sum of inputs is used but all input values are considered  bsp.max function modules exist in addition to activation functions
+ -> modules are like neurons, but calculate different functions. In addition the in and output of Modules have to be Neurons. 
+-> modular network learn their connctions to with ABCD hebbian law -> in my point of view not necessary 
+->  but modulatority and adaptability is deactivated in code
+
+-> fehler beim suchen der connections gefunen muss find(wieghtsmatrix~=0) sein- schon in sebaastians code falsch- hat aber keine auswirkungen, da connections nie verwendet werden

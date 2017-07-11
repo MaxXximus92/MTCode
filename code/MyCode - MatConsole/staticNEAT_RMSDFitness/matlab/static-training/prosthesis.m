@@ -94,11 +94,25 @@ classdef prosthesis < handle
             
             %send reward/punish and form new connections
             if ~strcmp(this.current_mode,'simulate') && mod(data.time,50)==0 % lernt nur wenn nicht simulate
-                if this.angle_target == this.angle_min && this.spike_count_previous ~= 0 
-                    net.reward(this.spike_count_previous<0);%if smaller 0 ecreasing angle greater 0 increasing angle
-                elseif this.angle_target == this.angle_max && this.spike_count_previous ~= 0
-                    net.reward(this.spike_count_previous>0);
+%                 if this.angle_target == this.angle_min && this.spike_count_previous ~= 0 
+%                     net.reward(this.spike_count_previous<0);%if smaller 0 ecreasing angle greater 0 increasing angle
+%                 elseif this.angle_target == this.angle_max && this.spike_count_previous ~= 0
+%                     net.reward(this.spike_count_previous>0);
+%                 end
+                if(this.spike_count_previous ~= 0 )
+                    if(this.angle_to_learn ==1)
+                        if(this.angle_target <= this.angle_start)
+                            net.reward(this.spike_count_previous<0)
+                        else
+                            net.reward(this.spike_count_previous>0);
+                        end
+                    elseif this.angles_to_learn(this.angle_to_learn) <= this.angles_to_learn(this.angle_to_learn-1)
+                        net.reward(this.spike_count_previous<0);%if smaller 0 decreasing angle greater 0 increasing angle
+                    elseif this.angles_to_learn(this.angle_to_learn) > this.angles_to_learn(this.angle_to_learn-1)
+                        net.reward(this.spike_count_previous>0);
+                    end
                 end
+
                 %entfernt da zufällig
                % if strcmp(this.current_mode,'D->ES')
                    % types = strsplit(this.current_mode,'->');

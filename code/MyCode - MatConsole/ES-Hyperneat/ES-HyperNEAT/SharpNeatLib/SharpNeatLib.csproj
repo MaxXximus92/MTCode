@@ -1,15 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3A64602B-C5E0-4CB7-99B0-1FC6ABB4449A}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>SharpNeatLib</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
@@ -17,11 +20,14 @@
     <OutputType>Library</OutputType>
     <RootNamespace>SharpNeatLib</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <OldToolsVersion>2.0</OldToolsVersion>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -37,11 +43,12 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -49,43 +56,67 @@
     </DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
     <Optimize>false</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningLevel>4</WarningLevel>
     <DebugType>full</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <OutputType>Library</OutputType>
+    <AssemblyName>SharpNeatLib</AssemblyName>
     <RootNamespace>SharpNeatLib</RootNamespace>
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
     <DocumentationFile>
     </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
     <Optimize>true</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningLevel>4</WarningLevel>
     <DebugType>none</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <OutputType>Library</OutputType>
+    <AssemblyName>SharpNeatLib</AssemblyName>
     <RootNamespace>SharpNeatLib</RootNamespace>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppConfig\ExperimentConfigInfo.cs">
@@ -101,9 +132,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CPPNs\CPPNDotWriterStatic.cs" />
+    <Compile Include="CPPNs\EvolvableSubstrate.cs" />
     <Compile Include="CPPNs\NeuronGroup.cs" />
     <Compile Include="CPPNs\SubstrateDescription.cs" />
-    <Compile Include="CPPNs\EvolvableSubstrate.cs" />
+    <Compile Include="CPPNs\SubstrateEvolution.cs" />
     <Compile Include="Evolution\AbstractGenome.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -229,10 +261,6 @@
     <Compile Include="NeatGenome\ConnectionGeneList.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NeuralNetwork\ActivationFunctions\ErrorSign.cs" />
-    <Compile Include="NeuralNetwork\ActivationFunctions\Sign.cs" />
-    <Compile Include="NeuralNetwork\ModularNetwork\ModuleOutputNeuron.cs" />
-    <Compile Include="NeuralNetwork\ModularNetwork\ModuleGene.cs" />
     <Compile Include="NeatGenome\CorrelationItem.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -376,16 +404,6 @@
     <Compile Include="NeuralNetwork\IntegerFastConcurrentNetwork\IntegerFastConnection.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NeuralNetwork\ModularNetwork\ModulePacket.cs" />
-    <Compile Include="NeuralNetwork\ModularNetwork\Multiply.cs" />
-    <Compile Include="NeuralNetwork\ModularNetwork\Min.cs" />
-    <Compile Include="NeuralNetwork\ModularNetwork\Max.cs" />
-    <Compile Include="NeuralNetwork\ModularNetwork\MaxAbs.cs" />
-    <Compile Include="NeuralNetwork\ModularNetwork\MinAbs.cs" />
-    <Compile Include="NeuralNetwork\ModularNetwork\ModuleFactory.cs" />
-    <Compile Include="NeuralNetwork\ModularNetwork\IModule.cs" />
-    <Compile Include="NeuralNetwork\ModularNetwork\ModularNetwork.cs" />
-    <Compile Include="NeuralNetwork\ModularNetwork\ModuleInputNeuron.cs" />
     <Compile Include="NeuralNetwork\NetworkList.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -414,9 +432,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Xml\XmlUtilities.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="CPPNs\Substrate.cs">
       <SubType>Code</SubType>
     </Compile>
     <Content Include="LGPL.txt" />
@@ -448,20 +463,22 @@
       <DependentUpon>Viewport.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Evolution\BehaviorType.cs" />
-    <Compile Include="Novelty\noveltyhistogram.cs" />
-    <Compile Include="Novelty\noveltyfixed.cs" />
-    <Compile Include="Evolution\Multiobjective.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
       <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
       <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
       <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

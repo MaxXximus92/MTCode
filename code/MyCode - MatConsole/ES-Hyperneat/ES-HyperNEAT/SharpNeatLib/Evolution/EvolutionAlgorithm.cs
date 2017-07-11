@@ -4,8 +4,6 @@ using System.Diagnostics;
 
 //TODO: decouple from NeatGenome.
 using SharpNeatLib.NeatGenome;
-using SharpNeatLib.Novelty;
-using SharpNeatLib.Multiobjective;
 
 namespace SharpNeatLib.Evolution
 {
@@ -19,7 +17,7 @@ namespace SharpNeatLib.Evolution
 		/// in where zero fitness occurs.
 		/// </summary>
 		public const double MIN_GENOME_FITNESS = 0.0000001;
- 
+
 		#endregion
 
 		#region Class Variables
@@ -30,16 +28,9 @@ namespace SharpNeatLib.Evolution
 		NeatParameters neatParameters_Normal;
 		NeatParameters neatParameters_PrunePhase;
 
-		public Multiobjective.Multiobjective multiobjective;
-        public noveltyhistogram histogram;
-        public noveltyfixed noveltyFixed;
-		public bool noveltyInitialized=false;
-        
 		bool pruningModeEnabled=false;
 		bool connectionWeightFixingEnabled=false;
 		bool pruningMode=false;
-		
-		
 		
 		/// <summary>
 		/// The last generation at which Population.AvgComplexity was reduced. We track this
@@ -92,9 +83,8 @@ namespace SharpNeatLib.Evolution
 
 			neatParameters_PrunePhase = new NeatParameters(neatParameters);
 			neatParameters_PrunePhase.pMutateAddConnection = 0.0;
-            neatParameters_PrunePhase.pMutateAddNode = 0.0;
-            neatParameters_PrunePhase.pMutateAddModule = 0.0;
-            neatParameters_PrunePhase.pMutateConnectionWeights = 0.33;
+			neatParameters_PrunePhase.pMutateAddNode = 0.0;
+			neatParameters_PrunePhase.pMutateConnectionWeights = 0.33;
 			neatParameters_PrunePhase.pMutateDeleteConnection = 0.33;
 			neatParameters_PrunePhase.pMutateDeleteSimpleNeuron = 0.33;
 
@@ -102,38 +92,8 @@ namespace SharpNeatLib.Evolution
 			// we don't want during a pruning phase.
 			neatParameters_PrunePhase.pOffspringAsexual = 1.0;
 			neatParameters_PrunePhase.pOffspringSexual = 0.0;
-			
-			if(neatParameters.multiobjective) {
-				this.multiobjective=new Multiobjective.Multiobjective(neatParameters);
-				neatParameters.compatibilityThreshold=100000000.0; //disable speciation w/ multiobjective
-			}
-			
-            if(neatParameters.noveltySearch)
-            {
-                if(neatParameters.noveltyHistogram)
-                {
-                    this.noveltyFixed = new noveltyfixed(neatParameters.archiveThreshold);
-                    this.histogram = new noveltyhistogram(neatParameters.histogramBins);
-					noveltyInitialized=true;
-                    InitialisePopulation();
-                }
-                
-                if(neatParameters.noveltyFixed || neatParameters.noveltyFloat)
-                {
-                    this.noveltyFixed = new noveltyfixed(neatParameters.archiveThreshold);
-                    InitialisePopulation();
-                    noveltyFixed.initialize(this.pop);
-					noveltyInitialized=true;
-			        populationEvaluator.EvaluatePopulation(pop, this);			
-			        UpdateFitnessStats();
-			        DetermineSpeciesTargetSize();
-                }
-               
-            }
-            else
-            {
+
 			InitialisePopulation();
-			}
 		}
 
 		#endregion
@@ -259,64 +219,7 @@ namespace SharpNeatLib.Evolution
 		#endregion
 
 		#region Public Methods
-        
-        public void CalculateNovelty()
-        {
-            if(neatParameters.noveltyHistogram)
-            {
-                    int count = pop.GenomeList.Count;
-                    for (int i = 0; i < count; i++)
-                    {
-                    pop.GenomeList[i].Fitness =
-                            histogram.query_point(pop.GenomeList[i].Behavior.behaviorList,true);
-                    noveltyFixed.measureAgainstArchive((NeatGenome.NeatGenome)pop.GenomeList[i],true);
-                    }
-                    noveltyFixed.addPending();
-                    histogram.update_histogram();
-            }
-            
-            if(neatParameters.noveltyFixed || neatParameters.noveltyFloat)
-            {
-      
-					int count = pop.GenomeList.Count;
-                    for (int i = 0; i< count; i++)
-                    {
-					  pop.GenomeList[i].locality=0.0;
-					  pop.GenomeList[i].competition=0.0;
-					}
-					double max=0.0,min=100000000000.0;
-					for (int i = 0; i< count; i++)
-                    {
-                    	double fit = noveltyFixed.measureNovelty((NeatGenome.NeatGenome)pop.GenomeList[i]);        
 
-						pop.GenomeList[i].Fitness = fit;
-                    	
-                    	if(fit>max) max=fit;
-                    	if(fit<min) min=fit;
-                    				
-					}
-					Console.WriteLine("fitscore: " + min + " " + max);
-                    
-					/*
-                    double max=0.0;
-                    
-					for (int i =0; i < count;  i++)
-                    {
-                    	if(pop.GenomeList[i].locality>max)
-                    		max=pop.GenomeList[i].locality;	
-					}
-				    
-					for (int i = 0; i< count; i++)
-					{
-						double locality_score = max-pop.GenomeList[i].locality;
-						double competition_score = pop.GenomeList[i].competition;	
-						pop.GenomeList[i].Fitness=locality_score+competition_score+1.0;	
-					}   
-					*/ 
-					
-				}
-
-        }
 		/// <summary>
 		/// Evaluate all genomes in the population, speciate them and then calculate adjusted fitness
 		/// and related stats.
@@ -365,9 +268,6 @@ namespace SharpNeatLib.Evolution
 		//		This code could be executed at the end of this method instead of the start, it doesn't really 
 		//		matter. Except that If we do it here then the population size will be relatively constant
 		//		between generations.
-
-		    
-		    
 			if(pop.EliminateSpeciesWithZeroTargetSize())
 			{	// If species were removed then we should recalculate population stats.
 				UpdateFitnessStats();
@@ -375,30 +275,6 @@ namespace SharpNeatLib.Evolution
 			}
 
 		//----- Stage 1. Create offspring / cull old genomes / add offspring to population.
-			bool regenerate = false;
-			if(neatParameters.noveltySearch && neatParameters.noveltyFixed)
-            {
-                if((generation+1)%20==0)
-                {
-                    this.noveltyFixed.add_most_novel(pop);
-                    this.noveltyFixed.update_measure(pop);
-                    pop.ResetPopulation(noveltyFixed.measure_against,this);
-                    pop.RedetermineSpeciation(this);
-                    regenerate=true;
-                }
-            }
-            
-			if(neatParameters.multiobjective) {
-				multiobjective.addPopulation(pop);
-				multiobjective.rankGenomes();
-				pop.ResetPopulation(multiobjective.truncatePopulation(pop.GenomeList.Count),this);
-				pop.RedetermineSpeciation(this);
-				UpdateFitnessStats();
-				DetermineSpeciesTargetSize();
-			}
-			
-            if(!regenerate)
-            {
 			CreateOffSpring();
 			pop.TrimAllSpeciesBackToElite();
 
@@ -407,10 +283,7 @@ namespace SharpNeatLib.Evolution
 			for(int genomeIdx=0; genomeIdx<genomeBound; genomeIdx++)
 				pop.AddGenomeToPopulation(this, offspringList[genomeIdx]);
 
-            }
-            
 			// Adjust the speciation threshold to try and keep the number of species within defined limits.
-			if(!neatParameters.multiobjective)
 			AdjustSpeciationThreshold();
 
 		//----- Stage 2. Evaluate genomes / Update stats.
@@ -422,23 +295,6 @@ namespace SharpNeatLib.Evolution
 			pop.IncrementSpeciesAges();
 			generation++;
 
-			
-            if(neatParameters.noveltySearch)
-            {
-                Console.WriteLine("Archive size: " + this.noveltyFixed.archive.Count.ToString());
-            }
-            
-            if(neatParameters.noveltySearch && neatParameters.noveltyFloat)
-            {
-                this.noveltyFixed.initialize(pop);   
-                this.noveltyFixed.addPending();
-            }
-            
-            if(neatParameters.noveltySearch && neatParameters.noveltyFixed)
-            {
-                this.noveltyFixed.addPending();
-            }
-            
 		//----- Stage 3. Pruning phase tracking / Pruning phase entry & exit.
 			if(pruningModeEnabled)
 			{
@@ -731,11 +587,7 @@ namespace SharpNeatLib.Evolution
 				int offspringCount = Math.Max(1,(int)Math.Round((species.TargetSize - species.ElitistSize) * neatParameters.pOffspringAsexual));
 				for(int i=0; i<offspringCount; i++)
 				{	// Add offspring to a seperate genomeList. We will add the offspring later to prevent corruption of the enumeration loop.
-					IGenome parent=null;
-					if(!neatParameters.multiobjective)
-					 parent = RouletteWheelSelect(species);
-					else
-					 parent = TournamentSelect(species);
+					IGenome parent = RouletteWheelSelect(species);
 					IGenome offspring = parent.CreateOffspring_Asexual(this);
 					offspring.ParentSpeciesId1 = parent.SpeciesId;
 					offspringList.Add(offspring);
@@ -850,22 +702,16 @@ namespace SharpNeatLib.Evolution
 						//System.Diagnostics.Debug.WriteLine("Inter-species mating!");
 						if(oneMember)
 							parent1 = species.Members[0];
-						else  {
-							if(!neatParameters.multiobjective)
-							parent1 = RouletteWheelSelect(species);
-							else
-							parent1 = TournamentSelect(species);
-						}
+						else
+							parent1 = RouletteWheelSelect(species); 
+
 						// Select the 2nd parent from the whole popualtion (there is a chance that this will be an genome 
 						// from this species, but that's OK).
 
 						int j=0;
 						do
 						{
-							if(!neatParameters.multiobjective)
 							parent2 = RouletteWheelSelect(pop);
-							else
-							parent2 = TournamentSelect(pop);
 						}
 						while(parent1==parent2 && j++ < 4);	// Slightly wasteful but not too bad. Limited by j.	
 					}
@@ -888,19 +734,13 @@ namespace SharpNeatLib.Evolution
 							offspringList.Add(offspring);
 							continue;
 						}
-						
-						if(!neatParameters.multiobjective)
+
 						parent1 = RouletteWheelSelect(species);
-						else
-						parent1 = TournamentSelect(species);
 						
 						int j=0;
 						do
 						{
-							if(!neatParameters.multiobjective)
 							parent2 = RouletteWheelSelect(species);
-							else
-							parent2 = TournamentSelect(species);
 						}
 						while(parent1==parent2 && j++ < 4);	// Slightly wasteful but not too bad. Limited by j.						
 					}
@@ -927,20 +767,6 @@ namespace SharpNeatLib.Evolution
 		/// </summary>
 		/// <param name="species">Species to select from.</param>
 		/// <returns></returns>
-		private IGenome TournamentSelect(Species species) {
-			double bestFound= 0.0;
-			IGenome bestGenome=null;
-			int bound = species.Members.Count;
-			for(int i=0;i<neatParameters.tournamentSize;i++) {
-				IGenome next= species.Members[Utilities.Next(bound)];
-				if (next.Fitness > bestFound) {
-					bestFound=next.Fitness;
-					bestGenome=next;
-				}
-			}
-			return bestGenome;
-		}
-		
 		private IGenome RouletteWheelSelect(Species species)
 		{
 			double selectValue = (Utilities.NextDouble() * species.SelectionCountTotalFitness);
@@ -964,20 +790,7 @@ namespace SharpNeatLib.Evolution
 //			return species.Members[Utilities.Next(species.SelectionCount)];
 //		}
 
-		private IGenome TournamentSelect(Population p) {
-			double bestFound= 0.0;
-			IGenome bestGenome=null;
-			int bound = p.GenomeList.Count;
-			for(int i=0;i<neatParameters.tournamentSize;i++) {
-				IGenome next= p.GenomeList[Utilities.Next(bound)];
-				if (next.Fitness > bestFound) {
-					bestFound=next.Fitness;
-					bestGenome=next;
-				}
-			}
-			return bestGenome;
-		}
-		
+
 		/// <summary>
 		/// Biased select.
 		/// </summary>
@@ -1006,7 +819,6 @@ namespace SharpNeatLib.Evolution
 			/// Indicates if the Candidate CullFlag has been set on any of the species in the first loop.
 			bool bCandidateCullFlag=false;
 			double bestFitness=double.MinValue;
-            double bestRealFitness = double.MinValue;
 
 			//----- Reset the population fitness values
 			pop.ResetFitnessValues();
@@ -1025,33 +837,13 @@ namespace SharpNeatLib.Evolution
 				species.Members.Sort();
 
 				// Keep track of the population's best genome and max fitness.
-				NeatGenome.NeatGenome fittestgenome = (NeatGenome.NeatGenome)(species.Members[0]);
-				if(fittestgenome.Fitness > bestFitness)
+				NeatGenome.NeatGenome genome = (NeatGenome.NeatGenome)(species.Members[0]);
+				if(genome.Fitness > bestFitness)
 				{
-				    bestFitness = fittestgenome.Fitness;
-				    bestGenome = fittestgenome;
-				}
-				
-				if(this.neatParameters.noveltySearch)
-				{
-				  for(int x=1;x<species.Members.Count;x++)
-				    {
-                        if(((NeatGenome.NeatGenome)(species.Members[x])).RealFitness > fittestgenome.RealFitness)
-                        {
-                            fittestgenome = (NeatGenome.NeatGenome) species.Members[x];
-                        }
-				    }
-				    
-				    if(fittestgenome.RealFitness > bestRealFitness)
-				    {   
-					    bestGenome = fittestgenome;
-					    bestRealFitness = bestGenome.RealFitness;
-				    }
+					bestGenome = genome;
+					bestFitness = bestGenome.Fitness;
 				}
 
-				
-                NeatGenome.NeatGenome genome = (NeatGenome.NeatGenome)(species.Members[0]);
-				
 				// Track the generation number when the species improves.
 				if(genome.Fitness > species.MaxFitnessEver)
 				{
@@ -1073,7 +865,7 @@ namespace SharpNeatLib.Evolution
 				for(int genomeIdx=0; genomeIdx<genomeBound;genomeIdx++)
 				{
 					genome = (NeatGenome.NeatGenome)(species.Members[genomeIdx]);
-					Debug.Assert(genome.Fitness>=EvolutionAlgorithm.MIN_GENOME_FITNESS, "Genome fitness must be non-zero. Use EvolutionAlgorithm.MIN_GENOME_FITNESS");
+				//	Debug.Assert(genome.Fitness>=EvolutionAlgorithm.MIN_GENOME_FITNESS, "Genome fitness must be non-zero. Use EvolutionAlgorithm.MIN_GENOME_FITNESS");
 					species.TotalFitness += genome.Fitness;
 
 					if(genomeIdx < species.SelectionCount)

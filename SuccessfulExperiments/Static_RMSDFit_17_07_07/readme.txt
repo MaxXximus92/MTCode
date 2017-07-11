@@ -1,0 +1,1 @@
+3 fitesses mit verhältnis 1/3

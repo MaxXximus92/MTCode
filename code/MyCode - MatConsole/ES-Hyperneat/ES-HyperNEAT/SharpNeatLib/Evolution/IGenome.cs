@@ -1,6 +1,6 @@
 using System;
 using System.Xml;
-using System.Collections.Generic;
+
 using SharpNeatLib.Evolution;
 using SharpNeatLib.NeuralNetwork;
 
@@ -64,43 +64,7 @@ namespace SharpNeatLib.Evolution
 			get;
 			set;
 		}
-		
-		/// <summary>
-		/// This genome's actual fitness (i.e. not novelty score)
-		///</summary>
-		double RealFitness
-		{
-		    get;
-		    set;
-		}
-		
-		double locality
-		{
-			get;
-			set;
-		}
-		
-		double competition
-		{
-			get;
-			set;
-		}
-		
-		/// <summary>
-	    // This genome's behavior as calculated by the evaluation environment.
-	    ///</summary>
-        BehaviorType Behavior
-        {
-            get;
-            set;
-        }
-		
-		double[] objectives
-		{
-			get;
-			set;
-		}
-        
+
 		/// <summary>
 		/// The number of times this genome has been evaluated.
 		/// </summary>

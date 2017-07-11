@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace SharpNeatLib.NetworkVisualization
 {
@@ -18,11 +19,12 @@ namespace SharpNeatLib.NetworkVisualization
 
 	public class NetworkModelPainter
 	{
-		const float NEURON_DIAMETER_BASE = 10;
+		const float NEURON_DIAMETER_BASE = 20;
 
-		static Font fontNeuronId = new Font("Microsoft Sans Serif", 7.0F);
-		
-		static Brush brushBlack = new SolidBrush(Color.Black);
+        //static Font fontNeuronId = new Font("Microsoft Sans Serif", 20, FontStyle.Bold);
+        static Font fontNeuronId = null; 
+
+        static Brush brushBlack = new SolidBrush(Color.Black);
 		static Brush brushNeuronCore = new SolidBrush(Color.Black);
         static Brush brushNeuronSine = new SolidBrush(Color.Red);
         static Brush brushNeuronGaussian = new SolidBrush(Color.Green);
@@ -68,7 +70,7 @@ namespace SharpNeatLib.NetworkVisualization
 			neuronDiameterHalfed = (int)((NEURON_DIAMETER_BASE * zoomFactor) / 2.0F);
 			backConnectionLegLength = (NEURON_DIAMETER_BASE * zoomFactor * 1.6F);
 			connectionWidthFactor= (float)(connectionWeightRange/2.0);
-			fontNeuronId = new Font("Microsoft Sans Serif", (float)Math.Min(Math.Max(0.2, 7.0F * zoomFactor),Single.MaxValue));
+			fontNeuronId = new Font("Microsoft Sans Serif", (float)Math.Min(Math.Max(0.2, 12.0F * zoomFactor),Single.MaxValue));
 
 			// Assign a ConnectionPoints object to each neuron.
 			int neuronCount = nm.MasterNeuronList.Count;
@@ -124,8 +126,17 @@ namespace SharpNeatLib.NetworkVisualization
 			// Draw the neuron ID.
 			neuronPos.X += neuronDiameterHalfed+1;
 			neuronPos.Y -= neuronDiameterHalfed/2;
-			g.DrawString(neuron.Id.ToString(), fontNeuronId, brushBlack, neuronPos);
-		}
+
+            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+
+           // RectangleF drawRect = new RectangleF(neuronPos.X, neuronPos.Y, 100, 100);
+
+           // SizeF size = g.MeasureString(neuron.Id.ToString(), fontNeuronId);
+          //  g.DrawRectangle(new Pen(Color.Red, 1), neuronPos.X, neuronPos.Y, size.Width, size.Height);
+           // g.DrawString(neuron.Id.ToString(), fontNeuronId, brushBlack, neuronPos);
+            TextRenderer.DrawText(g,neuron.Id.ToString(), fontNeuronId, neuronPos,Color.Black);
+            //TextRenderer.DrawText(g, neuron.ActivationFunction.FunctionDescription, fontNeuronId, neuronPos, Color.Black);
+        }
 
 		private void PaintConnection(Graphics g, ModelConnection con)
 		{
@@ -142,27 +153,33 @@ namespace SharpNeatLib.NetworkVisualization
 				return;
 			}
 
-		//----- Modify a pen for this connection.
-			// Color and width based on connection weight. 
-			penConnection.Width = (float)Math.Max(1.0, (Math.Abs(con.Weight)/connectionWidthFactor)*3.0*zoomFactor);
+            //----- Modify a pen for this connection.
+            // Color and width based on connection weight. 
+            double a = (Math.Abs(con.Weight) / connectionWidthFactor) * 3.0 * zoomFactor;
+
+            penConnection.Width = (float)Math.Max(1.0, a);
 
 			// Color hue. 80% gives rangle of red through to blue.
 			float temp = (float)((con.Weight-connectionWeightMin)/connectionWeightRange);
 			penConnection.Color = ColorUtilities.FromBlueRedScale(temp);
-									// ColorUtilities.FromHls(hue, 1.0F, 0.5F);
+            // ColorUtilities.FromHls(hue, 1.0F, 0.5F);
 
-		//----- Draw the line.
-			if(tgtPos.Y <= srcPos.Y)
-			{	// Target is behind source. Draw a back-connection.
-				PaintBackConnection(g, penConnection, 
-										srcPos, tgtPos, 
-										(ConnectionPoints)con.SourceNeuron.AuxPaintingData,
-										(ConnectionPoints)con.TargetNeuron.AuxPaintingData);
-			}
-			else
-			{	// Target is ahead of the source. Draw a straight line.
-				g.DrawLine(penConnection, srcPos, tgtPos);
-			}
+            //----- Draw the line.
+            if (tgtPos.Y <= srcPos.Y)
+            {   // Target is behind source. Draw a back-connection.
+                PaintBackConnection(g, penConnection,
+                                        srcPos, tgtPos,
+                                        (ConnectionPoints)con.SourceNeuron.AuxPaintingData,
+                                        (ConnectionPoints)con.TargetNeuron.AuxPaintingData);
+            }
+            else
+            {   // Target is ahead of the source. Draw a straight line.
+               
+                penConnection.Width = 1;
+                g.DrawLine(penConnection, srcPos, tgtPos);
+               // g.DrawLine(penConnection, 1f,1f, 2f,2f);
+
+            }
 		}
 
 		private void PaintBackConnection(	Graphics g,

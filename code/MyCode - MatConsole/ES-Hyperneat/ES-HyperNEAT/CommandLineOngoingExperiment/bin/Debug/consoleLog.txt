@@ -1,0 +1,29 @@
+07 17:44:39 test encoding: threshold: -0.5
+07 17:44:39 Starting Experiment: StatExp
+07 17:44:39 --------------------------------------------------------
+07 17:44:39 loading initial data
+07 17:44:43 Loaded DEsNum: 96 96
+07 17:44:43 Creating Experiment
+07 17:44:43 Building Population
+07 17:44:43 Matlab instance Number 1 added
+07 17:44:43 Matlab instance Number 2 added
+07 17:44:58 Genome Number 1 fitness 0,01667 dt 00:00:15.1407523 
+07 17:44:58 Genome Number 0 fitness 0,03333 dt 00:00:15.1563773 
+07 17:44:59 Run Experiment
+07 17:44:59 ------------------------------------
+ Generation: 0
+------------------------------------
+07 17:45:14 Genome Number 1 fitness 0,01667 dt 00:00:15.1095014 
+07 17:45:14 Genome Number 0 fitness 0,03333 dt 00:00:15.2032527 
+07 17:45:14 Best fitness of gernatation 0 : 0.03333
+07 17:45:14 Save Best Genome
+07 17:45:14 -----------------------------
+07 17:45:14 Generation Number1, best fitness:0.03333, time needed to evaluate: 00:00:15.2345037
+07 17:45:14 -----------------------------
+07 17:45:14 Evolution Done -> SavingResults
+07 17:45:14 Saving Genomes
+07 17:45:14 Close Training Models
+07 17:45:14 Simulate Model
+07 17:46:49 Simulation Matlab Plots for Genome Name StaticExperiment_LGen_Fit_0.08333_ord_1_aftsim created 00:01:34.9660569
+07 17:46:49 Plotting genome graphs
+07 17:46:55 Done!

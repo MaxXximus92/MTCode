@@ -20,7 +20,7 @@ classdef spikenet < handle
         noiseWeights;       %noise weights (one row for each noise type)
         noiseWeightsScale;  %noise weights scale (one row for each noise type)
         noiseRevPotential;  %noise reversal potential (one row for each noise type)
-        connections;        %list of all neuron-to-neuron connections
+        %connections;        %list of all neuron-to-neuron connections
         exMotoric;          %indizes of exciatory motor cells (extensor)
         flMotoric;          %indizes of exciatory motor cells (flexor)
         v;                  %membrane potential
@@ -58,7 +58,7 @@ classdef spikenet < handle
                  if(savePath(end) ~= filesep)
                      savePath=[savePath filesep];
                  end
-                this.savePath         =savePath;
+                this.savePath         = savePath;
                 this.spikingThreshold = spikingThreshold;
                 
                 this.loadSettingsFile(settingsFile);
@@ -90,7 +90,26 @@ classdef spikenet < handle
             [output, time] = this.run(time_per_angle*length(angles_to_simulate)); this.break_run=0;
             delete(lh1);
 
-            fitness =  sum(prost.reached_angles)/length(angles_to_simulate);
+          
+            
+            angle_start_time=0;
+            squared_sum=0;
+            num_angles=0;
+            ahistory= prost.angle_history();
+            for angle_target= prost.angles_to_simulate
+                maxt=angle_start_time+prost.time_per_angle;
+                angles=ahistory(ahistory(:,1)>=angle_start_time & ahistory(:,1)<maxt,2);
+                angle_start_time =maxt;
+                squared_sum= squared_sum+(sum((angles-angle_target).^2));
+                num_angles = num_angles + length(angles);
+            end
+           % num_angles2 = length(prost.angles_to_simulate)*prost.angle_simulation_time/50;
+            rmsd= sqrt(squared_sum/num_angles);
+            norm_rmsd = rmsd/(prost.angle_max-prost.angle_min);
+            %calc variance
+            fitness_rmsd = 1-norm_rmsd;
+            fitness = fitness_rmsd;
+            
             
             %% plot data
             if(this.DEBUG),fprintf('save plots...\n');end;
@@ -98,11 +117,11 @@ classdef spikenet < handle
             this.plotAllFirings(output);
             xlim([0,time]);
             box on;
-            saveas(gcf,[this.savePath sprintf('Model %s (firings)NewFitness=%f.pdf',model_name,fitness)], 'pdf');
+            saveas(gcf,[this.savePath sprintf('%s (firings)NewFitness=%0.5f.pdf',model_name,fitness)], 'pdf');
             set(0,'CurrentFigure',prost.fig);
             xlim([0,time]);
             box on;
-            saveas(gcf,[this.savePath sprintf('Model %s (movement)NewFitness=%f.pdf',model_name,fitness)], 'pdf');
+            saveas(gcf,[this.savePath sprintf('%s (movement)NewFitness=%0.5f.pdf',model_name,fitness)], 'pdf');
 
             %% return result
             % fitness = percentage of reached angles  man könnte die zeit
@@ -117,37 +136,19 @@ classdef spikenet < handle
             save([this.savePath name],'net');
         end  
         
-  function setWeights(this, weights)
-
-                this.weightsMatrix=weights;
+                function setDEsWeights(this, weights)
+            [dl,esl]= size(weights);
+            dCells= this.getCellsOfType('D');
+            esCells=this.getCellsOfType('ES');
+            
+            if dl== sum(dCells) && esl== sum(esCells)
+                this.weightsMatrix(dCells,esCells)=weights;
                 this.refreshConnections();
                 this.setEligibilitySynapses(this.d_es);
-
-        end
-        
-                %connection indicated by a value 1 no connction by 0
-                function setConnections(this,connectionsMatrix)
-                    [s1,s2]= size(connectionsMatrix);
-                    if s1== this.numNeurons && s2== this.numNeurons
-                        weights = zeros(this.numNeurons,this.numNeurons);
-                        types = unique(this.neuronTypes);
-                        for pre=1:length(types)
-                            for post=1:length(types)
-                                connection = strcat(char(types(pre)),'_',char(types(post)));
-                                if ~isKey(this.initWeights, connection)
-                                    continue
-                                end
-                                idx_pre = strcmp(types(pre),this.neuronTypes);
-                                idx_post = strcmp(types(post),this.neuronTypes);
-                                weights(idx_pre,idx_post) = connectionsMatrix(idx_pre,idx_post).*this.initWeights(connection);
-                            end
-                        end
-                        this.setWeights(weights);
-                    else
-                        error('EsEnWeightmatrix size is (%4.2f,%4.2f) but should be (%4.2f,%4.2f)',sl,esl,length(this.esCells),length(this.emCells));
-                    end
+            else
+                error('EsEnWeightmatrix size is (%4.2f,%4.2f) but should be (%4.2f,%4.2f)',sl,esl,length(this.esCells),length(this.emCells));
+            end
                 end
-        
         
       function setEligibilitySynapses(this, connectionIdxs)
             if isempty(connectionIdxs)
@@ -158,8 +159,17 @@ classdef spikenet < handle
             end
         end
         
-
+                %connection indicated by a value 1 no connction by 0
+        function setDEsConnections(this,connectionsMatrix)
+                 connectionsMatrix= connectionsMatrix.*this.initWeights('D_ES');  
+                 this.setDEsWeights(connectionsMatrix);
+        end
         
+        function numdEs = getDEsNum(this)
+            
+            numdEs(1)= sum(this.getCellsOfType('D'));% add logical ones
+            numdEs(2)= sum(this.getCellsOfType('ES'));
+        end
         
         % get indizes of pre->post synapses
         function connections = getConnections(this,pre,post)
@@ -180,7 +190,7 @@ classdef spikenet < handle
         end
         
                 function refreshConnections(this)
-            this.connections     = find(this.weightsMatrix > 0);
+           % this.connections     = find(this.weightsMatrix ~= 0);
             this.es_em           = this.getConnections('ES','EM');
             this.d_es            = this.getConnections('D','ES');
         end

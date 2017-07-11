@@ -1,0 +1,31 @@
+<genome id="34513" species-id="450" age="1" fitness="0.84">
+  <neurons>
+    <neuron id="0" type="bias" activationFunction="NullFn" />
+    <neuron id="1" type="in" activationFunction="NullFn" />
+    <neuron id="2" type="in" activationFunction="NullFn" />
+    <neuron id="3" type="out" activationFunction="BipolarSigmoid" />
+    <neuron id="40" type="hid" activationFunction="BipolarSigmoid" />
+    <neuron id="64" type="hid" activationFunction="BipolarSigmoid" />
+    <neuron id="176" type="hid" activationFunction="BipolarSigmoid" />
+    <neuron id="226" type="hid" activationFunction="Linear" />
+    <neuron id="750" type="hid" activationFunction="Sine" />
+    <neuron id="930" type="hid" activationFunction="Linear" />
+    <neuron id="937" type="hid" activationFunction="Linear" />
+  </neurons>
+  <connections>
+    <connection innov-id="42" src-id="40" tgt-id="3" weight="1.4524321842938661" />
+    <connection innov-id="167" src-id="40" tgt-id="40" weight="-1.3085733897518366" />
+    <connection innov-id="177" src-id="0" tgt-id="176" weight="1.1125975078437478" />
+    <connection innov-id="178" src-id="176" tgt-id="64" weight="-1.3967668007127942" />
+    <connection innov-id="181" src-id="3" tgt-id="64" weight="-0.84376220214180653" />
+    <connection innov-id="227" src-id="64" tgt-id="226" weight="-1.3463903535157442" />
+    <connection innov-id="228" src-id="226" tgt-id="40" weight="0.69127996559254823" />
+    <connection innov-id="751" src-id="40" tgt-id="750" weight="0.5311644533649087" />
+    <connection innov-id="752" src-id="750" tgt-id="176" weight="-0.047145755775272857" />
+    <connection innov-id="785" src-id="40" tgt-id="176" weight="0.52758207321166994" />
+    <connection innov-id="931" src-id="2" tgt-id="930" weight="1" />
+    <connection innov-id="932" src-id="930" tgt-id="3" weight="-1.2376613210886716" />
+    <connection innov-id="938" src-id="1" tgt-id="937" weight="1" />
+    <connection innov-id="939" src-id="937" tgt-id="3" weight="-0.8196141208522022" />
+  </connections>
+</genome>

@@ -8,11 +8,9 @@ namespace SharpNeatLib.NeatGenome
 		uint	sourceNeuronId;
 		uint	targetNeuronId;
 //		bool	enabled;
-        public float A, B, C, D, modConnection, learningRate;
 		double	weight;
 		bool	fixedWeight=false;
-        public float[] coordinates; //coordinates of the neurons connected by this connection. used to requery the CPPN
-		
+
 		/// <summary>
 		/// Used by the connection mutation routine to flag mutated connections so that they aren't
 		/// mutated more than once.
@@ -43,28 +41,7 @@ namespace SharpNeatLib.NeatGenome
 //			this.enabled = enabled;
 			this.weight = weight;
 		}
-
-        public ConnectionGene(uint innovationId, uint sourceNeuronId, uint targetNeuronId, double weight,float[] _coordinates)
-            :this(innovationId, sourceNeuronId, targetNeuronId, weight)
-        {
-            coordinates = _coordinates;
-        }
-
-        //For adaptive networks
-        public ConnectionGene(uint innovationId, uint sourceNeuronId, uint targetNeuronId, double weight, ref float[] _coordinates, float A, float B, float C, float D, float modConnection, float learningRate)
-            : this(innovationId, sourceNeuronId, targetNeuronId, weight)
-        {
-            coordinates = new float[_coordinates.Length];
-            this.A = A;
-            this.B = B;
-            this.C = C;
-            this.D = D;
-            this.modConnection = modConnection;
-            this.learningRate = learningRate;
-            Array.Copy(_coordinates, coordinates, _coordinates.Length);
-            // coordinates = _coordinates;
-        }
-
+	
 		#endregion
 
 		#region Properties

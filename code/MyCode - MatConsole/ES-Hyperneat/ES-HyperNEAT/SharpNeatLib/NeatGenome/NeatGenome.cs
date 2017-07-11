@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Xml;
+using System.Diagnostics;
+
 using SharpNeatLib.Evolution;
 using SharpNeatLib.Maths;
 using SharpNeatLib.NeatGenome.Xml;
@@ -27,7 +27,6 @@ namespace SharpNeatLib.NeatGenome
 
 		// Ensure that the connectionGenes are sorted by innovation ID at all times.
 		NeuronGeneList neuronGeneList;
-        List<ModuleGene> moduleGeneList;
 		ConnectionGeneList connectionGeneList;
 
 		// For efficiency we store the number of input and output neurons. These two quantities do not change
@@ -40,9 +39,6 @@ namespace SharpNeatLib.NeatGenome
 		int inputBiasOutputNeuronCount;
 		int inputBiasOutputNeuronCountMinus2;
 
-        public bool networkAdaptable;
-        public bool networkModulatory;
-
 		// Build on-demand to represnt all of the ConnectionGene that do not have the FixedWeight bit set, 
 		// so that MutateConnectionWeights can operate more efficiently.
 		ConnectionGeneList mutableConnectionGeneList = null;
@@ -54,30 +50,22 @@ namespace SharpNeatLib.NeatGenome
 		Hashtable neuronConnectionLookupTable = null;
 		Hashtable neuronGeneTable = null;
 
-        public NeatGenome parent;
-
 		#endregion
 
 		#region Constructors
 
-        public NeatGenome(uint genomeId,
-                        NeuronGeneList neuronGeneList,
-                        ConnectionGeneList connectionGeneList,
-                        int inputNeuronCount,
-                        int outputNeuronCount)
-            : this(genomeId, neuronGeneList, new List<ModuleGene>(), connectionGeneList, inputNeuronCount, outputNeuronCount) { }
-
-        public NeatGenome(uint genomeId,
-                NeuronGeneList neuronGeneList,
-                List<ModuleGene> moduleGeneList,
-                ConnectionGeneList connectionGeneList,
-                int inputNeuronCount,
-                int outputNeuronCount)
-        {
+		/// <summary>
+		/// Default constructor.
+		/// </summary>
+        public NeatGenome(	uint genomeId, 
+						NeuronGeneList neuronGeneList, 
+						ConnectionGeneList connectionGeneList, 
+						int inputNeuronCount,
+						int outputNeuronCount)
+		{
 			this.genomeId = genomeId;
 
 			this.neuronGeneList = neuronGeneList;
-            this.moduleGeneList = moduleGeneList;
 			this.connectionGeneList = connectionGeneList;
 
 			this.inputNeuronCount = inputNeuronCount;
@@ -96,18 +84,12 @@ namespace SharpNeatLib.NeatGenome
 		public NeatGenome(NeatGenome copyFrom, uint genomeId)
 		{
 			this.genomeId = genomeId;
-            this.parent = copyFrom;
 
 			// No need to loop the arrays to clone each element because NeuronGene and ConnectionGene are 
 			// value data types (structs).
 			neuronGeneList = new NeuronGeneList(copyFrom.neuronGeneList);
-            moduleGeneList = new List<ModuleGene>(copyFrom.moduleGeneList);
 			connectionGeneList = new ConnectionGeneList(copyFrom.connectionGeneList);
 
-            //joel
-            if(copyFrom.Behavior!=null)
-            Behavior = new SharpNeatLib.BehaviorType(copyFrom.Behavior);
-            
 			inputNeuronCount = copyFrom.inputNeuronCount;
 			inputAndBiasNeuronCount = copyFrom.inputNeuronCount+1;
 			outputNeuronCount = copyFrom.outputNeuronCount;
@@ -128,14 +110,6 @@ namespace SharpNeatLib.NeatGenome
 				return neuronGeneList;
 			}
 		}
-
-        public List<ModuleGene> ModuleGeneList
-        {
-            get
-            {
-                return moduleGeneList;
-            }
-        }
 
 		public ConnectionGeneList ConnectionGeneList
 		{
@@ -193,13 +167,6 @@ namespace SharpNeatLib.NeatGenome
 		}
 
 
-        /// <summary>
-        /// Adds a connection to the list that will eventually be copied into a child of this genome during sexual reproduction.
-        /// A helper function that is only called by CreateOffspring_Sexual_ProcessCorrelationItem().
-        /// </summary>
-        /// <param name="connectionGene">Specifies the connection to add to this genome.</param>
-        /// <param name="overwriteExisting">If there is already a connection from the same source to the same target,
-        /// that connection is replaced when overwriteExisting is true and remains (no change is made) when overwriteExisting is false.</param>
 		private void CreateOffspring_Sexual_AddGene(ConnectionGene connectionGene, bool overwriteExisting)
 		{
 			ConnectionEndpointsStruct connectionKey = new ConnectionEndpointsStruct(
@@ -227,22 +194,11 @@ namespace SharpNeatLib.NeatGenome
 		}
 
 
-        /// <summary>
-        /// Given a description of a connection in two parents, decide how to copy it into their child.
-        /// A helper function that is only called by CreateOffspring_Sexual().
-        /// </summary>
-        /// <param name="correlationItem">Describes a connection and whether it exists on one parent, the other, or both.</param>
-        /// <param name="fitSwitch">If this is 1, then the first parent is more fit; if 2 then the second parent. Other values are not defined.</param>
-        /// <param name="combineDisjointExcessFlag">If this is true, add disjoint and excess genes to the child; otherwise, leave them out.</param>
-        /// <param name="np">Not used.</param>
-		private void CreateOffspring_Sexual_ProcessCorrelationItem(CorrelationItem correlationItem,
-                                                                   byte fitSwitch,
-                                                                   bool combineDisjointExcessFlag,
-                                                                   NeatParameters np)
+		private void CreateOffspring_Sexual_ProcessCorrelationItem(CorrelationItem correlationItem, byte fitSwitch, bool combineDisjointExcessFlag, NeatParameters np)
 		{
 			switch(correlationItem.CorrelationItemType)
 			{	
-				// Disjoint and excess genes.
+					// Disjoint and excess genes.
 				case CorrelationItemType.DisjointConnectionGene:
 				case CorrelationItemType.ExcessConnectionGene:
 				{
@@ -259,25 +215,27 @@ namespace SharpNeatLib.NeatGenome
 						return;
 					}
 
-					// The disjoint/excess gene is on the less fit parent.
-                    //if(Utilities.NextDouble() < np.pDisjointExcessGenesRecombined)	// Include the gene n% of the time from whichever parent contains it.
+					// The disjoint/excess gene is on the least fit parent.
+					//if(Utilities.NextDouble() < np.pDisjointExcessGenesRecombined)
 					if(combineDisjointExcessFlag)
-					{
+					{	// Include the gene n% of the time from whichever parent contains it.
 						if(correlationItem.ConnectionGene1!=null)
 						{
+							// Gene is on least fit parent. Only add it to the genome if a matching gene hasn't already been added.
 							CreateOffspring_Sexual_AddGene(correlationItem.ConnectionGene1, false);
 							return;
 						}
 						if(correlationItem.ConnectionGene2!=null)
 						{
+							// Gene is on least fit parent. Only add it to the genome if a matching gene hasn't already been added.
 							CreateOffspring_Sexual_AddGene(correlationItem.ConnectionGene2, false);
 							return;
 						}
 					}
 					break;
 				}
-
-                case CorrelationItemType.MatchedConnectionGenes:
+		
+				case CorrelationItemType.MatchedConnectionGenes:
 				{
 					if(RouletteWheel.SingleThrow(0.5))
 					{
@@ -303,15 +261,10 @@ namespace SharpNeatLib.NeatGenome
 		Hashtable newNeuronGeneTable;
 		ConnectionGeneList newConnectionGeneList; 
 
-
 		public override IGenome CreateOffspring_Sexual(EvolutionAlgorithm ea, IGenome parent)
 		{
-            NeatGenome otherParent = parent as NeatGenome;
-            if (otherParent == null)
-                return null;
-            
-            // Build a list of connections in either this genome or the other parent.
-			CorrelationResults correlationResults = CorrelateConnectionGeneLists(connectionGeneList, otherParent.connectionGeneList);			
+			CorrelationResults correlationResults = CorrelateConnectionGeneLists(connectionGeneList, ((NeatGenome)parent).connectionGeneList);			
+
 			Debug.Assert(correlationResults.PerformIntegrityCheck(), "CorrelationResults failed integrity check.");
 
 			//----- Connection Genes.
@@ -319,8 +272,6 @@ namespace SharpNeatLib.NeatGenome
 			// exist with newConnectionGeneTable. Here we ensure these objects are created, and if they already existed
 			// then ensure they are cleared. Clearing existing objects is more efficient that creating new ones because
 			// allocated memory can be re-used.
-
-            // Key = connection key, value = index in newConnectionGeneList.
 			if(newConnectionGeneTable==null)
 			{	// Provide a capacity figure to the new Hashtable. The offspring will be the same length (or thereabouts).
 				newConnectionGeneTable = new Hashtable(connectionGeneList.Count);
@@ -334,11 +285,11 @@ namespace SharpNeatLib.NeatGenome
 			// at construction time and a permanent reference to the list is kept.
             newConnectionGeneList = new ConnectionGeneList(ConnectionGeneList.Count);
 
-			// A switch that stores which parent is fittest 1 or 2. Chooses randomly if both are equal. More efficient to calculate this just once.
+			// A switch that stores which parent is fittest 1 or 2. 0 if both are equal. More efficient to calculate this just once.
 			byte fitSwitch;
-			if(Fitness > otherParent.Fitness)
+			if(Fitness > parent.Fitness)
 				fitSwitch = 1;
-			else if(Fitness < otherParent.Fitness)
+			else if(Fitness < parent.Fitness)
 				fitSwitch = 2;
 			else
 			{	// Select one of the parents at random to be the 'master' genome during crossover.
@@ -348,9 +299,9 @@ namespace SharpNeatLib.NeatGenome
 					fitSwitch = 2;
 			}
 
-			bool combineDisjointExcessFlag = Utilities.NextDouble() < ea.NeatParameters.pDisjointExcessGenesRecombined;
+			bool combineDisjointExcessFlag = Utilities.NextDouble() < ea.NeatParameters.pDisjointExcessGenesRecombined ? true : false;
 
-			// Loop through the correlationResults, building a table of ConnectionGenes from the parents that will make it into our 
+			// Loop through the correlationResults, building a table of ConnectionGenes from the parent's that will make it into our 
 			// new [single] offspring. We use a table keyed on connection end points to prevent passing connections to the offspring 
 			// that may have the same end points but a different innovation number - effectively we filter out duplicate connections.
 			int idxBound = correlationResults.CorrelationItemList.Count;
@@ -358,7 +309,7 @@ namespace SharpNeatLib.NeatGenome
 			{
 				CreateOffspring_Sexual_ProcessCorrelationItem((CorrelationItem)correlationResults.CorrelationItemList[i], fitSwitch, combineDisjointExcessFlag, ea.NeatParameters);
 			}
-
+			
 			//----- Neuron Genes.
 			// Build a neuronGeneList by analysing each connection's neuron end-point IDs.
 			// This strategy has the benefit of eliminating neurons that are no longer connected too.
@@ -366,7 +317,6 @@ namespace SharpNeatLib.NeatGenome
             NeuronGeneList newNeuronGeneList = new NeuronGeneList(neuronGeneList.Count);
 
 			// Keep a table of the NeuronGene ID's keyed by ID so that we can keep track of which ones have been added.
-            // Key = innovation ID, value = null for some reason.
 			if(newNeuronGeneTable==null)
 				newNeuronGeneTable = new Hashtable(neuronGeneList.Count);
 			else
@@ -388,7 +338,6 @@ namespace SharpNeatLib.NeatGenome
 			}
 
 			// Now analyse the connections to determine which NeuronGenes are required in the offspring.
-            // Loop through every connection in the child, and add to the child those hidden neurons that are sources or targets of the connection.
 			idxBound = newConnectionGeneList.Count;
 			for(int i=0; i<idxBound; i++)
 			{
@@ -402,7 +351,7 @@ namespace SharpNeatLib.NeatGenome
                     if (neuronGene != null)
                         newNeuronGeneList.Add(new NeuronGene(neuronGene));
                     else
-                        newNeuronGeneList.Add(new NeuronGene(otherParent.NeuronGeneList.GetNeuronById(connectionGene.SourceNeuronId)));
+                        newNeuronGeneList.Add(new NeuronGene(((NeatGenome)parent).NeuronGeneList.GetNeuronById(connectionGene.SourceNeuronId)));
                     //newNeuronGeneList.Add(new NeuronGene(connectionGene.SourceNeuronId, NeuronType.Hidden, ActivationFunctionFactory.GetActivationFunction("SteepenedSigmoid")));
 					newNeuronGeneTable.Add(connectionGene.SourceNeuronId, null);
 				}
@@ -415,102 +364,41 @@ namespace SharpNeatLib.NeatGenome
                     if (neuronGene != null)
                         newNeuronGeneList.Add(new NeuronGene(neuronGene));
                     else
-                        newNeuronGeneList.Add(new NeuronGene(otherParent.NeuronGeneList.GetNeuronById(connectionGene.TargetNeuronId)));
+                        newNeuronGeneList.Add(new NeuronGene(((NeatGenome)parent).NeuronGeneList.GetNeuronById(connectionGene.TargetNeuronId)));
                     //newNeuronGeneList.Add(new NeuronGene(connectionGene.TargetNeuronId, NeuronType.Hidden, ActivationFunctionFactory.GetActivationFunction("SteepenedSigmoid")));
 					newNeuronGeneTable.Add(connectionGene.TargetNeuronId, null);
 				}
 			}
-
-            // Determine which modules to pass on to the child in the same way.
-            // For each module in this genome or in the other parent, if it was referenced by even one connection add it and all its dummy neurons to the child.
-            List<ModuleGene> newModuleGeneList = new List<ModuleGene>();
-
-            // Build a list of modules the child might have, which is a union of the parents' module lists, but they are all copies so we can't just do a union.
-            List<ModuleGene> unionParentModules = new List<ModuleGene>(moduleGeneList);
-            foreach (ModuleGene moduleGene in otherParent.moduleGeneList) {
-                bool alreadySeen = false;
-                foreach (ModuleGene match in unionParentModules) {
-                    if (moduleGene.InnovationId == match.InnovationId) {
-                        alreadySeen = true;
-                        break;
-                    }
-                }
-                if (!alreadySeen) {
-                    unionParentModules.Add(moduleGene);
-                }
-            }
-
-            foreach (ModuleGene moduleGene in unionParentModules) {
-                // Examine each neuron in the child to determine whether it is part of a module.
-                foreach (List<uint> dummyNeuronList in new List<uint>[] { moduleGene.InputIds, moduleGene.OutputIds }) {
-                    foreach (uint dummyNeuronId in dummyNeuronList) {
-                        if (newNeuronGeneTable.ContainsKey(dummyNeuronId)) {
-                            goto childHasModule;
-                        }
-                    }
-                }
-
-                continue; // the child does not contain this module, so continue the loop and check for the next module.
-            childHasModule: // the child does contain this module, so make sure the child gets all the nodes the module requires to work.
-
-                // Make sure the child has all the neurons in the given module.
-                newModuleGeneList.Add(new ModuleGene(moduleGene));
-                foreach (List<uint> dummyNeuronList in new List<uint>[] { moduleGene.InputIds, moduleGene.OutputIds }) {
-                    foreach (uint dummyNeuronId in dummyNeuronList) {
-                        if (!newNeuronGeneTable.ContainsKey(dummyNeuronId)) {
-                            newNeuronGeneTable.Add(dummyNeuronId, null);
-                            NeuronGene neuronGene = this.neuronGeneList.GetNeuronById(dummyNeuronId);
-                            if (neuronGene != null) {
-                                newNeuronGeneList.Add(new NeuronGene(neuronGene));
-                            } else {
-                                newNeuronGeneList.Add(new NeuronGene(otherParent.NeuronGeneList.GetNeuronById(dummyNeuronId)));
-                            }
-                        }
-                    }
-                }
-            }
 
 			// TODO: Inefficient code?
 			newNeuronGeneList.SortByInnovationId();
 
 			// newConnectionGeneList is already sorted because it was generated by passing over the list returned by
 			// CorrelateConnectionGeneLists() - which is always in order.
-			return new NeatGenome(ea.NextGenomeId, newNeuronGeneList, newModuleGeneList, newConnectionGeneList, inputNeuronCount, outputNeuronCount);
+			return new NeatGenome(ea.NextGenomeId, newNeuronGeneList, newConnectionGeneList, inputNeuronCount, outputNeuronCount);
 		}
 
 
 
-		/// <summary>
-		/// Decode the genome's 'DNA' into a working network.
-		/// </summary>
-		/// <returns></returns>
-		public override INetwork Decode(IActivationFunction activationFn)
+
+        /// <summary>
+        /// Decode the genome's 'DNA' into a working network.
+        /// </summary>
+        /// <param name="activationFn"> not needed ! activation function of each neuron is used</param>
+        /// <returns></returns>
+        /// 
+        public override INetwork Decode(IActivationFunction activationFn)
 		{
-	//		if(network==null) //commented this out because otherwise all the homogenous agents have the same network
-	//		{
+			if(network==null)
+			{
 				//network = GenomeDecoder.DecodeToConcurrentNetwork(this, activationFn);
-				//network = GenomeDecoder.DecodeToFloatFastConcurrentNetwork(this, activationFn);
+				network = GenomeDecoder.DecodeToFloatFastConcurrentNetwork(this);
 				//network = GenomeDecoder.DecodeToIntegerFastConcurrentNetwork(this);
 				//network = GenomeDecoder.DecodeToFastConcurrentMultiplicativeNetwork(this, activationFn);
-                network = GenomeDecoder.DecodeToModularNetwork(this);
-    //        }
+			}
 
 			return network;
 		}
-
-        public INetwork Decode(IActivationFunction activationFn, bool forceFloat)
-        {
-          //  if (network == null)
-           // {
-                //network = GenomeDecoder.DecodeToConcurrentNetwork(this, activationFn);
-                network = GenomeDecoder.DecodeToFloatFastConcurrentNetwork(this, activationFn);
-                //network = GenomeDecoder.DecodeToIntegerFastConcurrentNetwork(this);
-                //network = GenomeDecoder.DecodeToFastConcurrentMultiplicativeNetwork(this, activationFn);
-                //network = GenomeDecoder.DecodeToModularNetwork(this);
-           // }
-
-            return network;
-        }
 
 		/// <summary>
 		/// Clone this genome.
@@ -522,151 +410,6 @@ namespace SharpNeatLib.NeatGenome
 			return new NeatGenome(this, ea.NextGenomeId);
 		}
 
-		public double compat(IGenome comparisonGenome, NeatParameters neatParameters) {
-						/* A very simple way of implementing this routine is to call CorrelateConnectionGeneLists and to then loop 
-			 * through the correlation items, calculating a compatibility score as we go. However, this routine
-			 * is heavily used and in performance tests was shown consume 40% of the CPU time for the core NEAT code.
-			 * Therefore this new routine has been rewritten with it's own version of the logic within  
-			 * CorrelateConnectionGeneLists. This allows us to only keep comparing genes up to the point where the
-			 * threshold is passed. This also eliminates the need to build the correlation results list, this difference
-			 * alone is responsible for a 200x performance improvement when testing with a 1664 length genome!!
-			 * 
-			 * A further optimisation is achieved by comparing the genes starting at the end of the genomes which is
-			 * where most disparities are located - new novel genes are always attached to the end of genomes. This
-			 * has the result of complicating the routine because we must now invoke additional logic to determine
-			 * which genes are excess and when the first disjoint gene is found. This is done with an extra integer:
-			 * 
-			 * int excessGenesSwitch=0; // indicates to the loop that it is handling the first gene.
-			 *						=1;	// Indicates that the first gene was excess and on genome 1.
-			 *						=2;	// Indicates that the first gene was excess and on genome 2.
-			 *						=3;	// Indicates that there are no more excess genes.
-			 * 
-			 * This extra logic has a slight performance hit, but this is minor especially in comparison to the savings that
-			 * are expected to be achieved overall during a NEAT search.
-			 * 
-			 * If you have trouble understanding this logic then it might be best to work through the previous version of
-			 * this routine (below) that scans through the genomes from start to end, and which is a lot simpler.
-			 * 
-			 */
-			ConnectionGeneList list1 = this.connectionGeneList;
-			ConnectionGeneList list2 = ((NeatGenome)comparisonGenome).connectionGeneList;
-			int excessGenesSwitch=0;
-
-			// Store these heavily used values locally.
-			int list1Count = list1.Count;
-			int list2Count = list2.Count;
-
-			//----- Test for special cases.
-			if(list1Count==0 && list2Count==0)
-			{	// Both lists are empty! No disparities, therefore the genomes are compatible!
-				return 0.0;
-			}
-
-			if(list1Count==0)
-			{	// All list2 genes are excess.
-				return ((list2.Count * neatParameters.compatibilityExcessCoeff));
-			}
-
-			if(list2Count==0)
-			{	
-				// All list1 genes are excess.
-				return ((list1Count * neatParameters.compatibilityExcessCoeff));
-			}
-
-		//----- Both ConnectionGeneLists contain genes - compare the contents.
-			double compatibility=0;
-			int list1Idx=list1Count-1;
-			int list2Idx=list2Count-1;
-			ConnectionGene connectionGene1 = list1[list1Idx];
-			ConnectionGene connectionGene2 = list2[list2Idx];
-			for(;;)
-			{
-				if(connectionGene2.InnovationId > connectionGene1.InnovationId)
-				{	
-					// Most common test case(s) at top for efficiency.
-					if(excessGenesSwitch==3)
-					{	// No more excess genes. Therefore this mismatch is disjoint.
-						compatibility += neatParameters.compatibilityDisjointCoeff;
-					}
-					else if(excessGenesSwitch==2)
-					{	// Another excess gene on genome 2.
-						compatibility += neatParameters.compatibilityExcessCoeff;
-					}
-					else if(excessGenesSwitch==1)
-					{	// We have found the first non-excess gene.
-						excessGenesSwitch=3;
-						compatibility += neatParameters.compatibilityDisjointCoeff;
-					}
-					else //if(excessGenesSwitch==0)
-					{	// First gene is excess, and is on genome 2.
-						excessGenesSwitch = 2;
-						compatibility += neatParameters.compatibilityExcessCoeff;
-					}
-
-					// Move to the next gene in list2.
-					list2Idx--;
-				}
-				else if(connectionGene1.InnovationId == connectionGene2.InnovationId)
-				{
-					// No more excess genes. It's quicker to set this every time than to test if is not yet 3.
-					excessGenesSwitch=3;
-
-					// Matching genes. Increase compatibility by weight difference * coeff.
-					compatibility += Math.Abs(connectionGene1.Weight-connectionGene2.Weight) * neatParameters.compatibilityWeightDeltaCoeff;
-
-					// Move to the next gene in both lists.
-					list1Idx--;
-					list2Idx--;
-				}
-				else // (connectionGene2.InnovationId < connectionGene1.InnovationId)
-				{	
-					// Most common test case(s) at top for efficiency.
-					if(excessGenesSwitch==3)
-					{	// No more excess genes. Therefore this mismatch is disjoint.
-						compatibility += neatParameters.compatibilityDisjointCoeff;
-					}
-					else if(excessGenesSwitch==1)
-					{	// Another excess gene on genome 1.
-						compatibility += neatParameters.compatibilityExcessCoeff;
-					}
-					else if(excessGenesSwitch==2)
-					{	// We have found the first non-excess gene.
-						excessGenesSwitch=3;
-						compatibility += neatParameters.compatibilityDisjointCoeff;
-					}
-					else //if(excessGenesSwitch==0)
-					{	// First gene is excess, and is on genome 1.
-						excessGenesSwitch = 1;
-						compatibility += neatParameters.compatibilityExcessCoeff;
-					}
-
-					// Move to the next gene in list1.
-					list1Idx--;
-				}
-				
-
-				// Check if we have reached the end of one (or both) of the lists. If we have reached the end of both then 
-				// we execute the first 'if' block - but it doesn't matter since the loop is not entered if both lists have 
-				// been exhausted.
-				if(list1Idx < 0)
-				{	
-					// All remaining list2 genes are disjoint.
-					compatibility +=  (list2Idx+1) * neatParameters.compatibilityDisjointCoeff;
-					return (compatibility); //< neatParameters.compatibilityThreshold);
-				}
-
-				if(list2Idx < 0)
-				{
-					// All remaining list1 genes are disjoint.
-					compatibility += (list1Idx+1) * neatParameters.compatibilityDisjointCoeff;
-					return (compatibility); //< neatParameters.compatibilityThreshold);
-				}
-
-				connectionGene1 = list1[list1Idx];
-				connectionGene2 = list2[list2Idx];
-			}
-
-		}
 
 		public override bool IsCompatibleWithGenome(IGenome comparisonGenome, NeatParameters neatParameters)
 		{
@@ -975,7 +718,6 @@ namespace SharpNeatLib.NeatGenome
 			double[] probabilities = new double[] 
 			{
 				ea.NeatParameters.pMutateAddNode,
-				ea.NeatParameters.pMutateAddModule,
 				ea.NeatParameters.pMutateAddConnection,
 				ea.NeatParameters.pMutateDeleteConnection,
 				ea.NeatParameters.pMutateDeleteSimpleNeuron,
@@ -989,19 +731,16 @@ namespace SharpNeatLib.NeatGenome
 				case 0:
 					Mutate_AddNode(ea);
 					break;
-                case 1:
-                    Mutate_AddModule(ea);
-                    break;
-                case 2:
-                    Mutate_AddConnection(ea);
-                    break;
-                case 3:
+				case 1:
+					Mutate_AddConnection(ea);
+					break;
+				case 2:
 					Mutate_DeleteConnection();
 					break;
-				case 4:
+				case 3:
 					Mutate_DeleteSimpleNeuronStructure(ea);
 					break;
-				case 5:
+				case 4:
 					Mutate_ConnectionWeights(ea);
 					break;
 			}
@@ -1023,8 +762,8 @@ namespace SharpNeatLib.NeatGenome
 			int connectionToReplaceIdx = (int)Math.Floor(Utilities.NextDouble() * connectionGeneList.Count);
 			ConnectionGene connectionToReplace = connectionGeneList[connectionToReplaceIdx];
 				
-			// Delete the existing connection. JOEL: Why delete old connection?
-			//connectionGeneList.RemoveAt(connectionToReplaceIdx);
+			// Delete the existing connection.
+			connectionGeneList.RemoveAt(connectionToReplaceIdx);
 
 			// Check if this connection has already been split on another genome. If so then we should re-use the
 			// neuron ID and two connection ID's so that matching structures within the population maintain the same ID.
@@ -1040,10 +779,7 @@ namespace SharpNeatLib.NeatGenome
                 //TODO: DAVID proper random activation function
 				// Replace connectionToReplace with two new connections and a neuron.
                 actFunct=ActivationFunctionFactory.GetRandomActivationFunction(ea.NeatParameters);
-                //newNeuronGene = new NeuronGene(ea.NextInnovationId, NeuronType.Hidden, actFunct);
-
-                newNeuronGene = new NeuronGene(null, ea.NextInnovationId, (neuronGeneList.GetNeuronById(connectionToReplace.SourceNeuronId).Layer + neuronGeneList.GetNeuronById(connectionToReplace.TargetNeuronId).Layer) / 2.0, NeuronType.Hidden, actFunct);
-			
+                newNeuronGene = new NeuronGene(ea.NextInnovationId, NeuronType.Hidden, actFunct);
 				newConnectionGene1 = new ConnectionGene(ea.NextInnovationId, connectionToReplace.SourceNeuronId, newNeuronGene.InnovationId, 1.0);
 				newConnectionGene2 = new ConnectionGene(ea.NextInnovationId, newNeuronGene.InnovationId, connectionToReplace.TargetNeuronId, connectionToReplace.Weight);
 
@@ -1058,9 +794,7 @@ namespace SharpNeatLib.NeatGenome
 				// Replace connectionToReplace with two new connections and a neuron.
                 actFunct = ActivationFunctionFactory.GetRandomActivationFunction(ea.NeatParameters);
 				NewNeuronGeneStruct tmpStruct = (NewNeuronGeneStruct)existingNeuronGeneStruct;
-                //newNeuronGene = new NeuronGene(tmpStruct.NewNeuronGene.InnovationId, NeuronType.Hidden, actFunct);
-                newNeuronGene = new NeuronGene(null, tmpStruct.NewNeuronGene.InnovationId, tmpStruct.NewNeuronGene.Layer, NeuronType.Hidden, actFunct);
-				
+                newNeuronGene = new NeuronGene(tmpStruct.NewNeuronGene.InnovationId, NeuronType.Hidden, actFunct);
 				newConnectionGene1 = new ConnectionGene(tmpStruct.NewConnectionGene_Input.InnovationId, connectionToReplace.SourceNeuronId, newNeuronGene.InnovationId, 1.0);
 				newConnectionGene2 = new ConnectionGene(tmpStruct.NewConnectionGene_Output.InnovationId, newNeuronGene.InnovationId, connectionToReplace.TargetNeuronId, connectionToReplace.Weight);
 			}
@@ -1070,96 +804,6 @@ namespace SharpNeatLib.NeatGenome
 			connectionGeneList.InsertIntoPosition(newConnectionGene1);
 			connectionGeneList.InsertIntoPosition(newConnectionGene2);
 		}
-
-        private void Mutate_AddModule(EvolutionAlgorithm ea)
-        {
-            // Find all potential inputs, or quit if there are not enough. 
-            // Neurons cannot be inputs if they are dummy input nodes created for another module.
-            NeuronGeneList potentialInputs = new NeuronGeneList();
-            foreach (NeuronGene n in neuronGeneList) {
-                if (!(n.ActivationFunction is ModuleInputNeuron)) {
-                    potentialInputs.Add(n);
-                }
-            }
-            if (potentialInputs.Count < 1)
-                return;
-
-            // Find all potential outputs, or quit if there are not enough.
-            // Neurons cannot be outputs if they are dummy input or output nodes created for another module, or network input or bias nodes.
-            NeuronGeneList potentialOutputs = new NeuronGeneList();
-            foreach (NeuronGene n in neuronGeneList) {
-                if (n.NeuronType != NeuronType.Bias && n.NeuronType != NeuronType.Input
-                        && !(n.ActivationFunction is ModuleInputNeuron)
-                        && !(n.ActivationFunction is ModuleOutputNeuron)) {
-                    potentialOutputs.Add(n);
-                }
-            }
-            if (potentialOutputs.Count < 1)
-                return;
-
-            // Pick a new function for the new module.
-            IModule func = ModuleFactory.GetRandom();
-
-            // Choose inputs uniformly at random, with replacement.
-            // Create dummy neurons to represent the module's inputs.
-            // Create connections between the input nodes and the dummy neurons.
-            IActivationFunction inputFunction = ActivationFunctionFactory.GetActivationFunction("ModuleInputNeuron");
-            List<uint> inputDummies = new List<uint>(func.InputCount);
-            for (int i = 0; i < func.InputCount; i++) {
-                NeuronGene newNeuronGene = new NeuronGene(ea.NextInnovationId, NeuronType.Hidden, inputFunction);
-                neuronGeneList.Add(newNeuronGene);
-
-                uint sourceId = potentialInputs[Utilities.Next(potentialInputs.Count)].InnovationId;
-                uint targetId = newNeuronGene.InnovationId;
-
-                inputDummies.Add(targetId);
-
-                // Create a new connection with a new ID and add it to the Genome.
-                ConnectionGene newConnectionGene = new ConnectionGene(ea.NextInnovationId, sourceId, targetId,
-                    (Utilities.NextDouble() * ea.NeatParameters.connectionWeightRange) - ea.NeatParameters.connectionWeightRange / 2.0);
-
-                // Register the new connection with NewConnectionGeneTable.
-                ConnectionEndpointsStruct connectionKey = new ConnectionEndpointsStruct(sourceId, targetId);
-                ea.NewConnectionGeneTable.Add(connectionKey, newConnectionGene);
-
-                // Add the new gene to this genome. We have a new ID so we can safely append the gene to the end 
-                // of the list without risk of breaking the innovation ID order.
-                connectionGeneList.Add(newConnectionGene);
-            }
-
-            // Choose outputs uniformly at random, with replacement.
-            // Create dummy neurons to represent the module's outputs.
-            // Create connections between the output nodes and the dummy neurons.
-            IActivationFunction outputFunction = ActivationFunctionFactory.GetActivationFunction("ModuleOutputNeuron");
-            List<uint> outputDummies = new List<uint>(func.OutputCount);
-            for (int i = 0; i < func.OutputCount; i++) {
-                NeuronGene newNeuronGene = new NeuronGene(ea.NextInnovationId, NeuronType.Hidden, outputFunction);
-                neuronGeneList.Add(newNeuronGene);
-
-                uint sourceId = newNeuronGene.InnovationId;
-                uint targetId = potentialOutputs[Utilities.Next(potentialOutputs.Count)].InnovationId;
-
-                outputDummies.Add(sourceId);
-
-                // Create a new connection with a new ID and add it to the Genome.
-                ConnectionGene newConnectionGene = new ConnectionGene(ea.NextInnovationId, sourceId, targetId,
-                    (Utilities.NextDouble() * ea.NeatParameters.connectionWeightRange) - ea.NeatParameters.connectionWeightRange / 2.0);
-
-                // Register the new connection with NewConnectionGeneTable.
-                ConnectionEndpointsStruct connectionKey = new ConnectionEndpointsStruct(sourceId, targetId);
-                ea.NewConnectionGeneTable.Add(connectionKey, newConnectionGene);
-
-                // Add the new gene to this genome. We have a new ID so we can safely append the gene to the end 
-                // of the list without risk of breaking the innovation ID order.
-                connectionGeneList.Add(newConnectionGene);
-            }
-
-            // Pick a new ID for the new module and create it.
-            // Modules do not participate in history comparisons, so we will always create a new innovation ID.
-            // We can change this here if it becomes a problem.
-            ModuleGene newModule = new ModuleGene(ea.NextInnovationId, func, inputDummies, outputDummies);
-            moduleGeneList.Add(newModule);
-        }
 
 		private void Mutate_AddConnection(EvolutionAlgorithm ea)
 		{
@@ -1246,40 +890,13 @@ namespace SharpNeatLib.NeatGenome
 //						}
 //					}
 
-//					// Source neuron can by any neuron. Target neuron is any neuron except input neurons.
-//					srcNeuronIdx = (int)Math.Floor(Utilities.NextDouble() * neuronGeneList.Count);
-//					tgtNeuronIdx = inputAndBiasNeuronCount + (int)Math.Floor(Utilities.NextDouble() * (neuronGeneList.Count-inputAndBiasNeuronCount));
-//
-//                  NeuronGene sourceNeuron = neuronGeneList[srcNeuronIdx];
-//                  NeuronGene targetNeuron = neuronGeneList[tgtNeuronIdx];
+					// Source neuron can by any neuron. Target neuron is any neuron except input neurons.
+					srcNeuronIdx = (int)Math.Floor(Utilities.NextDouble() * neuronGeneList.Count);
+					tgtNeuronIdx = inputAndBiasNeuronCount + (int)Math.Floor(Utilities.NextDouble() * (neuronGeneList.Count-inputAndBiasNeuronCount));
 
-                    // Find all potential inputs, or quit if there are not enough. 
-                    // Neurons cannot be inputs if they are dummy input nodes of a module.
-                    NeuronGeneList potentialInputs = new NeuronGeneList();
-                    foreach (NeuronGene n in neuronGeneList) {
-                        if (!(n.ActivationFunction is ModuleInputNeuron)) {
-                            potentialInputs.Add(n);
-                        }
-                    }
-                    if (potentialInputs.Count < 1)
-                        return;
-
-                    // Find all potential outputs, or quit if there are not enough.
-                    // Neurons cannot be outputs if they are dummy input or output nodes of a module, or network input or bias nodes.
-                    NeuronGeneList potentialOutputs = new NeuronGeneList();
-                    foreach (NeuronGene n in neuronGeneList) {
-                        if (n.NeuronType != NeuronType.Bias && n.NeuronType != NeuronType.Input
-                                && !(n.ActivationFunction is ModuleInputNeuron)
-                                && !(n.ActivationFunction is ModuleOutputNeuron)) {
-                            potentialOutputs.Add(n);
-                        }
-                    }
-                    if (potentialOutputs.Count < 1)
-                        return;
-
-                    NeuronGene sourceNeuron = potentialInputs[Utilities.Next(potentialInputs.Count)];
-                    NeuronGene targetNeuron = potentialOutputs[Utilities.Next(potentialOutputs.Count)];
-
+					NeuronGene sourceNeuron = neuronGeneList[srcNeuronIdx];			
+					NeuronGene targetNeuron = neuronGeneList[tgtNeuronIdx];
+	
 					// Check if a connection already exists between these two neurons.
 					uint sourceId = sourceNeuron.InnovationId;
 					uint targetId = targetNeuron.InnovationId;
@@ -1294,7 +911,7 @@ namespace SharpNeatLib.NeatGenome
 						if(existingConnection==null)
 						{	// Create a new connection with a new ID and add it to the Genome.
 							newConnectionGene = new ConnectionGene(ea.NextInnovationId, sourceId, targetId,
-								(Utilities.NextDouble() * ea.NeatParameters.connectionWeightRange/4.0) - ea.NeatParameters.connectionWeightRange/8.0);
+								(Utilities.NextDouble() * ea.NeatParameters.connectionWeightRange) - ea.NeatParameters.connectionWeightRange/2.0);
 
 							// Register the new connection with NewConnectionGeneTable.
 							ea.NewConnectionGeneTable.Add(connectionKey, newConnectionGene);
@@ -1306,7 +923,7 @@ namespace SharpNeatLib.NeatGenome
 						else
 						{	// Create a new connection, re-using the ID from existingConnection, and add it to the Genome.
 							newConnectionGene = new ConnectionGene(existingConnection.InnovationId, sourceId, targetId,
-								(Utilities.NextDouble() * ea.NeatParameters.connectionWeightRange/4.0) - ea.NeatParameters.connectionWeightRange/8.0);
+								(Utilities.NextDouble() * ea.NeatParameters.connectionWeightRange) - ea.NeatParameters.connectionWeightRange/2.0);
 
 							// Add the new gene to this genome. We are re-using an ID so we must ensure the connection gene is
 							// inserted into the correct position (sorted by innovation ID).
@@ -1346,6 +963,7 @@ namespace SharpNeatLib.NeatGenome
 		}
 
 
+
 		/// <summary>
 		/// We define a simple neuron structure as a neuron that has a single outgoing or single incoming connection.
 		/// With such a structure we can easily eliminate the neuron and shift it's connections to an adjacent neuron.
@@ -1365,10 +983,8 @@ namespace SharpNeatLib.NeatGenome
 				// If we test the connection count with <=1 then we also pick up neurons that are in dead-end circuits, 
 				// RemoveSimpleNeuron is then able to delete these neurons from the network structure along with any 
 				// associated connections.
-                // All neurons that are part of a module would appear to be dead-ended, but skip removing them anyway.
-                if (lookup.neuronGene.NeuronType == NeuronType.Hidden
-                            && !(lookup.neuronGene.ActivationFunction is ModuleInputNeuron)
-                            && !(lookup.neuronGene.ActivationFunction is ModuleOutputNeuron) ) {
+				if(lookup.neuronGene.NeuronType == NeuronType.Hidden)
+				{
 					if((lookup.incomingList.Count<=1) || (lookup.outgoingList.Count<=1))
 						simpleNeuronIdList.Add(lookup.neuronGene.InnovationId);
 				}
@@ -1387,7 +1003,11 @@ namespace SharpNeatLib.NeatGenome
 			RemoveSimpleNeuron(neuronId, ea);
 		}
 
-
+		/// <summary>
+		/// The routine also 
+		/// </summary>
+		/// <param name="neuronId"></param>
+		/// <param name="ea"></param>
 		private void RemoveSimpleNeuron(uint neuronId, EvolutionAlgorithm ea)
 		{
 			// Create new connections that connect all of the incoming and outgoing neurons
@@ -1761,15 +1381,12 @@ namespace SharpNeatLib.NeatGenome
 
 		/// <summary>
 		/// If the neuron is a hidden neuron and no connections connect to it then it is redundant.
-        /// No neuron is redundant that is part of a module (although the module itself might be found redundant separately).
 		/// </summary>
 		private bool IsNeuronRedundant(uint neuronId)
 		{
 			NeuronGene neuronGene = neuronGeneList.GetNeuronById(neuronId);
-            if (neuronGene.NeuronType != NeuronType.Hidden
-                        || neuronGene.ActivationFunction is ModuleInputNeuron
-                        || neuronGene.ActivationFunction is ModuleOutputNeuron)
-                return false;
+			if(neuronGene.NeuronType!=NeuronType.Hidden)
+				return false;
 
 			return !IsNeuronConnected(neuronId);
 		}

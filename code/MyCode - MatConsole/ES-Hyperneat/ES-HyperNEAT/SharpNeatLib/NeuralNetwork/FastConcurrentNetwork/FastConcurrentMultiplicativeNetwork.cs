@@ -225,16 +225,16 @@ namespace SharpNeatLib.NeuralNetwork
 			return isRelaxed;
 		}
 
-		public void SetInputSignal(int index, float signalValue)
+		public void SetInputSignal(int index, double signalValue)
 		{
-			neuronSignalArray[biasNeuronCount + index] = signalValue;
+			neuronSignalArray[biasNeuronCount + index] = (float)signalValue;
 		}
 
 		public void SetInputSignals(float[] signalArray)
 		{
 			// For speed we don't bother with bounds checks.
 			for(int i=0; i<signalArray.Length; i++)
-				neuronSignalArray[i+1] = signalArray[i];
+				neuronSignalArray[i+1] = (float)signalArray[i];
 		}
 
 		public float GetOutputSignal(int index)

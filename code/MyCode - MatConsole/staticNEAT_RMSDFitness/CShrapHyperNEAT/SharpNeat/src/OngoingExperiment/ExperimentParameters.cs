@@ -104,7 +104,8 @@ namespace StaticExperimentNS
                             training_timePerAngle = Convert.ToInt32(line[1]);
                             break;
                         default:
-                            Console.WriteLine(String.Format("unknown Parameter \"{0}\" in experiment settings", line[0]));
+                            if (!line[0].StartsWith("//"))
+                                Console.WriteLine(String.Format("unknown Parameter \"{0}\" in experiment settings", line[0]));
                             break;
                     }
                 }
