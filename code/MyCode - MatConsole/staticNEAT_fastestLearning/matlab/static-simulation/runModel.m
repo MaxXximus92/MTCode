@@ -16,10 +16,7 @@ time_per_angle =str2double(time_per_angle);
 settings='settings.xls';
 spikingThreshold = 30;
 
-% todo read from file
-%isSave =str2num(isSave);
 
-% todo constructor fehlt...
 net = spikenet(spikingThreshold,settings,savePath,equationParams,weightsMatrix);
 % spikenet(spikingThreshold,settingsFile,savePath,equationParams, weightsMatrix)
 saveName = name;

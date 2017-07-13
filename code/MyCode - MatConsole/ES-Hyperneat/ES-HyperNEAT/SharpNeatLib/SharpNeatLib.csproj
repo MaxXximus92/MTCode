@@ -133,9 +133,6 @@
     </Compile>
     <Compile Include="CPPNs\CPPNDotWriterStatic.cs" />
     <Compile Include="CPPNs\EvolvableSubstrate.cs" />
-    <Compile Include="CPPNs\NeuronGroup.cs" />
-    <Compile Include="CPPNs\SubstrateDescription.cs" />
-    <Compile Include="CPPNs\SubstrateEvolution.cs" />
     <Compile Include="Evolution\AbstractGenome.cs">
       <SubType>Code</SubType>
     </Compile>

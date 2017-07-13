@@ -13,6 +13,6 @@ function [ ]  = getModelParams(resultPath )
     end
     neuronTypes = typNums;
     saveNeuronTypesSync(resultPath, neuronTypes);
-    %quit; %Wichtig nur bei test auskommentieren
+    quit; %Wichtig nur bei test auskommentieren
 end
 

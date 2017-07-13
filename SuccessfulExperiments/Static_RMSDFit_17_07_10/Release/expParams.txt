@@ -1,0 +1,17 @@
+experimentName =StatExp
+experimentDescription= Static Experiment with Hyperneat D_ES Connections
+initialNetWeightsPath =matlabExecData/weights_static.mat
+initialNetEqParamsPath =matlabExecData/eqparams_static.mat
+maxGenerations = 450
+populationSize = 90
+numLastGenModelsToPlotAndSave = 90
+modelLibPathTrain=/home/mutschler/Experiments/Static_RMSDFit_17_07_10/matlab/static-training
+modelLibPathSimulate=/home/mutschler/Experiments/Static_RMSDFit_17_07_10/matlab/static-simulation
+matlabExecPath =/storage/matlab-r2017a/bin/
+startAngle=134
+training_maxTrainTime=40000
+training_anglesToSimulate=[0,62,135]
+training_anglesToLearn= [0,135]
+training_timePerAngle= 20000
+simulation_anglesToSimulate=[60,30,0,80,135,15,100,40,75]
+simulation_timePerAngle = 30000

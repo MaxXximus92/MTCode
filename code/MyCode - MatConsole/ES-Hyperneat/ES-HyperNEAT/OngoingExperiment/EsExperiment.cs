@@ -46,7 +46,7 @@ namespace EsExperimentNS
         {
             get
             {
-                return 0;
+                return (int)ExperimentParameters.cPPNOutputs;
             }
         }
 

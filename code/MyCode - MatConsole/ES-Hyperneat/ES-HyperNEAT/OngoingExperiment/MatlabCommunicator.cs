@@ -22,7 +22,7 @@ namespace EsExperimentNS
 
         public readonly string name;// name has to be unique  
         readonly string syncPath;
-        readonly string weightPath;
+        readonly string dataPath;
         readonly string logPath;
         readonly string resultPath;
         readonly Process matlab;
@@ -60,21 +60,19 @@ namespace EsExperimentNS
             logPath = ExperimentParameters.communicationPath + pathSep + @"log_" + name + ".txt";
             syncPath = ExperimentParameters.communicationPath + pathSep + @"sync_" + name + ".txt";
             resultPath = ExperimentParameters.communicationPath + pathSep + @"rmsd_" + name + ".mat";
-            weightPath = ExperimentParameters.communicationPath + pathSep + @"dEsWeights_" + name + ".mat";
+            dataPath = ExperimentParameters.communicationPath + pathSep + @"data_" + name + ".mat";
 
             string arg0_matCommand = "matlab  -nodesktop -nodisplay -nosplash -singleCompThread -r ";
             string arg1_name = name;
             string arg2_maxTrainTime = ExperimentParameters.training_maxTrainTime.ToString();
             string arg3_savePath = ExperimentParameters.modelSavePath;
-            string arg4_equParamPath = ExperimentParameters.initialNetEqParamsPath;
-            string arg5_weightsMPath = ExperimentParameters.initialNetWeightsPath;
-            string arg6_esemConPath = weightPath;
-            string arg7_resultPath = resultPath;
-            string arg8_syncPath = syncPath;
-            string arg9_anglesToLearn = ExperimentParameters.training_anglesToLearn;
-            string arg10_anglesToSimulate = ExperimentParameters.training_anglesToSimulate;
-            string arg11_anglesSimulationTime = ExperimentParameters.training_timePerAngle.ToString();
-            string arg12_logPath = logPath;
+            string arg4_dataPath = dataPath;
+            string arg5_resultPath = resultPath;
+            string arg6_syncPath = syncPath;
+            string arg7_anglesToLearn = ExperimentParameters.training_anglesToLearn;
+            string arg8_anglesToSimulate = ExperimentParameters.training_anglesToSimulate;
+            string arg9_anglesSimulationTime = ExperimentParameters.training_timePerAngle.ToString();
+            string arg10_logPath = logPath;
             
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
@@ -87,13 +85,13 @@ namespace EsExperimentNS
             // win
 #if Windows
             // string arguments = String.Format(@" ""{0}"" ""{1}"" ""{2}"" ""{3}"" ""{4}"" ""{5}"" ""{6}"" ""{7}"" ""{8}""  ""{9}"" ", arg1_name, arg2_numNeurons, arg3_runTime, arg4_runSettings, arg5_savePath, arg6_equParamPath, arg7_weightsMPath, arg8_esemConPath, arg9_resultPath, arg10_syncPath);
-            string arguments = String.Format(@" /C {0} ""runModel('{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')"" -logfile ""{12}"" ", arg0_matCommand, arg1_name, arg2_maxTrainTime, arg3_savePath, arg4_equParamPath, arg5_weightsMPath, arg6_esemConPath, arg7_resultPath, arg8_syncPath,arg9_anglesToLearn,arg10_anglesToSimulate,arg11_anglesSimulationTime ,arg12_logPath);
+            string arguments = String.Format(@" /C {0} ""runModel('{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')"" -logfile ""{10}"" ", arg0_matCommand, arg1_name, arg2_maxTrainTime, arg3_savePath,arg4_dataPath,arg5_resultPath,arg6_syncPath,arg7_anglesToLearn,arg8_anglesToSimulate,arg9_anglesSimulationTime,arg10_logPath);
             startInfo.FileName = "cmd.exe";
 #endif
             //Lin
 #if Linux
-            string arg13_matlabPath = ExperimentParameters.matlabExecPath;//"/storage/matlab-r2017a/bin/";
-            string arguments = String.Format(@" -c '{13}{0} \""runModel(\'{1}\',\'{2}\',\'{3}\',\'{4}\',\'{5}\',\'{6}\',\'{7}\',\'{8}\',\'{9}\',\'{10}\',\'{11}\')\"" -logfile '{12}' > /dev/null 2>&1' ", arg0_matCommand, arg1_name, arg2_maxTrainTime, arg3_savePath, arg4_equParamPath, arg5_weightsMPath, arg6_esemConPath, arg7_resultPath, arg8_syncPath, arg9_anglesToLearn, arg10_anglesToSimulate, arg11_anglesSimulationTime, arg12_logPath, arg13_matlabPath);
+            string arg11_matlabPath = ExperimentParameters.matlabExecPath;//"/storage/matlab-r2017a/bin/";
+            string arguments = String.Format(@" -c '{11}{0} \""runModel(\'{1}\',\'{2}\',\'{3}\',\'{4}\',\'{5}\',\'{6}\',\'{7}\',\'{8}\',\'{9}\')\"" -logfile '{10}' > /dev/null 2>&1' ", arg0_matCommand, arg1_name, arg2_maxTrainTime, arg3_savePath,arg4_dataPath,arg5_resultPath,arg6_syncPath,arg7_anglesToLearn,arg8_anglesToSimulate,arg9_anglesSimulationTime,arg10_logPath,arg11_matlabPath);
             startInfo.FileName = "/bin/bash";
 #endif
 
@@ -115,7 +113,7 @@ namespace EsExperimentNS
         {
             writeSync("close");
             // deleteSync(syncPath); -> gets deleted by matlab
-            deleteSync(weightPath);
+            deleteSync(dataPath);
             deleteSync(resultPath);
         }
 
@@ -188,7 +186,7 @@ namespace EsExperimentNS
         {
 
 
-            writeSyncData(connections, typesToInt(types), weightPath);
+            writeSyncData(connections, typesToInt(types), dataPath);
 
             if (plot)
             {
@@ -204,7 +202,7 @@ namespace EsExperimentNS
 
             double fitness = getSyncFitness(this.resultPath,matlab,name);
             deleteSync(resultPath);
-            deleteSync(weightPath);
+            deleteSync(dataPath);
 
             used = false;
             return fitness;
@@ -213,7 +211,7 @@ namespace EsExperimentNS
         private static int[] typesToInt(List<NType> types)
         {
            return  types.ConvertAll<int>(value => (int)value).ToArray();
-   
+            //NType { D, EM, ES, IM, IS };
         }
 
         private static void writeSyncData(int[][] connections,int[] types, string dataPath)
@@ -225,7 +223,7 @@ namespace EsExperimentNS
                     List<MLArray> l = new List<MLArray>();
                     MLInt32 weights = new MLInt32("connections", connections);
                     l.Add(weights);
-                    MLInt32 intTypes = new MLInt32("types", types);
+                    MLInt32 intTypes = new MLInt32("types", types,1);
                     l.Add(intTypes);
                     new MatFileWriter(dataPath, l, false);
                     return;
@@ -386,7 +384,7 @@ namespace EsExperimentNS
         public void close()
         {
             writeSync("close");
-            deleteSync(weightPath);
+            deleteSync(dataPath);
             deleteSync(resultPath);
         }
 

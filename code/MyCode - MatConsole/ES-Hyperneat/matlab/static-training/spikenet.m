@@ -204,6 +204,10 @@ end
         function connections = getConnections(this,pre,post)
             pre_cells = find(this.getCellsOfType(pre));
             post_cells = find(this.getCellsOfType(post));
+            if(isempty(pre_cells) || isempty(post_cells))
+            connections = [];    
+            return
+            end
             submatrix = this.weightsMatrix(pre_cells,post_cells);
             [i,j] = ind2sub(size(submatrix),find(submatrix ~= 0));
             i = i+pre_cells(1)-1;

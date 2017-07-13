@@ -20,6 +20,8 @@ namespace EsExperimentNS
         public static String modelLibPathSimulate = "not given";
         public static String modelLibPathTrain = "not given";
         public static String matlabExecPath = "not given";
+        public static uint cPPNInputs = 4;  
+        public static uint cPPNOutputs = 1;
         public static uint numLastGenModelsToPlotAndSave = 0;
         public static uint maxGenerations = 0;
         public static uint populationSize = 0;

@@ -14,6 +14,7 @@ using System.Drawing;
 using static EsExperimentNS.Helper;
 using System.Threading;
 using System.Globalization;
+using SharpNeatLib.CPPNs;
 
 namespace EsExperimentNS
 {
@@ -49,7 +50,7 @@ namespace EsExperimentNS
  
            // string genomeSavePath = "";
             NeatGenome seedGenome = null;
-            string filename = null;
+           // string filename = null;
 
             Console.WriteLine("test encoding: threshold: "+ HyperNEATParameters.threshold);
             // Console.WriteLine("number of processors: "+ Environment.ProcessorCount);
@@ -110,7 +111,7 @@ namespace EsExperimentNS
             //string epath = Directory.GetCurrentDirectory() + "\\" + ExperimentParameters.initialNetEqParamsPath;
             //Console.WriteLine(wpath);
             //Console.WriteLine(epath);
-            Console.WriteLine("loading initial data");
+   
 
             Console.WriteLine("Creating Experiment");
             EsExperiment exp = new EsExperiment();
@@ -168,8 +169,7 @@ namespace EsExperimentNS
            // save n best models of last population
 
             GenomeList genList = ea.Population.GenomeList;
-            genList.Sort(); // increasing values.
-           // genList.Reverse();
+            genList.Sort(); // decreasing values.
             IGenome[] genArray =genList.ToArray();
 
             Console.WriteLine("Saving Genomes");
@@ -360,6 +360,8 @@ namespace EsExperimentNS
 
                     }
                 }
+                //.dot file
+                CPPNDotWriterStatic.saveCPPNasDOT((NeatGenome)g, GenomeImageSavePath + pathSep + name + ".dot");
 
             }
 

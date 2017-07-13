@@ -55,20 +55,23 @@ namespace EsExperimentNS
 
             List<Neuron[]> connections = new List<Neuron[]>(); //int 2 input output
 
-            //Place Input Neurons y=0 x in area between 0 and 1
+            // Quadtree area : unit square with center 0
+            //Place Input Neurons y= -0.5 x in area between -0.5 and 0.5
             List<Neuron> inputNeurons = new List<Neuron>();
             float inputDelta = 1f / (numInputNeurons - 1);
-            float xPos = 0;
+            float xPos = -0.5f;
+            float yPos = 0;
             for (int i = 0; i < numInputNeurons; i++)
             {
-                PointF point = new PointF(xPos, 0);
+                PointF point = new PointF(xPos, yPos);
                 Neuron n = new Neuron(NType.D, point);
                 inputNeurons.Add(n);
                 neuronDictionary.Add(point, n);
                 xPos += inputDelta;
             }
-
-
+            // need max depth of 3 = max 64+D neurons ,depth 4 = 256+D
+            // neurone klauen sich den platz weg TODO  Approach 1 -> hyperneat muss complex genunges netz finden, welches es ermöglicht, dass alle Neurone ausgeprägt werden. ?
+            //                                         Approach 2 -> 
             List<Neuron> esNeurons = scanForNewConnections(inputNeurons, NType.ES, true, neuronDictionary);
             List<Neuron> isNeurons = scanForNewConnections(esNeurons, NType.IS, true, neuronDictionary);
             scanForNewConnections(isNeurons, NType.IS, false, neuronDictionary);
@@ -82,13 +85,14 @@ namespace EsExperimentNS
             // finding circles is to expensive in this case
             List<Neuron> allNeurons = neuronDictionary.Values.ToList();
 
+            // TODO important  comment int !! after testin
 
-            foreach (Neuron n in allNeurons)
-            {
-                deleteRekursive(n);
-            }
+            //foreach (Neuron n in allNeurons)
+            //{
+            //    deleteRekursive(n);
+            //}
 
-            List<Neuron> clearedNeuros = new List<Neuron>(allNeurons);
+            List<Neuron> clearedNeuros = new List<Neuron>();
 
 
             //get not deleted neurons
@@ -102,6 +106,7 @@ namespace EsExperimentNS
             }
             // sort neurons by type
             int counter = 0;
+            List<Neuron> sortedNeurons = new List<Neuron>();
             foreach (NType type in Enum.GetValues(typeof(NType)))
             {
                 foreach (Neuron n in clearedNeuros)
@@ -109,12 +114,12 @@ namespace EsExperimentNS
                     if (n.type == type)
                     {
                         n.index =counter++;
-                        clearedNeuros.Add(n);
+                        sortedNeurons.Add(n);
                     }
                 }
 
             }
-            Debug.Assert(counter == clearedNeuros.Count + 1);
+            Debug.Assert(counter == clearedNeuros.Count );
 
                 //allNeurons.Where(n => n.toDelete == false).ToList();
 
@@ -135,28 +140,31 @@ namespace EsExperimentNS
                 }
             }
             types = typeArray.ToList();
-            return connectionsMat;
+            return connectionsMat;// hier fliegt macnhmal ein unnachvollziehbarar Argument Null Exception
         }
-
+  
         private void deleteRekursive(Neuron n)
         {
 
-            if (n.type != NType.EM && n.outCon.Count == 0) // n.toDelete== false -> otherwise running in circle 
+            if (n.type != NType.EM && n.outCon.Count == 0 && n.toDelete == false) // n.toDelete== false -> otherwise running in circle 
             {
-                // always has a incoming connection, wouldn't be created otherwise
-                Debug.Assert(n.toDelete == false); // there sould be no way to get to this one,cause it doesn't have outoing connections
+                //Debug.Assert(n.toDelete == false); // there sould be no way to get to this ,cause it doesn't have outgoing connections
+                                                       // no there is a way cause one iterates over all neurons revursive deleted neurons are called again
+                // TODO assert schlägt fehl
                 n.toDelete = true;
                 foreach (Neuron n2 in n.inCon)
                 {
                     Debug.Assert(n2.outCon.Remove(n));
                     deleteRekursive(n2);
                 }
+                n.inCon.Clear();
             }
 
         }
 
         private List<Neuron> scanForNewConnections(List<Neuron> sourceNeurons, NType targetType, bool createNewNeurons, Dictionary<PointF, Neuron> neuronDictionray) // ? make ntype Nullable
         {
+            int connection_counter = 0;
             List<TempConnection> tempConnections = new List<TempConnection>();
             List<Neuron> destNeurons = new List<Neuron>();
             // Connections form Input nodes to ES nodes
@@ -174,10 +182,11 @@ namespace EsExperimentNS
                     bool exists = neuronDictionray.TryGetValue(targetPoint, out targetNeuron);
                     if (exists && targetNeuron.type == targetType)
                     {
+                        connection_counter++;
                         targetNeuron.inCon.Add(sourceNeuron);
                         sourceNeuron.outCon.Add(targetNeuron);
                     }
-                    else if (createNewNeurons)
+                    else if (!exists && createNewNeurons)
                     {
                         targetNeuron = new Neuron(targetType, targetPoint);
                         destNeurons.Add(targetNeuron);

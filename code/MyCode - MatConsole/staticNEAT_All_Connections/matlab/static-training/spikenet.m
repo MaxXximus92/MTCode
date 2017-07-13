@@ -182,10 +182,10 @@ classdef spikenet < handle
 
             trainingTime =prost.mode_start_time;
             if (trainingTime == 1), trainingTime = max_train_time; end
-            fitness_training = this.correctMoves/(trainingTime/50); %/50 since reward is send only every 50 steps
-            fitness_angle = sum(prost.reached_angles)/length(prost.reached_angles);
+            fitness_correctTrainingMoves = this.correctMoves/(trainingTime/50); %/50 since reward is send only every 50 steps
+            fitness_reachedAngles = sum(prost.reached_angles)/length(prost.reached_angles);
             successfully = sum(prost.reached_angles)==length(prost.reached_angles); % reached angles during simulation
-            fitness_rmsd=0; % = not successful
+            fitness_SimRmsd=0; % = not successful
 
             if(successfully)
                 angle_start_time=prost.mode_start_time;
@@ -203,9 +203,12 @@ classdef spikenet < handle
                 rmsd= sqrt(squared_sum/num_angles);
                 norm_rmsd = rmsd/(prost.angle_max-prost.angle_min);
                 %calc variance
-                fitness_rmsd = 1-norm_rmsd; % wert zwischen 0 und 1. 0 schlecht 1 gut
+                fitness_SimRmsd = 1-norm_rmsd; % wert zwischen 0 und 1. 0 schlecht 1 gut
             end
-            fitness = (fitness_rmsd+fitness_training+fitness_angle)/3;
+            rmsd_scale=0.7;
+            angle_scale=0.2;
+            training_scale=0.1;
+            fitness = (training_scale*fitness_correctTrainingMoves+angle_scale*fitness_reachedAngles+rmsd_scale*fitness_SimRmsd);
             this.reset();
         end
         

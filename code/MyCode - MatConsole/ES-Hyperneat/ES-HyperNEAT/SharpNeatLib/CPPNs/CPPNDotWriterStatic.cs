@@ -63,18 +63,18 @@ namespace SharpNeatLib.CPPNs
                     SW.WriteLine("[color=red] [arrowType=inv]");
             }
 
-            foreach (ModuleGene mg in genome.ModuleGeneList)
-            {
-                foreach (uint sourceID in mg.InputIds)
-                {
-                    foreach (uint targetID in mg.OutputIds)
-                    {
-                        SW.Write("N" + sourceID + " -> N" + targetID + " ");
+            //foreach (ModuleGene mg in genome.ModuleGeneList)
+            //{
+            //    foreach (uint sourceID in mg.InputIds)
+            //    {
+            //        foreach (uint targetID in mg.OutputIds)
+            //        {
+            //            SW.Write("N" + sourceID + " -> N" + targetID + " ");
 
-                        SW.WriteLine("[color=gray]");
-                    }
-                }
-            }
+            //            SW.WriteLine("[color=gray]");
+            //        }
+            //    }
+            //}
 
             SW.WriteLine(" { rank=same; ");
             foreach (NeuronGene neuron in genome.NeuronGeneList)

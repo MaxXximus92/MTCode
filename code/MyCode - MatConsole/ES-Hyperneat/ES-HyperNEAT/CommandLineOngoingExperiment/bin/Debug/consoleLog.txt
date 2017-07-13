@@ -1,29 +1,32 @@
-07 17:44:39 test encoding: threshold: -0.5
-07 17:44:39 Starting Experiment: StatExp
-07 17:44:39 --------------------------------------------------------
-07 17:44:39 loading initial data
-07 17:44:43 Loaded DEsNum: 96 96
-07 17:44:43 Creating Experiment
-07 17:44:43 Building Population
-07 17:44:43 Matlab instance Number 1 added
-07 17:44:43 Matlab instance Number 2 added
-07 17:44:58 Genome Number 1 fitness 0,01667 dt 00:00:15.1407523 
-07 17:44:58 Genome Number 0 fitness 0,03333 dt 00:00:15.1563773 
-07 17:44:59 Run Experiment
-07 17:44:59 ------------------------------------
+13 16:20:42 test encoding: threshold: 0
+13 16:20:42 Starting Experiment: EsExp
+13 16:20:42 --------------------------------------------------------
+13 16:20:42 Creating Experiment
+13 16:20:42 Building Population
+13 16:20:42 matlab instance number 1 added
+13 16:20:57 Genome Number 0 fitness 0 dt 00:00:15.4220131 
+13 16:21:13 Genome Number 1 fitness 0 dt 00:00:15.3751390 
+13 16:21:13 Run Experiment
+13 16:21:13 ------------------------------------
  Generation: 0
 ------------------------------------
-07 17:45:14 Genome Number 1 fitness 0,01667 dt 00:00:15.1095014 
-07 17:45:14 Genome Number 0 fitness 0,03333 dt 00:00:15.2032527 
-07 17:45:14 Best fitness of gernatation 0 : 0.03333
-07 17:45:14 Save Best Genome
-07 17:45:14 -----------------------------
-07 17:45:14 Generation Number1, best fitness:0.03333, time needed to evaluate: 00:00:15.2345037
-07 17:45:14 -----------------------------
-07 17:45:14 Evolution Done -> SavingResults
-07 17:45:14 Saving Genomes
-07 17:45:14 Close Training Models
-07 17:45:14 Simulate Model
-07 17:46:49 Simulation Matlab Plots for Genome Name StaticExperiment_LGen_Fit_0.08333_ord_1_aftsim created 00:01:34.9660569
-07 17:46:49 Plotting genome graphs
-07 17:46:55 Done!
+13 16:21:28 Genome Number 0 fitness 0 dt 00:00:15.0938863 
+13 16:21:44 Genome Number 1 fitness 0 dt 00:00:15.4220141 
+13 16:21:44 Best fitness of gernatation 0 : 0
+13 16:21:44 Save Best Genome
+13 16:21:44 -----------------------------
+13 16:21:44 Generation Number1, best fitness:0, time needed to evaluate: 00:00:30.7502771
+13 16:21:44 -----------------------------
+13 16:21:44 Evolution Done -> Saving Results
+13 16:21:44 Saving Genomes
+13 16:21:44 Plotting matlab graphs
+13 16:21:59 Matlab Plots for Genome Name EsExp_BGen_Gen_0_Fit_0 created 00:00:15.1095111
+13 16:22:14 Matlab Plots for Genome Name EsExp_LGen_Fit_0_ord_1 created 00:00:15.3751384
+13 16:22:15 Close training models
+13 16:22:15 Simulate model
+13 16:23:28 Simulation Matlab Plots for Genome Name EsExp_BGen_Gen_0_Fit_0_aftsim created 00:01:13.6578686
+13 16:23:41 fitness file not readable, Matlab EsExp_LGen_Fit_0_ord_1_aftsim must have been crashed before writing it
+13 16:23:41 simulating model again
+13 16:24:30 Simulation Matlab Plots for Genome Name EsExp_LGen_Fit_0_ord_1_aftsim created 00:01:01.4212129
+13 16:24:30 Plotting genome graphs
+13 16:24:30 Done!

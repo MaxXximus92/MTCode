@@ -1,0 +1,130 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017a (9.2.0.556344) 64-bit (glnxa64)
+                               March 27, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+
+------------------------------------------------------------------------
+       Segmentation violation detected at Tue Jul 11 21:29:26 2017
+------------------------------------------------------------------------
+
+Configuration:
+  Crash Decoding      : Disabled - No sandbox or build area path
+  Crash Mode          : continue (default)
+  Current Graphics Driver: Unknown software 
+  Current Visual      : None
+  Default Encoding    : UTF-8
+  Deployed            : false
+  GNU C Library       : 2.19 stable
+  Host Name           : eciton
+  MATLAB Architecture : glnxa64
+  MATLAB Entitlement ID: 1901538
+  MATLAB Root         : /storage/matlab-r2017a
+  MATLAB Version      : 9.2.0.556344 (R2017a)
+  OpenGL              : software
+  Operating System    : Linux 3.19.0-39-generic #44~14.04.1-Ubuntu SMP Wed Dec 2 10:00:35 UTC 2015 x86_64
+  Processor ID        : x86 Family 111 Model 2 Stepping 0, AuthenticAMD
+  Virtual Machine     : Java 1.7.0_60-b19 with Oracle Corporation Java HotSpot(TM) 64-Bit Server VM mixed mode
+  Window System       : No active display
+
+Fault Count: 1
+
+
+Abnormal termination:
+Segmentation violation
+
+Register State (from fault):
+  RAX = 0000000000000000  RBX = 0000000000000000
+  RCX = 00007f7631414c88  RDX = 0000000000000001
+  RSP = 00007f763d399378  RBP = 00007f763d3993f0
+  RSI = 00007f763f4cba50  RDI = 00007f763d399400
+
+   R8 = 00000000000000d0   R9 = 00007f75e1715b40
+  R10 = 0000000000000006  R11 = 000000000000000a
+  R12 = 00007f763d399400  R13 = 00007f7631414c60
+  R14 = 00007f76314d9b20  R15 = 00007f76315e13b8
+
+  RIP = 00007f76434f94c4  EFL = 0000000000010246
+
+   CS = 0033   FS = 0000   GS = 0000
+
+Stack Trace (from fault):
+[  0] 0x00007f76434f94c4                    bin/glnxa64/libmwlxeindexing.so+00496836
+[  1] 0x00007f76434f9cc4                    bin/glnxa64/libmwlxeindexing.so+00498884
+[  2] 0x00007f764354da65                    bin/glnxa64/libmwlxeindexing.so+00842341
+[  3] 0x00007f764354de1f                    bin/glnxa64/libmwlxeindexing.so+00843295 _ZN9MathWorks3lxe24AssignBraceUninitializedER11mxArray_tagRKN5boost14iterator_rangeIPKNS0_6xvalueEEEOS5_RNS0_20IIndexingEnvironmentEPv+00000031
+[  4] 0x00007f764354ea1f                    bin/glnxa64/libmwlxeindexing.so+00846367
+[  5] 0x00007f764354dec7                    bin/glnxa64/libmwlxeindexing.so+00843463 _ZN9MathWorks3lxe34assign_brace_pointer_uninitializedEPvNS_2ts4TypeEPKvS1_S1_+00000135
+[  6] 0x00007f76474362f1                          bin/glnxa64/libmwm_lxe.so+12313329
+[  7] 0x00007f7646e2f5ea                          bin/glnxa64/libmwm_lxe.so+05993962
+[  8] 0x00007f7646e1c4f0                          bin/glnxa64/libmwm_lxe.so+05915888
+[  9] 0x00007f7646e22083                          bin/glnxa64/libmwm_lxe.so+05939331
+[ 10] 0x00007f76472a4b0e                          bin/glnxa64/libmwm_lxe.so+10668814
+[ 11] 0x00007f7647395eec                          bin/glnxa64/libmwm_lxe.so+11656940
+[ 12] 0x00007f764b0a71f3                   bin/glnxa64/libmwm_dispatcher.so+00782835 _ZN8Mfh_file16dispatch_fh_implEMS_FviPP11mxArray_tagiS2_EiS2_iS2_+00000947
+[ 13] 0x00007f764b0a7abe                   bin/glnxa64/libmwm_dispatcher.so+00785086 _ZN8Mfh_file11dispatch_fhEiPP11mxArray_tagiS2_+00000030
+[ 14] 0x00007f763796dcbb                      bin/glnxa64/libmwmcos_impl.so+02677947
+[ 15] 0x00007f7637a3d5e0                      bin/glnxa64/libmwmcos_impl.so+03528160
+[ 16] 0x00007f764b03b628                   bin/glnxa64/libmwm_dispatcher.so+00341544 _ZN13Mfh_MATLAB_fn11dispatch_fhEiPP11mxArray_tagiS2_+00000616
+[ 17] 0x00007f7637a3d8c8                      bin/glnxa64/libmwmcos_impl.so+03528904
+[ 18] 0x00007f7643524b00                    bin/glnxa64/libmwlxeindexing.so+00674560
+[ 19] 0x00007f764351aad6                    bin/glnxa64/libmwlxeindexing.so+00633558
+[ 20] 0x00007f76435411fe                    bin/glnxa64/libmwlxeindexing.so+00791038
+[ 21] 0x00007f7643540e24                    bin/glnxa64/libmwlxeindexing.so+00790052
+[ 22] 0x00007f764352cdce                    bin/glnxa64/libmwlxeindexing.so+00708046
+[ 23] 0x00007f764742f741                          bin/glnxa64/libmwm_lxe.so+12285761
+[ 24] 0x00007f7646e2f6f5                          bin/glnxa64/libmwm_lxe.so+05994229
+[ 25] 0x00007f7646e1c4f0                          bin/glnxa64/libmwm_lxe.so+05915888
+[ 26] 0x00007f7646e22083                          bin/glnxa64/libmwm_lxe.so+05939331
+[ 27] 0x00007f76472a4b0e                          bin/glnxa64/libmwm_lxe.so+10668814
+[ 28] 0x00007f7647270dd4                          bin/glnxa64/libmwm_lxe.so+10456532
+[ 29] 0x00007f764727114a                          bin/glnxa64/libmwm_lxe.so+10457418
+[ 30] 0x00007f7647272919                          bin/glnxa64/libmwm_lxe.so+10463513
+[ 31] 0x00007f76472e72be                          bin/glnxa64/libmwm_lxe.so+10941118
+[ 32] 0x00007f76472e7772                          bin/glnxa64/libmwm_lxe.so+10942322
+[ 33] 0x00007f764a5aad51                  bin/glnxa64/libmwm_interpreter.so+02403665 _Z51inEvalCmdWithLocalReturnInDesiredWSAndPublishEventsRKSbIDsSt11char_traitsIDsESaIDsEEPibbP15inWorkSpace_tag+00000065
+[ 34] 0x00007f764bb20b31                            bin/glnxa64/libmwiqm.so+00690993 _ZNK3iqm18InternalEvalPlugin24inEvalCmdWithLocalReturnERKSbIDsSt11char_traitsIDsESaIDsEEP15inWorkSpace_tag+00000097
+[ 35] 0x00007f764bb2253b                            bin/glnxa64/libmwiqm.so+00697659 _ZN3iqm18InternalEvalPlugin7executeEP15inWorkSpace_tagRN5boost10shared_ptrIN14cmddistributor17IIPCompletedEventEEE+00000123
+[ 36] 0x00007f764b385a9d                            bin/glnxa64/libmwmcr.so+00645789
+[ 37] 0x00007f764bb13fba                            bin/glnxa64/libmwiqm.so+00638906
+[ 38] 0x00007f764bb02902                            bin/glnxa64/libmwiqm.so+00567554
+[ 39] 0x00007f764944f05a                         bin/glnxa64/libmwbridge.so+00159834
+[ 40] 0x00007f764945655e                         bin/glnxa64/libmwbridge.so+00189790
+[ 41] 0x00007f764945667b                         bin/glnxa64/libmwbridge.so+00190075
+[ 42] 0x00007f7649457003                         bin/glnxa64/libmwbridge.so+00192515 _Z8mnParserv+00000627
+[ 43] 0x00007f764b36edf3                            bin/glnxa64/libmwmcr.so+00552435
+[ 44] 0x00007f764b370f9e                            bin/glnxa64/libmwmcr.so+00561054
+[ 45] 0x00007f764b371619                            bin/glnxa64/libmwmcr.so+00562713 _ZN5boost6detail17task_shared_stateINS_3_bi6bind_tIvPFvRKNS_8functionIFvvEEEENS2_5list1INS2_5valueIS6_EEEEEEvE6do_runEv+00000025
+[ 46] 0x00007f764b36ff06                            bin/glnxa64/libmwmcr.so+00556806
+[ 47] 0x00007f764bb49739                            bin/glnxa64/libmwiqm.so+00857913
+[ 48] 0x00007f764bb3606c                            bin/glnxa64/libmwiqm.so+00778348 _ZN5boost6detail8function21function_obj_invoker0ISt8functionIFNS_3anyEvEES4_E6invokeERNS1_15function_bufferE+00000028
+[ 49] 0x00007f764bb35d4c                            bin/glnxa64/libmwiqm.so+00777548 _ZN3iqm18PackagedTaskPlugin7executeEP15inWorkSpace_tagRN5boost10shared_ptrIN14cmddistributor17IIPCompletedEventEEE+00000428
+[ 50] 0x00007f764bb13fba                            bin/glnxa64/libmwiqm.so+00638906
+[ 51] 0x00007f764bb0215f                            bin/glnxa64/libmwiqm.so+00565599
+[ 52] 0x00007f764bb04609                            bin/glnxa64/libmwiqm.so+00574985
+[ 53] 0x00007f765c5e301a                       bin/glnxa64/libmwservices.so+02469914
+[ 54] 0x00007f765c5e45cf                       bin/glnxa64/libmwservices.so+02475471
+[ 55] 0x00007f765c5e4d7a                       bin/glnxa64/libmwservices.so+02477434 _Z25svWS_ProcessPendingEventsiib+00000186
+[ 56] 0x00007f764b36f56e                            bin/glnxa64/libmwmcr.so+00554350
+[ 57] 0x00007f764b36f901                            bin/glnxa64/libmwmcr.so+00555265
+[ 58] 0x00007f764b35d206                            bin/glnxa64/libmwmcr.so+00479750
+[ 59] 0x00007f765af00184              /lib/x86_64-linux-gnu/libpthread.so.0+00033156
+[ 60] 0x00007f765ac2dbed                    /lib/x86_64-linux-gnu/libc.so.6+01039341 clone+00000109
+[ 61] 0x0000000000000000                                   <unknown-module>+00000000
+
+
+If this problem is reproducible, please submit a Service Request via:
+    http://www.mathworks.com/support/contact_us/
+
+A technical support engineer might contact you with further information.
+
+Thank you for your help.** This crash report has been saved to disk as /home/mutschler/matlab_crash_dump.4880-1 **
+
+
+
+MATLAB is exiting because of fatal error
