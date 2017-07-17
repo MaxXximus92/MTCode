@@ -202,6 +202,7 @@
     <Compile Include="Evolution\Xml\XmlPopulationWriterStatic.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CPPNs\EvolvableSubstrate1D.cs" />
     <Compile Include="Experiments\AbstractExperimentView.cs">
       <SubType>Form</SubType>
     </Compile>

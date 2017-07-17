@@ -391,3 +391,21 @@ Fehler in ongoing model behoben y coordinaten wurden nie zurückgesetzt im loop.
 ->  but modulatority and adaptability is deactivated in code
 
 -> fehler beim suchen der connections gefunen muss find(wieghtsmatrix~=0) sein- schon in sebaastians code falsch- hat aber keine auswirkungen, da connections nie verwendet werden
+14.07
+-> linear function ist eigentlich abs function
+-> alle funktionen bilden auf intervall [0,1] oder [-1,1] ab
+-> Wichtig, quatree impementierung war falsch, es muss width/4 sein nicht width/2 für den neuen punkt
+
+TypeCoded  ESSubstrate
+       // das cppn muss eine gewisse compelxität haben, damit hier modelle entstehen die d mit EM über ES neurone verknüpfen.
+     // sollte sich dann im laufe der evolution zeigen.
+17.07 Allconnections ,(weights)
+best model:
+     D_ES: 0.6387
+    ES_IS: 0.3167
+    IS_IS: 0.0059
+    IS_ES: 0.2529
+    ES_EM: 0.3696
+    EM_IM: 0
+    IM_IM: 0
+    IM_EM: 0.4987

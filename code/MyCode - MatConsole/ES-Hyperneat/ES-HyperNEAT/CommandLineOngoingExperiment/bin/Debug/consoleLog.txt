@@ -1,32 +1,6 @@
-13 16:20:42 test encoding: threshold: 0
-13 16:20:42 Starting Experiment: EsExp
-13 16:20:42 --------------------------------------------------------
-13 16:20:42 Creating Experiment
-13 16:20:42 Building Population
-13 16:20:42 matlab instance number 1 added
-13 16:20:57 Genome Number 0 fitness 0 dt 00:00:15.4220131 
-13 16:21:13 Genome Number 1 fitness 0 dt 00:00:15.3751390 
-13 16:21:13 Run Experiment
-13 16:21:13 ------------------------------------
- Generation: 0
-------------------------------------
-13 16:21:28 Genome Number 0 fitness 0 dt 00:00:15.0938863 
-13 16:21:44 Genome Number 1 fitness 0 dt 00:00:15.4220141 
-13 16:21:44 Best fitness of gernatation 0 : 0
-13 16:21:44 Save Best Genome
-13 16:21:44 -----------------------------
-13 16:21:44 Generation Number1, best fitness:0, time needed to evaluate: 00:00:30.7502771
-13 16:21:44 -----------------------------
-13 16:21:44 Evolution Done -> Saving Results
-13 16:21:44 Saving Genomes
-13 16:21:44 Plotting matlab graphs
-13 16:21:59 Matlab Plots for Genome Name EsExp_BGen_Gen_0_Fit_0 created 00:00:15.1095111
-13 16:22:14 Matlab Plots for Genome Name EsExp_LGen_Fit_0_ord_1 created 00:00:15.3751384
-13 16:22:15 Close training models
-13 16:22:15 Simulate model
-13 16:23:28 Simulation Matlab Plots for Genome Name EsExp_BGen_Gen_0_Fit_0_aftsim created 00:01:13.6578686
-13 16:23:41 fitness file not readable, Matlab EsExp_LGen_Fit_0_ord_1_aftsim must have been crashed before writing it
-13 16:23:41 simulating model again
-13 16:24:30 Simulation Matlab Plots for Genome Name EsExp_LGen_Fit_0_ord_1_aftsim created 00:01:01.4212129
-13 16:24:30 Plotting genome graphs
-13 16:24:30 Done!
+17 12:45:37 test encoding: threshold: 0
+17 12:45:37 Starting Experiment: EsExp
+17 12:45:38 --------------------------------------------------------
+17 12:45:38 Creating Experiment
+17 12:45:38 Building Population
+17 12:45:38 matlab instance number 1 added

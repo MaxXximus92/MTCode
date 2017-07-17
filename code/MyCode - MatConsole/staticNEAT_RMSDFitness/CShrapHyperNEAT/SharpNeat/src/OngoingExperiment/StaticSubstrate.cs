@@ -10,11 +10,17 @@ using SharpNeatLib.Experiments;
 namespace StaticExperimentNS
 {
 
-    static class StaticSubstrate
+    public static class StaticSubstrate
     {
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="network"></param>CPPN
+        /// <param name="inputs"></param> num substrate Neurons input
+        /// <param name="outputs"></param> num substrate Neurons output
+        /// <returns></returns>
     public static double[][] getConnections(INetwork network, int inputs, int outputs) //CPPN
         {
             // 2d solution

@@ -1,0 +1,42 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017a (9.2.0.556344) 64-bit (glnxa64)
+                               March 27, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Error while wrting to /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat  
+ with message Can not write file /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat. 
+Error while wrting to /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat  
+ with message Can not write file /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat. 
+Error while wrting to /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat  
+ with message Can not write file /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat. 
+Error while wrting to /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat  
+ with message Can not write file /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat. 
+Error while wrting to /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat  
+ with message Can not write file /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat. 
+Error while wrting to /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat  
+ with message Can not write file /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat. 
+Error while wrting to /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat  
+ with message Can not write file /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat. 
+Error while wrting to /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat  
+ with message Can not write file /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat. 
+Error while wrting to /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat  
+ with message Can not write file /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat. 
+Error while wrting to /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat  
+ with message Can not write file /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat. 
+Error while wrting to /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat  
+ with message Can not write file /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat. 
+Error while wrting to /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat  
+ with message Can not write file /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat. 
+Error while wrting to /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat  
+ with message Can not write file /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat. 
+Error while wrting to /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat  
+ with message Can not write file /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat. 
+Error while wrting to /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat  
+ with message Can not write file /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat. 
+Error while wrting to /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communiError while wrting to /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat  
+ with message Can not write file /home/mutschler/Experiments/Static_AllWeights_17_07_10/Release/communication/rmsd_com_18.mat. 

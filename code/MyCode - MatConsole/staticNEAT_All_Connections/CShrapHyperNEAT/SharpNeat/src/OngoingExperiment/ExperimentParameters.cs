@@ -24,8 +24,8 @@ namespace StaticExperimentNS
         public static uint numLastGenModelsToPlotAndSave = 0;
         public static uint maxGenerations = 0;
         public static uint populationSize = 0;
-        public static uint cPPNInputs = 4;  // 1d model 2
-        public static uint cPPNOutputs = 1; // 1d model 8
+        public static uint cPPNInputs = 2;  // 1d model 2 // square 4
+        public static uint cPPNOutputs = 8; // 1d model 8 // square 1
         public static int startAngle = 0;
         public static string simulation_anglesToSimulate = "not given";
         public static int simulation_timePerAngle = 0;

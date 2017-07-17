@@ -1,0 +1,30 @@
+<genome id="33801" species-id="423" age="1" fitness="0.02">
+  <neurons>
+    <neuron id="0" type="bias" activationFunction="NullFn" />
+    <neuron id="1" type="in" activationFunction="NullFn" />
+    <neuron id="2" type="in" activationFunction="NullFn" />
+    <neuron id="3" type="in" activationFunction="NullFn" />
+    <neuron id="4" type="in" activationFunction="NullFn" />
+    <neuron id="5" type="out" activationFunction="BipolarSigmoid" />
+    <neuron id="58" type="hid" activationFunction="Gaussian" />
+    <neuron id="259" type="hid" activationFunction="Gaussian" />
+  </neurons>
+  <connections>
+    <connection innov-id="6" src-id="0" tgt-id="5" weight="-0.19135772483423352" />
+    <connection innov-id="7" src-id="1" tgt-id="5" weight="-0.39063222575932743" />
+    <connection innov-id="8" src-id="2" tgt-id="5" weight="0.47591317025944591" />
+    <connection innov-id="59" src-id="4" tgt-id="58" weight="0.91772313695400953" />
+    <connection innov-id="60" src-id="58" tgt-id="5" weight="-0.68373361928388476" />
+    <connection innov-id="71" src-id="5" tgt-id="58" weight="0.57307405988685789" />
+    <connection innov-id="260" src-id="3" tgt-id="259" weight="-1.1628551124595106" />
+    <connection innov-id="261" src-id="259" tgt-id="5" weight="0.48064926476217806" />
+    <connection innov-id="269" src-id="5" tgt-id="5" weight="-0.88684559538960461" />
+    <connection innov-id="295" src-id="4" tgt-id="259" weight="-0.42277918243780732" />
+    <connection innov-id="314" src-id="2" tgt-id="259" weight="0.67484799711965027" />
+    <connection innov-id="329" src-id="5" tgt-id="259" weight="-0.087530905846506357" />
+    <connection innov-id="345" src-id="259" tgt-id="259" weight="0.84796130936592817" />
+    <connection innov-id="356" src-id="1" tgt-id="259" weight="-0.15031203255057335" />
+    <connection innov-id="418" src-id="0" tgt-id="259" weight="0.49128832295536995" />
+    <connection innov-id="814" src-id="58" tgt-id="259" weight="-1.3048917073756456" />
+  </connections>
+</genome>

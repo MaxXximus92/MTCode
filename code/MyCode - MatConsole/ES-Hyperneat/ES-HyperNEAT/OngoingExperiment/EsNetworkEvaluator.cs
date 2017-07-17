@@ -44,7 +44,9 @@ namespace EsExperimentNS
         {
             MatlabCommunicator matlab = getMatlab();
             double fitness = 0;
-            EsSubstrate substrate = new EsSubstrate(network);
+            //EsSubstrate substrate = new EsSubstrate(network);
+           // EsSubstrateTypeCoded substrate = new EsSubstrateTypeCoded(network);
+            EsSubstrate1D substrate = new EsSubstrate1D(network);
             List<NType> types = new List<NType>();
             int[][] connections = substrate.getConnections(out types);
             try
@@ -68,7 +70,9 @@ namespace EsExperimentNS
         {
 
             MatlabCommunicator matlab = getMatlab();
-            EsSubstrate substrate = new EsSubstrate(network);
+            // EsSubstrate substrate = new EsSubstrate(network);
+           // EsSubstrateTypeCoded substrate = new EsSubstrateTypeCoded(network);
+            EsSubstrate1D substrate = new EsSubstrate1D(network);
             List<NType> types = new List<NType>();
             int[][] connections = substrate.getConnections(out types);
             try

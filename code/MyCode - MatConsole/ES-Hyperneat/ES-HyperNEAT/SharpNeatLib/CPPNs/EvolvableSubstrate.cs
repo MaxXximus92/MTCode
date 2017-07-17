@@ -23,8 +23,9 @@ namespace SharpNeatLib.CPPNs
         public float divisionThreshold;
         public float varianceThreshold;
         public float bandThreshold;
+        public int numCPPNInputs;
 
-        public float[] coordinates = new float[4];
+       
 
         public class QuadPoint
         {
@@ -66,9 +67,9 @@ namespace SharpNeatLib.CPPNs
          *         position. The initialized quadtree is used in the PruningAndExtraction phase to
          *         generate the actual ANN connections.
          */
-        public QuadPoint QuadTreeInitialisation(float a, float b, bool outgoing, int initialDepth, int maxDepth)
+        public QuadPoint QuadTreeInitialisation(float a, float b, bool outgoing, int initialDepth, int maxDepth, float xpos =0,float ypos=0, float width=2.0f)
         {
-            QuadPoint root = new QuadPoint(0.0f, 0.0f, 1.0f, 1); //x, y, width, level
+            QuadPoint root = new QuadPoint(xpos, ypos, width, 1); //x, y, width, level
             List<QuadPoint> queue = new List<QuadPoint>();
             queue.Add(root);
 
@@ -78,10 +79,11 @@ namespace SharpNeatLib.CPPNs
                 queue.RemoveAt(0);
 
                 // Divide into sub-regions and assign children to parent
-                p.childs.Add(new QuadPoint(p.x - p.width / 2, p.y - p.width / 2, p.width / 2, p.level + 1));
-                p.childs.Add(new QuadPoint(p.x - p.width / 2, p.y + p.width / 2, p.width / 2, p.level + 1));
-                p.childs.Add(new QuadPoint(p.x + p.width / 2, p.y - p.width / 2, p.width / 2, p.level + 1));
-                p.childs.Add(new QuadPoint(p.x + p.width / 2, p.y + p.width / 2, p.width / 2, p.level + 1));
+                // @ Max changed this to /4 cause otherwise width would be 1/2 width of the square area
+                p.childs.Add(new QuadPoint(p.x - p.width / 4, p.y - p.width / 4, p.width / 2, p.level + 1));
+                p.childs.Add(new QuadPoint(p.x - p.width / 4, p.y + p.width / 4, p.width / 2, p.level + 1));
+                p.childs.Add(new QuadPoint(p.x + p.width / 4, p.y - p.width / 4, p.width / 2, p.level + 1));
+                p.childs.Add(new QuadPoint(p.x + p.width / 4, p.y + p.width / 4, p.width / 2, p.level + 1));
 
                 foreach (QuadPoint c in p.childs)
                 {
@@ -210,6 +212,7 @@ namespace SharpNeatLib.CPPNs
 
         public float queryCPPN(float x1, float y1, float x2, float y2)
         {
+            float[] coordinates = new float[numCPPNInputs];
             float weightRange = (float)HyperNEATParameters.weightRange;
             coordinates[0] = x1;
             coordinates[1] = y1;

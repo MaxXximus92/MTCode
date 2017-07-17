@@ -1,0 +1,31 @@
+<genome id="34591" species-id="128" age="2" fitness="0.16">
+  <neurons>
+    <neuron id="0" type="bias" activationFunction="NullFn" />
+    <neuron id="1" type="in" activationFunction="NullFn" />
+    <neuron id="2" type="in" activationFunction="NullFn" />
+    <neuron id="3" type="out" activationFunction="BipolarSigmoid" />
+    <neuron id="50" type="hid" activationFunction="Linear" />
+    <neuron id="57" type="hid" activationFunction="Linear" />
+    <neuron id="83" type="hid" activationFunction="Sine" />
+    <neuron id="89" type="hid" activationFunction="Linear" />
+    <neuron id="110" type="hid" activationFunction="Gaussian" />
+    <neuron id="115" type="hid" activationFunction="Gaussian" />
+    <neuron id="619" type="hid" activationFunction="Linear" />
+  </neurons>
+  <connections>
+    <connection innov-id="51" src-id="1" tgt-id="50" weight="1.0612360098864884" />
+    <connection innov-id="56" src-id="50" tgt-id="50" weight="0.34445439111441373" />
+    <connection innov-id="58" src-id="50" tgt-id="57" weight="-1.3326118427328766" />
+    <connection innov-id="59" src-id="57" tgt-id="3" weight="-0.38179071233607831" />
+    <connection innov-id="84" src-id="2" tgt-id="83" weight="1.0820629218127578" />
+    <connection innov-id="85" src-id="83" tgt-id="3" weight="-0.52004841528832912" />
+    <connection innov-id="90" src-id="0" tgt-id="89" weight="-0.15173640148714185" />
+    <connection innov-id="91" src-id="89" tgt-id="3" weight="-0.80331807746551931" />
+    <connection innov-id="111" src-id="57" tgt-id="110" weight="0.88810420827940106" />
+    <connection innov-id="112" src-id="110" tgt-id="50" weight="0.90261364392936239" />
+    <connection innov-id="116" src-id="1" tgt-id="115" weight="-1.1107186982408166" />
+    <connection innov-id="160" src-id="110" tgt-id="110" weight="-1.1931586672086267" />
+    <connection innov-id="620" src-id="115" tgt-id="619" weight="1" />
+    <connection innov-id="621" src-id="619" tgt-id="3" weight="1.35826439387165" />
+  </connections>
+</genome>

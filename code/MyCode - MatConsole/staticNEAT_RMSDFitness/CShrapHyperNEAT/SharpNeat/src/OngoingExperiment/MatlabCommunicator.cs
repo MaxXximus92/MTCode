@@ -264,7 +264,7 @@ namespace StaticExperimentNS
 
 
 
-        private static void writeSyncMatrix(double[][] esemWeights, string weightPath)
+        public static void writeSyncMatrix(double[][] esemWeights, string weightPath)
         {
             while (true)
             {

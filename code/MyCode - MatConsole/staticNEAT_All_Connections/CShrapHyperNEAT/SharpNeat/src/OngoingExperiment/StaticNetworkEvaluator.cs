@@ -45,7 +45,7 @@ namespace StaticExperimentNS
 
             MatlabCommunicator matlab = getMatlab();
             double fitness = 0;
-            double[][] connections = StaticSubstrate.getConnectionsSquareModel(network, neuronTypes);
+            double[][] connections = StaticSubstrate.getConnections1DModel(network, neuronTypes);
             try
             {
                 fitness = matlab.simulate(connections);
@@ -67,7 +67,7 @@ namespace StaticExperimentNS
         {
 
             MatlabCommunicator matlab = getMatlab();
-            double[][] connections = StaticSubstrate.getConnectionsSquareModel(network,neuronTypes);
+            double[][] connections = StaticSubstrate.getConnections1DModel(network,neuronTypes);
             try
             {
                 double fitness = matlab.simulateWithPlot(connections, saveName);

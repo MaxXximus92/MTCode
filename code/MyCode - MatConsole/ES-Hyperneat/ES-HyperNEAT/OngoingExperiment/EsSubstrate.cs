@@ -23,6 +23,7 @@ namespace EsExperimentNS
             this.maxDepth = HyperNEATParameters.maximumDepth;
             this.genome = genome;
             this.initialDepth = HyperNEATParameters.initialDepth;
+            this.numCPPNInputs =(int) ExperimentParameters.cPPNInputs;
 
         }
         public enum NType { D, EM, ES, IM, IS };
@@ -59,7 +60,7 @@ namespace EsExperimentNS
             //Place Input Neurons y= -0.5 x in area between -0.5 and 0.5
             List<Neuron> inputNeurons = new List<Neuron>();
             float inputDelta = 1f / (numInputNeurons - 1);
-            float xPos = -0.5f;
+            float xPos = 0;
             float yPos = 0;
             for (int i = 0; i < numInputNeurons; i++)
             {
@@ -70,16 +71,15 @@ namespace EsExperimentNS
                 xPos += inputDelta;
             }
             // need max depth of 3 = max 64+D neurons ,depth 4 = 256+D
-            // neurone klauen sich den platz weg TODO  Approach 1 -> hyperneat muss complex genunges netz finden, welches es ermöglicht, dass alle Neurone ausgeprägt werden. ?
-            //                                         Approach 2 -> 
-            List<Neuron> esNeurons = scanForNewConnections(inputNeurons, NType.ES, true, neuronDictionary);
-            List<Neuron> isNeurons = scanForNewConnections(esNeurons, NType.IS, true, neuronDictionary);
-            scanForNewConnections(isNeurons, NType.IS, false, neuronDictionary);
-            scanForNewConnections(isNeurons, NType.ES, false, neuronDictionary);
-            List<Neuron> emNeurons = scanForNewConnections(esNeurons, NType.EM, true, neuronDictionary);
-            List<Neuron> imNeurons = scanForNewConnections(emNeurons, NType.IM, true, neuronDictionary);
-            scanForNewConnections(isNeurons, NType.IM, false, neuronDictionary);
-            scanForNewConnections(isNeurons, NType.EM, false, neuronDictionary);
+            // neurons are stealing their space away. Give each neuron type a quarter of a s 2X2 square wth center 0, D cells are a line in the middle from 0 to one
+            List<Neuron> esNeurons = scanForNewConnectionsAndPoints(inputNeurons, NType.ES, true, neuronDictionary,new PointF(0.5f,0.5f),1f,(int)this.maxDepth);
+            List<Neuron> isNeurons = scanForNewConnectionsAndPoints(esNeurons, NType.IS, true, neuronDictionary, new PointF(-0.5f, 0.5f), 1f, (int)this.maxDepth);
+            scanForNewConnections(isNeurons, NType.IS, neuronDictionary);
+            scanForNewConnections(isNeurons, NType.ES, neuronDictionary);
+            List<Neuron> emNeurons = scanForNewConnectionsAndPoints(esNeurons, NType.EM, true, neuronDictionary, new PointF(-0.5f, -0.5f), 1f, (int)this.maxDepth);
+            List<Neuron> imNeurons = scanForNewConnectionsAndPoints(emNeurons, NType.IM, true, neuronDictionary, new PointF(0.5f, -0.5f), 1f, (int)this.maxDepth);
+            scanForNewConnections(isNeurons, NType.IM, neuronDictionary);
+            scanForNewConnections(isNeurons, NType.EM, neuronDictionary);
 
             //remove neurons with no outgoing connections , it's quite a lot of work here, but gets payedback cause the simulation time is shorter than
             // finding circles is to expensive in this case
@@ -87,10 +87,10 @@ namespace EsExperimentNS
 
             // TODO important  comment int !! after testin
 
-            //foreach (Neuron n in allNeurons)
-            //{
-            //    deleteRekursive(n);
-            //}
+            foreach (Neuron n in allNeurons)
+            {
+                deleteRekursive(n);
+            }
 
             List<Neuron> clearedNeuros = new List<Neuron>();
 
@@ -162,7 +162,11 @@ namespace EsExperimentNS
 
         }
 
-        private List<Neuron> scanForNewConnections(List<Neuron> sourceNeurons, NType targetType, bool createNewNeurons, Dictionary<PointF, Neuron> neuronDictionray) // ? make ntype Nullable
+       private void  scanForNewConnections(List<Neuron> sourceNeurons, NType targetType, Dictionary<PointF, Neuron> neuronDictionray)
+        {
+            scanForNewConnectionsAndPoints(sourceNeurons,  targetType,false, neuronDictionray, new PointF(0,0),2, (int)this.maxDepth+1);
+        }
+        private List<Neuron> scanForNewConnectionsAndPoints(List<Neuron> sourceNeurons, NType targetType, bool createNewNeurons, Dictionary<PointF, Neuron> neuronDictionray, PointF center, float width,int maximalDepth) 
         {
             int connection_counter = 0;
             List<TempConnection> tempConnections = new List<TempConnection>();
@@ -171,7 +175,7 @@ namespace EsExperimentNS
             foreach (Neuron sourceNeuron in sourceNeurons)
             {
                 // Analyze outgoing connectivity pattern from this input
-                QuadPoint root = QuadTreeInitialisation(sourceNeuron.point.X, sourceNeuron.point.Y, true, (int)this.initialDepth, (int)this.maxDepth);
+                QuadPoint root = QuadTreeInitialisation(sourceNeuron.point.X, sourceNeuron.point.Y, true, (int)this.initialDepth, maximalDepth, center.X,center.Y,width);
                 tempConnections.Clear();
                 // Traverse quadtree and add connections to list
                 PruneAndExpress(sourceNeuron.point.X, sourceNeuron.point.Y, ref tempConnections, root, true, maxDepth);

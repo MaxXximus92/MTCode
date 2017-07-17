@@ -135,7 +135,7 @@ namespace StaticExperimentNS
 
             Dictionary<int, SPoint> indexToPointMap = new Dictionary<int, SPoint>();
 
-            List<int> DIndexes = getIndexes(ModelNeuronType.D, neuronTypes);
+            List<int> DIndexes  = getIndexes(ModelNeuronType.D, neuronTypes);
             List<int> EmIndexes = getIndexes(ModelNeuronType.EM, neuronTypes);
             List<int> EsIndexes = getIndexes(ModelNeuronType.ES, neuronTypes);
             List<int> ImIndexes = getIndexes(ModelNeuronType.IM, neuronTypes);
@@ -152,7 +152,7 @@ namespace StaticExperimentNS
             move(ImIndexes, indexToPointMap, 2, 1.5f);
             move(IsIndexes, indexToPointMap, 2, -1.5f);
 
-            // TODO set connctions method
+
 
             setConnectionsSquareModel(DIndexes, EsIndexes, indexToPointMap, ref connections, network);
             setConnectionsSquareModel(EsIndexes, IsIndexes, indexToPointMap, ref connections, network);
