@@ -1,5 +1,5 @@
 function [ ] = testRunmodel()
-run_time = '8000'; %runtime per trial [ms] %initial 120000
+run_time = '120000'; %runtime per trial [ms] %initial 120000
 
 savePath='C:\Users\Maximus Mutschler\Downloads\test';
 
@@ -8,7 +8,11 @@ name = 'test';
 dEsNumstruct =load('dEsNum.mat');
 dEsNum =dEsNumstruct.dEsNum;
 
-dEsConnections = ones(dEsNum);
+w=load('weightsMatrix.mat');
+w= w.weightsMatrix;
+
+%dEsConnections = ones(dEsNum);
+dEsConnections = double(w(1:96,145:240)~=0) % D ES
 save('dESConnections.mat','dEsConnections');
 %writeSync("syncfile.txt","close");
 writeSync("syncfile.txt","simulate_plot \n staticTest");

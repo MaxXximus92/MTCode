@@ -1,0 +1,30 @@
+D_ES,ES_IS,IS_IS,IS_ES,ES_EM,EM_IM,IM_IM,IM_EM
+0.837348090277778,0,0,0.0325520833333333,0.00238715277777778,0.981119791666667,1,0.146484375
+
+prob = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+     D_ES: 0.8373
+    ES_IS: 0
+    IS_IS: 0
+    IS_ES: 0.0326
+    ES_EM: 0.0024
+    EM_IM: 0.9811
+    IM_IM: 1
+    IM_EM: 0.1465
+
+
+prob = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+     D_ES: 0.8373
+    ES_IS: 0
+    IS_IS: 0
+    IS_ES: 0.0326
+    ES_EM: 0.0024
+    EM_IM: 0.9811
+    IM_IM: 1
+    IM_EM: 0.1465
+

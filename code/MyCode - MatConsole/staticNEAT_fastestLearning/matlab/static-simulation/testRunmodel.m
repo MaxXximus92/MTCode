@@ -6,15 +6,18 @@ getModelParams('dEsNum.mat');
 name = 'test_static_simulation';
 dEsNumstruct =load('dEsNum.mat');
 dEsNum =dEsNumstruct.dEsNum;
+w=load('weightsMatrix.mat');
+w= w.weightsMatrix;
 
-dEsConnections = ones(dEsNum);
+%dEsConnections = ones(dEsNum);
+dEsConnections = double(w(1:96,145:240)~=0) % D ES
 save('dESConnections.mat','dEsConnections');
 %writeSync("syncfile.txt","close");
 writeSync("syncfile.txt","simulate_plot \n staticTest");
 
-angle_start ='65';
-angles_to_simulate = '[10,30,60,40,100,90,120,65]';
-time_per_angle = '1000';
+angle_start ='135';
+angles_to_simulate = '[60,30,0,80,135,15,100,40,75]';
+time_per_angle = '30000';
 
 %tic
 % wichtig, code endet nie, da kein zweiter thread implementiert um write

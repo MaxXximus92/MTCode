@@ -1,11 +1,11 @@
-17 11:14:45 unknown Parameter "numNeurons " in experiment settings
-17 11:14:45 unknown Parameter "spikingThreshold " in experiment settings
-17 11:14:45 unknown Parameter "runTime " in experiment settings
-17 11:14:45 unknown Parameter "runSettings " in experiment settings
-17 11:14:45 unknown Parameter "trailsPerSetting " in experiment settings
-17 11:14:45 unknown Parameter "initialNetWeightsPath " in experiment settings
-17 11:14:45 unknown Parameter "matlabPath " in experiment settings
-17 11:14:45 test encoding: threshold: 0.2
-17 11:14:45 Starting Experiment: OngoingExperiment
-17 11:14:45 --------------------------------------------------------
-17 11:14:45 loading initial data
+18 15:49:43 unknown Parameter "numNeurons " in experiment settings
+18 15:49:43 unknown Parameter "spikingThreshold " in experiment settings
+18 15:49:43 unknown Parameter "runTime " in experiment settings
+18 15:49:43 unknown Parameter "runSettings " in experiment settings
+18 15:49:43 unknown Parameter "trailsPerSetting " in experiment settings
+18 15:49:43 unknown Parameter "initialNetWeightsPath " in experiment settings
+18 15:49:43 unknown Parameter "matlabPath " in experiment settings
+18 15:49:43 test encoding: threshold: 0.2
+18 15:49:43 Starting Experiment: OngoingExperiment
+18 15:49:43 --------------------------------------------------------
+18 15:49:43 loading initial data

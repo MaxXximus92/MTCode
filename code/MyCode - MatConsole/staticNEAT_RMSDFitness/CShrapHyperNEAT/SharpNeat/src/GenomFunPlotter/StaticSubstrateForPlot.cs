@@ -49,7 +49,7 @@ namespace GenomFunPlotter
                     network.MultipleSteps(iterations);
                     //network.RelaxNetwork(iterations, delta).:: iterates until delta is not exceeded anymore
                     double output = network.GetOutputSignal(0)* weightRange;
-                    weights[i][j] = 1;
+                    weights[i][j] = output;
 
                 }
             }

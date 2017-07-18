@@ -150,7 +150,7 @@ namespace StaticExperimentNS
                 DateTime dt = DateTime.Now;
                 ea.PerformOneGeneration();
 
-                Console.WriteLine("Best fitness of gernatation {0} : {1:0.#####}", j, ea.BestGenome.Fitness);
+                Console.WriteLine("Best fitness of generation {0} : {1:0.#####}", j, ea.BestGenome.Fitness);
                 if (ea.BestGenome.Fitness > initialMaxFitness)
                 {
                     Console.WriteLine("Save Best Genome");

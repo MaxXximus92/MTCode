@@ -409,3 +409,14 @@ best model:
     EM_IM: 0
     IM_IM: 0
     IM_EM: 0.4987
+
+18.07
+TODO Vergleichsexperimente: ->d_es verbindungen zufällig suchen lassen, erfolgsrate vergleichen. (elitisierung rausrechnen -> testpopulation um elite verknleinern)
+			    -> elitism rate =0.1 -> population von 81. TODO num sucsess aud logfile auslesen done
+			    -> todo t tests possible?
+			    -> alle verbindungen zufällig suchen
+			    -> anzahl neurone und verbindungen zufällig wählen 
+				
+TODO All weights IM lagen bei 2,1.5 sollten aber bei 4,1.5 liegen -> todo nochmal simulieren?
+TODO  int popSize = population.PopulationSize;  is always the same but genome numbers differ
+TODO  kann das staticModel auch schon mit der verwendeten weight Matrix lernen? -> Ja kann max min winkel lernen, weitere winkel aber nicht erreichen

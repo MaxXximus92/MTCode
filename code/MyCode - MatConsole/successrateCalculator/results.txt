@@ -1,0 +1,7 @@
+%%%
+consoleLogOngoingMatConsole_17_06_24_shouldwork  Threshold=165 rate =0.6974;
+consoleLogStatic_17_07_02 Threshold= 1/3 rate= 0.4382
+consoleLogStatic_AllConnectionsSquareModel_17_07_10 Threshold= 0.3 rate= 0.5128
+Static_RMSDFit_17_07_07_balanced Threshold= 0.3 rate= 0.7354
+consoleLogStatic_RMSDFit_17_07_10_minVariance.txt Threshold= 0.3 rate= 0.6914
+%%%

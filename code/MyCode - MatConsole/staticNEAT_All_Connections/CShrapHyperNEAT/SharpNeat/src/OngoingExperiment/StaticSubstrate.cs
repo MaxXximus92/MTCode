@@ -149,7 +149,7 @@ namespace StaticExperimentNS
 
             move(EmIndexes, indexToPointMap, 4, 0);
             move(EsIndexes, indexToPointMap, 2, 0);
-            move(ImIndexes, indexToPointMap, 2, 1.5f);
+            move(ImIndexes, indexToPointMap, 4, 1.5f);// Fehler im Model sollte 4 sein nicht 2
             move(IsIndexes, indexToPointMap, 2, -1.5f);
 
 

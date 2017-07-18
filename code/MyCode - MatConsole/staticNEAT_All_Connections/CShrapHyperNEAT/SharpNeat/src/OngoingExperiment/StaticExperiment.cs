@@ -61,8 +61,8 @@ namespace StaticExperimentNS
                 {
                     NeatParameters np = new NeatParameters();
                     np.connectionWeightRange = 3;
-                    np.pMutateAddConnection = .03;
-                    np.pMutateAddNode = .01;
+                    np.pMutateAddConnection = .15; // changed 1D case before 0.03
+                    np.pMutateAddNode = .05; // changed 1d Case   before 0.01
                     np.pMutateConnectionWeights = .96;
                     np.pMutateDeleteConnection = 0;
                     np.pMutateDeleteSimpleNeuron = 0;

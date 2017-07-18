@@ -1,0 +1,30 @@
+<genome id="34029" species-id="438" age="1" fitness="0.00">
+  <neurons>
+    <neuron id="0" type="bias" activationFunction="NullFn" />
+    <neuron id="1" type="in" activationFunction="NullFn" />
+    <neuron id="2" type="in" activationFunction="NullFn" />
+    <neuron id="3" type="out" activationFunction="BipolarSigmoid" />
+    <neuron id="71" type="hid" activationFunction="Linear" />
+    <neuron id="102" type="hid" activationFunction="BipolarSigmoid" />
+    <neuron id="136" type="hid" activationFunction="BipolarSigmoid" />
+    <neuron id="173" type="hid" activationFunction="BipolarSigmoid" />
+    <neuron id="247" type="hid" activationFunction="Sine" />
+    <neuron id="783" type="hid" activationFunction="BipolarSigmoid" />
+  </neurons>
+  <connections>
+    <connection innov-id="5" src-id="1" tgt-id="3" weight="-0.59162600967101753" />
+    <connection innov-id="6" src-id="2" tgt-id="3" weight="-1.0363317323848604" />
+    <connection innov-id="72" src-id="0" tgt-id="71" weight="-0.75544747849926353" />
+    <connection innov-id="104" src-id="102" tgt-id="3" weight="1.2485740405041723" />
+    <connection innov-id="132" src-id="2" tgt-id="102" weight="-1.0051121324766428" />
+    <connection innov-id="174" src-id="71" tgt-id="173" weight="1.3687127684243023" />
+    <connection innov-id="175" src-id="173" tgt-id="102" weight="0.44992308472283182" />
+    <connection innov-id="248" src-id="136" tgt-id="247" weight="0.98189490432851023" />
+    <connection innov-id="249" src-id="247" tgt-id="102" weight="-0.48131977301090956" />
+    <connection innov-id="426" src-id="136" tgt-id="136" weight="1.2981780567672103" />
+    <connection innov-id="784" src-id="71" tgt-id="783" weight="1.0191591881215571" />
+    <connection innov-id="785" src-id="783" tgt-id="136" weight="0.51746022049337626" />
+    <connection innov-id="809" src-id="247" tgt-id="71" weight="0.45057692611590028" />
+    <connection innov-id="889" src-id="247" tgt-id="783" weight="0.15794527251273394" />
+  </connections>
+</genome>

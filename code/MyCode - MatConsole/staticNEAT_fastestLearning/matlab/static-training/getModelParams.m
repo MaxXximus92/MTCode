@@ -6,6 +6,6 @@ function [ ]  = getModelParams(resultPath )
     net = spikenet(spikingThreshold,settings,savePath);
     dEsNum =  net.getDEsNum();
     saveDEsNumSync(resultPath, dEsNum);
-    %quit; %Wichtig nur bei test auskommentieren
+   % quit; %Wichtig nur bei test auskommentieren
 end
 
