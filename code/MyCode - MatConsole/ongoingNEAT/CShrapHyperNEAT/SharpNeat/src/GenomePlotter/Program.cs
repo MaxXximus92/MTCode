@@ -49,6 +49,19 @@ namespace GenomePlotter
 
         }
 
+        static private string getGenomeDotSavePath()
+        {
+            string path = toFullPath(@"genomeDotFiles");
+            // string path = Directory.GetCurrentDirectory();
+            //path = path + pathSep+@"genomeImages"+ pathSep;
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+             }
+            return path;
+
+        }
+
 
         private static void PlotGenomeGraphs(string genomeSavePath, string GenomeImageSavePath)
         {
@@ -75,6 +88,8 @@ namespace GenomePlotter
 
                     }
                 }
+
+                CPPNDotWriterStatic.saveCPPNasDOT((NeatGenome)g,getGenomeDotSavePath()+ pathSep + name + ".dot");
 
             }
 

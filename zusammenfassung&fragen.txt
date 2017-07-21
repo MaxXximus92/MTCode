@@ -420,3 +420,4 @@ TODO Vergleichsexperimente: ->d_es verbindungen zufällig suchen lassen, erfolgsr
 TODO All weights IM lagen bei 2,1.5 sollten aber bei 4,1.5 liegen -> todo nochmal simulieren?
 TODO  int popSize = population.PopulationSize;  is always the same but genome numbers differ
 TODO  kann das staticModel auch schon mit der verwendeten weight Matrix lernen? -> Ja kann max min winkel lernen, weitere winkel aber nicht erreichen
+TODO Von denen die Lernen konnten wie hoch ist die durchschnittliche Fitness?

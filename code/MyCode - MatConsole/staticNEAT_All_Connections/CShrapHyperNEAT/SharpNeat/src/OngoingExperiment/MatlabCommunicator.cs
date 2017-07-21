@@ -456,5 +456,38 @@ namespace StaticExperimentNS
             public MatlabCrashedException() : base() { }
             public MatlabCrashedException(string message) : base(message) { }
         }
+        static public void writeWeightMatrices(List<double[][]> weights, string safePath  )
+        {
+            while (true)
+            {
+                try
+                {
+                    MLDouble DEs = new MLDouble("DEsWeights", weights[0]);
+                    MLDouble EsIs = new MLDouble("EsIsWeights", weights[1]);
+                    MLDouble IsIs = new MLDouble("IsIsWeights", weights[2]);
+                    MLDouble IsEs = new MLDouble("IsEsWeights", weights[3]);
+                    MLDouble EsEm = new MLDouble("EsEmWeights", weights[4]);
+                    MLDouble EmIm = new MLDouble("EmImWeights", weights[5]);
+                    MLDouble ImIm = new MLDouble("ImImWeights", weights[6]);
+                    MLDouble ImEm = new MLDouble("ImEmWeights", weights[7]);
+
+                    List<MLArray> l = new MLArray[] {DEs,EsIs,IsIs,IsEs,EsEm,EmIm,ImIm,ImEm}.ToList();
+                    new MatFileWriter(safePath, l, false);
+                    return;
+                }
+                catch (Exception e)
+                {
+                    Type a = e.GetType();
+                    if (e.GetType() == typeof(FileNotFoundException) || e.GetType() == typeof(System.IO.PathTooLongException))
+                    {
+                        throw e;
+                    }
+                    // Console.WriteLine(e.Message);
+                    // Console.WriteLine("trying again");
+                }
+
+                Thread.Sleep(100);
+            }
+        }
     }
 }

@@ -211,7 +211,7 @@ namespace StaticExperimentNS
         {
             float avgComplexity = population.AvgComplexity;
             double meanFitness = population.MeanFitness;
-            int popSize = population.PopulationSize;
+            int popSize = population.PopulationSize; // is not correct
             int numberSpecies = population.SpeciesTable.Values.Count;
             Species[] species = population.SpeciesTable.Values.Cast<Species>().ToArray<Species>(); ;
 

@@ -232,8 +232,8 @@ namespace EsExperimentNS
             genome.ClearSignals();
             genome.SetInputSignals(coordinates);
             genome.MultipleSteps(iterations);
-            bool output1 = genome.GetOutputSignal(1) >0.5 ;
-            bool output2 = genome.GetOutputSignal(2) >0.5 ;
+            bool output1 = genome.GetOutputSignal(1) >0.0 ; //output function bipolar sigmoid [-1,1]
+            bool output2 = genome.GetOutputSignal(2) >0.0 ;
             // 00=IS, 01= IM, 10=ES, 11 EM;
             if (output1)
             {

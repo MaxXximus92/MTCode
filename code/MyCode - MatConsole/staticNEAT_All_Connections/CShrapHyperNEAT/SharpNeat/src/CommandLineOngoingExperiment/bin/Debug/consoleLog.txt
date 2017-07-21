@@ -1,4 +1,4 @@
-10 13:39:52 test encoding: threshold: -0.5
-10 13:39:52 Starting Experiment:  AWStatExp
-10 13:39:52 --------------------------------------------------------
-10 13:39:52 loading initial data
+21 11:05:36 test encoding: threshold: -0.5
+21 11:05:36 Starting Experiment:  AWStatExp
+21 11:05:36 --------------------------------------------------------
+21 11:05:36 loading initial data

@@ -41,5 +41,12 @@ zlabel('CPPN outputs');
 legend('CPPN outputs','Value at neuron positions');%,'Location','eastoutside');%'Location','southwest');
 hold off
 remove(fig1)
-
+% figure()
+% posxg = meshgrid([0:1/96:1-1/96]);
+% posx = posxg(:);
+% posy = posxg';
+% posy = posy(:);
+% values = Z';
+% values = values(:);
+% scatter3(posx,posy,values,36,'blue','.');
 a=2;

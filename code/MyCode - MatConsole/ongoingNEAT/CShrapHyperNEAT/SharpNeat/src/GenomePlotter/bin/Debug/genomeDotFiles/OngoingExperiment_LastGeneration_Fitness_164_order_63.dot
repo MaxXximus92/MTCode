@@ -1,0 +1,33 @@
+digraph g { 
+N0 [shape=ellipse, label=Bias,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N1[shape=ellipse label=X1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N2[shape=ellipse label=Y1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N3[shape=ellipse label=X2,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N4[shape=ellipse label=Y2,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N5[shape=ellipse,fontsize = 10, height = 0.1, width = 0.1, style = filled, fillcolor = red]
+N26[shape=ellipse, label=N26_L,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N82[shape=ellipse, label=N82_Si,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N90[shape=ellipse, label=N90_L,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N629[shape=ellipse, label=N629_S,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N673[shape=ellipse, label=N673_L,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N1 -> N5 [color=black] [ label=1.28,fontsize=10]
+N2 -> N5 [color=black] [ label=0.73,fontsize=10]
+N4 -> N5 [color=black] [ label=0.03,fontsize=10]
+N0 -> N26 [color=black] [ label=0.2,fontsize=10]
+N26 -> N5 [color=black] [ label=0.51,fontsize=10]
+N3 -> N82 [color=red] [arrowType=inv][ label=-1.5,fontsize=10]
+N82 -> N5 [color=black] [ label=1.12,fontsize=10]
+N2 -> N90 [color=red] [arrowType=inv][ label=-0.86,fontsize=10]
+N90 -> N26 [color=red] [arrowType=inv][ label=-0.65,fontsize=10]
+N5 -> N90 [color=black] [ label=0.21,fontsize=10]
+N629 -> N26 [color=red] [arrowType=inv][ label=-1.15,fontsize=10]
+N26 -> N673 [color=black] [ label=0.76,fontsize=10]
+N673 -> N629 [color=black] [ label=1.01,fontsize=10]
+N629 -> N673 [color=black] [ label=1.08,fontsize=10]
+ { rank=same; 
+N5
+ } 
+ { rank=same; 
+N1 ->N2 ->N3 ->N4 ->N0 [style=invis]
+ } 
+}

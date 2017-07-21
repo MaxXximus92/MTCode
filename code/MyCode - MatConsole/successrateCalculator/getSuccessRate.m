@@ -2,15 +2,16 @@
 startflag= 'Run Experiment';
 startReached= false;
 endFlag = 'Evolution Done';
-sucessThr= 0.3;
+sucessThr= 0.5;
 
-fid = fopen('consoleLogStatic_RMSDFit_17_07_10_minVariance.txt');
+fid = fopen('consoleLogStatic_17_07_02_fastestTime.txt');
 
 tline = fgets(fid);
 lineCounter =1;
 runsCounter =0;
 sucessfulCounter=0;
 generationCounter=0;
+sumedFitness=0;
 while ischar(tline)
     if ~startReached
         if contains(tline,startflag),
@@ -24,7 +25,9 @@ while ischar(tline)
             runsCounter=runsCounter+1;
             generationCounter=generationCounter +1;
             if fitness >= sucessThr,
-                sucessfulCounter=sucessfulCounter+1;end
+                sucessfulCounter=sucessfulCounter+1;
+                sumedFitness= sumedFitness+fitness;
+            end
         end
         if length(index)>1
             error('2 times fitness in 1 line');
@@ -43,7 +46,16 @@ end
 fclose(fid);
 runsCounter
 sucessfulCounter
+sumedFitness;
 
 sucessRate = sucessfulCounter/runsCounter
-
+meanFitness = sumedFitness/sucessfulCounter
+%0.3 zu 0.7
+%approxRmsd = 135-(meanFitness -0.3)/0.7*135
+%balanced
+%approxRmsd = 135-(meanFitness -2/3)/(1/3)*135
+%ongoing
+%meanFitness = meanFitness/180*130
+%approxRmsd =135-meanFitness
+%
 vv=1;
