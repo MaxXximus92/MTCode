@@ -42,7 +42,7 @@ classdef spikenet < handle
     end
     
     methods
-        % constructor  // TODO maybe num neurons hinzufügen je nach zuk.
+        % constructor  // TODO maybe num neurons hinzufï¿½gen je nach zuk.
         % experimenten
         function this = spikenet(spikingThreshold,settingsFile,savePath,connections,types)
 
@@ -140,7 +140,7 @@ end
             
             this.correctMoves = 0;
             %% construct prosthesis
-            prost = prosthesis(0,135,max_train_time,angles_to_learn,angles_to_simulate,angle_simulation_time,save_figures); %@ m ok wichtig!!!! nicht 180°
+            prost = prosthesis(0,135,max_train_time,angles_to_learn,angles_to_simulate,angle_simulation_time,save_figures); %@ m ok wichtig!!!! nicht 180ï¿½
             lh1 = addlistener(this,'learn',@prost.learn);
             
             %% run trial
@@ -150,20 +150,7 @@ end
             delete(lh1);
            
             
-            %% plot data
-            if(save_figures)
-                if(this.DEBUG),fprintf('save plots...\n');end;
-                figure('PaperSize',[25,20],'Units','centimeters','PaperPosition',[0 0 25 20],'visible','off');
-                this.plotAllFirings(output);
-                xlim([0,time]);
-                box on;
-                saveas(gcf,[this.savePath sprintf('%s (firings).pdf',model_name)], 'pdf');
-                set(0,'CurrentFigure',prost.fig);
-                xlim([0,time]);
-                box on;
-                saveas(gcf,[this.savePath sprintf('%s (movement).pdf',model_name)], 'pdf');
-                close all hidden
-            end
+
             % calc fitness
             % fitness_training -> normalized amount of steps in right
             % direction
@@ -177,7 +164,7 @@ end
             fitness_reachedAngles = sum(prost.reached_angles)/length(prost.reached_angles);
             successfully = sum(prost.reached_angles)==length(prost.reached_angles); % reached angles during simulation
             fitness_SimRmsd=0; % = not successful
-
+            rmsd=NaN;
             if(successfully)
                 angle_start_time=prost.mode_start_time;
                 squared_sum=0;
@@ -199,8 +186,26 @@ end
             rmsd_scale=0.7;
             angle_scale=0.2;
             training_scale=0.1;
+            if(fitness_reachedAngles==1), fitness_correctTrainingMoves=1; end
             fitness = (training_scale*fitness_correctTrainingMoves+angle_scale*fitness_reachedAngles+rmsd_scale*fitness_SimRmsd);
-           % this.reset();
+           
+             %% plot data
+            if(save_figures)
+                if(this.DEBUG),fprintf('save plots...\n');end;
+                figure('PaperSize',[25,20],'Units','centimeters','PaperPosition',[0 0 25 20],'visible','off');
+                this.plotAllFirings(output);
+                xlim([0,time]);
+                box on;
+                saveas(gcf,[this.savePath sprintf('%s (firings)_RMSD=%0.5f.pdf',model_name,rmsd)], 'pdf');
+                savefig([this.savePath sprintf('%s (firings)_RMSD=%0.5f.fig',model_name,rmsd)]);
+                set(0,'CurrentFigure',prost.fig);
+                xlim([0,time]);
+                box on;
+                saveas(gcf,[this.savePath sprintf('%s (movement)_RMSD=%0.5f.pdf',model_name,rmsd)], 'pdf');
+                savefig([this.savePath sprintf('%s (movement)_RMSD=%0.5f.fig',model_name,rmsd)]);
+                close all hidden
+            end
+            % this.reset();
         end
         
         % get indizes of pre->post synapses
@@ -213,6 +218,8 @@ end
             end
             submatrix = this.weightsMatrix(pre_cells,post_cells);
             [i,j] = ind2sub(size(submatrix),find(submatrix ~= 0));
+            if size(i,1)==1, i=i';end
+            if size(j,1)==1 j=j';end
             i = i+pre_cells(1)-1;
             j = j+post_cells(1)-1;
             connections=sub2ind(size(this.weightsMatrix), i, j);
@@ -523,13 +530,14 @@ end
         
         % plot firings of all neurons between timelim = [lower upper]
         function plotFirings(this, firings, timelim)
+            try  %bei vielen randbedingungen wie nur 1 neuron oder keine firings gehts schief, im normal case funkionierts
             filter = firings(:,1) >= timelim(1) & firings(:,1) <= timelim(2);
             time = firings(filter,1);
-            neurons = firings(filter,2);
-            types = unique(this.neuronTypes);
-            boarders = zeros(length(types),1);
+            neurons = firings(filter,2);  
             minX = timelim(1);
             maxX = timelim(2);
+            types = unique(this.neuronTypes);
+            boarders = zeros(length(types),1);
             ylim([1,this.numNeurons]);
             cmap = hsv(length(types)+5);
             for idx=1:length(types)
@@ -547,6 +555,9 @@ end
             xlabel('Time [ms]');
             ylabel('Neuron Type');
             hold off;
+            catch e
+                return;
+            end
         end
     end
     

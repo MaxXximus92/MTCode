@@ -1,0 +1,14 @@
+
+prob = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+     D_ES: 0.3920
+    ES_IS: 0.6647
+    IS_IS: 0.0859
+    IS_ES: 0.4059
+    ES_EM: 0.5163
+    EM_IM: 0.9714
+    IM_IM: 0.0127
+    IM_EM: 0
+

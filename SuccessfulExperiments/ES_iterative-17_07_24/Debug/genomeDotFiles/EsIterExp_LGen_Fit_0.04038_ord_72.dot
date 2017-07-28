@@ -1,0 +1,34 @@
+digraph g { 
+N0 [shape=ellipse, label=Bias,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N1[shape=ellipse label=X1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N2[shape=ellipse label=Y1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N3[shape=ellipse label=X2,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N4[shape=ellipse label=Y2,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N5[shape=ellipse,fontsize = 10, height = 0.1, width = 0.1, style = filled, fillcolor = red]
+N88[shape=ellipse, label=N88_L,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N103[shape=ellipse, label=N103_G,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N227[shape=ellipse, label=N227_S,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N306[shape=ellipse, label=N306_S,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N3613[shape=ellipse, label=N3613_L,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N3877[shape=ellipse, label=N3877_L,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N1 -> N5 [color=red] [arrowType=inv][ label=-1.15,fontsize=10]
+N3 -> N5 [color=black] [ label=0.9,fontsize=10]
+N4 -> N103 [color=black] [ label=1.41,fontsize=10]
+N103 -> N5 [color=red] [arrowType=inv][ label=-0.84,fontsize=10]
+N1 -> N103 [color=red] [arrowType=inv][ label=-0.38,fontsize=10]
+N103 -> N88 [color=red] [arrowType=inv][ label=-0.07,fontsize=10]
+N88 -> N227 [color=black] [ label=1.09,fontsize=10]
+N0 -> N306 [color=black] [ label=0.01,fontsize=10]
+N306 -> N88 [color=black] [ label=0.48,fontsize=10]
+N1 -> N306 [color=red] [arrowType=inv][ label=-0.11,fontsize=10]
+N2 -> N3613 [color=black] [ label=1,fontsize=10]
+N3613 -> N5 [color=red] [arrowType=inv][ label=-0.14,fontsize=10]
+N227 -> N3877 [color=black] [ label=1,fontsize=10]
+N3877 -> N5 [color=red] [arrowType=inv][ label=-0.31,fontsize=10]
+ { rank=same; 
+N5
+ } 
+ { rank=same; 
+N1 ->N2 ->N3 ->N4 ->N0 [style=invis]
+ } 
+}

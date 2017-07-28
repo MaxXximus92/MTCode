@@ -1,0 +1,21 @@
+Es hyperneat. Evolvable Substrate
+-> determine also position of neurons
+
+-> area of uniform weights code little information. -> Density Follows information
+-> Neurons are places where lots of information = variance is.
+-> Function in Hypercube describes connections -> connection choosen where high variance -> nodes added
+-> hidden nodes are find by HyperNeat, input and output position still neccessary
+
+Quadtree to extract information
+
+-> span tree until initial resolution is reached
+->get values of leaf nodes form cppn
+-> calculate variance of each non leaf node.  1/k * sum(wmean-wi)^2
+-> if variance of parent is higher than a threshold -> further divisions until max resolution
+
+Pruning Phase:
+1) depth first until variance is smaller than threshold (last one also added). or node no children.
+2) Problem lots of nodes add edges, but wanted is are some neurons for same density are. (when in hoizontal (left or right) and vertical (up or down) case same value than not extracted)
+	-> remove nodes in, which neighbors are also in the band	
+
+Algorithm Build 2d CPPN by fixing coordinates of input neuron. -> search for connections, realize them.

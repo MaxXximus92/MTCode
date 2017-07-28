@@ -1,0 +1,35 @@
+
+numNeurons =
+
+   388
+
+
+neuronTypes = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+     D: 85
+    ES: 67
+    IS: 123
+    EM: 113
+    IM: 0
+
+
+numConnections =
+
+        8474
+
+
+prob = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+     D_ES: 0.2086
+    ES_IS: 0.3042
+    IS_IS: 0.0635
+    IS_ES: 0.2894
+    ES_EM: 0.1894
+    EM_IM: NaN
+    IM_IM: NaN
+    IM_EM: NaN
+

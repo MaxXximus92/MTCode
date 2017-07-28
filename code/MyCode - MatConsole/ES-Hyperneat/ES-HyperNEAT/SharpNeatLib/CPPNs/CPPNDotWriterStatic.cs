@@ -24,7 +24,7 @@ namespace SharpNeatLib.CPPNs
 
                 switch (neuron.NeuronType)
                 {
-                    case NeuronType.Bias: SW.WriteLine("N0 [shape=box, label=Bias]"); break;
+                    case NeuronType.Bias: SW.WriteLine("N0 [shape=ellipse, label=Bias,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]"); break;
                     case NeuronType.Input:
 
                         string str = "?";
@@ -37,18 +37,19 @@ namespace SharpNeatLib.CPPNs
                             case 5: str = "Z"; break;
 
                         }
-                        SW.WriteLine("N" + neuron.InnovationId + "[shape=box label=" + str + "]");
+                        SW.WriteLine("N" + neuron.InnovationId + "[shape=ellipse label=" + str + ",fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]");
                         break;
-                    case NeuronType.Output: SW.WriteLine("N" + neuron.InnovationId + "[shape=triangle]"); break;
+
                     case NeuronType.Hidden:
                         if (neuron.ActivationFunction.FunctionDescription.Equals("bipolar steepend sigmoid")) activationType = "S";
                         if (neuron.ActivationFunction.FunctionDescription.Equals("bimodal gaussian")) activationType = "G";
-                        if (neuron.ActivationFunction.FunctionDescription.Equals("Linear")) activationType = "L";
+                        if (neuron.ActivationFunction.FunctionDescription.Equals("Linear")) activationType = "Abs";
                         if (neuron.ActivationFunction.FunctionDescription.Equals("Sin function with doubled period")) activationType = "Si";
                         if (neuron.ActivationFunction.FunctionDescription.Equals("Returns the sign of the input")) activationType = "Sign";
 
-                        SW.WriteLine("N" + neuron.InnovationId + "[shape=circle, label=N" + neuron.InnovationId + "_" + activationType + ", fillcolor=gray]");
+                        SW.WriteLine("N" + neuron.InnovationId + "[shape=ellipse, label=N" + neuron.InnovationId + "_" + activationType + ",fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]");
                         break;
+                    case NeuronType.Output: SW.WriteLine("N" + neuron.InnovationId + "[shape=ellipse,fontsize = 10, height = 0.1, width = 0.1, style = filled, fillcolor = red]"); break;
                 }
 
             }
@@ -58,23 +59,13 @@ namespace SharpNeatLib.CPPNs
                 SW.Write("N" + gene.SourceNeuronId + " -> N" + gene.TargetNeuronId + " ");
 
                 if (gene.Weight > 0)
-                    SW.WriteLine("[color=black] ");
+                    SW.Write("[color=black] ");
                 else if (gene.Weight < -0)
-                    SW.WriteLine("[color=red] [arrowType=inv]");
+                    SW.Write("[color=red] [arrowType=inv]");
+                SW.WriteLine(String.Format("[ label={0:0.##},fontsize=10]", gene.Weight));
             }
 
-            //foreach (ModuleGene mg in genome.ModuleGeneList)
-            //{
-            //    foreach (uint sourceID in mg.InputIds)
-            //    {
-            //        foreach (uint targetID in mg.OutputIds)
-            //        {
-            //            SW.Write("N" + sourceID + " -> N" + targetID + " ");
 
-            //            SW.WriteLine("[color=gray]");
-            //        }
-            //    }
-            //}
 
             SW.WriteLine(" { rank=same; ");
             foreach (NeuronGene neuron in genome.NeuronGeneList)

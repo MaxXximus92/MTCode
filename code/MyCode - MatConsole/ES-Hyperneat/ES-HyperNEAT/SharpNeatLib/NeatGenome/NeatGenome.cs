@@ -411,6 +411,8 @@ namespace SharpNeatLib.NeatGenome
 		}
 
 
+
+
 		public override bool IsCompatibleWithGenome(IGenome comparisonGenome, NeatParameters neatParameters)
 		{
 			/* A very simple way of implementing this routine is to call CorrelateConnectionGeneLists and to then loop 

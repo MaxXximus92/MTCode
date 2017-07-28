@@ -40,15 +40,19 @@ namespace EsExperimentNS
             throw new NotImplementedException();
         }
 
-        public double threadSafeEvaluateNetwork(INetwork network, Semaphore sem)
+        public double threadSafeEvaluateNetwork(INetwork network, Semaphore sem, out int numNeurons)
         {
-            MatlabCommunicator matlab = getMatlab();
+
             double fitness = 0;
-            //EsSubstrate substrate = new EsSubstrate(network);
+            EsSubstrate substrate = new EsSubstrate(network);
            // EsSubstrateTypeCoded substrate = new EsSubstrateTypeCoded(network);
-            EsSubstrate1D substrate = new EsSubstrate1D(network);
+           // EsSubstrate1D substrate = new EsSubstrate1D(network);
             List<NType> types = new List<NType>();
             int[][] connections = substrate.getConnections(out types);
+            numNeurons = types.Count;
+            if (connections.Length == 0 || types.Count == 0)
+                return 0;
+            MatlabCommunicator matlab = getMatlab();
             try
             {
                 fitness = matlab.simulate(connections,types);
@@ -57,7 +61,7 @@ namespace EsExperimentNS
             {
                 Console.WriteLine(e.Message);
                 handleCrashedMatlab(matlab);
-                return threadSafeEvaluateNetwork(network, sem);
+                return threadSafeEvaluateNetwork(network, sem,out numNeurons);
             }
             
             return fitness;
@@ -69,12 +73,15 @@ namespace EsExperimentNS
         public void plotMatlabGraphsAndSafeNetwork(INetwork network, string saveName)
         {
 
-            MatlabCommunicator matlab = getMatlab();
-            // EsSubstrate substrate = new EsSubstrate(network);
+
+             EsSubstrate substrate = new EsSubstrate(network);
            // EsSubstrateTypeCoded substrate = new EsSubstrateTypeCoded(network);
-            EsSubstrate1D substrate = new EsSubstrate1D(network);
+           // EsSubstrate1D substrate = new EsSubstrate1D(network);
             List<NType> types = new List<NType>();
             int[][] connections = substrate.getConnections(out types);
+            if (connections.Length == 0 || types.Count == 0)
+                return;
+            MatlabCommunicator matlab = getMatlab();
             try
             {
                 double fitness = matlab.simulateWithPlot(connections,types, saveName);

@@ -25,7 +25,7 @@ namespace SharpNeatLib.Experiments
         /// <param name="network"></param>
         /// <param name="sem"></param>
         /// <returns>Fitness of the network.</returns>
-        double threadSafeEvaluateNetwork(INetwork network, Semaphore sem);
+        double threadSafeEvaluateNetwork(INetwork network, Semaphore sem,out int numNeurons);
 
 		/// <summary>
 		/// A human readable message that describes the state of the evaluator. This is useful if the

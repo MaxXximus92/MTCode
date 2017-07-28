@@ -144,9 +144,10 @@ namespace SharpNeatLib.Experiments
                 //sem2.WaitOne();
                 //Console.WriteLine("starting withGenome Number {0}", e.nu);
                 //sem2.Release();
-                e.g.Fitness = Math.Max(e.NetworkEvaluator.threadSafeEvaluateNetwork(network,sem2), EvolutionAlgorithm.MIN_GENOME_FITNESS);
+                int numNeurons;
+                e.g.Fitness = Math.Max(e.NetworkEvaluator.threadSafeEvaluateNetwork(network,sem2,out numNeurons), EvolutionAlgorithm.MIN_GENOME_FITNESS);
                 sem2.WaitOne();
-                Console.WriteLine("Genome Number {0} fitness {1:0.#####} dt {2} ", e.nu,e.g.Fitness ,(DateTime.Now.Subtract(dt)));
+                Console.WriteLine("Genome Number {0} NumNeurons {1} fitness {2:0.#####} dt {3} ", e.nu,numNeurons,e.g.Fitness ,(DateTime.Now.Subtract(dt)));
                 sem2.Release();
             }
 

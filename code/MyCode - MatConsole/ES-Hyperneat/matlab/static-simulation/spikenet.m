@@ -112,19 +112,20 @@ classdef spikenet < handle
             
             
             %% plot data
-            if(this.DEBUG),fprintf('save plots...\n');end;
+            if(this.DEBUG),fprintf('save plots...\n');end
             figure('PaperSize',[25,20],'Units','centimeters','PaperPosition',[0 0 25 20],'visible','off');
             this.plotAllFirings(output);
             xlim([0,time]);
             box on;
-            saveas(gcf,[this.savePath sprintf('%s (firings)NewFitness=%0.5f.pdf',model_name,fitness)], 'pdf');
+            saveas(gcf,[this.savePath sprintf('%s (firings)NewFitness=%0.5f_RMSD=%0.5f.pdf',model_name,fitness,rmsd)], 'pdf');
+            savefig(gcf,[this.savePath sprintf('%s (firings)NewFitness=%0.5f_RMSD=%0.5f.fig',model_name,fitness,rmsd)]);
             set(0,'CurrentFigure',prost.fig);
             xlim([0,time]);
             box on;
-            saveas(gcf,[this.savePath sprintf('%s (movement)NewFitness=%0.5f.pdf',model_name,fitness)], 'pdf');
-
+            saveas(gcf,[this.savePath sprintf('%s (movement)NewFitness=%0.5f_RMSD=%0.5f.pdf',model_name,fitness,rmsd)], 'pdf');
+            savefig(gcf,[this.savePath sprintf('%s (movement)NewFitness=%0.5f_RMSD=%0.5f.fig',model_name,fitness,rmsd)]);
             %% return result
-            % fitness = percentage of reached angles  man könnte die zeit
+            % fitness = percentage of reached angles  man kï¿½nnte die zeit
             % noch als 2 ten faktor einbauen
 
             this.reset();
@@ -175,12 +176,20 @@ classdef spikenet < handle
         function connections = getConnections(this,pre,post)
             pre_cells = find(this.getCellsOfType(pre));
             post_cells = find(this.getCellsOfType(post));
+            if(isempty(pre_cells) || isempty(post_cells))
+            connections = [];    
+            return
+            end
             submatrix = this.weightsMatrix(pre_cells,post_cells);
             [i,j] = ind2sub(size(submatrix),find(submatrix ~= 0));
+            if size(i,1)==1, i=i';end
+            if size(j,1)==1 j=j';end
             i = i+pre_cells(1)-1;
             j = j+post_cells(1)-1;
             connections=sub2ind(size(this.weightsMatrix), i, j);
         end
+        
+        
         function reset(this)
             % prost gets reinizialized every train
             this.weightsScale(this.d_es) = 1.0;
@@ -464,14 +473,15 @@ classdef spikenet < handle
         end
         
         % plot firings of all neurons between timelim = [lower upper]
-        function plotFirings(this, firings, timelim)
+       function plotFirings(this, firings, timelim)
+            try
             filter = firings(:,1) >= timelim(1) & firings(:,1) <= timelim(2);
             time = firings(filter,1);
-            neurons = firings(filter,2);
-            types = unique(this.neuronTypes);
-            boarders = zeros(length(types),1);
+            neurons = firings(filter,2);  
             minX = timelim(1);
             maxX = timelim(2);
+            types = unique(this.neuronTypes);
+            boarders = zeros(length(types),1);
             ylim([1,this.numNeurons]);
             cmap = hsv(length(types)+5);
             for idx=1:length(types)
@@ -489,6 +499,9 @@ classdef spikenet < handle
             xlabel('Time [ms]');
             ylabel('Neuron Type');
             hold off;
+            catch e
+                return;
+            end
         end
     end
     

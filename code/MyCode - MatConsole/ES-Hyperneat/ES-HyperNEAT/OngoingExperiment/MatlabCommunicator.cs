@@ -216,6 +216,10 @@ namespace EsExperimentNS
 
         private static void writeSyncData(int[][] connections,int[] types, string dataPath)
         {
+            if (connections.Length == 0 || types.Length == 0)
+            {
+                throw new Exception("connections or types have length 0");
+            }
             while (true)
             {
                 try
@@ -340,7 +344,7 @@ namespace EsExperimentNS
         private void waitForMessage(string message)
         {
  
-            Thread.Sleep(15000); // erstmal 15 sekunden schlafen solang geht die berechnung eh mindestens (eher 1.5 min)
+           // Thread.Sleep(15000); // erstmal 15 sekunden schlafen solang geht die berechnung eh mindestens (eher 1.5 min)
             while (true)
             {
                 

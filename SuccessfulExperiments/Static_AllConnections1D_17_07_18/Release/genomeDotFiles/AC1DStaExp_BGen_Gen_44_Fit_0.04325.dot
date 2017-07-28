@@ -1,0 +1,59 @@
+digraph g { 
+N0 [shape=ellipse, label=Bias,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N1[shape=ellipse label=X1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N2[shape=ellipse label=Y1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N3[shape=ellipse,fontsize = 10, height = 0.1, width = 0.1, style = filled, fillcolor = red]
+N4[shape=ellipse,fontsize = 10, height = 0.1, width = 0.1, style = filled, fillcolor = red]
+N5[shape=ellipse,fontsize = 10, height = 0.1, width = 0.1, style = filled, fillcolor = red]
+N6[shape=ellipse,fontsize = 10, height = 0.1, width = 0.1, style = filled, fillcolor = red]
+N7[shape=ellipse,fontsize = 10, height = 0.1, width = 0.1, style = filled, fillcolor = red]
+N8[shape=ellipse,fontsize = 10, height = 0.1, width = 0.1, style = filled, fillcolor = red]
+N9[shape=ellipse,fontsize = 10, height = 0.1, width = 0.1, style = filled, fillcolor = red]
+N10[shape=ellipse,fontsize = 10, height = 0.1, width = 0.1, style = filled, fillcolor = red]
+N208[shape=ellipse, label=N208_L,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N292[shape=ellipse, label=N292_S,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N0 -> N3 [color=red] [arrowType=inv][ label=-0.95,fontsize=10]
+N1 -> N3 [color=red] [arrowType=inv][ label=-0.06,fontsize=10]
+N2 -> N3 [color=black] [ label=1.38,fontsize=10]
+N0 -> N4 [color=red] [arrowType=inv][ label=-0.53,fontsize=10]
+N1 -> N4 [color=red] [arrowType=inv][ label=-0.14,fontsize=10]
+N2 -> N4 [color=red] [arrowType=inv][ label=-0.13,fontsize=10]
+N0 -> N5 [color=black] [ label=1.13,fontsize=10]
+N1 -> N5 [color=red] [arrowType=inv][ label=-1.29,fontsize=10]
+N2 -> N5 [color=red] [arrowType=inv][ label=-0.02,fontsize=10]
+N0 -> N6 [color=black] [ label=0.18,fontsize=10]
+N1 -> N6 [color=red] [arrowType=inv][ label=-0.63,fontsize=10]
+N2 -> N6 [color=red] [arrowType=inv][ label=-0.75,fontsize=10]
+N0 -> N7 [color=black] [ label=0.46,fontsize=10]
+N1 -> N7 [color=black] [ label=1.26,fontsize=10]
+N2 -> N7 [color=black] [ label=1.2,fontsize=10]
+N1 -> N8 [color=red] [arrowType=inv][ label=-0.56,fontsize=10]
+N2 -> N8 [color=red] [arrowType=inv][ label=-1.13,fontsize=10]
+N0 -> N9 [color=black] [ label=1.38,fontsize=10]
+N2 -> N9 [color=red] [arrowType=inv][ label=-0.27,fontsize=10]
+N0 -> N10 [color=red] [arrowType=inv][ label=-1.23,fontsize=10]
+N1 -> N10 [color=red] [arrowType=inv][ label=-1.18,fontsize=10]
+N2 -> N10 [color=black] [ label=0.4,fontsize=10]
+N8 -> N4 [color=red] [arrowType=inv][ label=-0.25,fontsize=10]
+N9 -> N8 [color=red] [arrowType=inv][ label=-0.13,fontsize=10]
+N1 -> N208 [color=black] [ label=1,fontsize=10]
+N208 -> N9 [color=black] [ label=1.07,fontsize=10]
+N0 -> N292 [color=red] [arrowType=inv][ label=-0.55,fontsize=10]
+N292 -> N8 [color=black] [ label=0.19,fontsize=10]
+N7 -> N5 [color=black] [ label=0.55,fontsize=10]
+N10 -> N10 [color=black] [ label=1.17,fontsize=10]
+N7 -> N292 [color=red] [arrowType=inv][ label=-0.12,fontsize=10]
+ { rank=same; 
+N3
+N4
+N5
+N6
+N7
+N8
+N9
+N10
+ } 
+ { rank=same; 
+N1 ->N2 ->N0 [style=invis]
+ } 
+}

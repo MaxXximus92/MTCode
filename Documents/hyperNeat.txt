@@ -1,0 +1,44 @@
+HyperNeat
+= Hypercube-based NeuroEvolution of augmenting topologies
+
+indirect endocing
+mapping function descripes distribution between input and output functions. cCPPNS (Connective Compositional Pattern Producing Networks)
+Topology of the Network leads the search 
+Scalability to new number of inputs and outputs
+
+Annahme: Verknüpfungen folgen Verteilungen. Diese wiederholen sich auch in der Natur,Gehirn
+Biologie Neurone mit ähnlicher Funktion sind gruppiert,
+
+Es muss ähnliche strukturen im Gehirn geben, da 30,000 gene 100*10^4 neurone codieren -> indirect encoding
+
+cCPPNS (Connective Compositional Pattern Producing Networks)
+	-> cennectiveity pattern as function in cartesian space
+	->  represent pattern in hyperspace which are mapped to lower dimensional cennectivity pattern
+phenotype function of n dimensions (n number of dimensions in physical space) -> each coodrinate of this space is output of function that encodes phenotype.
+Compositional Pattern Producing Networks-> produce sptial patterns by combination of basic functions
+ -> different basic functions: sinus, lines,  gaussians...
+e.g choose inus functions for symmetric building symmetric funtions
+
+CPPN produces ANN
+Combination with NEAT: start with easy patterns -> get to more complex ones
+
+Connection in 2d space descriped by 2 points -> 4 coordinates -> CPPN has 4 inputs -> 4d Hypercube
+CPPN Produces substrate
+substrate = generated connectivity pattern of nodes
+oder substrate = placement of neurons
+
+Substrat configration: Grid, THree Dimension, 2Layer sandwich, cicular...
+Placing of neurons is free choosable, so one encode relationships between neurons directly in the substrate with distances.
+Example receptive field in retina, just moved connectivity pattern
+
+Substrate Resolution.
+-> change solution without learning. E,g take 7 sensors instead of 5. if spatial symmetry detected, new resolution also quite likely to learn.
+
+
+Workflow: 
+Population with minimal CPPNS and random weights.
+	repeat:
+	for each member : query substrate, if weight is heiger than threshold -> realize connection. Than determine fitness of created ANN.
+Reproducing with NEAT
+
+	 

@@ -2,9 +2,9 @@
 startflag= 'Run Experiment';
 startReached= false;
 endFlag = 'Evolution Done';
-sucessThr= 0.5;
+sucessThr= 0.3;
 
-fid = fopen('consoleLogStatic_17_07_02_fastestTime.txt');
+fid = fopen('consoleLog_ES_Iterative.txt');
 
 tline = fgets(fid);
 lineCounter =1;
@@ -51,7 +51,7 @@ sumedFitness;
 sucessRate = sucessfulCounter/runsCounter
 meanFitness = sumedFitness/sucessfulCounter
 %0.3 zu 0.7
-%approxRmsd = 135-(meanFitness -0.3)/0.7*135
+approxRmsd = 135-(meanFitness -0.3)/0.7*135
 %balanced
 %approxRmsd = 135-(meanFitness -2/3)/(1/3)*135
 %ongoing

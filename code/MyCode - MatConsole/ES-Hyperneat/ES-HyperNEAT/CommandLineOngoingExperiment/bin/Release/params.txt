@@ -1,10 +1,23 @@
-Threshold -0.5
-WeightRange 3
-NumberofThreads 4
+//Threshold 0.75
+WeightRange 1
+NumberofThreads 1
 SubstrateActivationFunction SteepenedSigmoid
 StartActivationFunctions
 BipolarSigmoid .25
-Sine .25
 Gaussian .25
 Linear .25
+Sine .25
 EndActivationFunctions
+//Evolvable-Substrate HyperNEAT settings
+InitialDepth 6
+MaximumDepth 7
+DivisionThrs .0003
+VarianceThr .0003
+BandingThr 0.003
+//InitialDepth 5
+//MaximumDepth 5
+//DivisionThrs .03
+//VarianceThr .03
+//BandingThr 0.3
+//neede for Type Coded Substrate
+ESIterations 5

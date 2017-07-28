@@ -1,6 +1,51 @@
-17 12:45:37 test encoding: threshold: 0
-17 12:45:37 Starting Experiment: EsExp
-17 12:45:38 --------------------------------------------------------
-17 12:45:38 Creating Experiment
-17 12:45:38 Building Population
-17 12:45:38 matlab instance number 1 added
+28 13:15:24 test encoding: threshold: 0
+28 13:15:24 Starting Experiment: EsExp
+28 13:15:24 --------------------------------------------------------
+28 13:15:24 Creating Experiment
+28 13:15:24 Building Population
+28 13:15:25 Genome Number 1 NumNeurons 0 fitness 0 dt 00:00:00.3864415 
+28 13:15:25 Genome Number 3 NumNeurons 0 fitness 0 dt 00:00:00.5530782 
+28 13:15:25 matlab instance number 1 added
+28 13:15:25 matlab instance number 2 added
+28 13:15:25 matlab instance number 3 added
+28 13:15:25 matlab instance number 4 added
+28 13:15:43 Matlab Instance com_2 exited . Create new one
+28 13:15:43 Matlab Instance com_4 exited . Create new one
+28 13:15:43 Matlab Instance com_3 exited . Create new one
+28 13:15:43 Matlab Instance com_1 exited . Create new one
+28 13:15:43 matlab instance com_3 removed 
+28 13:15:43 matlab instance number 7 added
+28 13:15:43 matlab instance com_2 removed 
+28 13:15:44 matlab instance number 5 added
+28 13:15:44 matlab instance com_4 removed 
+28 13:15:44 matlab instance number 6 added
+28 13:15:44 matlab instance com_1 removed 
+28 13:15:44 matlab instance number 8 added
+28 13:15:44 Matlab Instance com_7 exited . Create new one
+28 13:15:44 Matlab Instance com_6 exited . Create new one
+28 13:15:44 matlab instance com_7 removed 
+28 13:15:44 matlab instance number 9 added
+28 13:15:44 matlab instance com_6 removed 
+28 13:15:45 Matlab Instance com_5 exited . Create new one
+28 13:15:45 Matlab Instance com_8 exited . Create new one
+28 13:15:45 matlab instance number 10 added
+28 13:15:45 matlab instance com_8 removed 
+28 13:15:46 matlab instance number 12 added
+28 13:15:47 Matlab Instance com_10 exited . Create new one
+28 13:15:47 Matlab Instance com_9 exited . Create new one
+28 13:15:48 matlab instance com_5 removed 
+28 13:15:48 matlab instance number 11 added
+28 13:15:48 matlab instance com_9 removed 
+28 13:15:49 matlab instance number 14 added
+28 13:15:49 Matlab Instance com_12 exited . Create new one
+28 13:15:50 matlab instance com_10 removed 
+28 13:15:50 matlab instance number 13 added
+28 13:15:50 matlab instance com_12 removed 
+28 13:15:50 matlab instance number 15 added
+28 13:15:50 Matlab Instance com_14 exited . Create new one
+28 13:15:51 Matlab Instance com_11 exited . Create new one
+28 13:15:51 Matlab Instance com_13 exited . Create new one
+28 13:15:52 matlab instance com_14 removed 
+28 13:15:52 Matlab Instance com_15 exited . Create new one
+28 13:15:53 matlab instance number 16 added
+28 13:15:54 

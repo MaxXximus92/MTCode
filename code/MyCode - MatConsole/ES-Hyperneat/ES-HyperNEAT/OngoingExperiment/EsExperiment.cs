@@ -58,8 +58,8 @@ namespace EsExperimentNS
                 {
                     NeatParameters np = new NeatParameters();
                     np.connectionWeightRange = 3;
-                    np.pMutateAddConnection = .03;
-                    np.pMutateAddNode = .01;
+                    np.pMutateAddConnection = .15; // original 0,03
+                    np.pMutateAddNode = .05; // original 0.01
                     np.pMutateConnectionWeights = .96;
                     np.pMutateDeleteConnection = 0;
                     np.pMutateDeleteSimpleNeuron = 0;

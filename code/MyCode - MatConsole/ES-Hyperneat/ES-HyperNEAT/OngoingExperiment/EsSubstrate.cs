@@ -70,6 +70,8 @@ namespace EsExperimentNS
                 neuronDictionary.Add(point, n);
                 xPos += inputDelta;
             }
+
+
             // need max depth of 3 = max 64+D neurons ,depth 4 = 256+D
             // neurons are stealing their space away. Give each neuron type a quarter of a s 2X2 square wth center 0, D cells are a line in the middle from 0 to one
             List<Neuron> esNeurons = scanForNewConnectionsAndPoints(inputNeurons, NType.ES, true, neuronDictionary,new PointF(0.5f,0.5f),1f,(int)this.maxDepth);
@@ -85,7 +87,7 @@ namespace EsExperimentNS
             // finding circles is to expensive in this case
             List<Neuron> allNeurons = neuronDictionary.Values.ToList();
 
-            // TODO important  comment int !! after testin
+          
 
             foreach (Neuron n in allNeurons)
             {
@@ -94,7 +96,7 @@ namespace EsExperimentNS
 
             List<Neuron> clearedNeuros = new List<Neuron>();
 
-
+         
             //get not deleted neurons
 
             foreach (Neuron n in allNeurons)
@@ -105,8 +107,8 @@ namespace EsExperimentNS
                 }
             }
             // sort neurons by type
+  
             int counter = 0;
-            List<Neuron> sortedNeurons = new List<Neuron>();
             foreach (NType type in Enum.GetValues(typeof(NType)))
             {
                 foreach (Neuron n in clearedNeuros)
@@ -114,31 +116,36 @@ namespace EsExperimentNS
                     if (n.type == type)
                     {
                         n.index =counter++;
-                        sortedNeurons.Add(n);
                     }
                 }
 
             }
             Debug.Assert(counter == clearedNeuros.Count );
+           // Console.WriteLine("Here 5");
+            //allNeurons.Where(n => n.toDelete == false).ToList();
 
-                //allNeurons.Where(n => n.toDelete == false).ToList();
-
-                // build connection matrix  
-                int matrixDim = clearedNeuros.Count;
+            // build connection matrix  
+            int matrixDim = clearedNeuros.Count;
+   
             int[][] connectionsMat = new int[matrixDim][];
             for (int i = 0; i < matrixDim; i++)
             {
                 connectionsMat[i] = new int[matrixDim];
             }
+           // Console.WriteLine("Here 6");
             NType[] typeArray = new NType[matrixDim];
             foreach (Neuron neuron in clearedNeuros)
             {
                 typeArray[neuron.index] = neuron.type;
                 foreach (Neuron outgoing in neuron.outCon)
                 {
-                    connectionsMat[neuron.index][outgoing.index] = 1;
+                    if (neuron.index != -1 && outgoing.index != -1)
+                    {//Fehler !outgoing connection index kann -1 sein, ka wo der herkommt, sollte nicht passieren. so ist es erstmal gefixt
+                        connectionsMat[neuron.index][outgoing.index] = 1;
+                    }
                 }
             }
+         //   Console.WriteLine("Here 7");
             types = typeArray.ToList();
             return connectionsMat;// hier fliegt macnhmal ein unnachvollziehbarar Argument Null Exception
         }
@@ -150,11 +157,12 @@ namespace EsExperimentNS
             {
                 //Debug.Assert(n.toDelete == false); // there sould be no way to get to this ,cause it doesn't have outgoing connections
                                                        // no there is a way cause one iterates over all neurons revursive deleted neurons are called again
-                // TODO assert schlägt fehl
+
                 n.toDelete = true;
                 foreach (Neuron n2 in n.inCon)
                 {
-                    Debug.Assert(n2.outCon.Remove(n));
+                    // Debug.Assert(n2.outCon.Remove(n));
+                    if (!n2.outCon.Remove(n)) throw new Exception("target incoming was not source outgoing connection");
                     deleteRekursive(n2);
                 }
                 n.inCon.Clear();
@@ -168,7 +176,7 @@ namespace EsExperimentNS
         }
         private List<Neuron> scanForNewConnectionsAndPoints(List<Neuron> sourceNeurons, NType targetType, bool createNewNeurons, Dictionary<PointF, Neuron> neuronDictionray, PointF center, float width,int maximalDepth) 
         {
-            int connection_counter = 0;
+            
             List<TempConnection> tempConnections = new List<TempConnection>();
             List<Neuron> destNeurons = new List<Neuron>();
             // Connections form Input nodes to ES nodes
@@ -186,7 +194,6 @@ namespace EsExperimentNS
                     bool exists = neuronDictionray.TryGetValue(targetPoint, out targetNeuron);
                     if (exists && targetNeuron.type == targetType)
                     {
-                        connection_counter++;
                         targetNeuron.inCon.Add(sourceNeuron);
                         sourceNeuron.outCon.Add(targetNeuron);
                     }

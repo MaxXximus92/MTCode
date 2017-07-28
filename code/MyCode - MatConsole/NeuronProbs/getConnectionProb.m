@@ -1,7 +1,8 @@
-function [conProb,string] = getConnectionProb(net)
+function [conProb,numNeuronTypes,numConnections] = getConnectionProb(net)
 
 types = net.neuronTypes();
-weights= net.weightsMatrix();
+weightsM = net.weightsMatrix();
+numConnections = sum(sum(weightsM~=0));
 
  esTypes=strcmp(types,'ES');
  emTypes=strcmp(types,'EM');
@@ -19,11 +20,12 @@ weights= net.weightsMatrix();
  pim_em= getP(imTypes,emTypes);
  
     function p =getP(con1,con2)
-        c1=sum(sum(weights(con1,con2)~=0));
+        c1=sum(sum(weightsM(con1,con2)~=0));
         c2= sum(con1)*sum(con2);
         p=c1/c2;
     end
 
 conProb = struct('D_ES',pd_es,'ES_IS',pes_is,'IS_IS',pis_is,'IS_ES',pis_es,'ES_EM',pes_em,'EM_IM',pem_im,'IM_IM',pim_im,'IM_EM',pim_em);
+numNeuronTypes =struct('D',sum(dTypes),'ES',sum(esTypes),'IS',sum(isTypes),'EM',sum(emTypes),'IM',sum(imTypes));
 end
 

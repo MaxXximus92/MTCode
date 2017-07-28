@@ -1,0 +1,30 @@
+digraph g { 
+N0 [shape=ellipse, label=Bias,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N1[shape=ellipse label=X1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N2[shape=ellipse label=Y1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N3[shape=ellipse label=X2,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N4[shape=ellipse label=Y2,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N5[shape=ellipse,fontsize = 10, height = 0.1, width = 0.1, style = filled, fillcolor = red]
+N88[shape=ellipse, label=N88_L,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N103[shape=ellipse, label=N103_G,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N230[shape=ellipse, label=N230_Si,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N488[shape=ellipse, label=N488_S,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N2 -> N5 [color=black] [ label=0.22,fontsize=10]
+N3 -> N5 [color=black] [ label=0.61,fontsize=10]
+N0 -> N88 [color=black] [ label=1.15,fontsize=10]
+N88 -> N5 [color=red] [arrowType=inv][ label=-0.37,fontsize=10]
+N4 -> N103 [color=black] [ label=1.02,fontsize=10]
+N103 -> N5 [color=red] [arrowType=inv][ label=-0.82,fontsize=10]
+N103 -> N88 [color=black] [ label=0.6,fontsize=10]
+N1 -> N230 [color=black] [ label=0.84,fontsize=10]
+N230 -> N5 [color=black] [ label=1.24,fontsize=10]
+N4 -> N88 [color=red] [arrowType=inv][ label=-1.37,fontsize=10]
+N1 -> N488 [color=black] [ label=1,fontsize=10]
+N488 -> N103 [color=red] [arrowType=inv][ label=-0.33,fontsize=10]
+ { rank=same; 
+N5
+ } 
+ { rank=same; 
+N1 ->N2 ->N3 ->N4 ->N0 [style=invis]
+ } 
+}

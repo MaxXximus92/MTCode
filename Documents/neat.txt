@@ -1,0 +1,86 @@
+NEAT Neuroevolution of augmenting topologies
+-> NE algorithm 
+-> stepwise optimization and complexification of NNs
+-> old approaches only connections -> with neat -> topology
+
+-> compex networks (full connected) -> speed and accurancy of learning gets worse with backprob (with NE unkonwn)
+-> one doesn't have to try any more by hand how many hidden nodes are needed
+
+TWEANs Topology and weight evolving Artificial Neural Networks
+GA_> corssover + mutate. Evolutionary Programmin -> only mutate
+
+Neat direct encoding  -> not indirect cause : might bias search in unpredictable way. no one to one mapping indirect ->direct
+
+Copeting convention problem 2 networks produce same result but different strucutre -> crossover likely to 	produce damaged offspring
+
+
+Allel -> ausprägung von homologen genen.   gen: blütenfarbe : allel 1 rot, allel 2 blau
+synapsis: anordnung homologer gene  -> in neat artificial synapsis -> wenn gleichen ursprung
+
+protecting innovation with specitation (specitation = niching)
+-> new connection or new node doesn't normally lead to immediatelly to better performance, needs time to develop weight, connextions
+-> innovative structure own species (niches)
+-> explicit fitness sharing -> individuals with similar genomes share fitness payoff (auszahlung). -> neat
+-> implicit fitness sharing -> similar fitnes
+fintess sharing -> number of individuals that can exist at fitness peak is dependend on the size of the peak -> small peak many individuals, -> shared payoff gets less.
+-> here neat, wide of good fitnesses with similar genomes
+
+Neat:
+genetic encoding
+List connection genes , each refers to 2 node genes, has expressed flag, and innovation number, weight
+Mutations
+-> weight  mutated with prob.
+-> Structure mutations:
+	add connection mutation -> new connection gene random weight two unconnected cells
+	add cell mutation -> existing connection is split , old connection disabled, 2 new connections added. in new node w =1 out new node w = previous connection -> minimize initial effect of mutation. new structure behaves like old one
+
+Historical Markings
+two genes with same origin must represent same structure (but different weigths). both derived from same acestral gene
+new gene appears globel innovation counter applied und incemented. only for connection genes,(add node mutation => two new connection genes). Mating -> innovation number does not change. fixed.
+If same connection is added more times in one generation, than same innovation number
+
+Crossing over: Genes with same innovation number are lined up (synapsis) -> matching . Gene with no match disjoint -> inside the range of othr parents innumbers. excess -> outside range of other parents in numbers.
+matching genes choosen randomly. disjoint and excess from fitter parent (same fintess -> also randomly), small change that inherited gene is disabled	
+-> no expensive topology analysis
+
+Specitation:
+Distance measure of 2 structures:
+fomular dependig on c1*excess genes/N + c2*disjoint genes/N + c3*average weight differences of matching genes.(avaerage over differences of 2 genes)
+N = numebr of genes in larger genome.
+Distance thrshold determines wether same species
+
+Ordered List of species
+each generation genomes are sequentially added to species. Existing species (prev generation) represented by random member. 
+genome -> first fit by compare with representer -> add  -> no overlap of species . if genome not compatible with any representer -> placed in new species.
+
+Explicit fitness sharing-> prevent one species to take over entire populations
+adjusted fitness = f_i / num of species member.
+if species gets to large -> fitness gets less
+Reproduction:
+Depending  propotional of sum of adjusted fitnesses in population number of offpsrings are calculated. (generation size fixed)
+1. eliminating lowest perfoming members of all population
+2. Entire population replaced by  offspring of remaining genomes
+(elitism also possible)
+
+
+Minimal Structure -> minimal dimensionality (each weight one dimension)
+-> start only inputs connected to all outputs
+
+
+Markovian, non markovian by networks
+markovian network independend from last input --> no backwards connections
+non markovian network independend from last inputs -> backward connections, loops...
+
+
+Parameters:
+80% weight mutation. 90% uniformly perturbed ?? whats this? 10% new random weight
+Best generation survives completely
+25% that inherited disabled gets enabled
+interspecies mating rate  0.0001
+new node 3% link 5%
+steepend sigmoidal activaition function
+
+
+
+
+

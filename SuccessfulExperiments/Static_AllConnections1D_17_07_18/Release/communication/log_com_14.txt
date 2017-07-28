@@ -1,0 +1,73 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017a (9.2.0.556344) 64-bit (glnxa64)
+                               March 27, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+
+------------------------------------------------------------------------
+       Segmentation violation detected at Fri Jul 21 20:45:26 2017
+------------------------------------------------------------------------
+
+Configuration:
+  Crash Decoding      : Disabled - No sandbox or build area path
+  Crash Mode          : continue (default)
+  Current Graphics Driver: Unknown software 
+  Current Visual      : None
+  Default Encoding    : UTF-8
+  Deployed            : false
+  GNU C Library       : 2.19 stable
+  Host Name           : eciton
+  MATLAB Architecture : glnxa64
+  MATLAB Entitlement ID: 1901538
+  MATLAB Root         : /storage/matlab-r2017a
+  MATLAB Version      : 9.2.0.556344 (R2017a)
+  OpenGL              : software
+  Operating System    : Linux 3.19.0-39-generic #44~14.04.1-Ubuntu SMP Wed Dec 2 10:00:35 UTC 2015 x86_64
+  Processor ID        : x86 Family 111 Model 2 Stepping 0, AuthenticAMD
+  Virtual Machine     : Java 1.7.0_60-b19 with Oracle Corporation Java HotSpot(TM) 64-Bit Server VM mixed mode
+  Window System       : No active display
+
+Fault Count: 1
+
+
+Abnormal termination:
+Segmentation violation
+
+Register State (from fault):
+  RAX = 0000000000000003  RBX = 00007fa12ebc3270
+  RCX = 00007fa14030ed60  RDX = 0000000000000013
+  RSP = 00007fa14e882398  RBP = 00007fa14e8823e0
+  RSI = 0000000000000001  RDI = 00007fa12ebc3270
+
+   R8 = 0000000000000003   R9 = 0000000000000004
+  R10 = 0000000000000010  R11 = 00007fa12ebc3890
+  R12 = 00007fa13d7ad460  R13 = 00007fa1404b8370
+  R14 = 0000000000000000  R15 = 00007fa13d7ad370
+
+  RIP = 00007fa1544c85f4  EFL = 0000000000010246
+
+   CS = 0033   FS = 0000   GS = 0000
+
+Stack Trace (from fault):
+[  0] 0x00007fa1544c85f4                       bin/glnxa64/libmwlxetypes.so+00132596
+[  1] 0x00007fa1549e2458                    bin/glnxa64/libmwlxeindexing.so+00500824
+[  2] 0x00007fa1588ff7ad                          bin/glnxa64/libmwm_lxe.so+12187565
+[  3] 0x00007fa158316e20                          bin/glnxa64/libmwm_lxe.so+05991968
+[  4] 0x00007fa13cf6f15f                                   <unknown-module>+00000000
+
+
+If this problem is reproducible, please submit a Service Request via:
+    http://www.mathworks.com/support/contact_us/
+
+A technical support engineer might contact you with further information.
+
+Thank you for your help.** This crash report has been saved to disk as /home/mutschler/matlab_crash_dump.59115-1 **
+
+
+
+MATLAB is exiting because of fatal error

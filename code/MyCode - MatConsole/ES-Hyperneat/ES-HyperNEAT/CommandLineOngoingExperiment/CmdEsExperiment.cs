@@ -15,6 +15,7 @@ using static EsExperimentNS.Helper;
 using System.Threading;
 using System.Globalization;
 using SharpNeatLib.CPPNs;
+using System.Collections.Generic;
 
 namespace EsExperimentNS
 {
@@ -47,12 +48,12 @@ namespace EsExperimentNS
         static void Main(string[] args)
         {
 
- 
-           // string genomeSavePath = "";
-            NeatGenome seedGenome = null;
-           // string filename = null;
 
-            Console.WriteLine("test encoding: threshold: "+ HyperNEATParameters.threshold);
+            // string genomeSavePath = "";
+            NeatGenome seedGenome = null;
+            // string filename = null;
+
+            Console.WriteLine("test encoding: threshold: " + HyperNEATParameters.threshold);
             // Console.WriteLine("number of processors: "+ Environment.ProcessorCount);
             // System.Environment.SetEnvironmentVariable("MONO_THREADS_PER_CPU","201");
             //string thredscpu = System.Environment.GetEnvironmentVariable("MONO_THREADS_PER_CPU");
@@ -88,7 +89,7 @@ namespace EsExperimentNS
             //        System.Console.WriteLine("Problem loading genome. \n" + e.Message);
             //    }
             //}
-            Console.WriteLine("Starting Experiment: "+ ExperimentParameters.experimentName);
+            Console.WriteLine("Starting Experiment: " + ExperimentParameters.experimentName);
             Console.WriteLine("--------------------------------------------------------");
 
 
@@ -111,16 +112,17 @@ namespace EsExperimentNS
             //string epath = Directory.GetCurrentDirectory() + "\\" + ExperimentParameters.initialNetEqParamsPath;
             //Console.WriteLine(wpath);
             //Console.WriteLine(epath);
-   
+
 
             Console.WriteLine("Creating Experiment");
             EsExperiment exp = new EsExperiment();
-           
 
-        
-    
+
+
+
             IdGenerator idgen;
             EvolutionAlgorithm ea;
+            List<IGenome> best100 = new List<IGenome>();
 
             Console.WriteLine("Building Population");
             if (seedGenome == null)
@@ -135,10 +137,10 @@ namespace EsExperimentNS
                 ea = new EvolutionAlgorithm(new Population(idgen, GenomeFactory.CreateGenomeList(seedGenome, populationSize, exp.DefaultNeatParameters, idgen)), exp.PopulationEvaluator, exp.DefaultNeatParameters);
             }
             Console.WriteLine("Run Experiment");
-            for (int j = 0; j < maxGenerations; j++)
+            for (int j = 0; j < ExperimentParameters.maxGenerations; j++)
             {
-                Console.WriteLine("------------------------------------\n Generation: "+j+ "\n------------------------------------");
-                Population  b= ea.Population;
+                Console.WriteLine("------------------------------------\n Generation: " + j + "\n------------------------------------");
+                Population b = ea.Population;
                 DateTime dt = DateTime.Now;
                 ea.PerformOneGeneration();
 
@@ -147,7 +149,7 @@ namespace EsExperimentNS
                 {
                     Console.WriteLine("Save Best Genome");
                     initialMaxFitness = ea.BestGenome.Fitness;
-                    saveGenome(ea.BestGenome, genomeSavePath, String.Format("{0}_BGen_Gen_{1}_Fit_{2:0.#####}", ExperimentParameters.experimentName,j,ea.BestGenome.Fitness));
+                    saveGenome(ea.BestGenome, genomeSavePath, String.Format("{0}_BGen_Gen_{1}_Fit_{2:0.#####}", ExperimentParameters.experimentName, j, ea.BestGenome.Fitness));
                     // This will output the substrate, uncomment if you want that
                     // gibt resultierendes Netzwerk zur Robotersteuerung zurück -> nicht benötigt
                     // doc = new XmlDocument();
@@ -156,27 +158,22 @@ namespace EsExperimentNS
                     // doc.Save(oFileInfo.FullName);
 
                 }
+                best100=searchBest100(best100, ea.Population.GenomeList);
                 saveGenerationData(ea.Population, (int)ea.Generation, ea.BestGenome.Fitness, getGenerationInfoPath());
                 Console.WriteLine("-----------------------------");
-                Console.WriteLine("Generation Number{0}, best fitness:{1:0.#####}, time needed to evaluate: {2}", ea.Generation.ToString() , ea.BestGenome.Fitness , (DateTime.Now.Subtract(dt)));
+                Console.WriteLine("Generation Number{0}, best fitness:{1:0.#####}, time needed to evaluate: {2}", ea.Generation.ToString(), ea.BestGenome.Fitness, (DateTime.Now.Subtract(dt)));
                 Console.WriteLine("-----------------------------");
                 //Do any post-hoc stuff here
+                ExperimentParameters.loadParameterFile();
             }
 
             Console.WriteLine("Evolution Done -> Saving Results");
             //get Matlab Plots for best genome
 
-           // save n best models of last population
-
-            GenomeList genList = ea.Population.GenomeList;
-            genList.Sort(); // decreasing values.
-            IGenome[] genArray =genList.ToArray();
+            // save n best models of last population
 
             Console.WriteLine("Saving Genomes");
-            for (int i = 1; i < Math.Min(ExperimentParameters.numLastGenModelsToPlotAndSave,genArray.Length); i++)
-            {
-                saveGenome( genArray[i], genomeSavePath, String.Format("{0}_LGen_Fit_{1:0.#####}_ord_{2}", ExperimentParameters.experimentName,genArray[i].Fitness,i));
-            }
+            saveGenomes(ea.Population.GenomeList,best100,genomeSavePath);
             Console.WriteLine("Plotting matlab graphs");
             plotMatlabGraphs(genomeSavePath, (EsPopulationEvaluator)exp.PopulationEvaluator);
             Console.WriteLine("Close training models");
@@ -194,9 +191,78 @@ namespace EsExperimentNS
             doubleWriter.Flush();
             doubleWriter.Close();
 
- 
+
 
         }
+
+        private static void saveGenomes(GenomeList genList, List<IGenome> best100, String genomeSavePath)
+        {
+            genList.Sort(); // decreasing values.
+            IGenome[] genArray = genList.ToArray();
+
+
+            for (int i = 1; i < Math.Min(ExperimentParameters.numLastGenModelsToPlotAndSave, genArray.Length); i++)
+            {
+                saveGenome(genArray[i], genomeSavePath, String.Format("{0}_LGen_Fit_{1:0.#####}_ord_{2}", ExperimentParameters.experimentName, genArray[i].Fitness, i));
+            }
+            for (int i = 0; i < best100.Count; i++)
+            {
+                IGenome g = best100[i];
+                saveGenome(g, genomeSavePath, String.Format("{0}_Best100_Fit_{1:0.#####}_ord_{2}", ExperimentParameters.experimentName, g.Fitness, i));
+            }
+		}
+
+        private static List<IGenome> searchBest100(List<IGenome> best100, GenomeList currentPop)
+        {
+			//List < IGenome > union = best100.Union (currentPop, new GenomeEqualityComparer ()).ToList ();
+			//List < IGenome > ordered = union.OrderBy(x => x, new B100GenomeComparer ()).ToList ();
+			//List < IGenome > b15 = ordered.Take (15).ToList ();
+
+			List < IGenome > bnew= best100.Union(currentPop,new GenomeEqualityComparer()).OrderBy(x => x, new B100GenomeComparer()).Take(15).ToList(); // take 100 or less when there are less
+//			foreach(IGenome i in bnew){
+//				Console.WriteLine(i.Fitness + " " + i.GenomeId+ " " +i.GenomeAge);
+//			}
+            return bnew;
+        }
+
+        private class GenomeEqualityComparer : IEqualityComparer<IGenome>
+        {
+            public bool Equals(IGenome x, IGenome y)
+            {
+                return x.GenomeId == y.GenomeId;
+            }
+
+            public int GetHashCode(IGenome obj)
+            {
+                return obj.GetHashCode();
+            }
+        }
+		private class B100GenomeComparer : IComparer<IGenome>
+		{
+
+			#region IComparer<IGenome> Members
+
+			public int Compare(IGenome x, IGenome y)
+			{
+				double fitnessDelta = y.Fitness - x.Fitness;
+				if (fitnessDelta < 0.0D)
+					return -1;
+				else if (fitnessDelta > 0.0D)
+					return 1;
+
+				long ageDelta = y.GenomeAge - x.GenomeAge;
+
+				// Convert result to an int.
+				if (ageDelta < 0)
+					return -1;
+				else if (ageDelta > 0)
+					return 1;
+
+				return 0;
+			}
+
+			#endregion
+		}
 
         private static void saveGenerationData(Population population, int generation,double bestFitness ,string path)
         {

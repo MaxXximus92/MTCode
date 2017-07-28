@@ -8,7 +8,10 @@ set(0,'DefaulttextInterpreter','none')
 for i = 1:numel(matfiles)
     cppnMatrices= load(['CPPNValues/' char(matfiles(i))]);
     fields= fieldnames(cppnMatrices);
-
+    
+    filename =char(matfiles(i));
+    filename = filename(1:end-4)
+    mkdir(['figures/' filename]);
     % fig =  figure() ;
     
      for j = 1:8
@@ -44,12 +47,11 @@ for i = 1:numel(matfiles)
         ylabel(ylab);
         zlabel('CPPN outputs');
         %h=legend('CPPN outputs','bsdf');%,'Location','eastoutside');%'Location','southwest');
-        filename =char(matfiles(i));
-        filename = filename(1:end-4)
+
         title([filename ' ' headings(j)]);
         hold off
-        savefig(['figures/' filename '_' char(headings(j)) '.fig'])
-       % close(fig);
+        savefig(['figures/' filename '/' filename '_' char(headings(j)) '.fig'])
+        close(fig);
      end
    % suptitle(char(matfiles(i)))
 end

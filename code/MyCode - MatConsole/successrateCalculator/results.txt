@@ -4,4 +4,6 @@ Static_17_07_02_fastestTime Threshold= 1/3 rate= 0.3669, meanFitness= 0.5657
 Static_AllConnectionsSquareModel_17_07_10 Threshold= 0.3 rate= 0.5128 meanFitness= 0.8567 approxRmsd = 27.6278 
 Static_RMSDFit_17_07_07_balanced Threshold= 0.6 rate= 0.7157 meanFitness= 0.81 approxRmsd = 76.1635 -> sehr groﬂer fehler belastet
 Static_RMSDFit_17_07_10_minVariance.txt Threshold= 0.3 rate= 0.6914 meanFitness= 0.85 approxRmsd = 28.66
+consoleLog_AllConnections_1D_17_07_18.txt Threshold= 0.3 rate=0.3741 meanFitness= 0.9036 approxRmsd = 18.5953
+consoleLog_ES_Iterative   Thresold=0.3 rate =0.7553 meanFitness= 0.8838 approx rmsd=22.4080
 %%%
