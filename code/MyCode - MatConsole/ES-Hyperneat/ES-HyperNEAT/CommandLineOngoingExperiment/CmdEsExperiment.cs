@@ -158,7 +158,8 @@ namespace EsExperimentNS
                     // doc.Save(oFileInfo.FullName);
 
                 }
-                best100=searchBest100(best100, ea.Population.GenomeList);
+                Console.WriteLine("Updating best 100");
+                best100 =searchBest100(best100, ea.Population.GenomeList);
                 saveGenerationData(ea.Population, (int)ea.Generation, ea.BestGenome.Fitness, getGenerationInfoPath());
                 Console.WriteLine("-----------------------------");
                 Console.WriteLine("Generation Number{0}, best fitness:{1:0.#####}, time needed to evaluate: {2}", ea.Generation.ToString(), ea.BestGenome.Fitness, (DateTime.Now.Subtract(dt)));
@@ -218,7 +219,7 @@ namespace EsExperimentNS
 			//List < IGenome > ordered = union.OrderBy(x => x, new B100GenomeComparer ()).ToList ();
 			//List < IGenome > b15 = ordered.Take (15).ToList ();
 
-			List < IGenome > bnew= best100.Union(currentPop,new GenomeEqualityComparer()).OrderBy(x => x, new B100GenomeComparer()).Take(15).ToList(); // take 100 or less when there are less
+			List < IGenome > bnew= best100.Union(currentPop,new GenomeEqualityComparer()).OrderBy(x => x, new B100GenomeComparer()).Take(100).ToList(); // take 100 or less when there are less
 //			foreach(IGenome i in bnew){
 //				Console.WriteLine(i.Fitness + " " + i.GenomeId+ " " +i.GenomeAge);
 //			}

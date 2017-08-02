@@ -438,7 +438,7 @@ classdef spikenet < handle
         end
         
         % helper function: stimulate D cells by current angle
-        function dCellsToFire = stimulateDCellsByAngle (this, angle_target, angle_min, angle_max)
+         function dCellsToFire = stimulateDCellsByAngle (this, angle_target, angle_min, angle_max)
             angle_norm = angle_target/(2*(angle_max-angle_min));
             
             dCells = find(this.getCellsOfType('D'))';
@@ -446,10 +446,12 @@ classdef spikenet < handle
             muDCells = (0:0.5:((numDCells-1)*0.5))';
             probsDCells = 2*normpdf(angle_norm*(numDCells-1)*0.5, muDCells, 0.8);
             
+            rng(this.randomPopCodeSeedCounter); 
             dCellsToFire = dCells.*(rand(length(probsDCells),1) <= probsDCells);
             dCellsToFire = dCellsToFire(dCellsToFire~=0);
             stimulateVoltage = abs(this.spikingThreshold)+abs(this.rmpValues('D'));
             this.v(dCellsToFire) = this.rmpValues('D')+0.5*stimulateVoltage;
+            this.randomPopCodeSeedCounter = this.randomPopCodeSeedCounter+1;
         end
         
         % fire D cells by the pre-calculated distance
@@ -461,10 +463,11 @@ classdef spikenet < handle
             numDCells = length(dCells);
             muDCells = (0:0.5:((numDCells-1)*0.5))';
             probsACells = 2*normpdf(angle_norm*(numDCells-1)*0.5, muDCells, 0.8);
-            
+            rng(this.randomPopCodeSeedCounter); 
             dCellsToFire = dCells.*(rand(length(probsACells),1) <= probsACells);
             dCellsToFire = dCellsToFire(dCellsToFire~=0);
             this.v(dCellsToFire) = this.spikingThreshold;
+            this.randomPopCodeSeedCounter = this.randomPopCodeSeedCounter+1;
         end
         
         % plot firings of all neurons over the whole simulation time

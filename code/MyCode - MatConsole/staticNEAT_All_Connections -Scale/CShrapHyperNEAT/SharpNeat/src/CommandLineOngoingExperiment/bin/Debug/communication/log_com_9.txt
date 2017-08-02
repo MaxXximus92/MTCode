@@ -1,0 +1,6 @@
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Error while wrting to P:\MasterArbeit\code\MyCode - MatConsole\staticNEAT_All_Connections -Scale\CShrapHyperNEAT\SharpNeat\src\CommandLineOngoingExperiment\bin\Debug\communication\sync_com_9.txt  
+ with message Invalid file identifier. Use fopen to generate a valid file identifier. 

@@ -1,7 +1,0 @@
-07 17:58:51 unknown Parameter "maxRuntime " in experiment settings
-07 17:58:51 unknown Parameter "anglesToSimulate " in experiment settings
-07 17:58:51 unknown Parameter "timePerAngle " in experiment settings
-07 17:58:51 test encoding: threshold: -0.5
-07 17:58:51 Starting Experiment: StaticExperiment
-07 17:58:51 --------------------------------------------------------
-07 17:58:51 loading initial data

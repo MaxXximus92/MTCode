@@ -53,7 +53,6 @@ namespace EsExperimentNS
         // sollte sich dann im laufe der evolution zeigen.
         public int[][] getConnections(out List<NType> types)
         {
-            uint numInputNeurons = ExperimentParameters.numDNeurons;
 
 
             Dictionary<float, Neuron> neuronDictionary = new Dictionary<float, Neuron>();
@@ -68,7 +67,7 @@ namespace EsExperimentNS
          // first numInputNeurons found source neurons are D neurons
             // need max depth of 3 = max 64+D neurons ,depth 4 = 256+D
   
-                 scanForConnectionsAndPoints(neuronDictionary,(int)numInputNeurons);
+                 scanForConnectionsAndPoints(neuronDictionary);
             //Debugging
             List<Neuron> neurons = neuronDictionary.Values.ToList();
                 int countD = neurons.Sum<Neuron>(n => n.type == NType.D ? 1 : 0);
@@ -133,7 +132,10 @@ namespace EsExperimentNS
                 typeArray[neuron.index] = neuron.type;
                 foreach (Neuron outgoing in neuron.outCon)
                 {
-                    connectionsMat[neuron.index][outgoing.index] = 1;
+                    if (neuron.index != -1 && outgoing.index != -1)
+                    {//Fehler !outgoing connection index kann -1 sein, ka wo der herkommt, sollte nicht passieren. so ist es erstmal gefixt
+                        connectionsMat[neuron.index][outgoing.index] = 1;
+                    }
                 }
             }
             types = typeArray.ToList();
@@ -160,9 +162,8 @@ namespace EsExperimentNS
 
         }
 
-        private void scanForConnectionsAndPoints( Dictionary<float, Neuron> neuronDictionray, int numDNeurons)
+        private void scanForConnectionsAndPoints( Dictionary<float, Neuron> neuronDictionray)
         {
-            int dNeuronCounter=0;
             // int connection_counter = 0;
             List<TempConnection> tempConnections = new List<TempConnection>();
             QuadPoint root = QuadTreeInitialisation( (int)this.initialDepth, (int)this.maxDepth);
@@ -176,13 +177,7 @@ namespace EsExperimentNS
                 Neuron sourceNeuron;
                 if (!neuronDictionray.TryGetValue(sourcePos, out sourceNeuron))
                 {
-                    NType type;
-                    if (dNeuronCounter < numDNeurons)
-                    {
-                        type = NType.D;
-                        dNeuronCounter++;
-                    }
-                    else { type = getNeuronType(sourcePos); }
+                    NType  type = getNeuronType(sourcePos); 
                     sourceNeuron = new Neuron(type, sourcePos);
 
                     neuronDictionray.Add(sourcePos, sourceNeuron);
@@ -220,16 +215,37 @@ namespace EsExperimentNS
             genome.MultipleSteps(iterations);
             bool output1 = genome.GetOutputSignal(1) > 0.0;
             bool output2 = genome.GetOutputSignal(2) > 0.0;
-            // 00=IS, 01= IM, 10=ES, 11 EM;
-            if (output1)
+            bool output3 = genome.GetOutputSignal(3) > 0.0;
+            // 000 D 
+            // 001 D
+            // 010 EM
+            // 011 EM
+            // 100 ES
+            // 101 ES
+            // 110 IM
+            // 111 IS
+            if (output1) //1
             {
-                if (output2) return NType.EM;
-                else return NType.ES;
+                if (output2) // 11
+                {
+                    if (output3) return NType.IS; // 111
+                    else return NType.IM; // 110
+                }
+                else //101 u 100
+                {
+                    return NType.ES;
+                }
             }
-            else
+            else // 0 
             {
-                if (output2) return NType.IM;
-                else return NType.IS;
+                if (output2) // 010 011
+                {
+                    return NType.EM;
+                }
+                else //001 u 000
+                {
+                    return NType.D;
+                }
             }
 
         }

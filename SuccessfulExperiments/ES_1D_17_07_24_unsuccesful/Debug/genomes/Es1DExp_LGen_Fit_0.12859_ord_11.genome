@@ -1,0 +1,32 @@
+<genome id="50490" species-id="71" age="1" fitness="0.13">
+  <neurons>
+    <neuron id="0" type="bias" activationFunction="NullFn" />
+    <neuron id="1" type="in" activationFunction="NullFn" />
+    <neuron id="2" type="in" activationFunction="NullFn" />
+    <neuron id="3" type="in" activationFunction="NullFn" />
+    <neuron id="4" type="out" activationFunction="BipolarSigmoid" />
+    <neuron id="5" type="out" activationFunction="BipolarSigmoid" />
+    <neuron id="6" type="out" activationFunction="BipolarSigmoid" />
+  </neurons>
+  <connections>
+    <connection innov-id="7" src-id="0" tgt-id="4" weight="-0.72693454055115581" />
+    <connection innov-id="8" src-id="1" tgt-id="4" weight="-1.0809730224311351" />
+    <connection innov-id="9" src-id="2" tgt-id="4" weight="0.46831915723159911" />
+    <connection innov-id="10" src-id="3" tgt-id="4" weight="-1.2504075621720403" />
+    <connection innov-id="11" src-id="0" tgt-id="5" weight="1.4367515067569911" />
+    <connection innov-id="12" src-id="1" tgt-id="5" weight="-1.1877989544533194" />
+    <connection innov-id="13" src-id="2" tgt-id="5" weight="1.2292144544888288" />
+    <connection innov-id="14" src-id="3" tgt-id="5" weight="-0.81962645798921585" />
+    <connection innov-id="15" src-id="0" tgt-id="6" weight="0.15518461605533959" />
+    <connection innov-id="16" src-id="1" tgt-id="6" weight="0.790919099142775" />
+    <connection innov-id="17" src-id="2" tgt-id="6" weight="0.6602674196939915" />
+    <connection innov-id="18" src-id="3" tgt-id="6" weight="0.85457526855170718" />
+    <connection innov-id="40" src-id="4" tgt-id="4" weight="-0.8448914088308811" />
+    <connection innov-id="113" src-id="4" tgt-id="6" weight="-0.15970001993700864" />
+    <connection innov-id="233" src-id="4" tgt-id="5" weight="-0.89293618816882359" />
+    <connection innov-id="316" src-id="6" tgt-id="6" weight="0.74504756960086527" />
+    <connection innov-id="772" src-id="5" tgt-id="5" weight="1.4051383023615927" />
+    <connection innov-id="1216" src-id="6" tgt-id="5" weight="0.4659834299236536" />
+    <connection innov-id="4595" src-id="6" tgt-id="4" weight="0.0032350234687328339" />
+  </connections>
+</genome>

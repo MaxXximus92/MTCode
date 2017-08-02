@@ -1,0 +1,40 @@
+02 14:24:14 test encoding: threshold: 0.75
+02 14:24:14 Starting Experiment:  Scaling of existing genomes
+02 14:24:14 --------------------------------------------------------
+02 14:24:14 loading initial data for [1.5,1,1.5,0,0]
+02 14:24:24 loaded types' length:336
+02 14:24:24 Creating Experiment
+02 14:24:24 Plotting matlab graphs
+02 14:24:24 Matlab instance Number 2 added
+02 14:24:24 Matlab instance Number 2 added
+02 14:25:38 Matlab Plots for Genome Name [1.5,1,1.5,0,0]-AC1DStaExp_BGen_Gen_308_Fit_0.90104 created 00:01:14.1489776
+02 14:27:06 Matlab Plots for Genome Name [1.5,1,1.5,0,0]-AC1DStaExp_BGen_Gen_713_Fit_0.93354 created 00:02:41.6704416
+02 14:27:06 Close training models
+02 14:27:06 Simulate model
+02 14:27:07 Simulation Matlab Plots for Genome Name [1.5,1,1.5,0,0]-AC1DStaExp_BGen_Gen_713_Fit_0.93354_aftsim created 00:00:00.6454561
+02 14:31:43 Simulation Matlab Plots for Genome Name [1.5,1,1.5,0,0]-AC1DStaExp_BGen_Gen_308_Fit_0.90104_aftsim created 00:04:37.1903001
+02 14:31:44 loading initial data for [0.5,1,0.5,0,0]
+02 14:32:10 loaded types' length:144
+02 14:32:10 Creating Experiment
+02 14:32:10 Plotting matlab graphs
+02 14:32:10 Matlab instance Number 4 added
+02 14:32:10 Matlab instance Number 4 added
+02 14:34:15 Matlab Plots for Genome Name [0.5,1,0.5,0,0]-AC1DStaExp_BGen_Gen_713_Fit_0.93354 created 00:02:05.5584367
+02 14:34:18 Matlab Plots for Genome Name [0.5,1,0.5,0,0]-AC1DStaExp_BGen_Gen_308_Fit_0.90104 created 00:02:07.9281105
+02 14:34:18 Close training models
+02 14:34:18 Simulate model
+02 14:39:09 Simulation Matlab Plots for Genome Name [0.5,1,0.5,0,0]-AC1DStaExp_BGen_Gen_713_Fit_0.93354_aftsim created 00:04:51.6392886
+02 14:39:11 Simulation Matlab Plots for Genome Name [0.5,1,0.5,0,0]-AC1DStaExp_BGen_Gen_308_Fit_0.90104_aftsim created 00:04:53.5983513
+02 14:39:11 loading initial data for [0.75,1,0.75,0,0]
+02 14:39:39 loaded types' length:192
+02 14:39:39 Creating Experiment
+02 14:39:39 Plotting matlab graphs
+02 14:39:39 Matlab instance Number 6 added
+02 14:39:39 Matlab instance Number 6 added
+02 14:42:20 Matlab Plots for Genome Name [0.75,1,0.75,0,0]-AC1DStaExp_BGen_Gen_713_Fit_0.93354 created 00:02:40.7833556
+02 14:42:24 Matlab Plots for Genome Name [0.75,1,0.75,0,0]-AC1DStaExp_BGen_Gen_308_Fit_0.90104 created 00:02:44.9323460
+02 14:42:24 Close training models
+02 14:42:24 Simulate model
+02 14:49:11 Simulation Matlab Plots for Genome Name [0.75,1,0.75,0,0]-AC1DStaExp_BGen_Gen_713_Fit_0.93354_aftsim created 00:06:47.0804618
+02 14:49:11 Simulation Matlab Plots for Genome Name [0.75,1,0.75,0,0]-AC1DStaExp_BGen_Gen_308_Fit_0.90104_aftsim created 00:06:47.2326451
+02 14:49:11 Done!

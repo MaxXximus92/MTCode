@@ -1,0 +1,59 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017a (9.2.0.556344) 64-bit (glnxa64)
+                               March 27, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+{Error using save
+Can not write file
+/home/mutschler/Experiments/ES_1D_17_07_31/Debug/matlabSave/Es1DExp_LGen_Fit_0.73807_ord_59
+(firings)_RMSD=50.51498.fig.
+
+Error in matlab.graphics.internal.figfile.FigFile/write (line 32)
+save(obj.Path, obj.MatVersion, '-struct', 'SaveVars');
+
+Error in savefig (line 84)
+FF.write();
+
+Error in spikenet/train (line 200)
+                savefig([this.savePath sprintf('%s
+                (firings)_RMSD=%0.5f.fig',model_name,rmsd)]);
+
+Error in runModel (line 43)
+            fitness = net.train(saveName,
+            max_trainTime,angles_to_learn,angles_to_simulate,angle_simulation_time,isSave);            
+} 
+Exception in thread "AWT-EventQueue-0" java.lang.RuntimeException: std::exception for "matlab.workingfolder.LastFolderPath": fl:filesystem:SystemError
+	at com.mathworks.services.settings.Setting.nativeSet(Native Method)
+	at com.mathworks.services.settings.Setting.set(Setting.java:913)
+	at com.mathworks.services.settings.Setting.set(Setting.java:769)
+	at com.mathworks.services.settings.Setting.set(Setting.java:709)
+	at com.mathworks.mlwidgets.prefs.InitialWorkingFolder.setStringSettingValue(InitialWorkingFolder.java:50)
+	at com.mathworks.mlwidgets.prefs.InitialWorkingFolder.access$000(InitialWorkingFolder.java:15)
+	at com.mathworks.mlwidgets.prefs.InitialWorkingFolder$1.actionPerformed(InitialWorkingFolder.java:34)
+	at com.mathworks.jmi.MatlabPath$DeferredActionEvent.dispatch(MatlabPath.java:152)
+	at com.mathworks.util.QueueEvent$QueueTarget.processEvent(QueueEvent.java:89)
+	at java.awt.Component.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$200(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)

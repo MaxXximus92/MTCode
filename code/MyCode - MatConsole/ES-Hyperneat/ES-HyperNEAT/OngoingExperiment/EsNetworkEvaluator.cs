@@ -44,9 +44,9 @@ namespace EsExperimentNS
         {
 
             double fitness = 0;
-            EsSubstrate substrate = new EsSubstrate(network);
+            //EsSubstrate substrate = new EsSubstrate(network);
            // EsSubstrateTypeCoded substrate = new EsSubstrateTypeCoded(network);
-           // EsSubstrate1D substrate = new EsSubstrate1D(network);
+            EsSubstrate1D substrate = new EsSubstrate1D(network);
             List<NType> types = new List<NType>();
             int[][] connections = substrate.getConnections(out types);
             numNeurons = types.Count;
@@ -74,9 +74,9 @@ namespace EsExperimentNS
         {
 
 
-             EsSubstrate substrate = new EsSubstrate(network);
-           // EsSubstrateTypeCoded substrate = new EsSubstrateTypeCoded(network);
-           // EsSubstrate1D substrate = new EsSubstrate1D(network);
+           //  EsSubstrate substrate = new EsSubstrate(network);
+            //EsSubstrateTypeCoded substrate = new EsSubstrateTypeCoded(network);
+            EsSubstrate1D substrate = new EsSubstrate1D(network);
             List<NType> types = new List<NType>();
             int[][] connections = substrate.getConnections(out types);
             if (connections.Length == 0 || types.Count == 0)

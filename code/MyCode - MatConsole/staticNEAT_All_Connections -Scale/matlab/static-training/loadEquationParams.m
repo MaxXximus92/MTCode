@@ -1,0 +1,35 @@
+function eqParams= loadEquationParams(path,scaleFactors)
+if(exist(path,'file')==2)
+    eqParamsStruct = loadSync(path);
+    a=eqParamsStruct.a;
+    b=eqParamsStruct.b;
+    d=eqParamsStruct.d;
+    
+    %scale
+    settings='settings.xls';
+    spikingThreshold = 30;
+    savePath='something';
+    net = spikenet(spikingThreshold,settings,savePath,[1,1,1,1,1]);
+    neuronTypes =  net.getNeuronTypes();
+    types = unique(neuronTypes);  %'D' =0, 'EM'=1, 'ES'=2, 'IM'=3 'IS'=4
+    ascaled=[];
+    bscaled=[];
+    dscaled=[];
+    for i = 1:length(types) 
+       spesType = find(strcmp(neuronTypes,types(i)));
+       asc= scaleRep(a(spesType),scaleFactors(i));
+       bsc= scaleRep(b(spesType),scaleFactors(i));
+       dsc= scaleRep(d(spesType),scaleFactors(i));
+     ascaled=[ascaled asc'];
+     bscaled=[bscaled bsc'];
+     dscaled=[dscaled dsc'];
+    end
+    %scale
+    eqParams = [ascaled',bscaled',dscaled'];
+else
+    msgID = 'loadEquationParams:FileDoesNotExist';
+    msg = ['FileDoesNotExist: ' path];
+    throw(MException(msgID,msg));
+end
+end
+

@@ -251,7 +251,7 @@ namespace EsExperimentNS
         private static double getSyncFitness(string resultPath, Process matlab, string matlabName) 
         {
             DateTime timeStart = DateTime.Now;
-            while (true) // TOOD refactor method
+            while (true) 
             {
                 try
                 {
@@ -262,7 +262,7 @@ namespace EsExperimentNS
                 catch (Exception e)
                 {
 
-                    if(e.GetType() == typeof(MatlabIOException) && matlab == null) { // only when matlab == null cause matlab has exited than allready. It might not write the file  later
+                    if((e.GetType() == typeof(MatlabIOException)  || e.GetType() == typeof(FileNotFoundException) )&& matlab == null) { // only when matlab == null cause matlab has exited than allready. It might not write the file  later
                         throw new MatlabCrashedException(String.Format("fitness file not readable, Matlab {0} must have been crashed before writing it", matlabName));
                     }
                     //Console.WriteLine(e.GetType().ToString());

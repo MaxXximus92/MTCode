@@ -1,0 +1,9 @@
+02 10:45:42 test encoding: threshold: 0
+02 10:45:42 Starting Experiment: EsExp
+02 10:45:43 --------------------------------------------------------
+02 10:45:43 Creating Experiment
+02 10:45:43 Building Population
+02 10:45:43 matlab instance number 1 added
+02 10:45:44 Matlab Instance com_1 exited . Create new one
+02 10:45:44 matlab instance com_1 removed 
+02 10:45:44 matlab instanc
