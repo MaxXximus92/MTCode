@@ -18,34 +18,63 @@ neuronsType=data.neuronsType;
 % Plot weight values (function)
 
 pos= -1:2/(resolution-1):1;
-[X,Y]= meshgrid(pos,pos);
-Z=cppnWeightValues';
-
-fig1 = figure;
-axis('square')
-hold on
-s=surf(X,Y,Z)
-colormap([0,0,1]);
-s.EdgeColor = 'none';
-%s.EdgeAlpha=0.01;
-
-
+% [X,Y]= meshgrid(pos,pos);
+% Z=cppnWeightValues';
+% 
 % fig1 = figure;
 % axis('square')
 % hold on
-%  scatter3(X(:),Y(:),Z(:),36,'blue','.'); %36 default point size
+% s=surf(X,Y,Z)
+% colormap([0,0,1]);
+% s.EdgeColor = 'none';
+% %s.EdgeAlpha=0.01;
+% 
+% 
+% % fig1 = figure;
+% % axis('square')
+% % hold on
+% %  scatter3(X(:),Y(:),Z(:),36,'blue','.'); %36 default point size
+% 
+% %Plot  Neurons into Graph
+% %connectionWeightsT .. TODO;
+% [a,b] = find(connectionWeights~=0);
+% d = sub2ind(size(connectionWeights),a,b);
+% %[X2,Y2]= meshgrid(neuronsPos(a),neuronsPos(b));
+% %Z2=connectionWeights(d);
+% scatter3(neuronsPos(a),neuronsPos(b),connectionWeights(d),36,'red','.');
+% xlab='x';
+% ylab='y';
+% xlabel(xlab);
+% ylabel(ylab);
+% zlabel('CPPN Output');
+% hold off
+% a=2
 
-%Plot  Neurons into Graph
-[a,b] = find(Z2~=0);
-d = sub2ind(size(Z2),a,b);
-[X2,Y2]= meshgrid(neuronsPos,neuronsPos);
-Z2=connectionWeights;
-scatter3(X2(:),Y2(:),Z2(:),36,'red','.');
-
-hold off
-a=2
-
+% build color matrix
+colormap = zeros(length(neuronsType),3);
+colorarray={[0,0,1],[1,0,0],[0,1,0],[1.0,0.4,0],[0.4,1,0.8]}  %D EM ES IM IS
+for i = 0:4
+    indx = find(neuronsType == i);
+    for k = indx , 
+        colormap(k,:) = colorarray{i+1};
+        end
+end
 
 % Plot NeuCode1 values
-
+fig2 = figure;
+hold on
+plot()
+scatter(pos,cppnTypeCodeValues1,10,[0,0,0],'filled','MarkerFaceAlpha',0.1,'MarkerEdgeAlpha',0.1);
+for i = 0:4
+indx = find(neuronsType == i);
+scatter(neuronsPos(indx),cppnTypeCodeNeurons1(indx),50,colormap(indx,:),'d','filled');
+end
+ xlabel('Substrate Position');
+ ylabel('CPPN Output');
+ legend('CPPN  Output','D','EM','ES','IM','IS','Location','eastoutside');
+hold off;
 % Plot NeuCode2 values
+
+% Plot NeuCode3 values
+
+a=3

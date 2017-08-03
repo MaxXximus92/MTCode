@@ -47,7 +47,7 @@ namespace EsExperimentNS
             int iterations = 2 * (genome.TotalNeuronCount - (genome.InputNeuronCount + genome.OutputNeuronCount)) + 1;
             for (int i = 0; i < resolution; i++)
             {
-                mod2coord = 0;
+                mod2coord = -1;
                 for (int j = 0; j < resolution; j++)
                 {
                     coordinates[0] = mod1coord;
@@ -241,7 +241,7 @@ namespace EsExperimentNS
                     }
                 }
             }
-            neurons = clearedNeurons;
+            neurons = sortedNeurons;//cleared neurons sind nicht sortiert !! fehler TODO morgen!!!
             return connectionsMat;
         }
 

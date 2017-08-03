@@ -10,7 +10,7 @@ for i = 1:numel(matfiles)
     fields= fieldnames(cppnMatrices);
     
     filename =char(matfiles(i));
-    filename = filename(1:end-4)
+    filename = filename(1:end-4);
     mkdir(['figures/' filename]);
     % fig =  figure() ;
     

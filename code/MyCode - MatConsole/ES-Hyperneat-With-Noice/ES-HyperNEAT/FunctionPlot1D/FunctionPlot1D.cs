@@ -82,7 +82,7 @@ namespace EsExperimentNS
                 double[] neuronsType = neurons.Select(s => (double)((int)s.type)).ToArray();
 
                 string path = CPPNValuesSavePath + pathSep + name + ".mat";
-                MatlabCommunicator.writePlotData(connectionWeights, cppnWeightValues, cppnTypeCodeValues1, cppnTypeCodeValues2, cppnTypeCodeNeurons1, cppnTypeCodeNeurons2, neuronsPos, neuronsType, path, cppnTypeCodeValues2, cppnTypeCodeNeurons3);
+                MatlabCommunicator.writePlotData(connectionWeights, cppnWeightValues, cppnTypeCodeValues1, cppnTypeCodeValues2, cppnTypeCodeNeurons1, cppnTypeCodeNeurons2, neuronsPos, neuronsType, path, cppnTypeCodeValues3, cppnTypeCodeNeurons3);
             }
 
         }

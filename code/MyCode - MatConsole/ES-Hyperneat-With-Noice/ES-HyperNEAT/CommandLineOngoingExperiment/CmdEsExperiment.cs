@@ -188,7 +188,7 @@ namespace EsExperimentNS
             }
             catch (Exception e) { Console.WriteLine(e.Message); };
 
-            Console.WriteLine("Done!");
+            Console.WriteLine("Done!!");
             doubleWriter.Flush();
             doubleWriter.Close();
 
