@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
-using static EsExperimentNS.EsSubstrate;
+using static EsExperimentNS.EsSubstrate2D;
 using static EsExperimentNS.Helper;
 
 namespace EsExperimentNS

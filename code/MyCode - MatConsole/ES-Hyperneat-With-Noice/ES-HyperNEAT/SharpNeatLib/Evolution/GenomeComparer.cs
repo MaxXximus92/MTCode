@@ -15,7 +15,8 @@ namespace SharpNeatLib.Evolution
 
         public int Compare(IGenome x, IGenome y)
         {
-            double fitnessDelta = y.MeanFitness - x.MeanFitness;
+            //@Max if a good genome has one bad run it can be saved from extermination by its Mean Fitness.
+            double fitnessDelta = Math.Max(y.MeanFitness,y.LastFitness) - Math.Max(x.MeanFitness,x.LastFitness);
             if (fitnessDelta < 0.0D)
                 return -1;
             else if (fitnessDelta > 0.0D)

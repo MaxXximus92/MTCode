@@ -2,7 +2,7 @@ classdef spikenet < handle
     %SPIKENET spiking neuronal network
     %   input: spiking threshold [mV] and settings-file (.xls)
     events
-      learn;
+        learn;
     end
     properties
         numNeurons;         %total number of neuron
@@ -22,8 +22,8 @@ classdef spikenet < handle
         flMotoric;          %indizes of exciatory motor cells (flexor)
         v;                  %membrane potential
         break_run;          %interupt flag
-            %counter of reconnected synapses
-      
+        %counter of reconnected synapses
+        
         correctMoves;       %correct moves into the direction fo the target angle
         
         aParams;             %a param of voltage eqation
@@ -43,29 +43,29 @@ classdef spikenet < handle
         % constructor  // TODO maybe num neurons hinzuf�gen je nach zuk.
         % experimenten
         function this = spikenet(spikingThreshold,settingsFile,savePath,connections,types)
-
-                if(savePath(end) ~= filesep)
-                    savePath=[savePath filesep];
-                end
-                this.savePath         = savePath;
-                this.spikingThreshold = spikingThreshold;
-                
-                this.numNeurons = length(types);
-                this.neuronTypes = this.intTypesToString(types);
-                this.loadSettingsFile(settingsFile);
-                this.setConnections(connections);
-                this.weightsScale  = ones(this.numNeurons,this.numNeurons);% @m was zeros, but this way one doesn't has to reset it when a weight change occurs
-                this = this.splitExtensorFlexorEqually();
-                this.setEquationParameters();
-                
-
+            
+            if(savePath(end) ~= filesep)
+                savePath=[savePath filesep];
+            end
+            this.savePath         = savePath;
+            this.spikingThreshold = spikingThreshold;
+            
+            this.numNeurons = length(types);
+            this.neuronTypes = this.intTypesToString(types);
+            this.loadSettingsFile(settingsFile);
+            this.setConnections(connections);
+            this.weightsScale  = ones(this.numNeurons,this.numNeurons);% @m was zeros, but this way one doesn't has to reset it when a weight change occurs
+            this = this.splitExtensorFlexorEqually();
+            this.setEquationParameters();
+            
+            
         end
         
         function stypes = intTypesToString(this,types)
             stypes = cell(1,length(types));
             strings= {'D', 'EM', 'ES', 'IM' 'IS'};%'D' =0, 'EM'=1, 'ES'=2, 'IM'=3 'IS'=4
             for i = 0:4
-               stypes(types==i)= strings(i+1);
+                stypes(types==i)= strings(i+1);
             end
         end
         
@@ -73,65 +73,65 @@ classdef spikenet < handle
         function save(this,name)
             net= this;
             save([this.savePath name '.mat'],'net');
-        end          
+        end
         
         
-%         function numNeurons = getNumNeurons(this)
-%             numNeurons = this.numNeurons;
-%         end
+        %         function numNeurons = getNumNeurons(this)
+        %             numNeurons = this.numNeurons;
+        %         end
         
-
         
-function setWeights(this, weights)
-    
-    this.weightsMatrix=weights;
-    this.refreshConnections();
-    this.setEligibilitySynapses(this.d_es);
-    
-end
-
-%connection indicated by a value 1 no connction by 0
-function setConnections(this,connectionsMatrix)
-    [s1,s2]= size(connectionsMatrix);
-    if s1== this.numNeurons && s2== this.numNeurons
-        weights = zeros(this.numNeurons,this.numNeurons);
-        types = unique(this.neuronTypes);
-        for pre=1:length(types)
-            for post=1:length(types)
-                connection = strcat(char(types(pre)),'_',char(types(post)));
-                if ~isKey(this.initWeights, connection)
-                    continue
+        
+        function setWeights(this, weights)
+            
+            this.weightsMatrix=weights;
+            this.refreshConnections();
+            this.setEligibilitySynapses(this.d_es);
+            
+        end
+        
+        %connection indicated by a value 1 no connction by 0
+        function setConnections(this,connectionsMatrix)
+            [s1,s2]= size(connectionsMatrix);
+            if s1== this.numNeurons && s2== this.numNeurons
+                weights = zeros(this.numNeurons,this.numNeurons);
+                types = unique(this.neuronTypes);
+                for pre=1:length(types)
+                    for post=1:length(types)
+                        connection = strcat(char(types(pre)),'_',char(types(post)));
+                        if ~isKey(this.initWeights, connection)
+                            continue
+                        end
+                        idx_pre = strcmp(types(pre),this.neuronTypes);
+                        idx_post = strcmp(types(post),this.neuronTypes);
+                        weights(idx_pre,idx_post) = connectionsMatrix(idx_pre,idx_post).*this.initWeights(connection);
+                    end
                 end
-                idx_pre = strcmp(types(pre),this.neuronTypes);
-                idx_post = strcmp(types(post),this.neuronTypes);
-                weights(idx_pre,idx_post) = connectionsMatrix(idx_pre,idx_post).*this.initWeights(connection);
+                this.setWeights(weights);
+            else
+                error('EsEnWeightmatrix size is (%4.2f,%4.2f) but should be (%4.2f,%4.2f)',sl,esl,length(this.esCells),length(this.emCells));
             end
         end
-        this.setWeights(weights);
-    else
-        error('EsEnWeightmatrix size is (%4.2f,%4.2f) but should be (%4.2f,%4.2f)',sl,esl,length(this.esCells),length(this.emCells));
-    end
-end
-
         
-       function DEsWeights = getDEsWeights(this)
+        
+        function DEsWeights = getDEsWeights(this)
             dCells= this.getCellsOfType('D');
-            esCells=this.getCellsOfType('ES');      
-           DEsWeights =  this.weightsMatrix(dCells,esCells);
-       end
+            esCells=this.getCellsOfType('ES');
+            DEsWeights =  this.weightsMatrix(dCells,esCells);
+        end
         
-% % reset weights scale and elgigibilty for next run
-%           function reset(this)
-%               % prost gets reinizialized every train
-%                this.weightsScale(this.d_es) = 1.0;
-%                this.eligibility(:,3) = 0;
-
-
-%                 this.correctMoves = 0;
-%           end
+        % % reset weights scale and elgigibilty for next run
+        %           function reset(this)
+        %               % prost gets reinizialized every train
+        %                this.weightsScale(this.d_es) = 1.0;
+        %                this.eligibility(:,3) = 0;
+        
+        
+        %                 this.correctMoves = 0;
+        %           end
         
         %% train model
-       function fitness = train(this, model_name, max_train_time,angles_to_learn,angles_to_simulate,angle_simulation_time,save_figures)
+        function fitness = train(this, model_name, max_train_time,angles_to_learn,angles_to_simulate,angle_simulation_time,save_figures)
             if nargin < 3
                 save_figures = false;
             end
@@ -146,61 +146,60 @@ end
             max_run_time = max_train_time+length(prost.angles_to_simulate)*prost.angle_simulation_time;
             [output, time] = this.run(max_run_time); this.break_run=0;
             delete(lh1);
-           
             
-
+            
+            
             % calc fitness
             % fitness_training -> normalized amount of steps in right
             % direction
             % fitness_angle -> reached angles
             % fitness_variance -> varaince to simulation target
             % fintess = (fitness_training+ fitness_angle+ fitness_time)/3
-
+            
             trainingTime =prost.mode_start_time;
             if (trainingTime == 1), trainingTime = max_train_time; end
             fitness_correctTrainingMoves = this.correctMoves/(trainingTime/50); %/50 since reward is send only every 50 steps
             fitness_reachedAngles = sum(prost.reached_angles)/length(prost.reached_angles);
-            successfully = sum(prost.reached_angles)==length(prost.reached_angles); % reached angles during simulation
+            %successfully = sum(prost.reached_angles)==length(prost.reached_angles); % reached angles during simulation
             fitness_SimRmsd=0; % = not successful
             rmsd=NaN;
-            if(successfully)
+            if(prost.mode_start_time > 1)
                 angle_start_time=prost.mode_start_time;
                 squared_sum=0;
                 num_angles=0;
                 ahistory= prost.angle_history();
                 for angle_target= prost.angles_to_simulate
-                   maxt=angle_start_time+prost.angle_simulation_time;
-                   angles=ahistory(ahistory(:,1)>=angle_start_time & ahistory(:,1)<maxt,2);
-                   angle_start_time =maxt;
-                   squared_sum= squared_sum+(sum((angles-angle_target).^2));
-                   num_angles = num_angles + length(angles);
-                end  
+                    maxt=angle_start_time+prost.angle_simulation_time;
+                    angles=ahistory(ahistory(:,1)>=angle_start_time & ahistory(:,1)<maxt,2);
+                    angle_start_time =maxt;
+                    squared_sum= squared_sum+(sum((angles-angle_target).^2));
+                    num_angles = num_angles + length(angles);
+                end
                 %num_angles2 = length(prost.angles_to_simulate)*prost.angle_simulation_time/50;
                 rmsd= sqrt(squared_sum/num_angles);
                 norm_rmsd = rmsd/(prost.angle_max-prost.angle_min);
                 %calc variance
                 fitness_SimRmsd = 1-norm_rmsd; % wert zwischen 0 und 1. 0 schlecht 1 gut
             end
-            rmsd_scale=0.7;
-            angle_scale=0.2;
-            training_scale=0.1;
+            rmsd_scale=1.0;
+            angle_scale=0.0;
+            training_scale=0.0;
             if(fitness_reachedAngles==1), fitness_correctTrainingMoves=1; end
             fitness = (training_scale*fitness_correctTrainingMoves+angle_scale*fitness_reachedAngles+rmsd_scale*fitness_SimRmsd);
-           
-             %% plot data
+            %% plot data
             if(save_figures)
                 if(this.DEBUG),fprintf('save plots...\n');end;
                 figure('PaperSize',[25,20],'Units','centimeters','PaperPosition',[0 0 25 20],'visible','off');
                 this.plotAllFirings(output);
                 xlim([0,time]);
                 box on;
-                  saveas(gcf,[this.savePath sprintf('%s (firings)_NFit=%0.5f_RMSD=%0.5f.pdf',model_name,fitness,rmsd)], 'pdf');
-                  savefig([this.savePath sprintf('%s (firings)_NFit=%0.5f_RMSD=%0.5f.fig',model_name,fitness,rmsd)]);
+                saveas(gcf,[this.savePath sprintf('%s (firings)_NFit=%0.5f_RMSD=%0.5f.pdf',model_name,fitness,rmsd)], 'pdf');
+                savefig([this.savePath sprintf('%s (firings)_NFit=%0.5f_RMSD=%0.5f.fig',model_name,fitness,rmsd)]);
                 set(0,'CurrentFigure',prost.fig);
                 xlim([0,time]);
                 box on;
-                  saveas(gcf,[this.savePath sprintf('%s (movement)_NFit=%0.5f_RMSD=%0.5f.pdf',model_name,fitness,rmsd)], 'pdf');
-                  savefig([this.savePath sprintf('%s (movement)_NFit=%0.5f_RMSD=%0.5f.fig',model_name,fitness,rmsd)]);
+                saveas(gcf,[this.savePath sprintf('%s (movement)_NFit=%0.5f_RMSD=%0.5f.pdf',model_name,fitness,rmsd)], 'pdf');
+                savefig([this.savePath sprintf('%s (movement)_NFit=%0.5f_RMSD=%0.5f.fig',model_name,fitness,rmsd)]);
                 close all hidden
             end
             % this.reset();
@@ -211,8 +210,8 @@ end
             pre_cells = find(this.getCellsOfType(pre));
             post_cells = find(this.getCellsOfType(post));
             if(isempty(pre_cells) || isempty(post_cells))
-            connections = [];    
-            return
+                connections = [];
+                return
             end
             submatrix = this.weightsMatrix(pre_cells,post_cells);
             [i,j] = ind2sub(size(submatrix),find(submatrix ~= 0));
@@ -265,7 +264,7 @@ end
                 % notify prosthesis about EM spikes
                 notify(this,'learn',spikingEvent(t,exSpikes,flSpikes));
                 
-                % add spikes at time t to output. 
+                % add spikes at time t to output.
                 if (~isempty(fired))
                     time_neuron(num_firings+1:num_firings+length(fired), :) = [t+0*fired,fired];
                     num_firings = num_firings+length(fired);
@@ -287,7 +286,7 @@ end
             if (this.DEBUG), fprintf('Done.\n'); end
         end
         
- 
+        
         
         % refresh indizes of synapses
         function refreshConnections(this)
@@ -295,7 +294,7 @@ end
             this.d_es            = this.getConnections('D','ES');
         end
         
-        % get indizes of (pre-)postsynapses which can be (potentially) 
+        % get indizes of (pre-)postsynapses which can be (potentially)
         % eligibility-tagged
         function idx = getPrePostEligibility(this, type, fired)
             idx = zeros(length(this.eligibility),1);
@@ -339,26 +338,26 @@ end
         
         % get equation parameters (see Izhikevich, 2003)
         function  setEquationParameters(this)
-
-                a=zeros(this.numNeurons,1);
-                b=zeros(this.numNeurons,1);
-                d=zeros(this.numNeurons,1);
-                
-
-                rnd = rand(this.numNeurons,1);
-                
-                inhibitory = logical(this.getCellsOfType('IS') + this.getCellsOfType('IM'));
-                exciatory = logical(this.getCellsOfType('ES') + this.getCellsOfType('EM'));
-                a(inhibitory) = 0.02+0.08.*rnd(inhibitory);
-                a(exciatory) = 0.02;
-                b(inhibitory) = 0.25-0.05.*rnd(inhibitory);
-                b(exciatory) = 0.2;
-                d(inhibitory) = 2;
-                d(exciatory) = 8-6.*rnd(exciatory).^2;
-                this.aParams=a;
-                this.bParams=b;
-                this.dParams=d;
-           
+            
+            a=zeros(this.numNeurons,1);
+            b=zeros(this.numNeurons,1);
+            d=zeros(this.numNeurons,1);
+            
+            
+            rnd = rand(this.numNeurons,1);
+            
+            inhibitory = logical(this.getCellsOfType('IS') + this.getCellsOfType('IM'));
+            exciatory = logical(this.getCellsOfType('ES') + this.getCellsOfType('EM'));
+            a(inhibitory) = 0.02+0.08.*rnd(inhibitory);
+            a(exciatory) = 0.02;
+            b(inhibitory) = 0.25-0.05.*rnd(inhibitory);
+            b(exciatory) = 0.2;
+            d(inhibitory) = 2;
+            d(exciatory) = 8-6.*rnd(exciatory).^2;
+            this.aParams=a;
+            this.bParams=b;
+            this.dParams=d;
+            
         end
         
         % reset voltage to resting membrane potential
@@ -371,41 +370,41 @@ end
             end
         end
         
-        % get random noise 
-
+        % get random noise
+        
         function noise = getRandomNoise(this, voltage)
             noise = zeros(this.numNeurons, 1);
-
+            
             idx = (0.5+0.5*randn(this.numNeurons, 1)) < 0.24; %approx 300Hz per neuron
             noise(idx) = noise(idx) ...
                 + (this.noiseWeights(idx,1) .* (1 - voltage(idx) ./ this.noiseRevPotential(idx,1)));
             noise(isnan(noise)) = 0;
         end
         
-
-
         
-%         % get vector of length this.numNeurons, indicating the neuron types
-%         function neuronTypes = getNeuronTypes(this)
-%             if (~isempty(this.neuronTypes))
-%                 neuronTypes = this.neuronTypes;
-%             else
-%                 types = keys(this.neuronRatios);
-%                 this.numNeurons = sum(cell2mat(values(this.neuronRatios)));
-%                 neuronTypes = cell(1,this.numNeurons);
-%                 current = 0;
-%                 for i=1:length(types)
-%                     prev = current + 1;
-%                     current = current + round(this.neuronRatios(types{i}));
-%                     if (i == length(types))
-%                         neuronTypes(prev:end) = types(i);
-%                     else
-%                         neuronTypes(prev:current) = types(i);
-%                     end
-%                 end
-%             end
-%         end
-       
+        
+        
+        %         % get vector of length this.numNeurons, indicating the neuron types
+        %         function neuronTypes = getNeuronTypes(this)
+        %             if (~isempty(this.neuronTypes))
+        %                 neuronTypes = this.neuronTypes;
+        %             else
+        %                 types = keys(this.neuronRatios);
+        %                 this.numNeurons = sum(cell2mat(values(this.neuronRatios)));
+        %                 neuronTypes = cell(1,this.numNeurons);
+        %                 current = 0;
+        %                 for i=1:length(types)
+        %                     prev = current + 1;
+        %                     current = current + round(this.neuronRatios(types{i}));
+        %                     if (i == length(types))
+        %                         neuronTypes(prev:end) = types(i);
+        %                     else
+        %                         neuronTypes(prev:current) = types(i);
+        %                     end
+        %                 end
+        %             end
+        %         end
+        
         % get membrane potential of all neurons (or generate initial
         % voltages)
         function voltage = getInitVoltage(this)
@@ -436,7 +435,7 @@ end
             end
             
             
-
+            
             % load noise weights
             [weights, types] = xlsread(char(filename), 'Noise Weights', '', 'basic');
             uniqueTypes = types(2:end,1);
@@ -461,7 +460,7 @@ end
             end
         end
         
-        % excitatory motoric cells are split equally into two groups 
+        % excitatory motoric cells are split equally into two groups
         % (extensor and flexor)
         function this = splitExtensorFlexorEqually(this)
             emCells = find(this.getCellsOfType('EM'));
@@ -496,7 +495,7 @@ end
             muDCells = (0:0.5:((numDCells-1)*0.5))';
             probsDCells = 2*normpdf(angle_norm*(numDCells-1)*0.5, muDCells, 0.8);
             
-
+            
             dCellsToFire = dCells.*(rand(length(probsDCells),1) <= probsDCells);
             dCellsToFire = dCellsToFire(dCellsToFire~=0);
             stimulateVoltage = abs(this.spikingThreshold)+abs(this.rmpValues('D'));
@@ -512,7 +511,7 @@ end
             numDCells = length(dCells);
             muDCells = (0:0.5:((numDCells-1)*0.5))';
             probsACells = 2*normpdf(angle_norm*(numDCells-1)*0.5, muDCells, 0.8);
-
+            
             dCellsToFire = dCells.*(rand(length(probsACells),1) <= probsACells);
             dCellsToFire = dCellsToFire(dCellsToFire~=0);
             this.v(dCellsToFire) = this.spikingThreshold;
@@ -553,31 +552,31 @@ end
         % plot firings of all neurons between timelim = [lower upper]
         function plotFirings(this, firings, timelim)
             try  %bei vielen randbedingungen wie nur 1 neuron oder keine firings gehts schief, im normal case funkionierts
-            filter = firings(:,1) >= timelim(1) & firings(:,1) <= timelim(2);
-            time = firings(filter,1);
-            neurons = firings(filter,2);  
-            minX = timelim(1);
-            maxX = timelim(2);
-            types = unique(this.neuronTypes);
-            boarders = zeros(length(types),1);
-            ylim([1,this.numNeurons]);
-            cmap = hsv(length(types)+5);
-            for idx=1:length(types)
-                hold on;
-                idx_lower = find(this.getCellsOfType(types(idx)),1);
-                idx_upper = find(this.getCellsOfType(types(idx)),1,'last');
-                idx_between = neurons>=idx_lower & neurons<=idx_upper;
-                scatter(time(idx_between),neurons(idx_between),3,cmap(idx,:),'p');
-                boarders(idx) = round(mean([idx_lower, idx_upper]));
-                if idx~=length(types)
-                    line([minX maxX], [idx_upper+0.5 idx_upper+0.5],'Color','black');
+                filter = firings(:,1) >= timelim(1) & firings(:,1) <= timelim(2);
+                time = firings(filter,1);
+                neurons = firings(filter,2);
+                minX = timelim(1);
+                maxX = timelim(2);
+                types = unique(this.neuronTypes);
+                boarders = zeros(length(types),1);
+                ylim([1,this.numNeurons]);
+                cmap = hsv(length(types)+5);
+                for idx=1:length(types)
+                    hold on;
+                    idx_lower = find(this.getCellsOfType(types(idx)),1);
+                    idx_upper = find(this.getCellsOfType(types(idx)),1,'last');
+                    idx_between = neurons>=idx_lower & neurons<=idx_upper;
+                    scatter(time(idx_between),neurons(idx_between),3,cmap(idx,:),'p');
+                    boarders(idx) = round(mean([idx_lower, idx_upper]));
+                    if idx~=length(types)
+                        line([minX maxX], [idx_upper+0.5 idx_upper+0.5],'Color','black');
+                    end
                 end
-            end
-            set(gca,'YTick',boarders,'YTicklabel',types);
-            xlabel('Time [ms]');
-            ylabel('Neuron Type');
-            hold off;
-            catch 
+                set(gca,'YTick',boarders,'YTicklabel',types);
+                xlabel('Time [ms]');
+                ylabel('Neuron Type');
+                hold off;
+            catch
                 return;
             end
         end

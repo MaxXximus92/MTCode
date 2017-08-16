@@ -59,7 +59,7 @@
     <Compile Include="EsNetworkEvaluator.cs" />
     <Compile Include="EsPopulationEvaluator.cs" />
     <Compile Include="EsExperiment.cs" />
-    <Compile Include="EsSubstrate.cs" />
+    <Compile Include="EsSubstrate2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

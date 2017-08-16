@@ -56,10 +56,17 @@ namespace SharpNeatLib.Evolution
 			set;
 		}
 
-		/// <summary>
-		/// This genome's fitness as calculated by the evaluation environment.
-		/// </summary>
-		double MeanFitness
+
+        double LastFitness
+        {
+            get;
+        }
+
+
+        /// <summary>
+        /// This genome's fitness as calculated by the evaluation environment.
+        /// </summary>
+        double MeanFitness
 		{
 			get;
 		}

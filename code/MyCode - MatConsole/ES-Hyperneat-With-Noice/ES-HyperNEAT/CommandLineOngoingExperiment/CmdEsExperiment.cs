@@ -105,7 +105,7 @@ namespace EsExperimentNS
 
             // bool bias =  ExperimentParameters.biasNeuron; CPPN hat default mäßig ein bias neuron -> siehe Genome Factory
 
-            double initialMaxFitness = -1;
+            double currentMaxFitness = -1;
             string genomeSavePath = getGenomeSavePath();
             // get initial weights to use
             //string wpath = Directory.GetCurrentDirectory() + "\\" + ExperimentParameters.initialNetWeightsPath;
@@ -122,7 +122,7 @@ namespace EsExperimentNS
 
             IdGenerator idgen;
             EvolutionAlgorithm ea;
-            List<IGenome> best100 = new List<IGenome>();
+            List<IGenome> best30 = new List<IGenome>();
 
             Console.WriteLine("Building Population");
             if (seedGenome == null)
@@ -145,21 +145,20 @@ namespace EsExperimentNS
                 ea.PerformOneGeneration();
 
                 Console.WriteLine("Best fitness of gernatation {0} : {1:0.#####}", j, ea.BestGenome.MeanFitness);
-                if (ea.BestGenome.MeanFitness > initialMaxFitness)
+
+                Console.WriteLine("Updating best 30");
+                best30 =searchBest30(best30, ea.Population.GenomeList);
+                if (best30.Count > 1)
                 {
-                    Console.WriteLine("Save Best Genome");
-                    initialMaxFitness = ea.BestGenome.MeanFitness;
-                    saveGenome(ea.BestGenome, genomeSavePath, String.Format("{0}_BGen_Gen_{1}_Fit_{2:0.#####}", ExperimentParameters.experimentName, j, ea.BestGenome.MeanFitness));
-                    // This will output the substrate, uncomment if you want that
-                    // gibt resultierendes Netzwerk zur Robotersteuerung zurück -> nicht benötigt
-                    // doc = new XmlDocument();
-                    // XmlGenomeWriterStatic.Write(doc, (NeatGenome) OnGoingNetworkEvaluator.substrate.generateMultiGenomeModulus(ea.BestGenome.Decode(null),5));
-                    // oFileInfo = new FileInfo(folder + "bestNetwork" + j.ToString() + ".xml");
-                    // doc.Save(oFileInfo.FullName);
+                    if (best30[0].LastFitness > currentMaxFitness)
+                    {
+                        Console.WriteLine("Save Best Genome");
+                        currentMaxFitness = ea.BestGenome.MeanFitness;
+                        saveGenome(best30[0], genomeSavePath, String.Format("{0}_BGen_Gen_{1}_Fit_{2:0.#####}", ExperimentParameters.experimentName, j, ea.BestGenome.MeanFitness));
+                    }
 
                 }
-                Console.WriteLine("Updating best 100");
-                best100 =searchBest100(best100, ea.Population.GenomeList);
+
                 saveGenerationData(ea.Population, (int)ea.Generation, ea.BestGenome.MeanFitness, getGenerationInfoPath());
                 Console.WriteLine("-----------------------------");
                 Console.WriteLine("Generation Number{0}, best fitness:{1:0.#####}, time needed to evaluate: {2}", ea.Generation.ToString(), ea.BestGenome.MeanFitness, (DateTime.Now.Subtract(dt)));
@@ -174,7 +173,7 @@ namespace EsExperimentNS
             // save n best models of last population
 
             Console.WriteLine("Saving Genomes");
-            saveGenomes(ea.Population.GenomeList,best100,genomeSavePath);
+            saveGenomes(ea.Population.GenomeList,best30,genomeSavePath);
             Console.WriteLine("Plotting matlab graphs");
             plotMatlabGraphs(genomeSavePath, (EsPopulationEvaluator)exp.PopulationEvaluator);
             Console.WriteLine("Close training models");
@@ -213,16 +212,16 @@ namespace EsExperimentNS
             }
 		}
 
-        private static List<IGenome> searchBest100(List<IGenome> best100, GenomeList currentPop)
+        private static List<IGenome> searchBest30(List<IGenome> best100, GenomeList currentPop)
         {
 			//List < IGenome > union = best100.Union (currentPop, new GenomeEqualityComparer ()).ToList ();
 			//List < IGenome > ordered = union.OrderBy(x => x, new B100GenomeComparer ()).ToList ();
 			//List < IGenome > b15 = ordered.Take (15).ToList ();
 
 			List < IGenome > bnew= best100.Union(currentPop,new GenomeEqualityComparer())
-                .Where(genome => genome.EvaluationCount >= 10)
-                .OrderBy(x => x, new B100GenomeComparer())
-                .Take(100).ToList(); // take 100 or less when there are less
+                .Where(genome => genome.EvaluationCount >= 5)
+                .OrderBy(x => x, new B30GenomeComparer())
+                .Take(30).ToList(); // take 30 or less when there are less
 //			foreach(IGenome i in bnew){
 //				Console.WriteLine(i.Fitness + " " + i.GenomeId+ " " +i.GenomeAge);
 //			}
@@ -241,7 +240,7 @@ namespace EsExperimentNS
                 return obj.GetHashCode();
             }
         }
-		private class B100GenomeComparer : IComparer<IGenome>
+		private class B30GenomeComparer : IComparer<IGenome>
 		{
 
 			#region IComparer<IGenome> Members

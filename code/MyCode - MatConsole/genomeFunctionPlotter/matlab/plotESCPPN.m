@@ -29,7 +29,7 @@ for q = 1:numel(matfiles)
     axis('square')
     hold on
     s=surf(X,Y,Z)
-    colormap([0,0,1]);
+    colormap([0.2,0.2,0.2]);
     s.EdgeColor = 'none';
     %s.EdgeAlpha=0.01;
     
@@ -40,21 +40,59 @@ for q = 1:numel(matfiles)
     %  scatter3(X(:),Y(:),Z(:),36,'blue','.'); %36 default point size
     
     %Plot  Neurons into Graph
-    %connectionWeightsT .. TODO;
+
+    colorarray={[0,0,1],[1,0,0],[0,1,0],[1.0,0.4,0],[0.4,1,0.8]}  %D EM ES IM IS
     [a,b] = find(connectionWeights~=0);
-    d = sub2ind(size(connectionWeights),a,b);
-    %[X2,Y2]= meshgrid(neuronsPos(a),neuronsPos(b));
-    %Z2=connectionWeights(d);
-    scatter3(neuronsPos(a),neuronsPos(b),connectionWeights(d),36,'red','.');
+    handles =[s];
+    for i = 0:4
+        indx = find(neuronsType == i);
+        a2 = a(indx);
+        b2 = b(indx);
+        d = sub2ind(size(connectionWeights),a2,b2);
+        %[X2,Y2]= meshgrid(neuronsPos(a),neuronsPos(b));
+        %Z2=connectionWeights(d);
+        h=scatter3(neuronsPos(a2),neuronsPos(b2),connectionWeights(d),36,colorarray{i+1},'.');
+        handles = [handles h];
+    end
     xlab='x';
     ylab='y';
     xlabel(xlab);
     ylabel(ylab);
     zlabel('CPPN Output');
+    legend(handles,'CPPN Output','D','EM','ES','IM','IS','Location','eastoutside');
     title([char(matfiles(q)), 'CPPN Output']);
     hold off
     
     savefig(['figures/' filename '_' 'CPPN_Output' '.fig'])
+    
+    %Plot Gradient
+    fig3 = figure;
+    Z=cppnWeightValues';
+    [Zfx Zfy]= gradient(Z);
+    axis('square')
+    hold on
+    %v= [-1 : 0.006:1]
+    s=contour(X,Y,Z,25);
+    colormap([0.2,0.2,0.2]);
+   % s.EdgeColor = 'none';
+       handles =[];
+    for i = 0:4
+        indx = find(neuronsType == i);
+        a2 = a(indx);
+        b2 = b(indx);
+        %[X2,Y2]= meshgrid(neuronsPos(a),neuronsPos(b));
+        %Z2=connectionWeights(d);
+        h=scatter(neuronsPos(a2),neuronsPos(b2),36,colorarray{i+1},'d','filled');
+        handles = [handles h];
+    end
+    xlab='x';
+    ylab='y';
+    xlabel(xlab);
+    ylabel(ylab);
+    legend(handles,'D','EM','ES','IM','IS','Location','eastoutside');
+    title([char(matfiles(q)), 'CPPN Output']);
+    hold off
+    savefig(['figures/' filename '_' 'CPPN_Contur' '.fig'])
     
     % build color matrix
     colors = zeros(length(neuronsType),3);

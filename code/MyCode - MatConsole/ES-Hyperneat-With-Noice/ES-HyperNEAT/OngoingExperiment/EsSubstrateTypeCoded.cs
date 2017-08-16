@@ -9,7 +9,7 @@ using SharpNeatLib.Experiments;
 using SharpNeatLib.CPPNs;
 using System.Diagnostics;
 using System.Drawing;
-using static EsExperimentNS.EsSubstrate;
+using static EsExperimentNS.EsSubstrate2D;
 
 namespace EsExperimentNS
 {

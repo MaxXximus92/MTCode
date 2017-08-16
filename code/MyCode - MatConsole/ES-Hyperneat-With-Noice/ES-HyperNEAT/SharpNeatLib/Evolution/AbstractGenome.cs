@@ -11,7 +11,8 @@ namespace SharpNeatLib.Evolution
 		// See comments on individual properties for more information on these fields.
 		protected uint genomeId;
 		long genomeAge=0;
-		double fitness = 0;
+		double meanFitness = 0;
+        double lastFitness = 0;
 		long evaluationCount = 0;
 		double totalFitness = 0;
 		int speciesId = -1;
@@ -44,10 +45,10 @@ namespace SharpNeatLib.Evolution
 		/// <returns></returns>
 		public int CompareTo(Object obj)
 		{
-			if(((IGenome)obj).MeanFitness > fitness)
+			if(((IGenome)obj).MeanFitness > meanFitness)
 				return 1;
 
-			if(((IGenome)obj).MeanFitness < fitness)
+			if(((IGenome)obj).MeanFitness < meanFitness)
 				return -1;
 
 			return 0;
@@ -155,14 +156,24 @@ namespace SharpNeatLib.Evolution
 			}
 		}
 
-		/// <summary>
-		/// This genome's fitness as calculated by the evaluation environment.
-		/// </summary>
-		public double MeanFitness
+        public double LastFitness
+        {
+            get
+            {
+                return lastFitness;
+            }
+
+
+        }
+
+        /// <summary>
+        /// This genome's fitness as calculated by the evaluation environment.
+        /// </summary>
+        public double MeanFitness
 		{
 			get
 			{
-				return fitness;
+				return meanFitness;
 			}
 
 
@@ -175,9 +186,10 @@ namespace SharpNeatLib.Evolution
         {
 
             Debug.Assert(fitness >= EvolutionAlgorithm.MIN_GENOME_FITNESS, "Genome fitness must be non-zero. Use EvolutionAlgorithm.MIN_GENOME_FITNESS");
+            this.lastFitness = fitness;
             this.totalFitness += fitness;
             this.evaluationCount++;
-            this.fitness = evaluationCount > 0 ? this.totalFitness / this.evaluationCount : 0;
+            this.meanFitness = evaluationCount > 0 ? this.totalFitness / this.evaluationCount : 0;
 
         }
 

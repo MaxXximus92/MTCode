@@ -8,7 +8,7 @@ using SharpNeatLib.NeuralNetwork;
 using SharpNeatLib.Experiments;
 using System.Collections.Concurrent;
 using static EsExperimentNS.MatlabCommunicator;
-using static EsExperimentNS.EsSubstrate;
+using static EsExperimentNS.EsSubstrate2D;
 
 namespace EsExperimentNS
 {
@@ -44,7 +44,7 @@ namespace EsExperimentNS
         {
 
             double fitness = 0;
-            EsSubstrate substrate = new EsSubstrate(network);
+            EsSubstrate2D substrate = new EsSubstrate2D(network);
            // EsSubstrateTypeCoded substrate = new EsSubstrateTypeCoded(network);
            // EsSubstrate1D substrate = new EsSubstrate1D(network);
             List<NType> types = new List<NType>();
@@ -74,7 +74,7 @@ namespace EsExperimentNS
         {
 
 
-             EsSubstrate substrate = new EsSubstrate(network);
+             EsSubstrate2D substrate = new EsSubstrate2D(network);
            // EsSubstrateTypeCoded substrate = new EsSubstrateTypeCoded(network);
            // EsSubstrate1D substrate = new EsSubstrate1D(network);
             List<NType> types = new List<NType>();

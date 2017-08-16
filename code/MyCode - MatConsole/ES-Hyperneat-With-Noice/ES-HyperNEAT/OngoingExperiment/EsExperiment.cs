@@ -68,14 +68,14 @@ namespace EsExperimentNS
                     np.activationProbabilities[1] = .25;
                     np.activationProbabilities[2] = .25;
                     np.activationProbabilities[3] = .25;
-                    np.populationSize = 150;
+                    np.populationSize = (int)ExperimentParameters.populationSize;
                     np.pruningPhaseBeginComplexityThreshold = float.MaxValue;
                     np.pruningPhaseBeginFitnessStagnationThreshold = int.MaxValue;
                     np.pruningPhaseEndComplexityStagnationThreshold = int.MinValue;
                     np.pInitialPopulationInterconnections = 1;
-                    np.elitismProportion = .1;
+                    np.elitismProportion = .33; // Pop of 90 -> 30 Best
                     np.targetSpeciesCountMax = np.populationSize / 10;
-                    np.targetSpeciesCountMin = np.populationSize / 10 - 2;
+                    np.targetSpeciesCountMin = np.populationSize / 10 / 2; // origoinal: was -2 istead of /2 before
                     np.selectionProportion = .8;
                     neatParams = np;
                 }

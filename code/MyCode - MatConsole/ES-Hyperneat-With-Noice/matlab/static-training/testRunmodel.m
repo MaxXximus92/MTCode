@@ -1,9 +1,9 @@
 
-train_time = '4000'; %runtime per trial [ms] %initial 120000
+train_time = '40000'; %runtime per trial [ms] %initial 120000
 
 angles_to_learn='[0,135]';%'[0,135]';
 angles_to_simulate='[10,123,61]';%'[10,62.5,135]'
-angle_simulation_time='200'; 
+angle_simulation_time='20000'; 
 
 
 savePath=[pwd '/testsave'];
@@ -39,6 +39,6 @@ writeSync("syncfile.txt","simulate_plot \n staticTest");
 tic
 % wichtig, code endet nie, da kein zweiter thread implementiert um write
 
-runModel(name,train_time,savePath,'data_com_1.mat','result_rmsd', 'syncfile.txt',angles_to_learn,angles_to_simulate,angle_simulation_time )
+runModel(name,train_time,savePath,'data.mat','result_rmsd', 'syncfile.txt',angles_to_learn,angles_to_simulate,angle_simulation_time )
 toc
 rmsd = load('result_fitness');
