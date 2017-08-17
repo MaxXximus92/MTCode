@@ -1,0 +1,15 @@
+experimentName =Es1DExp
+experimentDescription= Evolveable Substrate Hyperneat with learning on D_Es connections, except of D neurons all are created by Hyperneat
+maxGenerations = 10000
+populationSize = 90
+numLastGenModelsToPlotAndSave = 90
+modelLibPathTrain=/storage/mutschler/Experiments/ES_1D_17_08_2/matlab/static-training
+modelLibPathSimulate=/storage/mutschler/Experiments/ES_1D_17_08_2/matlab/static-simulation
+matlabExecPath =/storage/matlab-r2017a/bin/
+startAngle=135
+training_maxTrainTime=40000
+training_anglesToSimulate=[0,62,135]
+training_anglesToLearn= [0,135]
+training_timePerAngle= 20000
+simulation_anglesToSimulate=[60,30,0,80,135,15,100,40]
+simulation_timePerAngle = 30000
