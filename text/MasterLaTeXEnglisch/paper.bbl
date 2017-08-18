@@ -1,0 +1,13 @@
+\begin{thebibliography}{XY10}
+
+\bibitem[Sta02]{NEAT}
+Risto Stanley, Kenneth O.;~Miikkulainen.
+\newblock Evolving neural networks through augmenting topologies.
+\newblock {\em Evolutionary Computation}, 10, 06 2002.
+
+\bibitem[XY10]{book:IntroductionEA}
+Mitsuo Gen~(auth.) Xinjie~Yu.
+\newblock {\em Introduction to evolutionary algorithms}.
+\newblock Decision Engineering 0. Springer-Verlag London, 1 edition, 2010.
+
+\end{thebibliography}

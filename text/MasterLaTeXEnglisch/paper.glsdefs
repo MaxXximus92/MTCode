@@ -1,0 +1,30 @@
+\ifglsentryexists{neat}{}%
+{%
+\gls@defglossaryentry{neat}%
+{%
+name={NEAT},%
+sort={NEAT},%
+type={acronym},%
+first={neuroevolution of augmenting toplogies\glsspace (NEAT)},%
+firstplural={neuroevolution of augmenting toplogiess\glsspace (NEATs)},%
+text={NEAT},%
+plural={NEATs},%
+description={neuroevolution of augmenting toplogies},%
+descriptionplural={neuroevolution of augmenting toplogies\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={neuroevolution of augmenting toplogies},%
+longplural={neuroevolution of augmenting toplogiess},%
+short={NEAT},%
+shortplural={NEATs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
