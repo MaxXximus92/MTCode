@@ -1,0 +1,11 @@
+Problems in Sebastians Model:
+-no fixed state for reached angle
+-time decoding interrupts signal
+-only partly used noice (not for all neurons)
+-learning phase: learning max angles leads to ignored overshoot. One doesn't have to hit the angle precicsely. 
+- model one approach for a motor cortex, there might be thousands different ones. No proove to be correct.
+NEAT:
+-> we do it that way but don't tell why
+-> same genomes should be held over all generations
+
+HyperNEAT:

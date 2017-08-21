@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.20)  18 AUG 2017 16:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.20)  21 AUG 2017 15:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -641,40 +641,110 @@ Package: supertabular 2004/02/20 v4.1e the supertabular environment
 Package: glossary-tree 2017/01/19 v4.29 (NLCT)
 \glstreeindent=\skip58
 ))
+(c:/texlive/2016/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2013/01/06 v5.00 algorithms environments
+\c@AlgoLine=\count133
+\algocf@hangindent=\skip59
+
+(c:/texlive/2016/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+(c:/texlive/2016/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+********************************************************
+Package `algorithm2e' Release 5.1 -- october 19 2015 --
+- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
+- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
+subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
+- Author: Christophe Fiorio (christophe.fiorio@umontpellier.fr)
+********************************************************
+\skiptotal=\skip60
+\skiplinenumber=\skip61
+\skiprule=\skip62
+\skiphlne=\skip63
+\skiptext=\skip64
+\skiplength=\skip65
+\algomargin=\skip66
+\skipalgocfslide=\skip67
+\algowidth=\dimen141
+\inoutsize=\dimen142
+\inoutindent=\dimen143
+\interspacetitleruled=\dimen144
+\interspacealgoruled=\dimen145
+\interspacetitleboxruled=\dimen146
+\algocf@ruledwidth=\skip68
+\algocf@inoutbox=\box33
+\algocf@inputbox=\box34
+\AlCapSkip=\skip69
+\AlCapHSkip=\skip70
+\algoskipindent=\skip71
+\algocf@nlbox=\box35
+\algocf@hangingbox=\box36
+\algocf@untilbox=\box37
+\algocf@skipuntil=\skip72
+\algocf@capbox=\box38
+\algoheightruledefault=\skip73
+\algoheightrule=\skip74
+\algotitleheightruledefault=\skip75
+\algotitleheightrule=\skip76
+\c@algocfline=\count134
+\c@algocfproc=\count135
+\c@algocf=\count136
+\algocf@algoframe=\box39
+\algocf@algobox=\box40
+) (c:/texlive/2016/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count137
+\float@exts=\toks33
+\float@box=\box41
+\@float@everytoks=\toks34
+\@floatcapt=\box42
+)
+(c:/texlive/2016/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(c:/texlive/2016/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup5
+\symAMSb=\mathgroup6
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
 \glswrite=\write3
 \glo@acronym@file=\write4
 \openout4 = `paper.acn'.
 
-Package glossaries Info: Writing glossary file paper.acn on input line 30.
-
-(./paper.aux)
+Package glossaries Info: Writing glossary file paper.acn on input line 33.
+ (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
- (c:/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+
+(c:/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count133
-\scratchdimen=\dimen141
-\scratchbox=\box33
-\nofMPsegments=\count134
-\nofMParguments=\count135
-\everyMPshowfont=\toks33
-\MPscratchCnt=\count136
-\MPscratchDim=\dimen142
-\MPnumerator=\count137
-\makeMPintoPDFobject=\count138
-\everyMPtoPDFconversion=\toks34
+\scratchcounter=\count138
+\scratchdimen=\dimen147
+\scratchbox=\box43
+\nofMPsegments=\count139
+\nofMParguments=\count140
+\everyMPshowfont=\toks35
+\MPscratchCnt=\count141
+\MPscratchDim=\dimen148
+\MPnumerator=\count142
+\makeMPintoPDFobject=\count143
+\everyMPtoPDFconversion=\toks36
 ) (c:/texlive/2016/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -725,6 +795,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
 Package caption Info: longtable package is loaded.
 
 (c:/texlive/2016/texmf-dist/tex/latex/caption/ltcaption.sty
@@ -733,10 +804,20 @@ Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
 Package caption Info: supertabular package is loaded.
 Package caption Info: End \AtBeginDocument code.
  (./paper.glsdefs)
-LaTeX Font Info:    Try loading font information for U+lasy on input line 52.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 55.
 
 (c:/texlive/2016/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 55.
+
+(c:/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 55.
+
+(c:/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 \openout3 = `paper.ist'.
@@ -784,59 +865,67 @@ Chapter 1.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3]
-<figures/NEAT/NEATGenome.png, id=67, 788.19469pt x 389.95688pt>
+<figures/NEAT/NEATGenome.png, id=66, 788.19469pt x 389.95688pt>
 File: figures/NEAT/NEATGenome.png Graphic file (type png)
 
 <use figures/NEAT/NEATGenome.png>
-Package pdftex.def Info: figures/NEAT/NEATGenome.png used on input line 53.
+Package pdftex.def Info: figures/NEAT/NEATGenome.png used on input line 73.
 (pdftex.def)             Requested size: 278.83578pt x 137.9507pt.
 
-<figures/NEAT/NEATMutations.png, id=69, 800.23969pt x 518.6878pt>
+<figures/NEAT/NEATMutations.png, id=68, 800.23969pt x 518.6878pt>
 File: figures/NEAT/NEATMutations.png Graphic file (type png)
 
 <use figures/NEAT/NEATMutations.png>
-Package pdftex.def Info: figures/NEAT/NEATMutations.png used on input line 62.
+Package pdftex.def Info: figures/NEAT/NEATMutations.png used on input line 82.
 (pdftex.def)             Requested size: 278.83578pt x 180.72826pt.
 
-<figures/NEAT/NEATCrossOver.png, id=70, 654.94687pt x 615.0478pt>
+<figures/NEAT/NEATCrossOver.png, id=69, 654.94687pt x 615.0478pt>
 File: figures/NEAT/NEATCrossOver.png Graphic file (type png)
 
 <use figures/NEAT/NEATCrossOver.png>
-Package pdftex.def Info: figures/NEAT/NEATCrossOver.png used on input line 75.
+Package pdftex.def Info: figures/NEAT/NEATCrossOver.png used on input line 95.
 (pdftex.def)             Requested size: 278.83578pt x 261.84703pt.
-) (./paper.bbl
+ [4] [5 <./figures/NEAT/NEATGenome.png>]
+[6 <./figures/NEAT/NEATMutations.png>]) (./paper.bbl
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [4]
-[5 <./figures/NEAT/NEATGenome.png>] [6 <./figures/NEAT/NEATMutations.png>]
-[7 <./figures/NEAT/NEATCrossOver.png>]) [8
+ [7 <./figures/NEAT/NEATCrossOver.png>] [8]) [9
 
-] (./paper.aux) ) 
+] [10
+
+] (./paper.aux) )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 1061 ({)
+### bottom level 
 Here is how much of TeX's memory you used:
- 7629 strings out of 493013
- 112672 string characters out of 6136993
- 242181 words of memory out of 5000000
- 10989 multiletter control sequences out of 15000+600000
- 11098 words of font info for 41 fonts, out of 8000000 for 9000
+ 8904 strings out of 493013
+ 131799 string characters out of 6136993
+ 281247 words of memory out of 5000000
+ 12234 multiletter control sequences out of 15000+600000
+ 12333 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 45i,16n,77p,1961b,358s stack positions out of 5000i,500n,10000p,200000b,80000s
-<c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmb
-x10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
-c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texliv
-e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2016/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2016/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2016/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr12.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr17.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb>
-<c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texli
-ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2016/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2016/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on paper.pdf (22 pages, 335104 bytes).
+ 45i,16n,77p,1961b,2544s stack positions out of 5000i,500n,10000p,200000b,80000s
+<c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx
+10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c
+:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive
+/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2016/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2016/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr12.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr17.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c
+:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2
+016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb><c:/texlive/2016/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2016/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2016/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmsy8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmti12.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symb
+ols/msbm10.pfb>
+Output written on paper.pdf (24 pages, 358820 bytes).
 PDF statistics:
- 138 PDF objects out of 1000 (max. 8388607)
- 93 compressed objects within 1 object stream
+ 157 PDF objects out of 1000 (max. 8388607)
+ 106 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

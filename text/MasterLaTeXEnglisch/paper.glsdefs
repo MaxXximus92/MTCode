@@ -28,3 +28,33 @@ parent={},%
 %
 }%
 }%
+\ifglsentryexists{hyperNEAT}{}%
+{%
+\gls@defglossaryentry{hyperNEAT}%
+{%
+name={HyperNEAT},%
+sort={HyperNEAT},%
+type={acronym},%
+first={Hypercube-based NeuroEvolution of Aug menting Topologies\glsspace (HyperNEAT)},%
+firstplural={Hypercube-based NeuroEvolution of Aug menting Topologiess\glsspace (HyperNEATs)},%
+text={HyperNEAT},%
+plural={HyperNEATs},%
+description={Hypercube-based NeuroEvolution of Aug menting Topologies},%
+descriptionplural={Hypercube-based NeuroEvolution of Aug menting Topologies\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Hypercube-based NeuroEvolution of Aug menting Topologies},%
+longplural={Hypercube-based NeuroEvolution of Aug menting Topologiess},%
+short={HyperNEAT},%
+shortplural={HyperNEATs},%
+counter={page},%
+parent={},%
+%
+}%
+}%

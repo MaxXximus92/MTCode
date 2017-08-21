@@ -6,9 +6,9 @@
 \contentsline {subsection}{\numberline {1.1.2}Evolutionary algorithm}{1}
 \contentsline {subsection}{\numberline {1.1.3}operating principle}{2}
 \contentsline {section}{\numberline {1.2}HyperNEAT}{5}
-\contentsline {subsection}{\numberline {1.2.1}Basic HyperNEAT}{5}
-\contentsline {subsubsection}{Scaling}{5}
-\contentsline {subsubsection}{Modulation}{5}
-\contentsline {subsection}{\numberline {1.2.2}ES HyperNEAT}{5}
-\contentsline {section}{\numberline {1.3}Motorcortex Model}{5}
-\contentsline {chapter}{Bibliography}{5}
+\contentsline {subsection}{\numberline {1.2.1}Basic HyperNEAT}{8}
+\contentsline {subsubsection}{Scaling}{8}
+\contentsline {subsubsection}{Modulation}{8}
+\contentsline {subsection}{\numberline {1.2.2}ES HyperNEAT}{8}
+\contentsline {section}{\numberline {1.3}Motorcortex Model}{8}
+\contentsline {chapter}{Bibliography}{8}

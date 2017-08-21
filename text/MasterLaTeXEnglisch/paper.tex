@@ -16,6 +16,9 @@
 \usepackage[toc,page]{appendix}
 \usepackage[acronym,nomain]{glossaries} % list of abbreviations
 \usepackage{amsmath} %type math formulars
+\usepackage[]{algorithm2e}% wirte pseudcocode
+\usepackage{float} % set picture at exact location
+\usepackage{amssymb} %math symbols
 
 \textwidth 14cm
 \textheight 22cm
@@ -147,8 +150,9 @@ Write here your acknowledgements.
 
 \printglossaries
 \newacronym{neat}{NEAT}{neuroevolution of augmenting toplogies}
-
-
+\newacronym{hyperNEAT}{HyperNEAT}{Hypercube-based NeuroEvolution of Aug
+menting Topologies}
+\newacronym{cppn}{CPPN}{Compositional Pattern Producing Network CPPN}
 
 %\addcontentsline{toc}{chapter}{List of Abbreviations}
 %\chapter*{List of Abbreviations\markboth{LIST OF ABBREVIATIONS}{LIST OF ABBREVIATIONS}}
