@@ -58,3 +58,63 @@ parent={},%
 %
 }%
 }%
+\ifglsentryexists{cppn}{}%
+{%
+\gls@defglossaryentry{cppn}%
+{%
+name={CPPN},%
+sort={CPPN},%
+type={acronym},%
+first={Compositional Pattern Producing Network CPPN\glsspace (CPPN)},%
+firstplural={Compositional Pattern Producing Network CPPNs\glsspace (CPPNs)},%
+text={CPPN},%
+plural={CPPNs},%
+description={Compositional Pattern Producing Network CPPN},%
+descriptionplural={Compositional Pattern Producing Network CPPN\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Compositional Pattern Producing Network CPPN},%
+longplural={Compositional Pattern Producing Network CPPNs},%
+short={CPPN},%
+shortplural={CPPNs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{ann}{}%
+{%
+\gls@defglossaryentry{ann}%
+{%
+name={ANN},%
+sort={ANN},%
+type={acronym},%
+first={Artificial Neural Network\glsspace (ANN)},%
+firstplural={Artificial Neural Networks\glsspace (ANNs)},%
+text={ANN},%
+plural={ANNs},%
+description={Artificial Neural Network},%
+descriptionplural={Artificial Neural Network\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Artificial Neural Network},%
+longplural={Artificial Neural Networks},%
+short={ANN},%
+shortplural={ANNs},%
+counter={page},%
+parent={},%
+%
+}%
+}%

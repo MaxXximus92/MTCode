@@ -4,9 +4,10 @@
 
 \chapter{Basics}\label{Basics}
 % todo explain EA, Gene, Genome, Allel. 
+\section{TODO}
+-> neural networks
 
-
-\section{NEAT}\label{NEAT} % todo paper reference
+\section{NEAT}\label{NEAT} % todo in ea section packen... und mit em deitschen ea paper zitieren. Biologisch eh nicht ganz korrekt
 \Gls{neat} (\cite{NEAT}) is an neuroevolution method that genetically encodes and evolves weights and topologies of neural networks. \gls{neat} stands out from other neuroevolution algorithms by meaningful crossovers in disparate ANN topologies, protection of topological innovations and a efficient search by a stepwise increasing search space. (TODO cite some). Furthermore \gls{neat} is well suited for reinforcement learning problems. 
 \subsection{biological basics} 
 % maybe definitions are better ask %MKK zitieren %% todo fachwerk aus bib
@@ -109,10 +110,10 @@ evolutionary algorithm
 
 \section{HyperNEAT}\label{HYPERNEAT}
  While NEAT (see \ref{NEAT}) works well on considerably small networks it's performance decreases for large networks greater several hundred neurons. (TODO find paper with prove.). With this amount of neurons the search space get's to big, thus finding a solution with NEAT gets computational expensive. 
- Hypercube-based NeuroEvolution of Augmenting Topologies (HyperNEAT) (TODO cite) addresses this problem searching in a space of spatial connection patterns instead of searching in a space where each single connection is considered. As a result connections of large ANNs can are indirect encoded by a single multidimensional function. It was even shown by (TODO cite) that on the basis of such a function it is possible to scale the amount of neurons of the found network leading only to minor changes in functionality. A further fundamental principle of HyperNEAT is, that the position of neurons in space are included into the search space.(TODO cite). Relationships between neurons are described by their distance. Similar neurons are placed next to each other.
+ Hypercube-based NeuroEvolution of Augmenting Topologies (HyperNEAT) (TODO cite) addresses this problem searching in a space of spatial connection patterns instead of searching in a space where each single connection is considered. As a result connections of large ANNs can are indirect encoded by a single multidimensional function. It was even shown by (TODO cite) that on the basis of such a function it is possible to scale the amount of neurons of the found network leading only to minor changes in functionality. A further fundamental principle of HyperNEAT is, that the position of neurons in space are included into the search space.(TODO cite). Relationships between neurons are described by their distance. Similar neurons are placed next to each other. The indirect encoding is inspired by the biological fact that $30,000$ genes  (cite hneat paper p 4 reffs) encode the human brain with approximately $100 \cdot10^9$ neuron connections.
  
  The function $f$ describing the spatial pattern and the function  $w$ describing the resulting connection weights are defined as follows: 
-\begin{align*} 
+\begin{align*} \label{HyperNEatFunction}
  f&\colon \mathbb{R}^{2n} \to [l,u], \quad  p_{1_1},\ldots,p_{1_n},p_{2_1},\ldots,p_{2_n} \mapsto f(p_{1_1},\ldots,p_{1_n},p_{2_1},\ldots,p_{2_n})\\
  w&\colon \mathbb{R}^{2n} \to [0,w_{max}] \text{ with: }\\
  w&(p_{1_1},\ldots,p_{2_n})=\begin{cases}
@@ -124,11 +125,97 @@ evolutionary algorithm
  Where $\mathbb{R}^n$ is the spatial space of the neuron. Thus $2n$ is the dimension of the connection space a hypercube, where one point describes the connection between two neurons. $l$ and $u$ are the boundaries of the connection space. $p_1$ and $p_2$ describe the neuron coordinates of two neurons in an n-dimensional space. The maximal weight is described by $w_{max}$. $\theta_c$ is called the connection threshold (TODO name, bzw hat keinen namen).
  Note that this mathematical definition has been created on the verbal description of Kenneth... (TODO cite). Described in words , the coordinates of two neurons are given to $f$. If $f$'s output is higher than $\theta_c$ a connection is created and it's weight is $f$'s output scaled between $0$ and $w_max$.\\
 Description of f:
-f is calculated by a Compositional Pattern Producing Network CPPN. To prefent confusion f is referred to as CPPN further on.
+f is calculated by a Compositional Pattern Producing Network CPPN. To prevent confusion f is referred to as CPPN further on. A CPPN is a network where each node is a function out of a pool of basic functions. It works like an ANN, where the activation functions are replaced by a function out of the pool of basic functions.typical used basic functions are sinusoidals, lines and gaussians. An exemplar CPPN can be seen in figure (\ref{cppn}).
+Since CPPNs are identical to ANN, they get evolved by NEAT. That ensures that HyperNEAT's search starts initially with simple connection patterns, whose complexity gets increased during the search. 
+In HyperNeats terminology like in NEAT the network describing the CPPN is named the genome. The placement of neurons of the resulting ANN in the neuron space is called the substrate configuration. The resulting network is called the substrate. Similar neurons should be placed next to each other, since they will get similar connection patterns than.Exemplar substrates are shown in figure \ref{fig:substrates} \cite{GeometrySensitvityHyperneat}  proves empirically  that giving geometric information about the problem improves the search, however choosing a random geometric representation works worse but still good solutions can be found. Furthermore they show that the dimensionality of the input space has a influence on the result.  Thus also problems where the geometric information is unknown are solvable.  So to determine the weight of the connection of two neurons, their positions are applied as input parameters to the CPPN and like described in \ref{HyperNEatFunction} the weight value is determined. This process is also depicted in \ref{fig:querysubstrate}. Note that there are two different ANNs in HyperNEAT: the CPPN describing a function in the connection space and the resulting ANN which connections are defined by the output of the CPPN. 
+To sum up the algorithm works as follows:
+
+	\SetCommentSty{text} 
+\begin{algorithm}[h!] % or H with float
+	\label{HyberNEATAlgorithm}
+	\TitleOfAlgo{HyperNEAT algorithm}
+	choose strategy parameters\;
+	define a substrate configuration C \;
+	create initial population P(0) with minimal CPPNs and random weights\;
+	$t \gets 0$\;
+	evaluate fitness of the initial population\;
+	\While{termination condition not reached}{
+		$t \gets t+1$\;
+		\ForAll(\tcp*[f]{genome = CPPN}){genomes in P(t) }{ 
+		 \ForAll{pairs of nodes in C }{
+			apply node positions to CPPN and determine the connection weight for the connection between the pair of nodes\; 
+		}
+		Determine fitness of created ANN\;
+	}
+		 new population P(t) with NEAT\;
+	}
+	output best CPPN;
+	%\ similar in modularity paper
+	%\caption{How to write algorithms}
+\end{algorithm}
+
+\begin{figure}[tb]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/HyperNeat/CPPN}
+	\caption[Exemplar CPPN]{(a) The mapping of a function f from a two dimensional connection space to a one dimensional spatial pattern. x and y are the positions of two neurons. (b) f's internal structure called a CPPN is shown. The output is a composition of different basic functions in a network. The connections in the CPPN are weighted such that the output of a function by the weight of it's outgoing connection. \cite[p. 5]{HyperNEAT}}
+	\label{fig:cppn}
+\end{figure}
+
+\begin{figure}[tb]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/HyperNeat/Substrates}
+	\caption[Exemplar Substrate Configurations]{ Examples of how to define a substrate configuration. That is how to arrange the position of neurons. They can be of different dimensions and described by different coordinate systems. (a),(b) and (c) are in Cartesian coordinates while (d) is represented in polar coordinates. (a) and (d) are one dimensional while (b) is three dimensional. (c) is an implicit three dimensional case, where the third dimension is ignored. In this case all input neurons lay on a different layer in 3D space than the output neurons. Note that self linked neurons are not possible in this scenario. Substrates describe the geometric relationship of neurons, so different substrates are suited for problems with different geometric properties.
+	\cite[p. 11]{HyperNEAT}}
+	\label{fig:substrates}
+\end{figure}
+
+
+
+\begin{figure}[tb]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/HyperNeat/QuerySubstrate}
+	\caption[ANN creation with HyperNEAT]{This figure shows how a ANN is created by HyperNEAT. The coordinates of each pair of nodes (potential connection) are applied to the CPPN. A pair of nodes is depicted by a black arrow. If the CPPN's output is higher as a defined threshold (not depicted) a weighted connection between those two nodes is created. In this example a two dimensional grid substrate and thus a CPPN with four inputs is used. 	\cite[p. 9]{HyperNEAT} }
+	\label{fig:querysubstrate}
+\end{figure}
+
+
+\begin{figure}[tb]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/HyperNeat/scaling}
+	\caption[Exemplar substrate scaling]{ The spatial pattern produced the CPPN on the right (c) can be queried by different substrates. (a) shows the resulting network of a 5 x 5 grid substrate and (b) the resulting network of a 7 x 7 grid substrate on the same space. From (a) to (b) the substrate was even scaled by factor $1.4$.  \cite[p. 14]{HyperNEAT}}. The CPPN activation functions are denoted by G for Gaussian and S for sigmoid.
+	\label{fig:scaling}
+\end{figure}
+
+Scaling:\\
+ \cite{HyperNEAT} and \cite{HyperNEATOctobusArm} argue that the spatial pattern produced by a CPPN encodes a general connectivity concept. Based on this statement they show empirically that the resolution of a substrate configuration can be changed to vary the size of the resulting ANN with only minor influences on the result. For example instead of an $5x5$ grid substrate configuration one could scale the substrate configuration to a $7x7$ grid substrate applied to the same space (e.g $[0,1]$). This process is further on referred as substrate scaling. One benefit of substrate scaling is, that one can scale the resulting with use of the same substrate without further evolution needed. Example solution of a scaled substrate configurations are shown in figure \ref{fig:scaling}.
+ 
+ CPPN configuration variation: \\
+ \cite{HyperNEATOctobusArm}, \cite{HyperNEATLeo},\cite{HyperNEATEvolveLearningRules} and \cite{HyperNeat1DSubstrates} varied the number of inputs and outputs of the CPPN to encode further information than the neuron position. \cite{HyperNEATLeo} decouples the weight and the expression of a connection. He defines with the value of a second output whether the connection is evolved or not. One other variation from \cite{HyperNEATOctobusArm}  is two have three layered sandwich substrate configuration where the second CPPN output defines the connections between the second and third layer.\cite{HyperNEAT} adds an additional input node to additionally decode the distance between the geometric distance between the two nodes. Further on one can use a additional bias neuron wit a constant input as input neuron as \cite{HyperNEATEvolveLearningRules} did. TODO draw own picture with those variations.  \cite{HyperNEATLeo} states that Hyperneat "tends to generate fullyconnected networks" and shows that due to the separation of weight encoding and connectivity expression less connected modular networks can evolve.
  
 
-substrate = output of cppn
+  
+ 
+ 
 
+ Wichtig, gutes zitat irgendwo verwenden:
+ \cite{HyperNEATLeo} states that Hyperneat "tends to generate fullyconnected networks"
+
+ Scaling: TDDO 
+ CPPN configurations: multiple input, outputs
+ Modulationary CPPNs:
+ 
+ 
+ zitiere checkers game, robot arms, b
+
+TODO mention much lower search space in cppn.
+
+
+substrate = output of cppn
+or substrate = placement of neurons.
+or substrate = resulting network !!
+Ok last one gives most sense!!
+
+TODO draw retina example.
 
 -> senstifity to chosen geometrie -> Paper (The Sensitivity of HyperNEAT to Different Geometric Representations of a Problem)
 

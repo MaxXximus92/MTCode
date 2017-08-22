@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.20)  21 AUG 2017 15:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.20)  22 AUG 2017 15:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -865,67 +865,115 @@ Chapter 1.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3]
-<figures/NEAT/NEATGenome.png, id=66, 788.19469pt x 389.95688pt>
+[4] <figures/NEAT/NEATGenome.png, id=73, 788.19469pt x 389.95688pt>
 File: figures/NEAT/NEATGenome.png Graphic file (type png)
 
 <use figures/NEAT/NEATGenome.png>
-Package pdftex.def Info: figures/NEAT/NEATGenome.png used on input line 73.
+Package pdftex.def Info: figures/NEAT/NEATGenome.png used on input line 74.
 (pdftex.def)             Requested size: 278.83578pt x 137.9507pt.
 
-<figures/NEAT/NEATMutations.png, id=68, 800.23969pt x 518.6878pt>
+<figures/NEAT/NEATMutations.png, id=75, 800.23969pt x 518.6878pt>
 File: figures/NEAT/NEATMutations.png Graphic file (type png)
 
 <use figures/NEAT/NEATMutations.png>
-Package pdftex.def Info: figures/NEAT/NEATMutations.png used on input line 82.
+Package pdftex.def Info: figures/NEAT/NEATMutations.png used on input line 83.
 (pdftex.def)             Requested size: 278.83578pt x 180.72826pt.
 
-<figures/NEAT/NEATCrossOver.png, id=69, 654.94687pt x 615.0478pt>
+<figures/NEAT/NEATCrossOver.png, id=76, 654.94687pt x 615.0478pt>
 File: figures/NEAT/NEATCrossOver.png Graphic file (type png)
 
 <use figures/NEAT/NEATCrossOver.png>
-Package pdftex.def Info: figures/NEAT/NEATCrossOver.png used on input line 95.
+Package pdftex.def Info: figures/NEAT/NEATCrossOver.png used on input line 96.
 (pdftex.def)             Requested size: 278.83578pt x 261.84703pt.
- [4] [5 <./figures/NEAT/NEATGenome.png>]
-[6 <./figures/NEAT/NEATMutations.png>]) (./paper.bbl
+ [5 <./figures/NEAT/NEATGenome.png>]
+
+LaTeX Warning: Reference `cppn' on page 6 undefined on input line 128.
+
+
+LaTeX Warning: Reference `HyperNEatFunction' on page 6 undefined on input line 
+130.
+
+[6 <./figures/NEAT/NEATMutations.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [7 <./figures/NEAT/NEATCrossOver.png>] [8]) [9
+ [7 <./figures/NEAT/NEATCrossOver.png>]
 
-] [10
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-] (./paper.aux) )
+<figures/HyperNeat/CPPN.png, id=93, 808.52063pt x 335.75438pt>
+File: figures/HyperNeat/CPPN.png Graphic file (type png)
+
+<use figures/HyperNeat/CPPN.png>
+Package pdftex.def Info: figures/HyperNeat/CPPN.png used on input line 159.
+(pdftex.def)             Requested size: 278.83578pt x 115.79439pt.
+
+<figures/HyperNeat/Substrates.png, id=94, 900.36375pt x 293.59688pt>
+File: figures/HyperNeat/Substrates.png Graphic file (type png)
+
+<use figures/HyperNeat/Substrates.png>
+Package pdftex.def Info: figures/HyperNeat/Substrates.png used on input line 16
+6.
+(pdftex.def)             Requested size: 278.83578pt x 90.92448pt.
+
+<figures/HyperNeat/QuerySubstrate.png, id=95, 804.75656pt x 408.77719pt>
+File: figures/HyperNeat/QuerySubstrate.png Graphic file (type png)
+
+<use figures/HyperNeat/QuerySubstrate.png>
+Package pdftex.def Info: figures/HyperNeat/QuerySubstrate.png used on input lin
+e 176.
+(pdftex.def)             Requested size: 278.83578pt x 141.6333pt.
+
+<figures/HyperNeat/scaling.png, id=96, 737.00343pt x 305.64188pt>
+File: figures/HyperNeat/scaling.png Graphic file (type png)
+
+<use figures/HyperNeat/scaling.png>
+Package pdftex.def Info: figures/HyperNeat/scaling.png used on input line 184.
+(pdftex.def)             Requested size: 278.83578pt x 115.6321pt.
+
+Underfull \vbox (badness 2134) has occurred while \output is active []
+
+ [8 <./figures/HyperNeat/CPPN.png>] [9]) (./paper.bbl [10 <./figures/HyperNeat/
+Substrates.png>] [11 <./figures/HyperNeat/QuerySubstrate.png> <./figures/HyperN
+eat/scaling.png>]) [12
+
+] (./paper.aux)
+
+LaTeX Warning: There were undefined references.
+
+ )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 8904 strings out of 493013
- 131799 string characters out of 6136993
- 281247 words of memory out of 5000000
- 12234 multiletter control sequences out of 15000+600000
- 12333 words of font info for 47 fonts, out of 8000000 for 9000
+ 9004 strings out of 493013
+ 133654 string characters out of 6136993
+ 282378 words of memory out of 5000000
+ 12329 multiletter control sequences out of 15000+600000
+ 13687 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 45i,16n,77p,1961b,2544s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 45i,16n,77p,1961b,2624s stack positions out of 5000i,500n,10000p,200000b,80000s
 <c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx
 10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c
 :/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive
-/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2016/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2016/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr12.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr17.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c
-:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2
-016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb><c:/texlive/2016/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2016/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2016/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmti12.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symb
-ols/msbm10.pfb>
-Output written on paper.pdf (24 pages, 358820 bytes).
+/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2016/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2016/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2016/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr12.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+<c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive
+/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2016/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb><c:/texlive/2016/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmsy6.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mti12.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm1
+0.pfb>
+Output written on paper.pdf (26 pages, 705575 bytes).
 PDF statistics:
- 157 PDF objects out of 1000 (max. 8388607)
- 106 compressed objects within 2 object streams
+ 176 PDF objects out of 1000 (max. 8388607)
+ 114 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

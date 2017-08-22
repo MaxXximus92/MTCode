@@ -1,9 +1,44 @@
-\begin{thebibliography}{XY10}
+\begin{thebibliography}{COP09}
+
+\bibitem[COP09]{GeometrySensitvityHyperneat}
+Jeff Clune, Charles Ofria, and Robert~T. Pennock.
+\newblock The sensitivity of hyperneat to different geometric representations
+  of a problem.
+\newblock In {\em GECCO}, 2009.
+
+\bibitem[PS13]{HyperNeat1DSubstrates}
+Justin~K Pugh and Kenneth~O Stanley.
+\newblock Evolving multimodal controllers with hyperneat.
+\newblock In {\em Proceedings of the 15th annual conference on Genetic and
+  evolutionary computation}, pages 735--742. ACM, 2013.
+
+\bibitem[RS10]{HyperNEATEvolveLearningRules}
+Sebastian Risi and Kenneth Stanley.
+\newblock Indirectly encoding neural plasticity as a pattern of local rules.
+\newblock {\em From Animals to Animats 11}, pages 533--543, 2010.
+
+\bibitem[SDG09]{HyperNEAT}
+Kenneth~O. Stanley, David~B. D'Ambrosio, and Jason Gauci.
+\newblock A hypercube-based encoding for evolving large-scale neural networks.
+\newblock {\em Artif. Life}, 15(2):185--212, April 2009.
 
 \bibitem[Sta02]{NEAT}
 Risto Stanley, Kenneth O.;~Miikkulainen.
 \newblock Evolving neural networks through augmenting topologies.
 \newblock {\em Evolutionary Computation}, 10, 06 2002.
+
+\bibitem[VS11]{HyperNEATLeo}
+Phillip Verbancsics and Kenneth~O Stanley.
+\newblock Constraining connectivity to encourage modularity in hyperneat.
+\newblock In {\em Proceedings of the 13th annual conference on Genetic and
+  evolutionary computation}, pages 1483--1490. ACM, 2011.
+
+\bibitem[WS10]{HyperNEATOctobusArm}
+Brian~G Woolley and Kenneth~O Stanley.
+\newblock Evolving a single scalable controller for an octopus arm with a
+  variable number of segments.
+\newblock In {\em International Conference on Parallel Problem Solving from
+  Nature}, pages 270--279. Springer, 2010.
 
 \bibitem[XY10]{book:IntroductionEA}
 Mitsuo Gen~(auth.) Xinjie~Yu.
