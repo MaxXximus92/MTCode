@@ -12,10 +12,23 @@ Justin~K Pugh and Kenneth~O Stanley.
 \newblock In {\em Proceedings of the 15th annual conference on Genetic and
   evolutionary computation}, pages 735--742. ACM, 2013.
 
+\bibitem[RLS10]{ESHyperNEATPaper}
+Sebastian Risi, Joel Lehman, and Kenneth~O Stanley.
+\newblock Evolving the placement and density of neurons in the hyperneat
+  substrate.
+\newblock In {\em Proceedings of the 12th annual conference on Genetic and
+  evolutionary computation}, pages 563--570. ACM, 2010.
+
 \bibitem[RS10]{HyperNEATEvolveLearningRules}
 Sebastian Risi and Kenneth Stanley.
 \newblock Indirectly encoding neural plasticity as a pattern of local rules.
 \newblock {\em From Animals to Animats 11}, pages 533--543, 2010.
+
+\bibitem[RS12]{ESHyperNEATarticle}
+Sebastian Risi and Kenneth~O Stanley.
+\newblock An enhanced hypercube-based encoding for evolving the placement,
+  density, and connectivity of neurons.
+\newblock {\em Artificial life}, 18(4):331--363, 2012.
 
 \bibitem[SDG09]{HyperNEAT}
 Kenneth~O. Stanley, David~B. D'Ambrosio, and Jason Gauci.

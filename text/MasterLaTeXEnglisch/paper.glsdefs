@@ -1,3 +1,33 @@
+\ifglsentryexists{ea}{}%
+{%
+\gls@defglossaryentry{ea}%
+{%
+name={EA},%
+sort={EA},%
+type={acronym},%
+first={Evolutionary Algorithm\glsspace (EA)},%
+firstplural={Evolutionary Algorithms\glsspace (EAs)},%
+text={EA},%
+plural={EAs},%
+description={Evolutionary Algorithm},%
+descriptionplural={Evolutionary Algorithm\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Evolutionary Algorithm},%
+longplural={Evolutionary Algorithms},%
+short={EA},%
+shortplural={EAs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
 \ifglsentryexists{neat}{}%
 {%
 \gls@defglossaryentry{neat}%
@@ -53,6 +83,36 @@ long={Hypercube-based NeuroEvolution of Aug menting Topologies},%
 longplural={Hypercube-based NeuroEvolution of Aug menting Topologiess},%
 short={HyperNEAT},%
 shortplural={HyperNEATs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{EShyperNEAT}{}%
+{%
+\gls@defglossaryentry{EShyperNEAT}%
+{%
+name={ES-HyperNEAT},%
+sort={ES-HyperNEAT},%
+type={acronym},%
+first={Evolvable Substrate Hypercube-based NeuroEvolution of Aug menting Topologies\glsspace (ES-HyperNEAT)},%
+firstplural={Evolvable Substrate Hypercube-based NeuroEvolution of Aug menting Topologiess\glsspace (ES-HyperNEATs)},%
+text={ES-HyperNEAT},%
+plural={ES-HyperNEATs},%
+description={Evolvable Substrate Hypercube-based NeuroEvolution of Aug menting Topologies},%
+descriptionplural={Evolvable Substrate Hypercube-based NeuroEvolution of Aug menting Topologies\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Evolvable Substrate Hypercube-based NeuroEvolution of Aug menting Topologies},%
+longplural={Evolvable Substrate Hypercube-based NeuroEvolution of Aug menting Topologiess},%
+short={ES-HyperNEAT},%
+shortplural={ES-HyperNEATs},%
 counter={page},%
 parent={},%
 %

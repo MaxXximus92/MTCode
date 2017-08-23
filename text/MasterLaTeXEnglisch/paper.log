@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.20)  22 AUG 2017 15:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.20)  23 AUG 2017 16:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -716,7 +716,11 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 \openout4 = `paper.acn'.
 
 Package glossaries Info: Writing glossary file paper.acn on input line 33.
- (./paper.aux)
+ (./paper.aux
+
+LaTeX Warning: Label `fig:es-hyperneatphases' multiply defined.
+
+)
 \openout1 = `paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
@@ -731,8 +735,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
-
-(c:/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (c:/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count138
 \scratchdimen=\dimen147
@@ -932,13 +935,51 @@ Package pdftex.def Info: figures/HyperNeat/scaling.png used on input line 184.
 
 Underfull \vbox (badness 2134) has occurred while \output is active []
 
- [8 <./figures/HyperNeat/CPPN.png>] [9]) (./paper.bbl [10 <./figures/HyperNeat/
-Substrates.png>] [11 <./figures/HyperNeat/QuerySubstrate.png> <./figures/HyperN
-eat/scaling.png>]) [12
+ [8 <./figures/HyperNeat/CPPN.png>] [9] [10 <./figures/HyperNeat/Substrates.png
+>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-] (./paper.aux)
+ [11 <./figures/HyperNeat/QuerySubstrate.png>] [12 <./figures/HyperNeat/scaling
+.png>]
+Overfull \hbox (39.82632pt too wide) in paragraph at lines 281--281
+[][]  
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<figures/ES-HyperNEAT/Es-HyperNEATPhases.png, id=118, 681.29532pt x 543.53062pt
+>
+File: figures/ES-HyperNEAT/Es-HyperNEATPhases.png Graphic file (type png)
+ <use figures/ES-HyperNEAT/Es-HyperNEATPhases.png>
+Package pdftex.def Info: figures/ES-HyperNEAT/Es-HyperNEATPhases.png used on in
+put line 292.
+(pdftex.def)             Requested size: 278.83578pt x 222.4509pt.
+
+<figures/ES-HyperNEAT/ES-HyperNeatBandPruning.png, id=119, 822.82407pt x 344.78
+813pt>
+File: figures/ES-HyperNEAT/ES-HyperNeatBandPruning.png Graphic file (type png)
+ <use figures/ES-HyperNEAT/ES-HyperNeatBandPruning.png>
+Package pdftex.def Info: figures/ES-HyperNEAT/ES-HyperNeatBandPruning.png used 
+on input line 302.
+(pdftex.def)             Requested size: 278.83578pt x 116.83708pt.
+File: figures/ES-HyperNEAT/Es-HyperNEATPhases.png Graphic file (type png)
+
+<use figures/ES-HyperNEAT/Es-HyperNEATPhases.png>
+Package pdftex.def Info: figures/ES-HyperNEAT/Es-HyperNEATPhases.png used on in
+put line 310.
+(pdftex.def)             Requested size: 278.83578pt x 222.4509pt.
+) (./paper.bbl [13] [14]
+[15 <./figures/ES-HyperNEAT/Es-HyperNEATPhases.png> <./figures/ES-HyperNEAT/ES-
+HyperNeatBandPruning.png>] [16] [17
+
+]) [18] (./paper.aux)
 
 LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
 
  )
 (\end occurred inside a group at level 1)
@@ -946,13 +987,13 @@ LaTeX Warning: There were undefined references.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 9004 strings out of 493013
- 133654 string characters out of 6136993
- 282378 words of memory out of 5000000
- 12329 multiletter control sequences out of 15000+600000
+ 9080 strings out of 493013
+ 135306 string characters out of 6136993
+ 285801 words of memory out of 5000000
+ 12402 multiletter control sequences out of 15000+600000
  13687 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 45i,16n,77p,1961b,2624s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 45i,28n,77p,1961b,2848s stack positions out of 5000i,500n,10000p,200000b,80000s
 <c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx
 10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c
 :/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive
@@ -970,10 +1011,10 @@ public/amsfonts/cm/cmsy6.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmsy8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mti12.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm1
 0.pfb>
-Output written on paper.pdf (26 pages, 705575 bytes).
+Output written on paper.pdf (32 pages, 972961 bytes).
 PDF statistics:
- 176 PDF objects out of 1000 (max. 8388607)
- 114 compressed objects within 2 object streams
+ 199 PDF objects out of 1000 (max. 8388607)
+ 127 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -193,7 +193,7 @@ Scaling:\\
  \cite{HyperNEATOctobusArm}, \cite{HyperNEATLeo},\cite{HyperNEATEvolveLearningRules} and \cite{HyperNeat1DSubstrates} varied the number of inputs and outputs of the CPPN to encode further information than the neuron position. \cite{HyperNEATLeo} decouples the weight and the expression of a connection. He defines with the value of a second output whether the connection is evolved or not. One other variation from \cite{HyperNEATOctobusArm}  is two have three layered sandwich substrate configuration where the second CPPN output defines the connections between the second and third layer.\cite{HyperNEAT} adds an additional input node to additionally decode the distance between the geometric distance between the two nodes. Further on one can use a additional bias neuron wit a constant input as input neuron as \cite{HyperNEATEvolveLearningRules} did. TODO draw own picture with those variations.  \cite{HyperNEATLeo} states that Hyperneat "tends to generate fullyconnected networks" and shows that due to the separation of weight encoding and connectivity expression less connected modular networks can evolve.
  
 
- Todo modularity !!! 
+  
  
  
 
@@ -221,109 +221,9 @@ TODO draw retina example.
 
 Hypercube-based NeuroEvolution of Aug
 menting Topologie
-\subsection{ES-HyperNEAT}\label{ES_HYPERNEAT}
-Since Hyperneat (see section \ref{HYPERNEAT}) is only able to optimize the connections of an ANN it lacks the ability to vary the amount of neurons. Evolvable Substrate HyperNEAT (ES-Hyperneat) (see generally \cite{ESHyperNEATarticle}, \cite{ESHyperNEATPaper} ) provides a method based on HyperNEAT that has the ability to evolve the whole topology of a network including neurons, their location in space, connections and weights. 
-The basic idea of ES-HyperNEAT is that each band of equal weights in the spatial pattern defines connections. Since 
-The basic idea of ES-HyperNEAT is that points in a spatial pattern created by a CPPN represent connections and that those connections are selected from bands of equal weights. This procedure basis on the fact, that information is defined by variance. So at regions with a high variance density many bands are found and thus many connections are evolved. At regions with a low variance density less bands are found and thus less connections are evolved. Since a connection is represented by a pont in connection space witch is double the dimension of the neuron space, a connection two neurons and the coordinates of those. As in HyperNEAT (section \ref{HYPERNEAT}) the connections weight is derived by the value of the spatial pattern at the connection's coordinates.\\
-The connection space used in ES-HyperNEAT is 4 dimensional. But, because the search for variances in the four dimensional space is expensive, Es-HyperNEAT searches for connections by starting from the input nodes. The coordinates of the input node are fixed in the 4D connection space. As a result a 2 dimensional cross section of the hypercube is considered, which describes outgoing connections from the input node. The coordinates of the point from which new connections are searched are denotes as $(a,b)$. further on.
-To determine bands in the connection space a quadtree based "division and initialization phase" is applied. And followed by a "pruning and extraction phase". 
-In the "division and initialization phase" a quadtree is laid recursively over the cross section of the connection space. Each node describes a square and has 4 children as long it's not a leaf node. The parent node spans a square from $(-1,-1)$ to $(1.1)$. It has 4 children describing 4 equal spaced subsquares of the parent's square. The initial resolution $r$ defines the minimal depth of the tree: Minimal depth $= \sqrt{r}+1$. (e.g a initial resolution of 16 leads to $16x16$ squares and a depth of 4). The centre point $(x,y)$ of each square describes a potential connection. It's weight is determined by querying the CPPN with arguments $(a,b,x,y)$. The weight variance of each tree node $p$ is calculated as $\sigma^2_p = \dfrac{1}{k}\displaystyle\sum_{i=1}^{k} (\overline{w}-w_i)^2)$. Where $k$ is the amount of leaf nodes of the subtree of p. $\overline{w}$ describes the median weight over all leaf nodes' weights. Note that the variance of a leaf note is $0$. $\sigma^2_p$ is an indicator for the variance of the spatial pattern at this square. If the weight variance of a leaf node's parent is higher a given division threshold $d_t$ division and initialization phase is reapplied starting from the parent's square. This gives the quadtree the possibility to create more nodes at areas with higher variance. However the total depth of the quadtree is bounded by a maximum resolution level $r_m$.
-In the following "pruning and extraction phase" connections are chosen out of the potential connections describe by the quadtree. 
-Firstly a depth first search is applied to the quadtree. If a node's parent's variance is smaller than a given variance threshold $\sigma^2_t$ a connection $(a,b,x,y)$ is created. $x,y$ are the coordinates of the current node. In a second since we only want to have the connections clearly inside a band the connections at the boarders are deleted. To do so only connections (=squares) are kept whose point of two neighbouring squares of he same size on opposite sides (left and right, or top and bottom) differ in weight. The weight difference $\beta$ also called band level has to be higher than a given band threshold $\beta_t$. $\beta$ is defined as follows:
-\begin{align*}
-	\beta &= \max(\min(d_{top},d_{bottom}),\min(d_{left},d_{bottom}))\\
-	d_{top} &= |CPPN(a,b,x,y)-CPPN(a,b,x,y+m)|
-\end{align*}  
-$d_{bottom}$,$d_{left}$,d$_{bottom}$ are calculated accordingly to $d_{top}$. $x,y$ are the coordinates of the centre point of the current square and $m$ the widths of the current square.
-Own additions:
-As a result considering two a narrow and a wide band of same length the more narrow one will have more neurons since a higher resolution of the quadtree is needed to define squares in the band. Thus the existing of neurons  in a band depends on whether it's variance is over the variance threshold. The number of neurons on created on the band depends on the width and length of the band.(not own) The total amount of neurons can be increased either by adding more bands or by making them thinner.
-The frame of the whole ES-HyperNEAT algorithm doesn't change much compared to the HyperNEAT algorithm. The whole evolution process keeps the same. It differs only in the way the ANN is build out of the CPPN(genome). The positions of  input and output neurons must be given. Now starting with input neurons for each neuron the "division and initialization phase" and "pruning and extraction phase" are applied. For every found connection the corresponding hidden neuron is created if not already existing. Now this concept is applied again on all new found neurons. This gets repeated until an given maximum iteration level $it_{max}$ is reached. To find connections between the output neurons and all other neurons again cross section of the Hypercube are created. But this time with fixed output coordinates. That is $w=CPPN(x,y,a,b)$. After all neurons and connection have been found all neurons and connections that are not on a path from an input to an output neuron are deleted.
-To sum up the ES-HyperNEAT Algorithm is shown below:
-
-	\SetCommentSty{text} 
-\begin{algorithm}[h!] % or H with float
-	\label{ES-HyberNEATAlgorithm}
-	\TitleOfAlgo{ES-HyperNEAT algorithm}
-	choose strategy parameters\;
-	define input and output neuron positions
-	create initial population P(0) with minimal CPPNs and random weights\;
-	$t \gets 0$\;
-	evaluate fitness of the initial population \tcp*[r]{like it is done below}
-	\While{termination condition not reached}{
-		$t \gets t+1$\;
-		\ForAll(\tcp*[f]{genome = CPPN}){genomes in P(t)}{ 
-			$unvisitedNeurons \leftarrow inputNeurons$
-			$neurons\leftarrow \leftarrow inputNeurons$
-			$connections\leftarrow \emptyset$
-			\For{i=0 \KwTo iterationLevel)}{ 
-				$newNeurons \leftarrow \emptyset$
-				\ForEach{$node \in unvisiteNeurons$}{ 
-					build quadtree on crosssection of the Hypercube\tcp*[r]{division and initialization phase}
-					prune and express new connections  \tcp*[r]{pruning and extraction phase} 
-					\ForEach{new connection}{
-					get coordinates of $newNeuron$\;
-					\If{$newNeuron \notin neurons$}{$newNeurons \leftarrow  (newNeurons \cup newNeuron) $}
-					} 
-					$neurons \leftarrow neurons \cup newNeurons$\;
-					$connections \leftarrow connections \cup newConnections$\;
-		     	}
-	     		$unvisitedNeurons \leftarrow  newNeurons$\;
-			}
-			express connections from $outputtNeurons$ to $neurons$\tcp*[r]{like it is done above but without note expression and CPPN(x,y,a,b)}
-			$neurons \leftarrow neurons \cup outputNeurons$\;
-			Delete all neurons and connections that are not on a path between an input and an output neuron.\;
-			
-			Build ANN out of $neurons$ and $connections$\;
-			Determine fitness of created ANN\;
-		}
-		create new population P(t) with NEAT\;
-	}
-	output best CPPN;
-	%\ similar in modularity paper
-	%\caption{How to write algorithms}
-\end{algorithm}
-
-TODO algorithm and plots.
-
-
-
-\begin{figure}[tb]
-	\centering
-	\includegraphics[width=0.7\linewidth]{figures/ES-HyperNEAT/Es-HyperNEATPhases}
-	\caption[ES-HyperNeat Phases]{This figure shows the division and initialization phase as well as parts of the pruning and extraction phase. Note that band pruning is not depicted. Gray squares indicate a weight variance higher than the variance threshold but lower then the division threshold. Black and white squares have weight variances of 0. The initial resolution is 16. As first step in the first phase a quadtree with the minimal solution is created (1a), then the CPPN values at the centre of each leave nodes' square are queried(1b). Based on these values, the variance of each non leaf node is calculate(1c). Since no node has a higher weight variance than the division threshold no further and deeper nodes are created. In the second phase a depth first search is applied only extraction childs of nodes whose variance is higher than the variance threshold(2a). Here the children of node 1,2 and 4 are not expressed because their variance is 0. For each remaining leaf node a connection is created (2b). }
-	\label{fig:es-hyperneatphases}
-\end{figure}
-
-
-
-
-\begin{figure}[tb]
-	\centering
-	\includegraphics[width=0.7\linewidth]{figures/ES-HyperNEAT/ES-HyperNeatBandPruning}
-	\caption[ES-HyperNeat band pruning]{ The background of both images shows a 2d slice of a 4D hypercube. The slice is created by querying a CPPN with fixed input neuron positions (0,-1).Different grey scale values represent different CPPN output values. (a) shows the itermediate result of the "pruning and extraction phase" before band pruning is applied. All found points(=connections) indicate the variance of the CPPN output. In "band pruning" (b) only points are kept that are enclosed by two neighbours on opposite sides at the same resolution with different CPPN values (e.g point P). As a result only points inside a band and not at the boarder are left. Those points represent the information about the ANN inherent in a slice of a spatial pattern}
-	\label{fig:es-hyperneatbandpruning}
-\end{figure}
-
-
-\begin{figure}[tb]
-	\centering
-	\includegraphics[width=0.7\linewidth]{figures/ES-HyperNEAT/Es-HyperNEATPhases}
-	\caption[ES-HyperNeat algorithm]{ES-HyperNeat algorithm starts with querying the slice of the Hyperspace created by fixing the input position parameters to the position of the input neuron (CPPN(0,1,x,y))(a). Note that each found neuron (red points) lay inside a band. Now slices for each hidden node position are queried and new connections and nodes created (b). To determine the connections to the output neuron. The output position parameters of the CPPN are fixed to the position of the output neuron (CPPN(x,y,0,1)). In this case no new nodes but only connections are created. To construct a sense full ANN only those neurons and connections are kept that are part of a path from the input to the output neuron (d). }
-	\label{fig:es-hyperneatphases}
-\end{figure}
-
-hyperneat better in modularity. Emperically shown in multimodal environment
-
-TODO parameter in table mit abkürzung unf function zusammenfassen
-TODO add algotihm from paper not article
-TODO text dazu anpassen.  replace weight with CPPN value
-TODO band pruning and pruning 
-
-Zitat:"
-Density
-follows information" mit density meint er die neuronendichte
-His description that a uniform gradient computes the same function at every point (what is right) is bad, is questionable. Also a fully connected net with higher or less resolution might work well !  p.11
-
-
+\subsection{Basic HyperNEAT}
+\subsubsection{Scaling}
+\subsubsection{Modulation}
+\subsection{ES HyperNEAT}\label{ES_HYPERNEAT}
 
 \section{Motorcortex Model}\label{MotorCortex_Model}
