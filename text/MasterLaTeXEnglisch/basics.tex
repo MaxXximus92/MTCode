@@ -2,18 +2,19 @@
 % Basic Informations
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Basics}\label{Basics}
+\chapter{Fundamentals}\label{Basics}
 % todo explain EA, Gene, Genome, Allel. 
 \section{TODO}
 -> neural networks
+ANN: 
+SNN:
+
 
 \section{NEAT}\label{NEAT} % todo in ea section packen... und mit em deitschen ea paper zitieren. Biologisch eh nicht ganz korrekt
 \Gls{neat} (\cite{NEAT}) is an neuroevolution method that genetically encodes and evolves weights and topologies of neural networks. \gls{neat} stands out from other neuroevolution algorithms by meaningful crossovers in disparate ANN topologies, protection of topological innovations and a efficient search by a stepwise increasing search space. (TODO cite some). Furthermore \gls{neat} is well suited for reinforcement learning problems. 
-\subsection{biological basics} 
-% maybe definitions are better ask %MKK zitieren %% todo fachwerk aus bib
-The whole inheritable information needed to create a new organism is called genome. A genome consists of genes which are responsible for the expression of specific features. Genes that express same features with  different characteristics are called alleles. Assuming the eye colour is expressed by one gene.  Variations of this gene which lead to different eye colours are alleles. (TODO find proven example with one gene, TODO find source)
+
 \subsection{Evolutionary algorithm} % Todo abkürzung EA
-Evolutionary algorithms (EAs) (see generally \cite{book:IntroductionEA},\cite{book:IntroductionEA}) are algorithms that mimic the natural evolution process. That is simplified that only fittest organisms of a generation will survive. An EA maintains a group of solutions called a population. A solution in a population is called an individual. Each individual has a numerical fitness value that determines how good this solution is. An individual is represented by a code also called genome. During the run of an EA a genome of an individual undergoes several variation operations. One typical operations are mutations, where parts of the genome are changed randomly. Cross Over as an other typical operation exchanges parts of the genome of two individuals. Usually an EA performs those operations to generations and only the fittest childs are s taken over into a new generation. The function giving the fitness of an individual is called objective function. EAs are mainly used to find good local maxima of objective functions that are either unknown or not analytical differentiable and not solvable with numerical methods like gradient descends.  (TODO nachlesen vergleichn script zell). A  typical EA solution process can be illustrated as follows:
+Evolutionary algorithms (EAs) (see generally \cite{book:IntroductionEA},\cite{book:IntroductionEA}) are algorithms that mimic the natural evolution process. That is simplified in a way that only fittest organisms of a generation will survive. An EA maintains a group of solutions called a population. A solution in a population is called an individual. Each individual has a numerical fitness value that determines how good this solution is. An individual is represented by a code also called genome. A genome consists of multiply genes. Genes are responsible for expressing specific feature. Genes that express same features with different characteristics are called alleles. During the run of an EA a genome of an individual undergoes several variation operations. One typical operations are mutations, where parts of the genome are changed randomly. Cross Over as an other typical operation exchanges parts of the genome of two individuals. Usually an EA performs those operations to generations and only the fittest children are taken over into a new generation. The function giving the fitness of an individual is called objective function. EAs are mainly used to find good local maxima of objective functions that are either unknown or not analytical differentiable and not solvable with numerical methods like gradient descends.  (TODO nachlesen vergleichn script zell). A  typical EA solution process can be illustrated as follows:
 %\begin{algorithm}
 %	\LinesNumbered
 	\SetCommentSty{text} 
@@ -113,7 +114,8 @@ evolutionary algorithm
  Hypercube-based NeuroEvolution of Augmenting Topologies (HyperNEAT) (TODO cite) addresses this problem searching in a space of spatial connection patterns instead of searching in a space where each single connection is considered. As a result connections of large ANNs can are indirect encoded by a single multidimensional function. It was even shown by (TODO cite) that on the basis of such a function it is possible to scale the amount of neurons of the found network leading only to minor changes in functionality. A further fundamental principle of HyperNEAT is, that the position of neurons in space are included into the search space.(TODO cite). Relationships between neurons are described by their distance. Similar neurons are placed next to each other. The indirect encoding is inspired by the biological fact that $30,000$ genes  (cite hneat paper p 4 reffs) encode the human brain with approximately $100 \cdot10^9$ neuron connections.
  
  The function $f$ describing the spatial pattern and the function  $w$ describing the resulting connection weights are defined as follows: 
-\begin{align*} \label{HyperNEatFunction}
+ \label{HyperNEatFunction}
+\begin{align*} 
  f&\colon \mathbb{R}^{2n} \to [l,u], \quad  p_{1_1},\ldots,p_{1_n},p_{2_1},\ldots,p_{2_n} \mapsto f(p_{1_1},\ldots,p_{1_n},p_{2_1},\ldots,p_{2_n})\\
  w&\colon \mathbb{R}^{2n} \to [0,w_{max}] \text{ with: }\\
  w&(p_{1_1},\ldots,p_{2_n})=\begin{cases}
@@ -190,10 +192,18 @@ Scaling:\\
  \cite{HyperNEAT} and \cite{HyperNEATOctobusArm} argue that the spatial pattern produced by a CPPN encodes a general connectivity concept. Based on this statement they show empirically that the resolution of a substrate configuration can be changed to vary the size of the resulting ANN with only minor influences on the result. For example instead of an $5x5$ grid substrate configuration one could scale the substrate configuration to a $7x7$ grid substrate applied to the same space (e.g $[0,1]$). This process is further on referred as substrate scaling. One benefit of substrate scaling is, that one can scale the resulting with use of the same substrate without further evolution needed. Example solution of a scaled substrate configurations are shown in figure \ref{fig:scaling}.
  
  CPPN configuration variation: \\
- \cite{HyperNEATOctobusArm}, \cite{HyperNEATLeo},\cite{HyperNEATEvolveLearningRules} and \cite{HyperNeat1DSubstrates} varied the number of inputs and outputs of the CPPN to encode further information than the neuron position. \cite{HyperNEATLeo} decouples the weight and the expression of a connection. He defines with the value of a second output whether the connection is evolved or not. One other variation from \cite{HyperNEATOctobusArm}  is two have three layered sandwich substrate configuration where the second CPPN output defines the connections between the second and third layer.\cite{HyperNEAT} adds an additional input node to additionally decode the distance between the geometric distance between the two nodes. Further on one can use a additional bias neuron wit a constant input as input neuron as \cite{HyperNEATEvolveLearningRules} did. TODO draw own picture with those variations.  \cite{HyperNEATLeo} states that Hyperneat "tends to generate fullyconnected networks" and shows that due to the separation of weight encoding and connectivity expression less connected modular networks can evolve.
+ \cite{HyperNEATOctobusArm}, \cite{HyperNEATLeo},\cite{HyperNEATEvolveLearningRules} and \cite{HyperNeat1DSubstrates} varied the number of inputs and outputs of the CPPN to encode further information than the neuron position. \cite{HyperNEATLeo} decouples the weight and the expression of a connection. He defines with the value of a second output whether the connection is evolved or not. One other variation from \cite{HyperNEATOctobusArm}  is two have three layered sandwich substrate configuration where the second CPPN output defines the connections between the second and third layer.\cite{HyperNEAT} adds an additional input node to additionally decode the distance between the geometric distance between the two nodes. Further on one can use a additional bias neuron wit a constant input as input neuron as \cite{HyperNEATEvolveLearningRules} did. TODO draw own picture with those variations.  \cite{HyperNEATLeo} states that Hyperneat "tends to generate fully connected networks" and shows that due to the separation of weight encoding and connectivity expression less connected modular networks can evolve.
  
-
- Todo modularity !!! 
+Placement without geometric relationship:\\
+  (\cite{HyperNEATUnknownGeometry}) deals with the problem that it is hard to place neurons if there is no clear geometric relationship between them. A first approach would be to put each logical group as one line into a 2D space. This approach has the problem that HyperNEAt has to detect and find a complex function to distinguish between the logical groups. Therefore \cite{HyperNEATUnknownGeometry} suggestes to minimize the geometrical dependencies by grouping logically related neurons in own spaces and than creating a multi level sandwich structure. For each two connected spaces an additional CPPN output is created. This CPPN structure gives hyperNEAT a structural hint that logical groups exist and simple connectivity patterns between each group can be found and relationships between them encoded by the CPPN. An example of this approach is depicted in picture \ref[p 4]{fig:nogeometricrelationship}.
+  
+\begin{figure}[tb]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/HyperNeat/noGeometricRelationship}
+	\caption[HyperNEAT no geometric relationships]{\textbf{HyperNEAT with no geometric relationships}. The shown output hidden and input neurons have only logical dependencies but no geometric ones. Substrate configuration (a) with CPPN (b) show an approach that forces HyperNEAT to find a complicated function to distinguish the logical groups. By creation of an own space for each logical group which leads to a sandwich structure (c) and additional CPPN outputs (b) describing the spatial pattern between two spaces. With this approach simple connectivity patterns can be found. Note that in approach (c,d) a one dimensional neuron space would be sufficient.  The output neurons $B$,$B_B$ and $B_C$ are not relevant for this example. \cite{HyperNEATUnknownGeometry}}
+	\label{fig:nogeometricrelationship}
+\end{figure}
+  TODO argue like him why 1d hyperneat has this extension..
  
  
 
@@ -224,12 +234,13 @@ menting Topologie
 \subsection{ES-HyperNEAT}\label{ES_HYPERNEAT}
 Since Hyperneat (see section \ref{HYPERNEAT}) is only able to optimize the connections of an ANN it lacks the ability to vary the amount of neurons. Evolvable Substrate HyperNEAT (ES-Hyperneat) (see generally \cite{ESHyperNEATarticle}, \cite{ESHyperNEATPaper} ) provides a method based on HyperNEAT that has the ability to evolve the whole topology of a network including neurons, their location in space, connections and weights. 
 The basic idea of ES-HyperNEAT is that each band of equal weights in the spatial pattern defines connections. Since 
-The basic idea of ES-HyperNEAT is that points in a spatial pattern created by a CPPN represent connections and that those connections are selected from bands of equal weights. This procedure basis on the fact, that information is defined by variance. So at regions with a high variance density many bands are found and thus many connections are evolved. At regions with a low variance density less bands are found and thus less connections are evolved. Since a connection is represented by a pont in connection space witch is double the dimension of the neuron space, a connection two neurons and the coordinates of those. As in HyperNEAT (section \ref{HYPERNEAT}) the connections weight is derived by the value of the spatial pattern at the connection's coordinates.\\
+The basic idea of ES-HyperNEAT is that points in a spatial pattern created by a CPPN represent connections and that those connections are selected from bands of equal weights. This procedure basis on the fact, that information is defined by variance. So at regions with a high variance density many bands are found and thus many connections are evolved. At regions with a low variance density less bands are found and thus less connections are evolved. Since a connection is represented by a point in connection space witch is double the dimension of the neuron space, a connection two neurons and the coordinates of those. As in HyperNEAT (section \ref{HYPERNEAT}) the connections weight is derived by the value of the spatial pattern at the connection's coordinates.\\
 The connection space used in ES-HyperNEAT is 4 dimensional. But, because the search for variances in the four dimensional space is expensive, Es-HyperNEAT searches for connections by starting from the input nodes. The coordinates of the input node are fixed in the 4D connection space. As a result a 2 dimensional cross section of the hypercube is considered, which describes outgoing connections from the input node. The coordinates of the point from which new connections are searched are denotes as $(a,b)$. further on.
 To determine bands in the connection space a quadtree based "division and initialization phase" is applied. And followed by a "pruning and extraction phase". 
 In the "division and initialization phase" a quadtree is laid recursively over the cross section of the connection space. Each node describes a square and has 4 children as long it's not a leaf node. The parent node spans a square from $(-1,-1)$ to $(1.1)$. It has 4 children describing 4 equal spaced subsquares of the parent's square. The initial resolution $r$ defines the minimal depth of the tree: Minimal depth $= \sqrt{r}+1$. (e.g a initial resolution of 16 leads to $16x16$ squares and a depth of 4). The centre point $(x,y)$ of each square describes a potential connection. It's weight is determined by querying the CPPN with arguments $(a,b,x,y)$. The weight variance of each tree node $p$ is calculated as $\sigma^2_p = \dfrac{1}{k}\displaystyle\sum_{i=1}^{k} (\overline{w}-w_i)^2)$. Where $k$ is the amount of leaf nodes of the subtree of p. $\overline{w}$ describes the median weight over all leaf nodes' weights. Note that the variance of a leaf note is $0$. $\sigma^2_p$ is an indicator for the variance of the spatial pattern at this square. If the weight variance of a leaf node's parent is higher a given division threshold $d_t$ division and initialization phase is reapplied starting from the parent's square. This gives the quadtree the possibility to create more nodes at areas with higher variance. However the total depth of the quadtree is bounded by a maximum resolution level $r_m$.
 In the following "pruning and extraction phase" connections are chosen out of the potential connections describe by the quadtree. 
-Firstly a depth first search is applied to the quadtree. If a node's parent's variance is smaller than a given variance threshold $\sigma^2_t$ a connection $(a,b,x,y)$ is created. $x,y$ are the coordinates of the current node. In a second since we only want to have the connections clearly inside a band the connections at the boarders are deleted. To do so only connections (=squares) are kept whose point of two neighbouring squares of he same size on opposite sides (left and right, or top and bottom) differ in weight. The weight difference $\beta$ also called band level has to be higher than a given band threshold $\beta_t$. $\beta$ is defined as follows:
+Firstly a depth first search is applied to the quadtree. If a node's parent's variance is smaller than a given variance threshold $\sigma^2_t$ a connection $(a,b,x,y)$ is created. $x,y$ are the coordinates of the current node. In a second since we only want to have the connections clearly inside a band the connections at the edges are deleted. To do so only connections (=squares) are kept whose point of two neighbouring squares of he same size on opposite sides (left and right, or top and bottom) differ in weight. The weight difference $\beta$ also called band level has to be higher than a given band threshold $\beta_t$. $\beta$ is defined as follows:
+\label{lbl:weight difference}
 \begin{align*}
 	\beta &= \max(\min(d_{top},d_{bottom}),\min(d_{left},d_{bottom}))\\
 	d_{top} &= |CPPN(a,b,x,y)-CPPN(a,b,x,y+m)|
@@ -255,11 +266,13 @@ To sum up the ES-HyperNEAT Algorithm is shown below:
 			$unvisitedNeurons \leftarrow inputNeurons$
 			$neurons\leftarrow \leftarrow inputNeurons$
 			$connections\leftarrow \emptyset$
-			\For{i=0 \KwTo iterationLevel)}{ 
+			\For{i=0 \KwTo $iterationLevel$)}{ 
 				$newNeurons \leftarrow \emptyset$
-				\ForEach{$node \in unvisiteNeurons$}{ 
-					build quadtree on crosssection of the Hypercube\tcp*[r]{division and initialization phase}
-					prune and express new connections  \tcp*[r]{pruning and extraction phase} 
+				\ForEach{$node \in unvisiteNeurons$}{
+					\tcp*[f]{division and initialization phase} \\
+					build quadtree on cross-section of the hypercube\;
+					\tcp*[f]{pruning and extraction phase}\\
+					prune and express new connections   
 					\ForEach{new connection}{
 					get coordinates of $newNeuron$\;
 					\If{$newNeuron \notin neurons$}{$newNeurons \leftarrow  (newNeurons \cup newNeuron) $}
@@ -282,7 +295,7 @@ To sum up the ES-HyperNEAT Algorithm is shown below:
 	%\ similar in modularity paper
 	%\caption{How to write algorithms}
 \end{algorithm}
-
+For better clarity all ES-HyperNEAT parameter are listed again in \ref{table:ES-HYPERNAET-Params}.
 TODO algorithm and plots.
 
 
@@ -290,7 +303,7 @@ TODO algorithm and plots.
 \begin{figure}[tb]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figures/ES-HyperNEAT/Es-HyperNEATPhases}
-	\caption[ES-HyperNeat Phases]{This figure shows the division and initialization phase as well as parts of the pruning and extraction phase. Note that band pruning is not depicted. Gray squares indicate a weight variance higher than the variance threshold but lower then the division threshold. Black and white squares have weight variances of 0. The initial resolution is 16. As first step in the first phase a quadtree with the minimal solution is created (1a), then the CPPN values at the centre of each leave nodes' square are queried(1b). Based on these values, the variance of each non leaf node is calculate(1c). Since no node has a higher weight variance than the division threshold no further and deeper nodes are created. In the second phase a depth first search is applied only extraction childs of nodes whose variance is higher than the variance threshold(2a). Here the children of node 1,2 and 4 are not expressed because their variance is 0. For each remaining leaf node a connection is created (2b). }
+	\caption[ES-HyperNeat Phases]{\textbf{ES-HyperNeat Phases}. This figure shows the division and initialization phase as well as parts of the pruning and extraction phase. Note that band pruning is not depicted. Gray squares indicate a weight variance higher than the variance threshold but lower then the division threshold. Black and white squares have weight variances of 0. The initial resolution is 16. As first step in the first phase a quadtree with the minimal solution is created (1a), then the CPPN values at the centre of each leave nodes' square are queried(1b). Based on these values, the variance of each non leaf node is calculate(1c). Since no node has a higher weight variance than the division threshold no further and deeper nodes are created. In the second phase a depth first search is applied only extraction childs of nodes whose variance is higher than the variance threshold(2a). Here the children of node 1,2 and 4 are not expressed because their variance is 0. For each remaining leaf node a connection is created (2b). \cite[p. 14]{ESHyperNEATarticle} }
 	\label{fig:es-hyperneatphases}
 \end{figure}
 
@@ -300,7 +313,7 @@ TODO algorithm and plots.
 \begin{figure}[tb]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figures/ES-HyperNEAT/ES-HyperNeatBandPruning}
-	\caption[ES-HyperNeat band pruning]{ The background of both images shows a 2d slice of a 4D hypercube. The slice is created by querying a CPPN with fixed input neuron positions (0,-1).Different grey scale values represent different CPPN output values. (a) shows the itermediate result of the "pruning and extraction phase" before band pruning is applied. All found points(=connections) indicate the variance of the CPPN output. In "band pruning" (b) only points are kept that are enclosed by two neighbours on opposite sides at the same resolution with different CPPN values (e.g point P). As a result only points inside a band and not at the boarder are left. Those points represent the information about the ANN inherent in a slice of a spatial pattern}
+	\caption[ES-HyperNeat band pruning]{\textbf{ES-HyperNeat band pruning}. The background of both images shows a 2d slice of a 4D hypercube. The slice is created by querying a CPPN with fixed input neuron positions (0,-1).Different grey scale values represent different CPPN output values. (a) shows the intermediate result of the "pruning and extraction phase" before band pruning is applied. All found points(=connections) indicate the variance of the CPPN output. In "band pruning" (b) only points are kept that are enclosed by two neighbours on opposite sides at the same resolution with different CPPN values (e.g point P). As a result only points inside a band and not at the edge are left. Those points represent the information about the ANN inherent in a slice of a spatial pattern. \cite[p. 15]{ESHyperNEATarticle}}
 	\label{fig:es-hyperneatbandpruning}
 \end{figure}
 
@@ -308,16 +321,32 @@ TODO algorithm and plots.
 \begin{figure}[tb]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figures/ES-HyperNEAT/Es-HyperNEATPhases}
-	\caption[ES-HyperNeat algorithm]{ES-HyperNeat algorithm starts with querying the slice of the Hyperspace created by fixing the input position parameters to the position of the input neuron (CPPN(0,1,x,y))(a). Note that each found neuron (red points) lay inside a band. Now slices for each hidden node position are queried and new connections and nodes created (b). To determine the connections to the output neuron. The output position parameters of the CPPN are fixed to the position of the output neuron (CPPN(x,y,0,1)). In this case no new nodes but only connections are created. To construct a sense full ANN only those neurons and connections are kept that are part of a path from the input to the output neuron (d). }
+	\caption[ES-HyperNeat algorithm]{\textbf{ES-HyperNeat algorithm scenario}.In this scenario the ES-HyperNeat algorithm starts with querying the slice of the Hyperspace created by fixing the input position parameters to the position of the input neuron (CPPN(0,1,x,y))(a). Note that each found neuron (red points) lay inside a band. Now slices for each hidden node position are queried and new connections and nodes created (b). To determine the connections to the output neuron. The output position parameters of the CPPN are fixed to the position of the output neuron (CPPN(x,y,0,1)). In this case no new nodes but only connections are created. To construct a sense full ANN only those neurons and connections are kept that are part of a path from the input to the output neuron (d). \cite[p. 17]{ESHyperNEATarticle}}
 	\label{fig:es-hyperneatphases}
 \end{figure}
 
 hyperneat better in modularity. Emperically shown in multimodal environment
 
-TODO parameter in table mit abkürzung unf function zusammenfassen
-TODO add algotihm from paper not article
+\begin{table}[h]
+
+\begin{tabular}{ l | l | l }		
+	parameter & nomination & description \\
+	\hline
+	$r$ & initial resolution & minimal number of leaf nodes in the quadtree \\
+	$r_m$ & maximum resolution & maximal number of leaf nodes in the quadtree  \\
+	$\sigma^2_p$ &  weight variance of node p & an indicator of the real variance of the function in the square described by p.\\
+    $d_t$ & division threshold& if a node's variance is higher than the division threshold it's children are realized As long $r_m$ is not reached.\\ 
+	$\sigma^2_t$&variance threshold& minimal variance a node must have that its children's connections are realized\\ 
+    $\beta_t$& band threshold & determines upon the weight difference $\beta$ (see \ref{lbl:weight difference}), whether a point is inside a band or not.\\
+    $it_{max}$&maximum iteration level& determines how often all in one iteration found hidden nodes are scanned again for new nodes.
+\end{tabular}
+\caption[ES-HyperNEAT parameter overview ]{ES-HyperNEAT parameter overview}
+\label{table:ES-HYPERNAET-Params}
+\end{table}
+
+TODO add algotihm from paper not article. vielleicht wenn unvrständlich.
 TODO text dazu anpassen.  replace weight with CPPN value
-TODO band pruning and pruning 
+TODO band pruning and pruning , ne passt so.
 
 Zitat:"
 Density

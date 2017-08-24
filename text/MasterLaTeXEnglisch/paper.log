@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.20)  23 AUG 2017 16:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.20)  24 AUG 2017 11:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -890,11 +890,7 @@ Package pdftex.def Info: figures/NEAT/NEATCrossOver.png used on input line 96.
 (pdftex.def)             Requested size: 278.83578pt x 261.84703pt.
  [5 <./figures/NEAT/NEATGenome.png>]
 
-LaTeX Warning: Reference `cppn' on page 6 undefined on input line 128.
-
-
-LaTeX Warning: Reference `HyperNEatFunction' on page 6 undefined on input line 
-130.
+LaTeX Warning: Reference `cppn' on page 6 undefined on input line 129.
 
 [6 <./figures/NEAT/NEATMutations.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -907,7 +903,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: figures/HyperNeat/CPPN.png Graphic file (type png)
 
 <use figures/HyperNeat/CPPN.png>
-Package pdftex.def Info: figures/HyperNeat/CPPN.png used on input line 159.
+Package pdftex.def Info: figures/HyperNeat/CPPN.png used on input line 160.
 (pdftex.def)             Requested size: 278.83578pt x 115.79439pt.
 
 <figures/HyperNeat/Substrates.png, id=94, 900.36375pt x 293.59688pt>
@@ -915,7 +911,7 @@ File: figures/HyperNeat/Substrates.png Graphic file (type png)
 
 <use figures/HyperNeat/Substrates.png>
 Package pdftex.def Info: figures/HyperNeat/Substrates.png used on input line 16
-6.
+7.
 (pdftex.def)             Requested size: 278.83578pt x 90.92448pt.
 
 <figures/HyperNeat/QuerySubstrate.png, id=95, 804.75656pt x 408.77719pt>
@@ -923,25 +919,38 @@ File: figures/HyperNeat/QuerySubstrate.png Graphic file (type png)
 
 <use figures/HyperNeat/QuerySubstrate.png>
 Package pdftex.def Info: figures/HyperNeat/QuerySubstrate.png used on input lin
-e 176.
+e 177.
 (pdftex.def)             Requested size: 278.83578pt x 141.6333pt.
 
 <figures/HyperNeat/scaling.png, id=96, 737.00343pt x 305.64188pt>
 File: figures/HyperNeat/scaling.png Graphic file (type png)
 
 <use figures/HyperNeat/scaling.png>
-Package pdftex.def Info: figures/HyperNeat/scaling.png used on input line 184.
+Package pdftex.def Info: figures/HyperNeat/scaling.png used on input line 185.
 (pdftex.def)             Requested size: 278.83578pt x 115.6321pt.
 
 Underfull \vbox (badness 2134) has occurred while \output is active []
 
- [8 <./figures/HyperNeat/CPPN.png>] [9] [10 <./figures/HyperNeat/Substrates.png
->]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+ [8 <./figures/HyperNeat/CPPN.png>]
 
- [11 <./figures/HyperNeat/QuerySubstrate.png>] [12 <./figures/HyperNeat/scaling
-.png>]
-Overfull \hbox (39.82632pt too wide) in paragraph at lines 281--281
+LaTeX Warning: Citation `HyperNeat1DSubstrates' on page 9 undefined on input li
+ne 194.
+
+
+LaTeX Warning: Reference `[' on page 9 undefined on input line 197.
+
+[9]
+<figures/HyperNeat/noGeometricRelationship.png, id=104, 922.94812pt x 258.21469
+pt>
+File: figures/HyperNeat/noGeometricRelationship.png Graphic file (type png)
+ <use figures/HyperNeat/noGeometricRelationship.png>
+Package pdftex.def Info: figures/HyperNeat/noGeometricRelationship.png used on 
+input line 201.
+(pdftex.def)             Requested size: 278.83578pt x 78.00871pt.
+ [10 <./figures/HyperNeat/Substrates.png>] [11 <./figures/HyperNeat/QuerySubstr
+ate.png>] [12 <./figures/HyperNeat/scaling.png>] [13 <./figures/HyperNeat/noGeo
+metricRelationship.png>]
+Overfull \hbox (39.82632pt too wide) in paragraph at lines 293--293
 [][]  
  []
 
@@ -949,32 +958,45 @@ Overfull \hbox (39.82632pt too wide) in paragraph at lines 281--281
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-<figures/ES-HyperNEAT/Es-HyperNEATPhases.png, id=118, 681.29532pt x 543.53062pt
+<figures/ES-HyperNEAT/Es-HyperNEATPhases.png, id=123, 681.29532pt x 543.53062pt
 >
 File: figures/ES-HyperNEAT/Es-HyperNEATPhases.png Graphic file (type png)
  <use figures/ES-HyperNEAT/Es-HyperNEATPhases.png>
 Package pdftex.def Info: figures/ES-HyperNEAT/Es-HyperNEATPhases.png used on in
-put line 292.
+put line 304.
 (pdftex.def)             Requested size: 278.83578pt x 222.4509pt.
 
-<figures/ES-HyperNEAT/ES-HyperNeatBandPruning.png, id=119, 822.82407pt x 344.78
+<figures/ES-HyperNEAT/ES-HyperNeatBandPruning.png, id=124, 822.82407pt x 344.78
 813pt>
 File: figures/ES-HyperNEAT/ES-HyperNeatBandPruning.png Graphic file (type png)
  <use figures/ES-HyperNEAT/ES-HyperNeatBandPruning.png>
 Package pdftex.def Info: figures/ES-HyperNEAT/ES-HyperNeatBandPruning.png used 
-on input line 302.
+on input line 314.
 (pdftex.def)             Requested size: 278.83578pt x 116.83708pt.
 File: figures/ES-HyperNEAT/Es-HyperNEATPhases.png Graphic file (type png)
 
 <use figures/ES-HyperNEAT/Es-HyperNEATPhases.png>
 Package pdftex.def Info: figures/ES-HyperNEAT/Es-HyperNEATPhases.png used on in
-put line 310.
+put line 322.
 (pdftex.def)             Requested size: 278.83578pt x 222.4509pt.
-) (./paper.bbl [13] [14]
-[15 <./figures/ES-HyperNEAT/Es-HyperNEATPhases.png> <./figures/ES-HyperNEAT/ES-
-HyperNeatBandPruning.png>] [16] [17
 
-]) [18] (./paper.aux)
+Overfull \hbox (376.65652pt too wide) in paragraph at lines 331--342
+[][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[14 <./figures/ES-HyperNEAT/Es-HyperNEATPhases.png>]
+Underfull \vbox (badness 3849) has occurred while \output is active []
+
+ [15])
+(./paper.bbl [16 <./figures/ES-HyperNEAT/ES-HyperNeatBandPruning.png>] [17]
+[18
+
+]) [19] [20
+
+] (./paper.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -987,13 +1009,13 @@ LaTeX Warning: There were multiply-defined labels.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 9080 strings out of 493013
- 135306 string characters out of 6136993
- 285801 words of memory out of 5000000
- 12402 multiletter control sequences out of 15000+600000
+ 9091 strings out of 493013
+ 135657 string characters out of 6136993
+ 285847 words of memory out of 5000000
+ 12412 multiletter control sequences out of 15000+600000
  13687 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 45i,28n,77p,1961b,2848s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 45i,28n,77p,1961b,2850s stack positions out of 5000i,500n,10000p,200000b,80000s
 <c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx
 10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c
 :/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive
@@ -1011,10 +1033,10 @@ public/amsfonts/cm/cmsy6.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmsy8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mti12.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm1
 0.pfb>
-Output written on paper.pdf (32 pages, 972961 bytes).
+Output written on paper.pdf (34 pages, 1070917 bytes).
 PDF statistics:
- 199 PDF objects out of 1000 (max. 8388607)
- 127 compressed objects within 2 object streams
+ 207 PDF objects out of 1000 (max. 8388607)
+ 131 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

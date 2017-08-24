@@ -6,6 +6,7 @@
 \contentsline {figure}{\numberline {1.5}{\ignorespaces Exemplar Substrate Configurations}}{10}
 \contentsline {figure}{\numberline {1.6}{\ignorespaces ANN creation with HyperNEAT}}{11}
 \contentsline {figure}{\numberline {1.7}{\ignorespaces Exemplar substrate scaling}}{12}
-\contentsline {figure}{\numberline {1.8}{\ignorespaces ES-HyperNeat Phases}}{15}
-\contentsline {figure}{\numberline {1.9}{\ignorespaces d}}{15}
-\contentsline {figure}{\numberline {1.10}{\ignorespaces d}}{16}
+\contentsline {figure}{\numberline {1.8}{\ignorespaces HyperNEAT no geometric relationships}}{13}
+\contentsline {figure}{\numberline {1.9}{\ignorespaces ES-HyperNeat Phases}}{14}
+\contentsline {figure}{\numberline {1.10}{\ignorespaces ES-HyperNeat band pruning}}{16}
+\contentsline {figure}{\numberline {1.11}{\ignorespaces ES-HyperNeat algorithm}}{17}

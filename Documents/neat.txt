@@ -28,7 +28,7 @@ fintess sharing -> number of individuals that can exist at fitness peak is depen
 Neat:
 genetic encoding
 List connection genes , each refers to 2 node genes, has expressed flag, and innovation number, weight
-Mutations
+Mutations and 
 -> weight  mutated with prob.
 -> Structure mutations:
 	add connection mutation -> new connection gene random weight two unconnected cells
@@ -69,7 +69,7 @@ Minimal Structure -> minimal dimensionality (each weight one dimension)
 
 Markovian, non markovian by networks
 markovian network independend from last input --> no backwards connections
-non markovian network independend from last inputs -> backward connections, loops...
+non markovian network dependend from last inputs -> backward connections, loops...
 
 
 Parameters:
