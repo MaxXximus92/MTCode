@@ -1,0 +1,23 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017a (9.2.0.556344) 64-bit (glnxa64)
+                               March 27, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+{Invalid field name: 'DVS'.
+
+Error in spikenet/run (line 278)
+                synapticInput =
+                sum((this.weightsMatrix(fired,:).*this.weightsScale(fired,:)),1)';                
+
+Error in spikenet/train (line 147)
+            [output, time] = this.run(max_run_time); this.break_run=0;
+
+Error in runModel (line 43)
+            fitness = net.train(saveName,
+            max_trainTime,angles_to_learn,angles_to_simulate,angle_simulation_time,isSave);            
+} 

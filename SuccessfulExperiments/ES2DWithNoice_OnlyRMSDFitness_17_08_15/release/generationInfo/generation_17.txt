@@ -1,0 +1,15 @@
+Generation = 18 
+MeanFitness = 0.59891332227188 
+BestFitness = 0.879433739740231 
+PopulationSize = 90 
+AvgComplexity= 12.59551 
+AmountSpecies = 2 
+--------
+ Species = 0 
+Id = 2 
+MeanFitness = 1E-07 
+Members = 1--------
+ Species = 1 
+Id = 0 
+MeanFitness = 0.605719154343151 
+Members = 88

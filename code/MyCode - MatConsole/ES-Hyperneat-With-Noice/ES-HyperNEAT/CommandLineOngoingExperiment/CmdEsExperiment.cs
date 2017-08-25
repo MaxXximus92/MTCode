@@ -150,11 +150,11 @@ namespace EsExperimentNS
                 best30 =searchBest30(best30, ea.Population.GenomeList);
                 if (best30.Count > 1)
                 {
-                    if (best30[0].LastFitness > currentMaxFitness)
+                    if (best30[0].MeanFitness > currentMaxFitness)
                     {
                         Console.WriteLine("Save Best Genome");
                         currentMaxFitness = ea.BestGenome.MeanFitness;
-                        saveGenome(best30[0], genomeSavePath, String.Format("{0}_BGen_Gen_{1}_Fit_{2:0.#####}", ExperimentParameters.experimentName, j, ea.BestGenome.MeanFitness));
+                        saveGenome(best30[0], genomeSavePath, String.Format("{0}_BGen_Gen_{1}_Fit_{2:0.#####}", ExperimentParameters.experimentName, j, best30[0].MeanFitness));
                     }
 
                 }
@@ -195,7 +195,7 @@ namespace EsExperimentNS
 
         }
 
-        private static void saveGenomes(GenomeList genList, List<IGenome> best100, String genomeSavePath)
+        private static void saveGenomes(GenomeList genList, List<IGenome> best30, String genomeSavePath)
         {
             genList.Sort(); // decreasing values.
             IGenome[] genArray = genList.ToArray();
@@ -205,10 +205,10 @@ namespace EsExperimentNS
             {
                 saveGenome(genArray[i], genomeSavePath, String.Format("{0}_LGen_Fit_{1:0.#####}_ord_{2}", ExperimentParameters.experimentName, genArray[i].MeanFitness, i));
             }
-            for (int i = 0; i < best100.Count; i++)
+            for (int i = 0; i < best30.Count; i++)
             {
-                IGenome g = best100[i];
-                saveGenome(g, genomeSavePath, String.Format("{0}_Best100_Fit_{1:0.#####}_ord_{2}", ExperimentParameters.experimentName, g.MeanFitness, i));
+                IGenome g = best30[i];
+                saveGenome(g, genomeSavePath, String.Format("{0}_Best30_Fit_{1:0.#####}_ord_{2}", ExperimentParameters.experimentName, g.MeanFitness, i));
             }
 		}
 

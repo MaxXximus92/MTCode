@@ -178,3 +178,153 @@ parent={},%
 %
 }%
 }%
+\ifglsentryexists{es}{}%
+{%
+\gls@defglossaryentry{es}%
+{%
+name={ES neuron},%
+sort={ES neuron},%
+type={acronym},%
+first={excitatory sensory neuron\glsspace (ES neuron)},%
+firstplural={excitatory sensory neurons\glsspace (ES neurons)},%
+text={ES neuron},%
+plural={ES neurons},%
+description={excitatory sensory neuron},%
+descriptionplural={excitatory sensory neuron\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={excitatory sensory neuron},%
+longplural={excitatory sensory neurons},%
+short={ES neuron},%
+shortplural={ES neurons},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{is}{}%
+{%
+\gls@defglossaryentry{is}%
+{%
+name={IS neuron},%
+sort={IS neuron},%
+type={acronym},%
+first={inhibitory sensory neuron\glsspace (IS neuron)},%
+firstplural={inhibitory sensory neurons\glsspace (IS neurons)},%
+text={IS neuron},%
+plural={IS neurons},%
+description={inhibitory sensory neuron},%
+descriptionplural={inhibitory sensory neuron\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={inhibitory sensory neuron},%
+longplural={inhibitory sensory neurons},%
+short={IS neuron},%
+shortplural={IS neurons},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{em}{}%
+{%
+\gls@defglossaryentry{em}%
+{%
+name={EM neuron},%
+sort={EM neuron},%
+type={acronym},%
+first={excitatory motory neuron\glsspace (EM neuron)},%
+firstplural={excitatory motory neurons\glsspace (EM neurons)},%
+text={EM neuron},%
+plural={EM neurons},%
+description={excitatory motory neuron},%
+descriptionplural={excitatory motory neuron\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={excitatory motory neuron},%
+longplural={excitatory motory neurons},%
+short={EM neuron},%
+shortplural={EM neurons},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{im}{}%
+{%
+\gls@defglossaryentry{im}%
+{%
+name={IM neuron},%
+sort={IM neuron},%
+type={acronym},%
+first={inhibitory motory neuron\glsspace (IM neuron)},%
+firstplural={inhibitory motory neurons\glsspace (IM neurons)},%
+text={IM neuron},%
+plural={IM neurons},%
+description={inhibitory motory neuron},%
+descriptionplural={inhibitory motory neuron\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={inhibitory motory neuron},%
+longplural={inhibitory motory neurons},%
+short={IM neuron},%
+shortplural={IM neurons},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{p}{}%
+{%
+\gls@defglossaryentry{p}%
+{%
+name={P neuron},%
+sort={P neuron},%
+type={acronym},%
+first={proprioceptive neuron\glsspace (P neuron)},%
+firstplural={proprioceptive neurons\glsspace (P neurons)},%
+text={P neuron},%
+plural={P neurons},%
+description={proprioceptive neuron},%
+descriptionplural={proprioceptive neuron\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={proprioceptive neuron},%
+longplural={proprioceptive neurons},%
+short={P neuron},%
+shortplural={P neurons},%
+counter={page},%
+parent={},%
+%
+}%
+}%

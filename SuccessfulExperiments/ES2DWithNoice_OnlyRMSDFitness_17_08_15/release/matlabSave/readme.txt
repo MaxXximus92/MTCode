@@ -1,0 +1,1 @@
+fitness of best genomes are worng... look directly in genome file

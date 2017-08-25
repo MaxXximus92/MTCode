@@ -19,6 +19,11 @@
 \usepackage[]{algorithm2e}% wirte pseudcocode
 \usepackage{float} % set picture at exact location
 \usepackage{amssymb} %math symbols
+\usepackage[ngerman]{babel}  % umlaute
+\usepackage{gensymb} % for degree symbol
+
+\floatstyle{plaintop} % move table caption to top
+\restylefloat{table} % move table caption to top
 
 \textwidth 14cm
 \textheight 22cm
@@ -157,6 +162,11 @@ menting Topologies}
 	menting Topologies}
 \newacronym{cppn}{CPPN}{Compositional Pattern Producing Network CPPN}
 \newacronym{ann}{ANN}{Artificial Neural Network}
+\newacronym{es}{ES neuron}{excitatory sensory neuron}
+\newacronym{is}{IS neuron}{inhibitory sensory neuron}
+\newacronym{em}{EM neuron}{excitatory motory neuron}
+\newacronym{im}{IM neuron}{inhibitory motory neuron}
+\newacronym{p}{P neuron}{proprioceptive neuron}
 %\addcontentsline{toc}{chapter}{List of Abbreviations}
 %\chapter*{List of Abbreviations\markboth{LIST OF ABBREVIATIONS}{LIST OF ABBREVIATIONS}}
 %
@@ -176,7 +186,8 @@ menting Topologies}
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
-\input{basics}
+%\input{basics}
+\input{methodology}
 
 %%% Introduction
 %\input{intro}

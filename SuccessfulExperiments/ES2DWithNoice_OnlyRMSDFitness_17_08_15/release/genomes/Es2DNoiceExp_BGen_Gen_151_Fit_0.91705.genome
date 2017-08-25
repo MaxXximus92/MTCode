@@ -1,0 +1,32 @@
+<genome id="9569" species-id="25" age="7" fitness="0.91">
+  <neurons>
+    <neuron id="0" type="bias" activationFunction="NullFn" />
+    <neuron id="1" type="in" activationFunction="NullFn" />
+    <neuron id="2" type="in" activationFunction="NullFn" />
+    <neuron id="3" type="in" activationFunction="NullFn" />
+    <neuron id="4" type="in" activationFunction="NullFn" />
+    <neuron id="5" type="out" activationFunction="BipolarSigmoid" />
+    <neuron id="35" type="hid" activationFunction="BipolarSigmoid" />
+    <neuron id="141" type="hid" activationFunction="Linear" />
+    <neuron id="188" type="hid" activationFunction="BipolarSigmoid" />
+    <neuron id="242" type="hid" activationFunction="Gaussian" />
+    <neuron id="910" type="hid" activationFunction="Sine" />
+    <neuron id="1111" type="hid" activationFunction="Sine" />
+  </neurons>
+  <connections>
+    <connection innov-id="7" src-id="1" tgt-id="5" weight="0.30858840551227329" />
+    <connection innov-id="8" src-id="2" tgt-id="5" weight="1.0841825725045053" />
+    <connection innov-id="36" src-id="3" tgt-id="35" weight="1" />
+    <connection innov-id="142" src-id="0" tgt-id="141" weight="1.0407846031710506" />
+    <connection innov-id="143" src-id="141" tgt-id="5" weight="-0.10955580370500684" />
+    <connection innov-id="189" src-id="4" tgt-id="188" weight="0.99794399780221288" />
+    <connection innov-id="190" src-id="188" tgt-id="5" weight="1.1957606803625822" />
+    <connection innov-id="243" src-id="35" tgt-id="242" weight="0.97755556157790124" />
+    <connection innov-id="244" src-id="242" tgt-id="5" weight="-1.3728047856129706" />
+    <connection innov-id="911" src-id="2" tgt-id="910" weight="1" />
+    <connection innov-id="912" src-id="910" tgt-id="141" weight="-1.2212195481173693" />
+    <connection innov-id="1030" src-id="1" tgt-id="141" weight="-0.42700992850586772" />
+    <connection innov-id="1112" src-id="3" tgt-id="1111" weight="1" />
+    <connection innov-id="1113" src-id="1111" tgt-id="5" weight="1.0633529837243259" />
+  </connections>
+</genome>

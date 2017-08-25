@@ -1,0 +1,17 @@
+experimentName =Es2DNoiceExp
+experimentDescription= Evolveable Substrate Hyperneat with learning on D_Es connections, except of D neurons all are created by Hyperneat, Noice is aktivated, Fitness only depends on RMSD
+maxGenerations = 550
+populationSize = 90
+numLastGenModelsToPlotAndSave = 90
+modelLibPathTrain=/storage/mutschler/Experiments/ES2DWithNoice_OnlyRMSDFitness_17_08_15/matlab/static-training
+modelLibPathSimulate=/storage/mutschler/Experiments/ES2DWithNoice_OnlyRMSDFitness_17_08_15/matlab/static-simulation
+matlabExecPath =/storage/matlab-r2017a/bin/
+numDNeurons=96
+startAngle=135
+training_maxTrainTime=40000
+training_anglesToSimulate=[0,62,135]
+training_anglesToLearn= [0,135]
+training_timePerAngle= 20000
+//simulation_anglesToSimulate=[60,30,0,80,135,15,100,40]
+simulation_anglesToSimulate=[30,90,0,60,135,120]
+simulation_timePerAngle = 30000

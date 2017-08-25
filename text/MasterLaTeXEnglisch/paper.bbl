@@ -1,61 +1,37 @@
-\begin{thebibliography}{COP09}
+\begin{thebibliography}{CNKL12}
 
-\bibitem[COP09]{GeometrySensitvityHyperneat}
-Jeff Clune, Charles Ofria, and Robert~T. Pennock.
-\newblock The sensitivity of hyperneat to different geometric representations
-  of a problem.
-\newblock In {\em GECCO}, 2009.
+\bibitem[CNKL12]{chadderdonNeuronalModel}
+George~L Chadderdon, Samuel~A Neymotin, Cliff~C Kerr, and William~W Lytton.
+\newblock Reinforcement learning of targeted movement in a spiking neuronal
+  model of motor cortex.
+\newblock {\em PloS one}, 7(10):e47251, 2012.
 
-\bibitem[PS13]{HyperNEATUnknownGeometry}
-Justin~K Pugh and Kenneth~O Stanley.
-\newblock Evolving multimodal controllers with hyperneat.
-\newblock In {\em Proceedings of the 15th annual conference on Genetic and
-  evolutionary computation}, pages 735--742. ACM, 2013.
+\bibitem[Heb49]{originalHebbianLaw}
+Donald~Olding Hebb.
+\newblock {\em The organization of behavior: A neuropsychological approach}.
+\newblock John Wiley \& Sons, 1949.
 
-\bibitem[RLS10]{ESHyperNEATPaper}
-Sebastian Risi, Joel Lehman, and Kenneth~O Stanley.
-\newblock Evolving the placement and density of neurons in the hyperneat
-  substrate.
-\newblock In {\em Proceedings of the 12th annual conference on Genetic and
-  evolutionary computation}, pages 563--570. ACM, 2010.
+\bibitem[HH52]{hodgkinHuxleyModel}
+Alan~L Hodgkin and Andrew~F Huxley.
+\newblock A quantitative description of membrane current and its application to
+  conduction and excitation in nerve.
+\newblock {\em The Journal of physiology}, 117(4):500--544, 1952.
 
-\bibitem[RS10]{HyperNEATEvolveLearningRules}
-Sebastian Risi and Kenneth Stanley.
-\newblock Indirectly encoding neural plasticity as a pattern of local rules.
-\newblock {\em From Animals to Animats 11}, pages 533--543, 2010.
+\bibitem[Izh03]{izhikevichSimpleModel}
+Eugene~M Izhikevich.
+\newblock Simple model of spiking neurons.
+\newblock {\em IEEE Transactions on neural networks}, 14(6):1569--1572, 2003.
 
-\bibitem[RS12]{ESHyperNEATarticle}
-Sebastian Risi and Kenneth~O Stanley.
-\newblock An enhanced hypercube-based encoding for evolving the placement,
-  density, and connectivity of neurons.
-\newblock {\em Artificial life}, 18(4):331--363, 2012.
+\bibitem[KLM96]{reinforcementlearning}
+Leslie~Pack Kaelbling, Michael~L Littman, and Andrew~W Moore.
+\newblock Reinforcement learning: A survey.
+\newblock {\em Journal of artificial intelligence research}, 4:237--285, 1996.
 
-\bibitem[SDG09]{HyperNEAT}
-Kenneth~O. Stanley, David~B. D'Ambrosio, and Jason Gauci.
-\newblock A hypercube-based encoding for evolving large-scale neural networks.
-\newblock {\em Artif. Life}, 15(2):185--212, April 2009.
-
-\bibitem[Sta02]{NEAT}
-Risto Stanley, Kenneth O.;~Miikkulainen.
-\newblock Evolving neural networks through augmenting topologies.
-\newblock {\em Evolutionary Computation}, 10, 06 2002.
-
-\bibitem[VS11]{HyperNEATLeo}
-Phillip Verbancsics and Kenneth~O Stanley.
-\newblock Constraining connectivity to encourage modularity in hyperneat.
-\newblock In {\em Proceedings of the 13th annual conference on Genetic and
-  evolutionary computation}, pages 1483--1490. ACM, 2011.
-
-\bibitem[WS10]{HyperNEATOctobusArm}
-Brian~G Woolley and Kenneth~O Stanley.
-\newblock Evolving a single scalable controller for an octopus arm with a
-  variable number of segments.
-\newblock In {\em International Conference on Parallel Problem Solving from
-  Nature}, pages 270--279. Springer, 2010.
-
-\bibitem[XY10]{book:IntroductionEA}
-Mitsuo Gen~(auth.) Xinjie~Yu.
-\newblock {\em Introduction to evolutionary algorithms}.
-\newblock Decision Engineering 0. Springer-Verlag London, 1 edition, 2010.
+\bibitem[SNR15]{sebastianPaper}
+Martin Sp{\"u}ler, Sebastian Nagel, and Wolfgang Rosenstiel.
+\newblock A spiking neuronal model learning a motor control task by
+  reinforcement learning and structural synaptic plasticity.
+\newblock In {\em Neural Networks (IJCNN), 2015 International Joint Conference
+  on}, pages 1--8. IEEE, 2015.
 
 \end{thebibliography}
