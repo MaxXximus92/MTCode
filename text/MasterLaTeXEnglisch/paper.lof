@@ -1,2 +1,9 @@
 \select@language {ngerman}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Exemplar Learning Phase}}{5}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Sp\IeC {\"u}ler's Lowest Overall RMSD}}{5}
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Sp\IeC {\"u}ler et al. actor model structures}}{6}
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Sp\IeC {\"u}ler et al. whole model design}}{7}
+\contentsline {figure}{\numberline {1.5}{\ignorespaces Izhikevich simple \cite {izhikevichSimpleModel} model spiking patterns}}{7}
+\contentsline {figure}{\numberline {1.6}{\ignorespaces Motor Control cycles}}{8}
+\contentsline {figure}{\numberline {1.7}{\ignorespaces Population Coding}}{8}

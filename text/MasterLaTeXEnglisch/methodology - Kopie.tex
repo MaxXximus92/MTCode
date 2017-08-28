@@ -83,7 +83,7 @@ A weight lies in the interval [0,5].\\
 Depending on the current joint angle
 All P cells are assumed to be located 0.5 space units apart. The position $p_theta$ of the joint angle is calculated by:
 \begin{equation*}
-	p_\theta=\dfrac{1}{(\theta_{max}-\theta_{min})*2} =\dfrac{1}{135*2}=\dfrac{1}{270}.
+	p_\theta=\dfrac{1}{(\theta_{max}-\theta_{min})*2} =\dfrac{1}{(135*2}=\dfrac{1}{(1035}.
 \end{equation*}.
 $p_\theta$ is a scaled position on interval $[0,67.5]$.
 Now a normal distribution with mean $p_theta$ and standard deviation $0.8$ ($\mathcal{N}(p_theta,0.8))$ is considered and neuron positions are applied to all.  Note that this is identical to placing a normal distribution to every neuron position and reading out the value at $p_theta$ for each. (todo malot zitieren)
@@ -124,11 +124,11 @@ In addition a mechanism called Structural Synaptic Plasticity (SSP) is added to 
 \begin{figure}[tb]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figures/ModelSebastian/ReinforcementCircle}
-	\caption[Spüler et al. whole model design]{\textbf{Spüler et al. whole model design:} This figure gives an whole overview over Spüler et al.'s model components and its reinforcement learning circle. The critic and actor ar parts of the brain (or more general the learning system). The forearm is part of the environment. A detailed view of the actor's structure can be found in \ref{fig:staticmodelstructur}. \cite[p. 3]{chadderdonNeuronalModel}.}
+	\caption[Spüler et al. whole model design]{\textbf{Spüler et al. whole model design:} This figure gives an whole overview over Spüler et al.'s model components and its reinforcement learning circle. The critic and actor ar parts of the brain (or more general the learning system). The forearm is part of the environment. A detailed view of the actor's structure can be found in \ref{fig:staticmodelstructur}. \cite[p. 3]{chadderdonNeuronalModel}.
 .	\label{fig:reinforcementcircle}
 \end{figure}
 
-\begin{figure}[tb]
+\begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{figures/ModelSebastian/SpikingPatterns}
 	\caption[Izhikevich simple \cite{izhikevichSimpleModel} model spiking patterns]{\textbf{Izhikevich simple model \cite{izhikevichSimpleModel} spiking patterns}. Different resulting spiking patterns by variation of $a,b,c,d=V_r$ patterns. The here depicted patterns are correspond to known biological neuron types. RS, IB and CH are cortical excitatory neurons. FS and LTS are cortical inhibitory neurons. Time resolution is 0.1ms. Each pattern is initialized by a dc-current (I) step from 0 to 10. \cite{izhikevichSimpleModel}}  %unit unknown ma or A ?
@@ -138,14 +138,14 @@ In addition a mechanism called Structural Synaptic Plasticity (SSP) is added to 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{figures/ModelSebastian/timing}
-	\caption[Motor Control cycles]{\textbf{3 exemplar consecutive motor control cycles:} Until M a new motor signal gets encoded by EM cells. Than until R there is a 50ms time gap. At R the motor arm is moved and the critic responses. After 25 more milliseconds the new position is encoded by the P cells. Note that P cells get activated during the encoding of the next motor command. The time gaps are biological founded by Spüler et al as peripheral and subcortical delay times.}
+	\caption[Motor Control cycles]{\textbf{3 exemplar consecutive motor control cycles. Until M a new motor signal gets encoded by EM cells. Than until R there is a 50ms time gap. At R the motor arm is moved and the critic responses. After 25 more milliseconds the new position is encoded by the P cells. Note that P cells get activated during the encoding of the next motor command. The time gaps are biological founded by Spüler et al as peripheral and subcortical delay times.}}
 	\label{fig:timing}
 \end{figure}
 
 \begin{figure}[tb]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figures/ModelSebastian/popCode}
-	\caption[Population Coding]{\textbf{Exemplar Population coding by D cells}. Here the normal distributions of activation probabilities for neurons at 2 (blue), 2.5 (red) and 3(orange) are shown. The dashed green line marks the position of an angle to encode. Note that every cell will fire with a different probability. ($P(blue)=0.8204$, $P(red)=0.4566$, $P(orange)=0.1720$)   }
+	\caption[Population Coding]\textbf{Exemplar Population coding by D cells}. Here the normal distributions of activation probabilities for neurons at 2 (blue), 2.5 (red) and 3(orange) are shown. The dashed green line marks the position of an angle to encode. Note that every cell will fire with a different probability. ($P(blue)=0.8204$, $P(red)=0.4566$, $P(orange)=0.1720$)   }
 	\label{fig:popCode}
 \end{figure}
 

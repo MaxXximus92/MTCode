@@ -3,6 +3,7 @@
 -time decoding interrupts signal
 -only partly used noice (not for all neurons)
 -learning phase: learning max angles leads to ignored overshoot. One doesn't have to hit the angle precicsely. 
+ -> in addition a angle is reached when it has been crossed. Crossing allows big overshoots.!!
 - model one approach for a motor cortex, there might be thousands different ones. No proove to be correct.
 - allgemein fehlt oft der Bezug auf den Motor cortex und ob das dort ähnlich ist. Z.b Verschiede feuer parameter -a,b,c,d. Zusätzlich wird ab,c,d jeden model run neu parametrisiert mit zufallsvariable r_i. D.h das model soll letzden endes stabil gegenüber der neuronen codierung sein... Aber die sit eben gerade aussschalggebend!.
 - Niedrige verknüpfungswahrscheinlichkeit ist wie sparse coding zufällig finden

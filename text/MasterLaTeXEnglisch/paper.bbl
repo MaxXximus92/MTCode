@@ -27,6 +27,10 @@ Leslie~Pack Kaelbling, Michael~L Littman, and Andrew~W Moore.
 \newblock Reinforcement learning: A survey.
 \newblock {\em Journal of artificial intelligence research}, 4:237--285, 1996.
 
+\bibitem[Nag]{sebastianMasterThesis}
+Sebastian Nagel.
+\newblock Using spiking neural networks to simulate human motor learning.
+
 \bibitem[SNR15]{sebastianPaper}
 Martin Sp{\"u}ler, Sebastian Nagel, and Wolfgang Rosenstiel.
 \newblock A spiking neuronal model learning a motor control task by

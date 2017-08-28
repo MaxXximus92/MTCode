@@ -328,3 +328,63 @@ parent={},%
 %
 }%
 }%
+\ifglsentryexists{ssp}{}%
+{%
+\gls@defglossaryentry{ssp}%
+{%
+name={SSP},%
+sort={SSP},%
+type={acronym},%
+first={Structural Synaptic Plasticity\glsspace (SSP)},%
+firstplural={Structural Synaptic Plasticitys\glsspace (SSPs)},%
+text={SSP},%
+plural={SSPs},%
+description={Structural Synaptic Plasticity},%
+descriptionplural={Structural Synaptic Plasticity\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Structural Synaptic Plasticity},%
+longplural={Structural Synaptic Plasticitys},%
+short={SSP},%
+shortplural={SSPs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{RMSD}{}%
+{%
+\gls@defglossaryentry{RMSD}%
+{%
+name={RMSD},%
+sort={RMSD},%
+type={acronym},%
+first={Root Mean Squared Deviation\glsspace (RMSD)},%
+firstplural={Root Mean Squared Deviations\glsspace (RMSDs)},%
+text={RMSD},%
+plural={RMSDs},%
+description={Root Mean Squared Deviation},%
+descriptionplural={Root Mean Squared Deviation\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Root Mean Squared Deviation},%
+longplural={Root Mean Squared Deviations},%
+short={RMSD},%
+shortplural={RMSDs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
