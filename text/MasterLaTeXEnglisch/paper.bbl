@@ -1,10 +1,28 @@
 \begin{thebibliography}{CNKL12}
 
+\bibitem[Che]{HyperneatLinkC++}
+Peter Chervenski.
+\newblock Multineat c++ with python bindings.
+\newblock \url{http://multineat.com/}.
+\newblock [Online; accessed 29/08/2017].
+
 \bibitem[CNKL12]{chadderdonNeuronalModel}
 George~L Chadderdon, Samuel~A Neymotin, Cliff~C Kerr, and William~W Lytton.
 \newblock Reinforcement learning of targeted movement in a spiking neuronal
   model of motor cortex.
 \newblock {\em PloS one}, 7(10):e47251, 2012.
+
+\bibitem[D'A]{HyperneatLink}
+David~B. D'Ambrosio.
+\newblock Hypersharpneat 2.1.
+\newblock \url{http://eplex.cs.ucf.edu/software-list#hypersharpneat}.
+\newblock [Online; accessed 29/08/2017].
+
+\bibitem[Fou]{monoLink}
+.NET Foundation.
+\newblock Mono cross platform, open source .net framework.
+\newblock \url{http://www.mono-project.com/}.
+\newblock [Online; accessed 29/08/2017].
 
 \bibitem[Heb49]{originalHebbianLaw}
 Donald~Olding Hebb.
@@ -27,6 +45,11 @@ Leslie~Pack Kaelbling, Michael~L Littman, and Andrew~W Moore.
 \newblock Reinforcement learning: A survey.
 \newblock {\em Journal of artificial intelligence research}, 4:237--285, 1996.
 
+\bibitem[Mal13]{mallot2013computational}
+Hanspeter~A Mallot.
+\newblock {\em Computational Neuroscience}.
+\newblock Springer, 2013.
+
 \bibitem[Nag]{sebastianMasterThesis}
 Sebastian Nagel.
 \newblock Using spiking neural networks to simulate human motor learning.
@@ -37,5 +60,18 @@ Martin Sp{\"u}ler, Sebastian Nagel, and Wolfgang Rosenstiel.
   reinforcement learning and structural synaptic plasticity.
 \newblock In {\em Neural Networks (IJCNN), 2015 International Joint Conference
   on}, pages 1--8. IEEE, 2015.
+
+\bibitem[SR]{ES-HyperneatLink}
+David B.~D'Ambrosio Sebastian~Risi.
+\newblock Es-hyperneat.
+\newblock \url{http://eplex.cs.ucf.edu/neat_software/#ES-HyperNEAT}.
+\newblock [Online; accessed 29/08/2017].
+
+\bibitem[Zie]{csmatioLink}
+David Zier.
+\newblock Csmatio: Mat-file i/o api for .net 2.0.
+\newblock
+  \url{https://de.mathworks.com/matlabcentral/fileexchange/16319-csmatio--mat-file-i-o-api-for-net-2-0}.
+\newblock [Online; accessed 29/08/2017].
 
 \end{thebibliography}

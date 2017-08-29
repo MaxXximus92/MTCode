@@ -7,6 +7,16 @@
 -> neural networks
 ANN: 
 SNN:
+\section{Artificial Neural Networks}
+An artificial neural network (ANN) (see generally \cite{zell1994simulation} ) is a weighted directed graph. Each vertex represents a model of a biological neuron, each edge represents a biological synapses (connection of two neurons). .  .The graph is structured in several layers. The first layer is the input layer consisting of input neurons. Than several hidden layer follow. The last layer is called the output layer. An input is presented to the input layer, the output layer describes the output values after propagation of the input through the network. The activation $a_j$ of each neuron j  is dependent of the net input $net_j$. $net_j$ of a neuron is calculated by the weighted sum of activations of neurons i connected to neuron j:
+\begin{equation*}
+	net_j = \displaystyle\sum_{i} a_i \cdot w_{ij}\\
+	a_j = f_{a_j}(net_j)
+\end{equation*}
+$f_{a_j}$ is the activation function of neuron j. Usually step or sigmoid functions are used as activation functions. $w_{ij}$ is the weight between neuron $i$ and $j$.
+Learning happens through adaptation of weights to map the given input to a desired output. In ANNs the weight of a connection usually describes how often the connection's input neuron has given a response after an input was given (this is known as rate coding \cite{sebastianMasterThesis}). So one time step in an ANN represent a time window in which all neurons have given their response. All of this is important to understand how the neural network created by NEAT \ref{NEAT} works.
+
+
 
 
 \section{NEAT}\label{NEAT} % todo in ea section packen... und mit em deitschen ea paper zitieren. Biologisch eh nicht ganz korrekt

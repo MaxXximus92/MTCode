@@ -1,5 +1,9 @@
 \chapter{Methodology}\label{Methodology}
 \section{motor learning model}
+ Spiking artificial neural networks (SNN) a subclass of ANNs work with time as second dimension. That means not only the activation of a neuron matters but also the point of time when the activation happened. In the model used in this paper every millisecond of time is simulated and not as usually for ANNs only time window steps that include all responses. Further on a continuous cell activation function is used. That is for each time an activation reaches a following cell the activation function gets altered and than returns over time to its initial state.
+ it is important to note, that a biological neurons follows the ``all or nothing principle''. That means if a specific activation threshold is reached it fires. And returns than back to a initial activation level.
+
+
 This work optimizes a motor spicing model introduced by Spüler et al. \cite{sebastianPaper}\cite{sebastianPaper} which is an extension of the work of Chadderdon et al. \cite{chadderdonNeuronalModel}. The model presents a biologically realistic model of the motor cortex, which uses reinforcement learning to reach a target angel with a simulated forearm.
 As a standard reinforcement model \cite{reinforcementlearning}\cite{chadderdonNeuronalModel} it consists of an actor, that maps perceptions to actions a environment that reacts and a critic providing reward or punishment feedback to the actor. Spüler et al. and Chadderton et al. realized the environment as a forearm model with a one degree of freedom joint. Therefore the forearm could be moved either up or down. The joint angle limited by 0\degree and 135\degree. Whereby 0\degree means fully straightened and 135\degree means fully flexed. The actor got implemented with a spiking neural network. A spiking neural network is a weighted connected graph with some input and output nodes. Each edge is called a connection and each vertex called a neuron. The network calculates a time depending mapping from some input to output values.
 Figure \ref{fig:reinforcementcircle} gives an overview over all components of the model as also of the reinforcement learning process.
@@ -86,7 +90,7 @@ All P cells are assumed to be located 0.5 space units apart. The position $p_the
 	p_\theta=\dfrac{1}{(\theta_{max}-\theta_{min})*2} =\dfrac{1}{135*2}=\dfrac{1}{270}.
 \end{equation*}.
 $p_\theta$ is a scaled position on interval $[0,67.5]$.
-Now a normal distribution with mean $p_theta$ and standard deviation $0.8$ ($\mathcal{N}(p_theta,0.8))$ is considered and neuron positions are applied to all.  Note that this is identical to placing a normal distribution to every neuron position and reading out the value at $p_theta$ for each. (todo malot zitieren)
+Now a normal distribution with mean $p_theta$ and standard deviation $0.8$ ($\mathcal{N}(p_theta,0.8))$ is considered and neuron positions are applied to all.  Note that this is identical to placing a normal distribution to every neuron position and reading out the value at $p_theta$ for each (see \cite{mallot2013computational}).
 The result multiplied by 2 is the probability that the neuron fires or not. Multiplying by 2 is necessary to provide a maximal probability near to 1 (0.997356). In average 5 neighbouring cells will fire to encode an angle. Nagel \cite{sebastianMasterThesis} refers to this kind of coding as population coding.  Note that this description doesn't correspond with the exemplar formula from Nagel \cite[p 18]{sebastianMasterThesis}. It is reversed engineered form Nagels source code. An example of this encoding is shown in \ref{fig:popCode}.
 The model described so far is the "ongoing learning model" where learning is always necessary to reach a target angle.
 Spüler and Nagel extended this model to be able to reach every target angle without learning after a learning phase.
@@ -151,9 +155,31 @@ In addition a mechanism called Structural Synaptic Plasticity (SSP) is added to 
 
 
 
-TODO population coding of P cells.
-TODO picture structure done
-TODO Own plot time.
 
 TODO Appendix picture weight formula todo. 
-TODO fireing patters. todo
+TODO Appendix picture sebastian al
+
+\section{general approach implementation}
+The HyperNeat experiments where build upon the HyperSharpNEAT HyperNEAT framework implemented by David D'Ambrosio in C\# (source code \cite{HyperneatLink}). For ES-HyperNeat experiments the ES-HyperNEAT framework by Sebastian Risi which is an extension of HyperSharpNEAT is used (source code \cite{ES-HyperneatLink}). Note that a probable faster C++ Hyperneat implementations (source code \cite{HyperneatLinkC++}) is available but not for ES-HyperNEAT. The motor control model code is given in MATLAB Programming Language. It was extended with the use of  MATLAB 9.2.0.556344 (R2017a). 
+The evolution process is done in the extended HyperNEAT framework. To determine the fitness of an individual the C\# process communicates with a motor control matlab instance.  The communication is based on a communication file a result file and a matlab file describing the evolved parameters for the motor control model: e.g. the weight matrix.  The C\# process evaluates several genomes concurrently by communicating with several matlab instances. Each motor control model implementation waits until a evaluation command arrives and waits again after successful evaluation. In that way matlab instances can be reused and long starting times of them are prevented. The architecture can also been seen in figure \ref{fig:systemarchitecure};
+ To write matlab files with C\# the CSMatIO library from David Zier (web link: \cite{csmatioLink}) was used.
+Two attempts to provide a direct not file based communication between C\# and matlab have been tried. The first attempt was based on communication over Microsoft's Component Object Model (COM) interface. Although less information about the usage of this interface with matlab are existing, this way of communication got successfully implemented. Unfortunately after finishing this solution, it became known that although promised no windows server will be access able. The COM interface only works on Windows. The second approach was to compile the matlab code directly to a C\# library using matlab's Application Compiler. For single process application this approach would work fine but unfortunately only one thread is allowed to access the library, which makes parallel genome processing impossible. 
+An further problem occurred was, that matlab crashed due to segmentation faults in the matlab core libraries at unpredictable point of times. This was no error of the code of the motor control model, since the crashes occur only when running multiply independent matlab instances at the same time. After contacting Matalab support they stated, that this should not happen, but no solution has been found. Thankfully the problem was not severe since a crashed Matlab instance is simply restarted again. Further on only between 2 to 10 crashes happened during a runtime of 60 hours. So no new compilation is necessary to change parameters of an experiment. 
+The parameters for HyperNEAT in general and the implemented experiments can be set by specific configuration text files.
+All experiments run on a linux server with 64 cores with a 64 bit architecture and clocked with 2.3GHz. The available RAM was 251.9GB.
+Since some precessing researches where reserved for other researcher only 50 single core matlab instances have been used. 
+To run the C\# code on a linux server the mono project environment (web link:  \cite{monoLink}) was used.
+It took approximately 60 hours to run an typical experiment with 450 generations and a population of 90 individuals. Thereby 40500 individuals were evaluated.
+
+\begin{figure}[tb]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/System/systemarchitecure}
+	\caption[experiment architecute]{\textbf{experiment architecture:} One hyperNEAT process communicates over communication and data files with several motor control model to concurrently evaluate genomes. Each motor control model runs in it's own matlab instance. The gray dots point to the existence of multiply more Matlab instances }
+	%rodo evolution cycle
+	\label{fig:systemarchitecure}
+\end{figure}
+
+
+
+
+

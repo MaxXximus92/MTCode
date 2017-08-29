@@ -35,12 +35,12 @@ parent={},%
 name={NEAT},%
 sort={NEAT},%
 type={acronym},%
-first={neuroevolution of augmenting toplogies\glsspace (NEAT)},%
-firstplural={neuroevolution of augmenting toplogiess\glsspace (NEATs)},%
+first={Neuroevolution Of Augmenting Toplogies\glsspace (NEAT)},%
+firstplural={Neuroevolution Of Augmenting Toplogiess\glsspace (NEATs)},%
 text={NEAT},%
 plural={NEATs},%
-description={neuroevolution of augmenting toplogies},%
-descriptionplural={neuroevolution of augmenting toplogies\acrpluralsuffix },%
+description={Neuroevolution Of Augmenting Toplogies},%
+descriptionplural={Neuroevolution Of Augmenting Toplogies\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -49,8 +49,8 @@ user3={},%
 user4={},%
 user5={},%
 user6={},%
-long={neuroevolution of augmenting toplogies},%
-longplural={neuroevolution of augmenting toplogiess},%
+long={Neuroevolution Of Augmenting Toplogies},%
+longplural={Neuroevolution Of Augmenting Toplogiess},%
 short={NEAT},%
 shortplural={NEATs},%
 counter={page},%
@@ -173,6 +173,36 @@ long={Artificial Neural Network},%
 longplural={Artificial Neural Networks},%
 short={ANN},%
 shortplural={ANNs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{snn}{}%
+{%
+\gls@defglossaryentry{snn}%
+{%
+name={SNN},%
+sort={SNN},%
+type={acronym},%
+first={Spiking Artificial Neural Network\glsspace (SNN)},%
+firstplural={Spiking Artificial Neural Networks\glsspace (SNNs)},%
+text={SNN},%
+plural={SNNs},%
+description={Spiking Artificial Neural Network},%
+descriptionplural={Spiking Artificial Neural Network\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Spiking Artificial Neural Network},%
+longplural={Spiking Artificial Neural Networks},%
+short={SNN},%
+shortplural={SNNs},%
 counter={page},%
 parent={},%
 %
