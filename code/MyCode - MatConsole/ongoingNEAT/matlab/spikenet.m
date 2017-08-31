@@ -190,6 +190,7 @@ classdef spikenet < handle
                         box on;
                         set(gca,'fontsize',10);
                         saveas(gcf,[this.savePath sprintf('Model %s - Run %.0f - firings (start %.0f - target %.5f) RMSD=%.0f.pdf',model_name,run_number,run_settings(1,run_number),run_settings(2,run_number), rmsds(run_number))], 'pdf');
+                        savefig([this.savePath sprintf('Model %s - Run %.0f - firings (start %.0f - target %.5f) RMSD=%.0f.fig',model_name,run_number,run_settings(1,run_number),run_settings(2,run_number), rmsds(run_number))]);
                         
                         figure('Name','Prosthesis Simulation','NumberTitle','off','PaperSize',[25,10],'Units','centimeters','PaperPosition',[0 0 25 10],'visible','off');
                         plot(prost.angle_history(:,1)/1000,prost.angle_history(:,2));
@@ -202,6 +203,7 @@ classdef spikenet < handle
                         xrange=prost.x_lim/1000;
                         line(xrange,[run_settings(2,run_number), run_settings(2,run_number)],'Color','green','LineStyle','--','LineWidth',2);
                         saveas(gcf,[this.savePath sprintf('Model %s - Run %.0f  - movement (start %.0f - target %.0f)RMSD=%.5f.pdf',model_name,run_number,run_settings(1,run_number),run_settings(2,run_number), rmsds(run_number))], 'pdf');
+                        savefig([this.savePath sprintf('Model %s - Run %.0f  - movement (start %.0f - target %.0f)RMSD=%.5f.fig',model_name,run_number,run_settings(1,run_number),run_settings(2,run_number), rmsds(run_number))]);
                         close all hidden
                     end
                     

@@ -18,6 +18,12 @@ David~B. D'Ambrosio.
 \newblock \url{http://eplex.cs.ucf.edu/software-list#hypersharpneat}.
 \newblock [Online; accessed 29/08/2017].
 
+\bibitem[DS08]{HyperNeatMultiagent}
+David~B D'Ambrosio and Kenneth~O Stanley.
+\newblock Generative encoding for multiagent learning.
+\newblock In {\em Proceedings of the 10th annual conference on Genetic and
+  evolutionary computation}, pages 819--826. ACM, 2008.
+
 \bibitem[Fou]{monoLink}
 .NET Foundation.
 \newblock Mono cross platform, open source .net framework.

@@ -4,46 +4,46 @@ The top-level auxiliary file: paper.aux
 The style file: alpha.bst
 Database file #1: mylit.bib
 Warning--entry type for "sebastianMasterThesis" isn't style-file defined
---line 291 of file mylit.bib
-You've used 13 entries,
+--line 309 of file mylit.bib
+You've used 14 entries,
             2543 wiz_defined-function locations,
-            643 strings with 6591 characters,
-and the built_in function-call counts, 4403 in all, are:
-= -- 433
-> -- 172
-< -- 10
-+ -- 57
-- -- 54
-* -- 262
-:= -- 724
-add.period$ -- 44
-call.type$ -- 13
-change.case$ -- 71
-chr.to.int$ -- 13
-cite$ -- 13
-duplicate$ -- 177
-empty$ -- 359
-format.name$ -- 75
-if$ -- 905
+            651 strings with 6810 characters,
+and the built_in function-call counts, 4949 in all, are:
+= -- 494
+> -- 191
+< -- 11
++ -- 63
+- -- 60
+* -- 294
+:= -- 801
+add.period$ -- 48
+call.type$ -- 14
+change.case$ -- 77
+chr.to.int$ -- 14
+cite$ -- 14
+duplicate$ -- 203
+empty$ -- 403
+format.name$ -- 82
+if$ -- 1031
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 9
-newline$ -- 72
-num.names$ -- 39
-pop$ -- 117
+missing$ -- 10
+newline$ -- 77
+num.names$ -- 42
+pop$ -- 125
 preamble$ -- 1
-purify$ -- 86
+purify$ -- 93
 quote$ -- 0
-skip$ -- 131
+skip$ -- 155
 stack$ -- 0
-substring$ -- 209
-swap$ -- 19
-text.length$ -- 10
+substring$ -- 248
+swap$ -- 30
+text.length$ -- 11
 text.prefix$ -- 8
 top$ -- 0
-type$ -- 96
+type$ -- 104
 warning$ -- 0
-while$ -- 40
-width$ -- 17
-write$ -- 166
+while$ -- 46
+width$ -- 18
+write$ -- 180
 (There was 1 warning)

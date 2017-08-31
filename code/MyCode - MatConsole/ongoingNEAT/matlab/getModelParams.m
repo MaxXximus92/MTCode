@@ -7,6 +7,6 @@ function [ ]  = getModelParams( numNeurons,resultPath )
     net = spikenet(numNeurons,spikingThreshold,settings,savePath);
     esemNum =  net.getEsEmNum();
     saveEsEmNumSync(resultPath, esemNum);
-    quit;
+   % quit;
 end
 

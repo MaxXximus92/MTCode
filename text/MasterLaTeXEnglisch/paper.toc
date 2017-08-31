@@ -4,4 +4,32 @@
 \contentsline {chapter}{\numberline {1}Methodology}{1}
 \contentsline {section}{\numberline {1.1}motor learning model}{1}
 \contentsline {section}{\numberline {1.2}general approach implementation}{5}
-\contentsline {chapter}{Bibliography}{7}
+\contentsline {chapter}{\numberline {2}Experiments}{11}
+\contentsline {section}{\numberline {2.1}HyperNEAT applied to the Ongoing Model}{11}
+\contentsline {subsection}{\numberline {2.1.1}ES-EM learning}{11}
+\contentsline {subsubsection}{description}{11}
+\contentsline {subsubsection}{result}{14}
+\contentsline {subsubsection}{discussion}{14}
+\contentsline {section}{\numberline {2.2}HyperNEAT applied to the Static Model}{14}
+\contentsline {subsection}{\numberline {2.2.1}D-ES learning}{14}
+\contentsline {subsubsection}{description}{14}
+\contentsline {subsubsection}{result}{14}
+\contentsline {subsubsection}{discussion}{14}
+\contentsline {subsection}{\numberline {2.2.2}All Connections 2D neuron space}{14}
+\contentsline {subsubsection}{description}{14}
+\contentsline {subsubsection}{result}{14}
+\contentsline {subsubsection}{discussion}{14}
+\contentsline {subsection}{\numberline {2.2.3}All Connections 1D neuron space}{14}
+\contentsline {subsubsection}{description}{14}
+\contentsline {subsubsection}{result}{14}
+\contentsline {subsubsection}{discussion}{14}
+\contentsline {section}{\numberline {2.3}ES-HyperNEAT applied to the Static Model}{14}
+\contentsline {subsection}{\numberline {2.3.1}All Connections and Neurons 2D neuron space}{14}
+\contentsline {subsubsection}{description}{14}
+\contentsline {subsubsection}{result}{14}
+\contentsline {subsubsection}{discussion}{14}
+\contentsline {subsection}{\numberline {2.3.2}All Connections and Neurons 1D neuron space}{14}
+\contentsline {subsubsection}{description}{14}
+\contentsline {subsubsection}{result}{14}
+\contentsline {subsubsection}{discussion}{14}
+\contentsline {chapter}{Bibliography}{14}

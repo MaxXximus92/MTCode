@@ -167,7 +167,7 @@ namespace OngoingExperimentNS
                 }
                 saveGenerationData(ea.Population, (int)ea.Generation, ea.BestGenome.Fitness, getGenerationInfoPath());
                 Console.WriteLine("-----------------------------");
-                Console.WriteLine("Generation Number{0}, best fitness:{1}, time needed to evaluate: {2}", ea.Generation.ToString() , ea.BestGenome.Fitness , (DateTime.Now.Subtract(dt)));
+                Console.WriteLine("Generation Number{0}, best fitness:{1:###.###}, time needed to evaluate: {2}", ea.Generation.ToString() , ea.BestGenome.Fitness , (DateTime.Now.Subtract(dt)));
                 Console.WriteLine("-----------------------------");
                 //Do any post-hoc stuff here
             }

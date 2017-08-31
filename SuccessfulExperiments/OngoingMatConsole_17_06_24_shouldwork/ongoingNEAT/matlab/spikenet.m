@@ -79,7 +79,7 @@ classdef spikenet < handle
                 this.weightsScale    = ones(this.numNeurons,this.numNeurons); %ones
                 this.weightsScale(this.weightsMatrix > 0) = 1.0; %@M setze alle sca les zu denen es ein Gewicht gibt auf 1
                 
-                this.connections     = find(this.weightsMatrix > 0);%@M find returns all indices fullfilling the condition 
+                this.connections     = find(this.weightsMatrix ~= 0);%@M find returns all indices fullfilling the condition 
                 %connections = single indices 1-... first column than second
                 this.emCells = find(this.getCellsOfType('EM'));
                 this.esCells = find(this.getCellsOfType('ES'));
@@ -190,6 +190,7 @@ classdef spikenet < handle
                         box on;
                         set(gca,'fontsize',10);
                         saveas(gcf,[this.savePath sprintf('Model %s - Run %.0f - firings (start %.0f - target %.5f) RMSD=%.0f.pdf',model_name,run_number,run_settings(1,run_number),run_settings(2,run_number), rmsds(run_number))], 'pdf');
+                        savefig([this.savePath sprintf('Model %s - Run %.0f - firings (start %.0f - target %.5f) RMSD=%.0f.fig',model_name,run_number,run_settings(1,run_number),run_settings(2,run_number), rmsds(run_number))]);
                         
                         figure('Name','Prosthesis Simulation','NumberTitle','off','PaperSize',[25,10],'Units','centimeters','PaperPosition',[0 0 25 10],'visible','off');
                         plot(prost.angle_history(:,1)/1000,prost.angle_history(:,2));
@@ -202,6 +203,7 @@ classdef spikenet < handle
                         xrange=prost.x_lim/1000;
                         line(xrange,[run_settings(2,run_number), run_settings(2,run_number)],'Color','green','LineStyle','--','LineWidth',2);
                         saveas(gcf,[this.savePath sprintf('Model %s - Run %.0f  - movement (start %.0f - target %.0f)RMSD=%.5f.pdf',model_name,run_number,run_settings(1,run_number),run_settings(2,run_number), rmsds(run_number))], 'pdf');
+                        savefig([this.savePath sprintf('Model %s - Run %.0f  - movement (start %.0f - target %.0f)RMSD=%.5f.fig',model_name,run_number,run_settings(1,run_number),run_settings(2,run_number), rmsds(run_number))]);
                         close all hidden
                     end
                     
@@ -297,8 +299,8 @@ classdef spikenet < handle
                 % neuronen oder? ne quatsch ist ja alles oder nichts
                 % hier... keine aktivierung wie in herkömmlichen ANN
                 synapticInput = sum((this.weightsMatrix(fired,:).*this.weightsScale(fired,:)),1)';
-                noise = this.getRandomNoise(this.v); %noise removed to
-                %ensure dame values for each run
+                noise = this.getRandomNoise(this.v); 
+                %ensure same values for each run
                 this.v = this.v+0.5*(0.04*this.v.^2+5*this.v+140-u+synapticInput+noise); % 2* halbsekunden schritt
                 this.v = this.v+0.5*(0.04*this.v.^2+5*this.v+140-u+synapticInput+noise);
                 u=u+a.*(b.*this.v-u);

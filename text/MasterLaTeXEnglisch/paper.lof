@@ -7,4 +7,11 @@
 \contentsline {figure}{\numberline {1.5}{\ignorespaces Izhikevich simple \cite {izhikevichSimpleModel} model spiking patterns}}{8}
 \contentsline {figure}{\numberline {1.6}{\ignorespaces Motor Control cycles}}{8}
 \contentsline {figure}{\numberline {1.7}{\ignorespaces Population Coding}}{9}
-\contentsline {figure}{\numberline {1.8}{\ignorespaces experiment architecute}}{9}
+\contentsline {figure}{\numberline {1.8}{\ignorespaces experiment architecute}}{10}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Ongoing experiment substrate configuration}}{13}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Training behaviour of the initial ongoing model}}{14}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Simulation behaviour of the initial ongoing model}}{14}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Ongoing Experiment ES-EM connection ratios}}{15}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Ongoing Experiment RMSDS}}{16}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Ongoing Experiment mean movements}}{16}

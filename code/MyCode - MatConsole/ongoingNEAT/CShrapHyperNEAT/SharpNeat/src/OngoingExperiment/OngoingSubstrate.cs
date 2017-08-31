@@ -37,7 +37,7 @@ namespace OngoingExperimentNS
 
             int count = 0;
             // build substrate with two vertical lines with height 1 and distance 0.5 first line at x=-0.25
-            // cause of sigmoidal activation function with f(1) ca 1 und f(-1) ca -1 coordinates should be between 0 and 1 
+            // cause of sigmoidal activation function with f(1) ca 1 und f(-1) ca 0 coordinates should be between 0 and 1 
             for (int i = 0; i < inputs; i++, coordinates[1] += inputDelta)
             {
                 coordinates[3] = -0.5f;

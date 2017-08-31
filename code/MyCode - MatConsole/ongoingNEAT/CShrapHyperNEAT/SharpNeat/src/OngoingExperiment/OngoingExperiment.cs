@@ -61,8 +61,8 @@ namespace OngoingExperimentNS
                 {
                     NeatParameters np = new NeatParameters();
                     np.connectionWeightRange = 3;
-                    np.pMutateAddConnection = .03;
-                    np.pMutateAddNode = .01;
+                    np.pMutateAddConnection = .15; // 0.03
+                    np.pMutateAddNode = .05; //  0.01
                     np.pMutateConnectionWeights = .96;
                     np.pMutateDeleteConnection = 0;
                     np.pMutateDeleteSimpleNeuron = 0;
@@ -71,7 +71,7 @@ namespace OngoingExperimentNS
                     np.activationProbabilities[1] = .25;
                     np.activationProbabilities[2] = .25;
                     np.activationProbabilities[3] = .25;
-                    np.populationSize = 150;
+                    np.populationSize = 90; //150
                     np.pruningPhaseBeginComplexityThreshold = float.MaxValue;
                     np.pruningPhaseBeginFitnessStagnationThreshold = int.MaxValue;
                     np.pruningPhaseEndComplexityStagnationThreshold = int.MinValue;

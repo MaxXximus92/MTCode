@@ -418,3 +418,33 @@ parent={},%
 %
 }%
 }%
+\ifglsentryexists{IQR}{}%
+{%
+\gls@defglossaryentry{IQR}%
+{%
+name={IQR},%
+sort={IQR},%
+type={acronym},%
+first={interquartile range\glsspace (IQR)},%
+firstplural={interquartile ranges\glsspace (IQRs)},%
+text={IQR},%
+plural={IQRs},%
+description={interquartile range},%
+descriptionplural={interquartile range\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={interquartile range},%
+longplural={interquartile ranges},%
+short={IQR},%
+shortplural={IQRs},%
+counter={page},%
+parent={},%
+%
+}%
+}%

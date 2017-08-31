@@ -89,8 +89,7 @@ namespace OngoingExperimentNS
 #endif
             //Lin
 #if Linux
-            string arg12_matlabPath = "
-            ";
+            string arg12_matlabPath =  "/storage/matlab-r2017a/bin/";
             string arguments = String.Format(@" -c '{12}{0} \""runModel(\'{1}\',\'{2}\',\'{3}\',\'{4}\',\'{5}\',\'{6}\',\'{7}\',\'{8}\',\'{9}\',\'{10}\')\"" -logfile '{11}' > /dev/null 2>&1 ' ", arg0_matCommand, arg1_name, arg2_numNeurons, arg3_runTime, arg4_runSettings, arg5_savePath, arg6_equParamPath, arg7_weightsMPath, arg8_esemConPath, arg9_resultPath, arg10_syncPath, arg11_logPath, arg12_matlabPath);
             startInfo.FileName = "/bin/bash";
 #endif

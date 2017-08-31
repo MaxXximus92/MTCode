@@ -52,7 +52,7 @@ while (true)
             
             saveRmsdSync(resultPath,rmsd)
             isSave= false;
-            %  writeSync(syncPath,'finished','w');
+            writeSync(syncPath,'finished','w');
             
             % mems = memory;
             % mem_used = mems.MemUsedMATLAB;

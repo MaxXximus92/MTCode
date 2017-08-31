@@ -74,7 +74,7 @@ The time needed by EM cells to encode a new angle is again 50ms. EM cells are pa
 Whether reward or punishment is send by the critic is decided whether the distance $\Delta\theta_t $of the current angle $\theta_t$  to the target angle $\theta_{target}$ got smaller or higher compared to the mean of the last two differences $\Delta\theta_{prev}$. This can be seen in the following formula:
 \begin{align*}
 	\Delta\theta_t &= |\theta_t-\theta_{target}|\\
-	\Delta\theta_{prev} &= \left| \dfrac{\theta_{t-1}+\theta_{t-2}}{2} -\theta_{target}  \right |\\
+	\Delta\theta_{prev} &= \left| \theta_{t-1} -\theta_{target}  \right |\\
 	\text{critic response} &= 
 	\begin{cases}
 	\text{reward} &  \quad \text{if } \Delta\theta_t < \Delta\theta_{prev}\\

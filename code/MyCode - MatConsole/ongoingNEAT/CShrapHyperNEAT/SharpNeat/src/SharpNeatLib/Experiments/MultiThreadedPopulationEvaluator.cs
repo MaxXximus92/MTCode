@@ -146,7 +146,7 @@ namespace SharpNeatLib.Experiments
                 //sem2.Release();
                 e.g.Fitness = Math.Max(e.NetworkEvaluator.threadSafeEvaluateNetwork(network,sem2), EvolutionAlgorithm.MIN_GENOME_FITNESS);
                 sem2.WaitOne();
-                Console.WriteLine("Genome Number {0} fitness {1:#####} dt {2} ", e.nu,e.g.Fitness ,(DateTime.Now.Subtract(dt)));
+                Console.WriteLine("Genome Number {0} fitness {1:###.###} dt {2} ", e.nu,e.g.Fitness ,(DateTime.Now.Subtract(dt)));
                 sem2.Release();
             }
 

@@ -1,0 +1,37 @@
+digraph g { 
+N0 [shape=ellipse, label=Bias,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N1[shape=ellipse label=X1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N2[shape=ellipse label=Y1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N3[shape=ellipse label=X2,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N4[shape=ellipse label=Y2,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N5[shape=ellipse,fontsize = 10, height = 0.1, width = 0.1, style = filled, fillcolor = red]
+N96[shape=ellipse, label=N96_Si,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N269[shape=ellipse, label=N269_Si,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N317[shape=ellipse, label=N317_Si,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N883[shape=ellipse, label=N883_Si,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N3633[shape=ellipse, label=N3633_Si,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N0 -> N5 [color=black] [ label=0.51,fontsize=10]
+N2 -> N5 [color=red] [arrowType=inv][ label=-1.2,fontsize=10]
+N3 -> N5 [color=red] [arrowType=inv][ label=-1.18,fontsize=10]
+N4 -> N5 [color=black] [ label=0.7,fontsize=10]
+N1 -> N96 [color=black] [ label=0.9,fontsize=10]
+N96 -> N5 [color=red] [arrowType=inv][ label=-0.58,fontsize=10]
+N4 -> N269 [color=black] [ label=1.16,fontsize=10]
+N269 -> N96 [color=black] [ label=0.19,fontsize=10]
+N2 -> N96 [color=black] [ label=0.42,fontsize=10]
+N4 -> N317 [color=black] [ label=1.07,fontsize=10]
+N317 -> N269 [color=black] [ label=1.16,fontsize=10]
+N317 -> N883 [color=red] [arrowType=inv][ label=-0.52,fontsize=10]
+N883 -> N317 [color=black] [ label=0.12,fontsize=10]
+N4 -> N883 [color=red] [arrowType=inv][ label=-0.28,fontsize=10]
+N2 -> N269 [color=black] [ label=0.64,fontsize=10]
+N4 -> N3633 [color=red] [arrowType=inv][ label=-0.05,fontsize=10]
+N3633 -> N883 [color=red] [arrowType=inv][ label=-0.25,fontsize=10]
+N1 -> N3633 [color=black] [ label=0.89,fontsize=10]
+ { rank=same; 
+N5
+ } 
+ { rank=same; 
+N1 ->N2 ->N3 ->N4 ->N0 [style=invis]
+ } 
+}

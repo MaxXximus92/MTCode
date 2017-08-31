@@ -8,3 +8,8 @@ C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode - 
 C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode - MatConsole\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\CSMatIO\src\bin\Release\zlib.net.dll
 C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode - MatConsole\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\CSMatIO\src\obj\Release\csmatio.csprojResolveAssemblyReference.cache
 C:\Users\Maximus Mutschler\Dropbox\SS17\MasterArbeit\MasterArbeit\code\MyCode - MatConsole\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\CSMatIO\src\obj\Release\csmatio.dll
+P:\MasterArbeit\code\MyCode - MatConsole\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\CSMatIO\src\bin\Release\csmatio.dll
+P:\MasterArbeit\code\MyCode - MatConsole\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\CSMatIO\src\bin\Release\csmatio.xml
+P:\MasterArbeit\code\MyCode - MatConsole\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\CSMatIO\src\bin\Release\zlib.net.dll
+P:\MasterArbeit\code\MyCode - MatConsole\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\CSMatIO\src\obj\Release\csmatio.csprojResolveAssemblyReference.cache
+P:\MasterArbeit\code\MyCode - MatConsole\ongoingNEAT\CShrapHyperNEAT\SharpNeat\src\CSMatIO\src\obj\Release\csmatio.dll
