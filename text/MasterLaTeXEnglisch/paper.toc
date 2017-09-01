@@ -8,28 +8,28 @@
 \contentsline {section}{\numberline {2.1}HyperNEAT applied to the Ongoing Model}{11}
 \contentsline {subsection}{\numberline {2.1.1}ES-EM learning}{11}
 \contentsline {subsubsection}{description}{11}
-\contentsline {subsubsection}{result}{14}
-\contentsline {subsubsection}{discussion}{14}
-\contentsline {section}{\numberline {2.2}HyperNEAT applied to the Static Model}{14}
-\contentsline {subsection}{\numberline {2.2.1}D-ES learning}{14}
-\contentsline {subsubsection}{description}{14}
-\contentsline {subsubsection}{result}{14}
-\contentsline {subsubsection}{discussion}{14}
-\contentsline {subsection}{\numberline {2.2.2}All Connections 2D neuron space}{14}
-\contentsline {subsubsection}{description}{14}
-\contentsline {subsubsection}{result}{14}
-\contentsline {subsubsection}{discussion}{14}
-\contentsline {subsection}{\numberline {2.2.3}All Connections 1D neuron space}{14}
-\contentsline {subsubsection}{description}{14}
-\contentsline {subsubsection}{result}{14}
-\contentsline {subsubsection}{discussion}{14}
-\contentsline {section}{\numberline {2.3}ES-HyperNEAT applied to the Static Model}{14}
-\contentsline {subsection}{\numberline {2.3.1}All Connections and Neurons 2D neuron space}{14}
-\contentsline {subsubsection}{description}{14}
-\contentsline {subsubsection}{result}{14}
-\contentsline {subsubsection}{discussion}{14}
-\contentsline {subsection}{\numberline {2.3.2}All Connections and Neurons 1D neuron space}{14}
-\contentsline {subsubsection}{description}{14}
-\contentsline {subsubsection}{result}{14}
-\contentsline {subsubsection}{discussion}{14}
-\contentsline {chapter}{Bibliography}{14}
+\contentsline {subsubsection}{results}{13}
+\contentsline {subsubsection}{discussion}{15}
+\contentsline {section}{\numberline {2.2}HyperNEAT applied to the Static Model}{15}
+\contentsline {subsection}{\numberline {2.2.1}D-ES learning}{15}
+\contentsline {subsubsection}{description}{15}
+\contentsline {subsubsection}{results}{15}
+\contentsline {subsubsection}{discussion}{15}
+\contentsline {subsection}{\numberline {2.2.2}All Connections 2D neuron space}{15}
+\contentsline {subsubsection}{description}{15}
+\contentsline {subsubsection}{results}{15}
+\contentsline {subsubsection}{discussion}{15}
+\contentsline {subsection}{\numberline {2.2.3}All Connections 1D neuron space}{15}
+\contentsline {subsubsection}{description}{15}
+\contentsline {subsubsection}{results}{15}
+\contentsline {subsubsection}{discussion}{15}
+\contentsline {section}{\numberline {2.3}ES-HyperNEAT applied to the Static Model}{15}
+\contentsline {subsection}{\numberline {2.3.1}All Connections and Neurons 2D neuron space}{15}
+\contentsline {subsubsection}{description}{15}
+\contentsline {subsubsection}{results}{15}
+\contentsline {subsubsection}{discussion}{15}
+\contentsline {subsection}{\numberline {2.3.2}All Connections and Neurons 1D neuron space}{15}
+\contentsline {subsubsection}{description}{15}
+\contentsline {subsubsection}{result}{15}
+\contentsline {subsubsection}{discussion}{15}
+\contentsline {chapter}{Bibliography}{15}

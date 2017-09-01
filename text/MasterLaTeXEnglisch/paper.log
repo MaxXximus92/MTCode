@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.20)  31 AUG 2017 14:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.20)  1 SEP 2017 10:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1003,63 +1003,72 @@ File: figures/OngoingModel/OngoingSubstrate.png Graphic file (type png)
 Package pdftex.def Info: figures/OngoingModel/OngoingSubstrate.png used on inpu
 t line 22.
 (pdftex.def)             Requested size: 278.83578pt x 256.69173pt.
- [12]
+ [12] [13 <./figures/OngoingModel/OngoingSubstrate.png (PNG copy)>]
 <figures/OngoingModel/InitialModelTrain-movement(start65-target35)RMSD=17,70511
-.pdf, id=118, 711.65875pt x 284.06125pt>
+.pdf, id=121, 711.65875pt x 284.06125pt>
 File: figures/OngoingModel/InitialModelTrain-movement(start65-target35)RMSD=17,
 70511.pdf Graphic file (type pdf)
 
 <use figures/OngoingModel/InitialModelTrain-movement(start65-target35)RMSD=17,7
 0511.pdf>
 Package pdftex.def Info: figures/OngoingModel/InitialModelTrain-movement(start6
-5-target35)RMSD=17,70511.pdf used on input line 36.
+5-target35)RMSD=17,70511.pdf used on input line 46.
 (pdftex.def)             Requested size: 278.83578pt x 111.29489pt.
 
 <figures/OngoingModel/InitialModelSim-movement(start65-target35)RMSD=7,56571.pd
-f, id=119, 711.65875pt x 284.06125pt>
+f, id=122, 711.65875pt x 284.06125pt>
 File: figures/OngoingModel/InitialModelSim-movement(start65-target35)RMSD=7,565
 71.pdf Graphic file (type pdf)
 
 <use figures/OngoingModel/InitialModelSim-movement(start65-target35)RMSD=7,5657
 1.pdf>
 Package pdftex.def Info: figures/OngoingModel/InitialModelSim-movement(start65-
-target35)RMSD=7,56571.pdf used on input line 43.
+target35)RMSD=7,56571.pdf used on input line 53.
 (pdftex.def)             Requested size: 278.83578pt x 111.29489pt.
- <figures/OngoingModel/connProbBox.png, id=120, 530.73282pt x 433.62pt>
+ <figures/OngoingModel/connProbBox.png, id=123, 530.73282pt x 433.62pt>
 File: figures/OngoingModel/connProbBox.png Graphic file (type png)
 
 <use figures/OngoingModel/connProbBox.png>
 Package pdftex.def Info: figures/OngoingModel/connProbBox.png used on input lin
-e 52.
+e 62.
 (pdftex.def)             Requested size: 278.83578pt x 227.81932pt.
 
-<figures/OngoingModel/ongoingBoxPlot.png, id=121, 569.87906pt x 623.32875pt>
+<figures/OngoingModel/ongoingBoxPlot.png, id=124, 569.87906pt x 623.32875pt>
 File: figures/OngoingModel/ongoingBoxPlot.png Graphic file (type png)
 
 <use figures/OngoingModel/ongoingBoxPlot.png>
 Package pdftex.def Info: figures/OngoingModel/ongoingBoxPlot.png used on input 
-line 59.
+line 69.
 (pdftex.def)             Requested size: 278.83578pt x 304.98672pt.
 
-<figures/OngoingModel/meanMovement35deg.png, id=122, 1806.75pt x 722.7pt>
+<figures/OngoingModel/meanMovement35deg.png, id=125, 1806.75pt x 722.7pt>
 File: figures/OngoingModel/meanMovement35deg.png Graphic file (type png)
 
 <use figures/OngoingModel/meanMovement35deg.png>
 Package pdftex.def Info: figures/OngoingModel/meanMovement35deg.png used on inp
-ut line 67.
+ut line 77.
 (pdftex.def)             Requested size: 278.83578pt x 111.53212pt.
+
+<figures/OngoingModel/NagelOngoingBoxPlot.png, id=126, 456.95718pt x 365.86688p
+t>
+File: figures/OngoingModel/NagelOngoingBoxPlot.png Graphic file (type png)
+ <use figures/OngoingModel/NagelOngoingBoxPlot.png>
+Package pdftex.def Info: figures/OngoingModel/NagelOngoingBoxPlot.png used on i
+nput line 84.
+(pdftex.def)             Requested size: 278.83578pt x 223.25662pt.
 ) (./paper.bbl
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [13 <./figures/OngoingModel/OngoingSubstrate.png (PNG copy)>]
-Overfull \vbox (364.02847pt too high) has occurred while \output is active []
+ [14 <./figures/OngoingModel/InitialModelTrain-movement(start65-target35)RMSD=1
+7,70511.pdf>]
+Overfull \vbox (169.61694pt too high) has occurred while \output is active []
 
 
-[14 <./figures/OngoingModel/InitialModelTrain-movement(start65-target35)RMSD=17
-,70511.pdf> <./figures/OngoingModel/InitialModelSim-movement(start65-target35)R
-MSD=7,56571.pdf>] [15 <./figures/OngoingModel/connProbBox.png (PNG copy)>]
-[16 <./figures/OngoingModel/ongoingBoxPlot.png (PNG copy)> <./figures/OngoingMo
-del/meanMovement35deg.png (PNG copy)>] [17
+[15 <./figures/OngoingModel/InitialModelSim-movement(start65-target35)RMSD=7,56
+571.pdf>] [16 <./figures/OngoingModel/connProbBox.png (PNG copy)>] [17 <./figur
+es/OngoingModel/ongoingBoxPlot.png (PNG copy)> <./figures/OngoingModel/meanMove
+ment35deg.png (PNG copy)>] [18 <./figures/OngoingModel/NagelOngoingBoxPlot.png>
+] [19
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 77--82
@@ -1078,7 +1087,7 @@ Underfull \hbox (badness 4291) in paragraph at lines 77--82
 []0$\OT1/cmr/m/n/12 .  [On-li-ne;
  []
 
-) [18] (./paper.aux)
+) [20] (./paper.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1088,10 +1097,10 @@ LaTeX Warning: There were undefined references.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 9971 strings out of 493013
- 148643 string characters out of 6136993
- 307238 words of memory out of 5000000
- 13258 multiletter control sequences out of 15000+600000
+ 9977 strings out of 493013
+ 148886 string characters out of 6136993
+ 307249 words of memory out of 5000000
+ 13263 multiletter control sequences out of 15000+600000
  13856 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,16n,77p,1961b,3560s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1109,10 +1118,10 @@ e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2016/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2016/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2016/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmtt12.pfb>
-Output written on paper.pdf (32 pages, 863308 bytes).
+Output written on paper.pdf (34 pages, 881305 bytes).
 PDF statistics:
- 198 PDF objects out of 1000 (max. 8388607)
- 124 compressed objects within 2 object streams
+ 206 PDF objects out of 1000 (max. 8388607)
+ 128 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

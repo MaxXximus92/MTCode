@@ -26,16 +26,23 @@ Based on the fact that cells of the brains sensory and motory cortex are aligned
 
 The used NEAT parameters are as follows: A add connection mutation appears with a probability  of $0.15$, a add node mutation with $0.05$ and weight mutations with $0.96$ for each individual per generation. If a individual is selected to have a weight mutation depending on 5 equal probable metrics a varying amount of connections gets either assigned a randomly chosen new weight value or a even distributed value is added to the weight. The elitism proportion is $0.1$ which complies with 9 individuals. All CPPN connection weights were set to be in the interval $[-1.5,1.5]$.
 
+To ensure that HyperNEAT gets the same fitness result when a model gets evaluated twice, the random number generation function is always initialized with the same seed. As a result HyperNEAT might now overfit during training, because the noise is always the same. Its fairly unlikely that Hyperneat can predict the random number generation function during simulation. So no benefit for the simulation is gained. Thus this is a simplification of Nagels Model that does no harm. TODO put in general description
+
+TODO train and test data
 TODO put neat params in general descriprion. 
 TODO further on just give table with parameters.
 \subsubsection{results}
-The performance of the initial model with start angle 65\degree and target angle 35 \degree can be seen in figure \ref{fig:initialmodeltrain} (training) and figure \ref{fig:initialmodelsim} (simulation.). TODO fitness !! compare to best fitness !! bla bla bla ...
+The training  performance of the initial model with start angle 65\degree and target angle 15 and 115 \degree can be seen in figure \ref{fig:initialmodeltrain}. The behaviour at simulation of an angle of 35\degree are depicted in figure \ref{fig:initialmodelsim}. In training the initial model gets a fitness of $115.09$. The process of the HyperNEAT algorithm can be seen in figure (todo) and figure (todo). The first figure shows the mean fitness of each generation. The second the best fitness in each generation. And the third one the average complexity of each generation calculated by the total sum of nodes and connections of all individuals in this generation divided by the population size. 
+As a representative set of models the 30 best models of HyperNEAt's last generation have been chosen. Since connection and node mutations are rare and most weight mutation in a CPPN have a minor influence on the behaviour of the model the best 30 models of previous generation behave similar. Thus it's irrelevant whether one analyses the best 30 models of the last generation or for example the 500 best models of all generations. TODO maybe in description
+The ES-EM connection ratio of the initial model was $0.08$. HyperNEATs solution provide a higher ratio TODO  einfügen. As is shown in figure \ref{fig:connprobbox}. The RMSDs for reaching different angles are shown in figure \ref{fig:ongoingboxplot}.  The new models clearly outperform the initial one at reaching 135\degree. At the angles TODO new results. The behaviour of all 30 models reaching the angle of ... degree is shown in figure \ref{fig:meanmovement35deg}. And can be compared to the movement of the initial model in. figure \ref{fig:initialmodelsim}. The result of Nagel (figure \ref{fig:NagelOngoingBoxPlot}) show a lower RMSDs.  But the simulation results of this experiment are not fully comparable to Nagels result, since he used 500 randomly connected models. And this work only optimizes 1 randomly connected model with optimized ES-EM connections. But one can derive that an optimal ES-EM connection are not sufficient for optimal solutions(what was obvious anyway...;) ) (Thats more discussion).
 
-TODO compare plots sebastian. TODO make plots. 
+TODO show best CPPN.  tell error of best model. argue that cppn not depictable but an example can be seen in model ...
+
+ 
 \begin{figure}[tb]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figures/OngoingModel/InitialModelTrain-movement(start65-target35)RMSD=17,70511.pdf}
-	\caption[Training behaviour of the initial ongoing model]{\textbf{Training behaviour of the initial ongoing model:} Sarting from 65\degree a 35\degree angle is to be reached. The RMSD is 17.7\degree and calculated from 7 seconds onwards. }
+	\caption[Training behaviour of the initial ongoing model]{\textbf{Training behaviour of the initial ongoing model:} Sarting from 65\degree a 35\degree angle (blue) and 115\degree angle (red) is to be reached. The RMSD is 17.7\degree and calculated from 7 seconds onwards. }
 	\label{fig:initialmodeltrain}
 \end{figure}
 
@@ -58,7 +65,7 @@ TODO compare plots sebastian. TODO make plots.
 \begin{figure}[tb]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figures/OngoingModel/ongoingBoxPlot}
-	\caption[Ongoing Experiment RMSDS]{\textbf{Ongoing Experiment RMSDS:} The RMSD distribution of the 30 best ongoing models of HyperNEAT's last generation. Each Boxplot corresponds to one target angle: 0\degree, 35\degree, 75\degree, 105\degree and 135\degree. The initial angle was 65\degree. The RMSD of the initial model is indicated by the green line. The mean RMSD of the simulated models is represented by the red line. The box represents the interquartile range (IQR) from the first to the third quartile. The whiskers extend the quartiles by $\pm1.5\cdot IQR$. Red crosses show outlier.}
+	\caption[Ongoing Experiment RMSDS]{\textbf{Ongoing Experiment RMSDS:} The RMSD distribution of the 30 best ongoing models of HyperNEAT's last generation. Each Boxplot corresponds to one target angle: 0\degree, 35\degree, 75\degree, 105\degree and 135\degree. The initial angle was 65\degree. The RMSD of the initial model is indicated by the green line. The mean RMSD of the simulated models is represented by the red line. It is calculated from $t=20s$ until $t=120s$. The box represents the interquartile range (IQR) from the first to the third quartile. The whiskers extend the quartiles by $\pm1.5\cdot IQR$. Red crosses show outliers.}
 	\label{fig:ongoingboxplot}
 \end{figure}
 
@@ -70,10 +77,60 @@ TODO compare plots sebastian. TODO make plots.
 	\label{fig:meanmovement35deg}
 \end{figure}
 
+\begin{figure}[tb]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/OngoingModel/NagelOngoingBoxPlot}
+	\caption[Nagel's ongoing Experiment mean movements]{\textbf{Nagel's ongoing Experiment mean movements:} 100 models were generated. For each model 5 different target angles (0\degree, 35\degree, 75\degree, 105\degree 135\degree) were simulated in 5 runs per angle. The initial angle was 65\degree.  The mean RMSD of the simulated models is represented by the red line. It is calculated from $t=20s$ until $t=120s$. The box represents the interquartile range (IQR) from the first to the third quartile. The whiskers extend the quartiles by $\pm1.5\cdot IQR$. Red crosses show outliers. \cite{sebastianMasterThesis} }
+	\label{fig:NagelOngoingBoxPlot}
+\end{figure}
 
 \subsubsection{discussion}
+TODO
 \section{HyperNEAT applied to the Static Model}
+-> methodology 304 neurone bei statischem lernen
+
+-learning: min max angle to be reached
+-> average time for learning phase 79 seconds.  | i am better
+-> shortest 19.6 seconds.
+-> longest 1249 seconds.
+SSP used | i not
+same eligibility time windows,
+same amount of cells
+same cells fireing per angle .
+tau learning is dynamic.
+
+-my fitness function
+	argue that rmsd over whole movement not after reached is calculated.
+	
+- boxplot time to complete learning phase. (change matlab code)
+- RMSDs for each target angle box plot.
+- boxplot total rmsd.
+
+simulation:
+RMSD calculated the last 20 second of 30 seconds time window!
+-> but still argue that my model would have a lower total rmsd.
+ 
+ -> how long does the best model need to reach each angle in average. (sebastian 35)
+     -> how much better to chadderdon( sebastian 85 prozent besser)
+     
+ argue as sebastian did that only movement is learned directly resting not. ok( actually it is). But no resting mechanism in netowrk,
+
+
 \subsection{D-ES learning}
+min variance experiment. 
+            rmsd_scale=0.7;
+angle_scale=0.2;
+training_scale =0.1;
+%Static_RMSDFit_17_07_10_minVariance.txt Threshold= 0.3 rate= 0.6914 meanFitness= 0.85 approxRmsd = 28.66
+
+
+-> one model optimized. Check baseline model again.
+-> Hyperneat performance
+-> CPPN
+-> best model
+-> box plot compares.
+
+
 \subsubsection{description}
 \subsubsection{results}
 \subsubsection{discussion}
