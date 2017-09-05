@@ -1,0 +1,35 @@
+digraph g { 
+N0 [shape=ellipse, label=Bias,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N1[shape=ellipse label=X1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N2[shape=ellipse label=Y1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N3[shape=ellipse,fontsize = 10, height = 0.1, width = 0.1, style = filled, fillcolor = red]
+N71[shape=ellipse, label=N71_L,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N102[shape=ellipse, label=N102_S,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N136[shape=ellipse, label=N136_S,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N173[shape=ellipse, label=N173_S,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N247[shape=ellipse, label=N247_Si,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N345[shape=ellipse, label=N345_Si,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N367[shape=ellipse, label=N367_Si,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N521[shape=ellipse, label=N521_Si,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N1 -> N3 [color=red] [arrowType=inv][ label=-0.57,fontsize=10]
+N2 -> N3 [color=red] [arrowType=inv][ label=-1.09,fontsize=10]
+N0 -> N71 [color=red] [arrowType=inv][ label=-1.25,fontsize=10]
+N102 -> N3 [color=black] [ label=1.25,fontsize=10]
+N2 -> N102 [color=black] [ label=0.72,fontsize=10]
+N71 -> N173 [color=black] [ label=1.21,fontsize=10]
+N173 -> N102 [color=red] [arrowType=inv][ label=-0.05,fontsize=10]
+N247 -> N102 [color=black] [ label=0.95,fontsize=10]
+N345 -> N247 [color=black] [ label=0.98,fontsize=10]
+N136 -> N367 [color=black] [ label=1.01,fontsize=10]
+N367 -> N345 [color=black] [ label=1.06,fontsize=10]
+N345 -> N71 [color=black] [ label=1.27,fontsize=10]
+N102 -> N102 [color=black] [ label=0.05,fontsize=10]
+N71 -> N521 [color=black] [ label=1,fontsize=10]
+N521 -> N136 [color=black] [ label=0.83,fontsize=10]
+ { rank=same; 
+N3
+ } 
+ { rank=same; 
+N1 ->N2 ->N0 [style=invis]
+ } 
+}

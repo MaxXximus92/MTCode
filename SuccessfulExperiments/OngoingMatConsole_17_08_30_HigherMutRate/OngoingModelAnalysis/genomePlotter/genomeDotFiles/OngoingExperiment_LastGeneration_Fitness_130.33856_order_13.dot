@@ -1,0 +1,35 @@
+digraph g { 
+N0 [shape=ellipse, label=Bias,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N1[shape=ellipse label=X1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N2[shape=ellipse label=Y1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N3[shape=ellipse label=X2,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N4[shape=ellipse label=Y2,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N5[shape=ellipse,fontsize = 10, height = 0.1, width = 0.1, style = filled, fillcolor = red]
+N61[shape=ellipse, label=N61_L,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N264[shape=ellipse, label=N264_G,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N383[shape=ellipse, label=N383_Si,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N1730[shape=ellipse, label=N1730_G,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N0 -> N5 [color=black] [ label=0.09,fontsize=10]
+N1 -> N5 [color=red] [arrowType=inv][ label=-1.44,fontsize=10]
+N2 -> N5 [color=red] [arrowType=inv][ label=-0.66,fontsize=10]
+N3 -> N5 [color=black] [ label=0.37,fontsize=10]
+N5 -> N5 [color=red] [arrowType=inv][ label=-0.32,fontsize=10]
+N4 -> N61 [color=red] [arrowType=inv][ label=-0.32,fontsize=10]
+N1 -> N61 [color=red] [arrowType=inv][ label=-0.67,fontsize=10]
+N61 -> N264 [color=red] [arrowType=inv][ label=-1.03,fontsize=10]
+N264 -> N61 [color=black] [ label=0.34,fontsize=10]
+N264 -> N383 [color=red] [arrowType=inv][ label=-0.96,fontsize=10]
+N5 -> N61 [color=red] [arrowType=inv][ label=-0.7,fontsize=10]
+N61 -> N383 [color=black] [ label=0.21,fontsize=10]
+N2 -> N264 [color=black] [ label=0.74,fontsize=10]
+N1 -> N264 [color=black] [ label=0.9,fontsize=10]
+N383 -> N383 [color=black] [ label=1.23,fontsize=10]
+N383 -> N1730 [color=black] [ label=1.28,fontsize=10]
+N1730 -> N5 [color=red] [arrowType=inv][ label=-0.01,fontsize=10]
+ { rank=same; 
+N5
+ } 
+ { rank=same; 
+N1 ->N2 ->N3 ->N4 ->N0 [style=invis]
+ } 
+}

@@ -1,0 +1,32 @@
+<genome id="6000" species-id="32" age="1" fitness="131.07">
+  <neurons>
+    <neuron id="0" type="bias" activationFunction="NullFn" />
+    <neuron id="1" type="in" activationFunction="NullFn" />
+    <neuron id="2" type="in" activationFunction="NullFn" />
+    <neuron id="3" type="in" activationFunction="NullFn" />
+    <neuron id="4" type="in" activationFunction="NullFn" />
+    <neuron id="5" type="out" activationFunction="BipolarSigmoid" />
+    <neuron id="61" type="hid" activationFunction="Linear" />
+    <neuron id="76" type="hid" activationFunction="BipolarSigmoid" />
+    <neuron id="145" type="hid" activationFunction="Gaussian" />
+    <neuron id="181" type="hid" activationFunction="BipolarSigmoid" />
+    <neuron id="285" type="hid" activationFunction="Sine" />
+    <neuron id="538" type="hid" activationFunction="Linear" />
+  </neurons>
+  <connections>
+    <connection innov-id="6" src-id="0" tgt-id="5" weight="-1.3222049067728221" />
+    <connection innov-id="9" src-id="3" tgt-id="5" weight="1.2725674537941813" />
+    <connection innov-id="52" src-id="5" tgt-id="5" weight="-0.2258986622095108" />
+    <connection innov-id="62" src-id="4" tgt-id="61" weight="-0.9798064436763525" />
+    <connection innov-id="63" src-id="61" tgt-id="5" weight="-0.013470004731789231" />
+    <connection innov-id="77" src-id="1" tgt-id="76" weight="0.95949871684424581" />
+    <connection innov-id="146" src-id="2" tgt-id="145" weight="1" />
+    <connection innov-id="147" src-id="145" tgt-id="5" weight="0.68365635350346565" />
+    <connection innov-id="182" src-id="1" tgt-id="181" weight="0.17533541936427355" />
+    <connection innov-id="183" src-id="181" tgt-id="61" weight="1.2345033553428948" />
+    <connection innov-id="286" src-id="76" tgt-id="285" weight="1" />
+    <connection innov-id="287" src-id="285" tgt-id="5" weight="-1.1994057074189186" />
+    <connection innov-id="539" src-id="5" tgt-id="538" weight="1" />
+    <connection innov-id="540" src-id="538" tgt-id="61" weight="-1.3229921087622643" />
+  </connections>
+</genome>

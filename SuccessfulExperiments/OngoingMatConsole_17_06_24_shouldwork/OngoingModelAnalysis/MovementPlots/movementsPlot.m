@@ -47,7 +47,7 @@ meandata= mean(Xdatas');
 figure(fig1)
 hold on
 plot(meandata,L1(2).YData,'r');
-axis square
+%axis square
 hold off 
 end
 a=4

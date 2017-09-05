@@ -1,0 +1,6 @@
+f=openfig('P:\MasterArbeit\SuccessfulExperiments\Static_RMSDFit_17_07_10_minVariance\analysis\CPPNPlot\StatExp_BGen_Gen_371_Fit_0.86504Grid.mat.fig')
+title('')
+xlabel('D neuron positions')
+ylabel('ES neuron positions')
+zlabel('CPPN output')
+savefig('P:\MasterArbeit\SuccessfulExperiments\Static_RMSDFit_17_07_10_minVariance\analysis\CPPNPlot\StatExp_BGen_Gen_371_Fit_0.86504Grid.mat.fig')

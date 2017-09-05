@@ -1,0 +1,42 @@
+digraph g { 
+N0 [shape=ellipse, label=Bias,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N1[shape=ellipse label=X1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N2[shape=ellipse label=Y1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N3[shape=ellipse label=X2,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N4[shape=ellipse label=Y2,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N5[shape=ellipse,fontsize = 10, height = 0.1, width = 0.1, style = filled, fillcolor = red]
+N61[shape=ellipse, label=N61_L,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N264[shape=ellipse, label=N264_G,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N355[shape=ellipse, label=N355_S,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N371[shape=ellipse, label=N371_S,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N393[shape=ellipse, label=N393_Si,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N3221[shape=ellipse, label=N3221_L,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N3270[shape=ellipse, label=N3270_S,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N0 -> N5 [color=black] [ label=0.04,fontsize=10]
+N1 -> N5 [color=red] [arrowType=inv][ label=-1.46,fontsize=10]
+N2 -> N5 [color=red] [arrowType=inv][ label=-1.09,fontsize=10]
+N5 -> N5 [color=red] [arrowType=inv][ label=-0.19,fontsize=10]
+N4 -> N61 [color=black] [ label=0.23,fontsize=10]
+N1 -> N61 [color=black] [ label=1.43,fontsize=10]
+N264 -> N5 [color=red] [arrowType=inv][ label=-0.03,fontsize=10]
+N3 -> N355 [color=black] [ label=0.99,fontsize=10]
+N355 -> N5 [color=black] [ label=0.36,fontsize=10]
+N371 -> N264 [color=red] [arrowType=inv][ label=-0.35,fontsize=10]
+N355 -> N264 [color=black] [ label=0.18,fontsize=10]
+N61 -> N393 [color=black] [ label=0.12,fontsize=10]
+N393 -> N371 [color=red] [arrowType=inv][ label=-1,fontsize=10]
+N3 -> N5 [color=black] [ label=0.45,fontsize=10]
+N264 -> N3221 [color=black] [ label=1,fontsize=10]
+N3221 -> N61 [color=red] [arrowType=inv][ label=-0.69,fontsize=10]
+N371 -> N393 [color=black] [ label=0.48,fontsize=10]
+N264 -> N3270 [color=black] [ label=0.92,fontsize=10]
+N3270 -> N3221 [color=red] [arrowType=inv][ label=-0.86,fontsize=10]
+N1 -> N393 [color=black] [ label=0.09,fontsize=10]
+N5 -> N3221 [color=red] [arrowType=inv][ label=-0.83,fontsize=10]
+ { rank=same; 
+N5
+ } 
+ { rank=same; 
+N1 ->N2 ->N3 ->N4 ->N0 [style=invis]
+ } 
+}

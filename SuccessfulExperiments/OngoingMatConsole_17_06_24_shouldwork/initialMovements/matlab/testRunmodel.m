@@ -1,6 +1,6 @@
 
 run_time = '40000'; %runtime per trial [ms] %initial 120000
-run_settings = '[65,65;15,115]';%[ones(1,5).*65;     %start angles
+run_settings = '[65,65;35,95]';%[ones(1,5).*65;     %start angles
                 %0,35,75,105,135]; %target angles
 %run_settings= '[65,65,65,65,65;0,35,75,105,135]';
 numNeurons='256';

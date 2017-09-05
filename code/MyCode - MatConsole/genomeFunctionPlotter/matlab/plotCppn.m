@@ -16,16 +16,22 @@ C=double(Z >= threshold)+1;
 cmap=[0 0 1
       0 1 0];
 fig =  figure() ;
+x0=10;
+y0=10;
+width=600;
+height=600;
+set(gcf,'units','points','position',[x0,y0,width,height])
+
 hold on
 s=surf(X,Y,Z,C,'FaceAlpha',0.9);
 colormap(cmap);
 
 
 
-%s.EdgeColor = 'none';
+s.EdgeColor = 'none';
 %s.EdgeAlpha=0.1;
-%camlight right; 
-%lighting phong
+camlight right; 
+lighting phong
 xlab='D_Positions';
 ylab='ES_Positions';
 xlabel(xlab);

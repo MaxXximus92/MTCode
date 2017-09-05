@@ -1,0 +1,23 @@
+digraph g { 
+N0 [shape=ellipse, label=Bias,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N1[shape=ellipse label=X1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N2[shape=ellipse label=Y1,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=green]
+N3[shape=ellipse,fontsize = 10, height = 0.1, width = 0.1, style = filled, fillcolor = red]
+N71[shape=ellipse, label=N71_L,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N115[shape=ellipse, label=N115_G,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N192[shape=ellipse, label=N192_G,fontsize=10,height=0.1,width=0.1,style=filled,fillcolor=gray]
+N1 -> N3 [color=red] [arrowType=inv][ label=-0.58,fontsize=10]
+N2 -> N3 [color=red] [arrowType=inv][ label=-1.13,fontsize=10]
+N71 -> N3 [color=black] [ label=1.27,fontsize=10]
+N0 -> N115 [color=black] [ label=1.3,fontsize=10]
+N115 -> N71 [color=black] [ label=0.99,fontsize=10]
+N2 -> N192 [color=black] [ label=1.3,fontsize=10]
+N192 -> N71 [color=black] [ label=0.02,fontsize=10]
+N2 -> N115 [color=black] [ label=1.47,fontsize=10]
+ { rank=same; 
+N3
+ } 
+ { rank=same; 
+N1 ->N2 ->N0 [style=invis]
+ } 
+}
